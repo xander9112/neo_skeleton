@@ -1,0 +1,12 @@
+{
+  "appName": "NeoflexPortal",
+  "language": "Language",
+  "language_ru": "Russian",
+  "language_en": "English",
+  "home": "Home",
+  "profile": "Profile",
+  "bottomNavigationBar": {
+    "home": "@:home",
+    "profile": "@:profile"
+  }
+}
