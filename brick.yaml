@@ -23,6 +23,6 @@ environment:
 vars:
   name:
     type: string
-    description: Your name
-    default: Dash
-    prompt: What is your name?
+    description: Project name
+    default: NFOProject
+    prompt: What is project name?
