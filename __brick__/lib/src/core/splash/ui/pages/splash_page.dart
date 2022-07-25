@@ -23,9 +23,22 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator.adaptive(),
+    return Scaffold(
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: Text(
+                '{{#pascalCase}}{{name}}{{/pascalCase}}',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+            ),
+            const CircularProgressIndicator.adaptive(),
+          ],
+        ),
       ),
     );
   }
