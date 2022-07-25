@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/core/core.dart';
+import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/core.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
