@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/config/config.dart';
 
-import '../../../../../core/services/services.dart';
+import '../../../../../core/services/_services.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
