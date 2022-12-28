@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 
-import '../../core/core.dart';
-import '../../services/services.dart';
+import '../core.dart';
+import '../services/services.dart';
 import '../config.dart';
 
 final GetIt getIt = GetIt.instance;

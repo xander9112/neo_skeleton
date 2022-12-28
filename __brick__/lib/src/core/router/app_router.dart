@@ -8,14 +8,6 @@ import 'transitions.dart';
 
 part 'app_router.gr.dart';
 
-// const List<CustomRoute<void>> list = [
-//   CustomRoute<void>(
-//     transitionsBuilder: fadeTransition,
-//     page: AuthPage,
-//     path: RouterPath.auth,
-//   ),
-// ];
-
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute<dynamic>>[
