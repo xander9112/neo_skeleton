@@ -2,9 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/config/config.dart';
+import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/_src.dart';
 
-import '../core/_core.dart';
 
 class {{#pascalCase}}{{name}}{{/pascalCase}}App extends StatelessWidget {
   const {{#pascalCase}}{{name}}{{/pascalCase}}App({Key? key}) : super(key: key);
@@ -19,8 +18,8 @@ class {{#pascalCase}}{{name}}{{/pascalCase}}App extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: AppConstants.projectName,
-          theme: lightTheme,
-          darkTheme: darkTheme,
+          theme: createLightTheme(),
+          darkTheme: createDarkTheme,
           themeMode: state.themeMode,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,

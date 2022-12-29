@@ -15,5 +15,6 @@ fvm flutter pub global run intl_translation:extract_to_arb --output-dir=assets/l
 ```
 Из файла assets/l10n/intl_messages.arb скопировать сгенерированные значения в файлы переводов и запустить генерацию кода
 ```bash
-fvm flutter pub global run intl_translation:generate_from_arb lib/**/l10n.dart assets/l10n/*.arb --output-dir=lib/l10n/generated
+fvm flutter pub global run intl_translation:generate_from_arb lib/**/l10n.dart assets/l10n/*.arb --output-dir=lib/src/core/l10n/generated
+
 ```
