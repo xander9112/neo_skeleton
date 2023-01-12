@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/app.dart';
+import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
 
-import 'src/_src.dart';
-
-Future<void> main() async {
-  await AppInit.initCommon();
-
-  await AppInit.initEnvironments();
-
-  AppInit.initStorage(() async {
-    await AppInit.initDependencies();
-
-    await AppInit.initLocalizations(const {{#pascalCase}}{{name}}{{/pascalCase}}App(), runApp);
-  });
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  runApp({{#CamelCase}}{{name}}{{/CamelCase}}(router: GetIt.I()));
 }
