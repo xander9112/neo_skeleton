@@ -7,7 +7,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
 
-  runApp({
-    {name.pascalCase()}
-  }(router: GetIt.I()));
+  runApp({{name.pascalCase()}}(router: GetIt.I()));
 }
