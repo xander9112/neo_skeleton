@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'login_cubit.freezed.dart';
 part 'login_cubit.g.dart';

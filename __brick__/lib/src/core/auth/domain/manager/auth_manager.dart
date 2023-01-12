@@ -44,7 +44,6 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   AuthenticatedUser _user = const AuthenticatedUser(
     id: 0,
     email: '',
-    ldapId: '',
     login: '',
     lastName: '',
     firstName: '',
@@ -95,8 +94,6 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     return result.fold(Left.new, (authModel) async {
       await authRepository.setAccessToken(authModel.token);
 
-      await authRepository.setUserType(authModel.user.type);
-
       _user = authModel.user;
 
       return const Right(true);
@@ -112,6 +109,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     //TODO: разлогиниваем в офлайне?
     return result.fold(Left.new, (success) async {
       await _clear();
+
       return Right(success);
     });
   }

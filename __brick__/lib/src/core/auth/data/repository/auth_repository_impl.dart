@@ -6,7 +6,7 @@ class AuthRepositoryImpl
     implements AuthRepository<AuthModel, AuthenticatedUser> {
   AuthRepositoryImpl(this._restAuthDataSource, this._secureStorageService);
 
-  final RestAuthDataSource _restAuthDataSource;
+  final AuthDataSource _restAuthDataSource;
   final SecureStorageService _secureStorageService;
 
   @override
