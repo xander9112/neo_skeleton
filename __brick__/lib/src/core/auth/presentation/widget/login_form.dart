@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/auth/_auth.dart';
-import 'package:ui_kit/ui_kit.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
