@@ -8,6 +8,7 @@ void main() async {
   await configureDependencies();
   Main {{name.camelCase()}}
   Main {{name.snakeCase()}}
+  Main {{name.pascalCase()}}
   runApp({
     {name.camelCase()}
   }(router: GetIt.I()));
