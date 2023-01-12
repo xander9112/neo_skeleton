@@ -21,7 +21,6 @@ class _LoginPageState extends LoadingState<LoginPage> {
           child: Container(
             padding: const EdgeInsets.all(Insets.xl),
             decoration: const BoxDecoration(
-              // color: context.theme.cardColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(BorderRadiusInsets.xl),
                 topRight: Radius.circular(BorderRadiusInsets.xl),

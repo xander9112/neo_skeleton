@@ -1,4 +1,5 @@
 export 'auth/_auth.dart';
+export 'constants/_constants.dart';
 export 'di/configure_dependencies.dart';
 export 'failure/failure.dart';
 export 'localization/l10n.dart';
@@ -12,4 +13,3 @@ export 'ui/_ui.dart';
 export 'use_case/no_params.dart';
 export 'use_case/use_case.dart';
 export 'utils/_utils.dart';
-export 'constants/_constants.dart';

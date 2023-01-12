@@ -4,8 +4,8 @@ import 'package:{{name.snakeCase()}}/l10n/app_localization_delegate.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class {{name.pascalCase()}} extends StatelessWidget {
-  const {{name.pascalCase()}}({super.key, required this.router});
+class {{name.pascalCase()}}App extends StatelessWidget {
+  const {{name.pascalCase()}}App({super.key, required this.router});
 
   final AppRouter router;
 
