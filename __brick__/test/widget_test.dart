@@ -11,6 +11,6 @@ import 'package:{{name.snakeCase()}}/src/app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(SuperDbo(router: GetIt.I()));
+    await tester.pumpWidget(SuperDboApp(router: GetIt.I()));
   });
 }

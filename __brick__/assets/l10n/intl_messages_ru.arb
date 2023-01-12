@@ -1,0 +1,69 @@
+{
+  "@@last_modified": "2023-01-12T17:53:18.974201",
+  "AuthI18n_signIn": "Sign In",
+  "@AuthI18n_signIn": {
+    "description": "Sign In title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "AuthI18n_login": "Login",
+  "@AuthI18n_login": {
+    "description": "Login",
+    "type": "text",
+    "placeholders": {}
+  },
+  "AuthI18n_loginRequired": "Login required",
+  "@AuthI18n_loginRequired": {
+    "description": "Login required",
+    "type": "text",
+    "placeholders": {}
+  },
+  "AuthI18n_password": "Password",
+  "@AuthI18n_password": {
+    "description": "Password",
+    "type": "text",
+    "placeholders": {}
+  },
+  "AuthI18n_passwordRequired": "The password must not be empty",
+  "@AuthI18n_passwordRequired": {
+    "description": "Password validation message",
+    "type": "text",
+    "placeholders": {}
+  },
+  "CoreI18n_forbiddenError": "Forbidden",
+  "@CoreI18n_forbiddenError": {
+    "description": "Http Error forbidden",
+    "type": "text",
+    "placeholders": {}
+  },
+  "CoreI18n_internalError": "Internal Error",
+  "@CoreI18n_internalError": {
+    "description": "Server Internal Error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "CoreI18n_serviceUnavailableError": "Service Unavaliable",
+  "@CoreI18n_serviceUnavailableError": {
+    "description": "Service Unavaliable Error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "CoreI18n_notFoundError": "Not found",
+  "@CoreI18n_notFoundError": {
+    "description": "Not found Error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "CoreI18n_unknownError": "Unknown Error",
+  "@CoreI18n_unknownError": {
+    "description": "Unknown Error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "SplashI18n_title": "Splash title",
+  "@SplashI18n_title": {
+    "description": "Splash title",
+    "type": "text",
+    "placeholders": {}
+  }
+}
