@@ -9,7 +9,5 @@ void main() async {
   Main {{name.camelCase()}}
   Main {{name.snakeCase()}}
   Main {{name.pascalCase()}}
-  runApp({
-    {name.camelCase()}
-  }(router: GetIt.I()));
+  runApp({{name.pascalCase()}}(router: GetIt.I()));
 }
