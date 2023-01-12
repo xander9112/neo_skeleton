@@ -1,4 +1,4 @@
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 enum HttpCodes {
   unknown(0),

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class AuthRepository<A, U> {
   Future<Either<Failure, A>> signIn(String login, String password);

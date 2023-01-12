@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/l10n/app_localization_delegate.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/l10n/app_localizations.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/l10n/app_localization_delegate.dart';
+import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class {{#CamelCase}}{{name}}{{/CamelCase}} extends StatelessWidget {
-  const {{#CamelCase}}{{name}}{{/CamelCase}}({super.key, required this.router});
+class {{name.camelCase()}} extends StatelessWidget {
+  const {{name.camelCase()}}({super.key, required this.router});
 
   final AppRouter router;
 

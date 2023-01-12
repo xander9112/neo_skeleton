@@ -1,4 +1,4 @@
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class Failure {
   Failure({required this.code, required this.message});

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'rest_auth_datasource.g.dart';

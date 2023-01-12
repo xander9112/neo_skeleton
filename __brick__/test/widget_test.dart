@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/src.dart';
+import 'package:{{name.snakeCase()}}/src/src.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

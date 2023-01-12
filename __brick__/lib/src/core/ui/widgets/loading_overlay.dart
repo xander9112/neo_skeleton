@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/ui/widgets/neo_progress_indicator.dart';
+import 'package:{{name.snakeCase()}}/src/core/ui/widgets/neo_progress_indicator.dart';
 
 const _sizeOverlay = 55.0;
 

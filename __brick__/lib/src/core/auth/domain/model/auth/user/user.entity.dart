@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target, avoid_final_parameters
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'user.entity.freezed.dart';
 part 'user.entity.g.dart';

@@ -5,7 +5,7 @@
         "*.dart": "${capture}.g.dart, ${capture}.freezed.dart"
     },
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
+        "source.fixAll": false,
     },
     "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [

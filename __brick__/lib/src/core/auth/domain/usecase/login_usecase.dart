@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class LoginUseCase
     implements UseCase<Either<Failure, bool>, LoginUseCaseParam> {

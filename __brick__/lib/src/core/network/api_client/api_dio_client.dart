@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/network/api_client/_api_client.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/network/api_client/interceptors/interceptors.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/network/api_client/_api_client.dart';
+import 'package:{{name.snakeCase()}}/src/core/network/api_client/interceptors/interceptors.dart';
 
 class ApiDioClient {
   ApiDioClient(

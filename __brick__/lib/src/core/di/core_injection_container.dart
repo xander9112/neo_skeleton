@@ -2,7 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:{{#snakeCase}}{{name}}{{/snakeCase}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 final slCore = GetIt.instance;
 
