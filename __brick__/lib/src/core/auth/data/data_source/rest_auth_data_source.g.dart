@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rest_auth_datasource.dart';
+part of 'rest_auth_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'rest_auth_datasource.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _RestAuthDatasource implements RestAuthDatasource {
-  _RestAuthDatasource(
+class _RestAuthDataSource implements RestAuthDataSource {
+  _RestAuthDataSource(
     this._dio, {
     this.baseUrl,
   });
