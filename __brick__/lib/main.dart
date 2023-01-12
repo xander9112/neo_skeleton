@@ -6,8 +6,8 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  {{name.camelCase()}}
-  {{name.snakeCase()}}
+  Main {{name.camelCase()}}
+  Main {{name.snakeCase()}}
   runApp({
     {name.camelCase()}
   }(router: GetIt.I()));
