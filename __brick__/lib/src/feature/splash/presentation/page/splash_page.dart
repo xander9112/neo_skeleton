@@ -13,6 +13,7 @@ class SplashPage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Splash page'),
               ElevatedButton(
