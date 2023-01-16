@@ -13,7 +13,7 @@ Future<void> init() async {
   //TODO: flavors
   getIt.registerSingleton<ApiDioClient>(
     ApiDioClient(
-      Uri.parse('https://mobile-neoportal.neoflex.ru/api'),
+      Uri.parse('https://{{name.snakeCase()}}.com/api'),
       storage: slCore(),
     ),
   );
