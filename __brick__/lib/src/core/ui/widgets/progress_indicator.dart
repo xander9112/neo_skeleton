@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class NeoProgressIndicator extends StatelessWidget {
-  const NeoProgressIndicator({
+class UiProgressIndicator extends StatelessWidget {
+  const UiProgressIndicator({
     super.key,
     this.value,
     this.isCenter = true,
@@ -18,7 +19,12 @@ class NeoProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Widget loader = CircularProgressIndicator.adaptive();
+    final Widget loader = SpinKitWave(
+      color: Theme.of(context).primaryColor,
+      size: size,
+      itemCount: 8,
+      type: SpinKitWaveType.center,
+    );
 
     if (fullScreen) {
       return Container(

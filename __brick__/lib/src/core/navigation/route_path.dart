@@ -36,9 +36,7 @@ abstract class RoutePath {
 
   static const String profile = 'profile';
 
-  static const String pinNew = 'pin/new';
-
-  static const String pinEnter = 'pin';
+  static const String pin = 'pin';
 }
 
 extension RouteWithParams on String {

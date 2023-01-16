@@ -71,7 +71,7 @@ bool isWeekend(DateTime date) {
 }
 
 DateTime getFirstDateForLogTime() {
-  var now = DateTime.now();
+  final now = DateTime.now();
 
   var firstDate = DateTime(now.year, now.month);
 
@@ -88,7 +88,7 @@ DateTime getFirstDateForLogTime() {
 }
 
 DateTime getLastDateForLogTime() {
-  var now = DateTime.now();
+  final now = DateTime.now();
 
   var lastDate = DateTime(now.year, now.month + 1, 0);
 

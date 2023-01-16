@@ -8,6 +8,12 @@ const List<AutoRoute> authRoutes = <AutoRoute<dynamic>>[
     path: RoutePath.authSignIn,
     guards: <Type>[UpdateGuard],
   ),
+  CustomRoute<void>(
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+    page: PinCodePage,
+    path: RoutePath.pin,
+    guards: <Type>[UpdateGuard],
+  ),
   /* CustomRoute<void>(
     transitionsBuilder: TransitionsBuilders.fadeIn,
     page: PinCodeCreatePage,

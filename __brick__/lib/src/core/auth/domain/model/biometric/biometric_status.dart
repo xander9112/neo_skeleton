@@ -1,1 +1,1 @@
-enum BiometricStatus { avalable, notAvailable, installed }
+enum BiometricStatus { available, notAvailable, installed }

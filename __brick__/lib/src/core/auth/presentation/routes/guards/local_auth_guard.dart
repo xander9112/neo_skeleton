@@ -25,9 +25,9 @@ class LocalAuthGuard extends AutoRedirectGuard {
     if (!authManager.locked) {
       return resolver.next();
     }
-/*
-    if (await authManager.hasPinCode) {
-      router.replace(PinCodeEnterRoute(
+
+    await router.replace(
+      PinCodeRoute(
         onResult: (bool success) {
           if (success) {
             resolver.next(success);
@@ -35,19 +35,7 @@ class LocalAuthGuard extends AutoRedirectGuard {
             router.removeLast();
           }
         },
-      ));
-    } else {
-      router.replace(PinCodeCreateRoute(
-        onResult: (bool success) {
-          if (success) {
-            resolver.next(success);
-
-            router.removeLast();
-          }
-        },
-      ));
-    }
-    // router
-    */
+      ),
+    );
   }
 }

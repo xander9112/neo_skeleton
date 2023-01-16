@@ -1,25 +1,21 @@
-import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class MockAuthDataSource implements AuthDataSource {
-  final AuthenticatedUser _user = const AuthenticatedUser(
-    id: -1,
-    email: 'admin@email.ru',
-    login: 'admin',
-    lastName: 'Админов',
-    firstName: 'Админ',
-  );
-
   @override
-  Future<AuthModel> signIn({required Map<String, dynamic> request}) async {
-    if (request['login'] == 'admin' && request['password'] == 'admin') {
-      return AuthModel(
-        token: 'access_token',
-        user: _user,
-      );
-    }
-
-    throw DioError(requestOptions: RequestOptions(path: 'path'));
+  Future<AuthModel> signIn({
+    required Map<String, dynamic> request,
+  }) async {
+    return const AuthModel(
+      token: 'token',
+      user: AuthenticatedUser(
+        id: -1,
+        email: 'email',
+        ldapId: 'ldapId',
+        login: 'login',
+        lastName: 'lastName',
+        firstName: 'firstName',
+      ),
+    );
   }
 
   @override
@@ -27,6 +23,13 @@ class MockAuthDataSource implements AuthDataSource {
 
   @override
   Future<AuthenticatedUser> verify() async {
-    return _user;
+    return const AuthenticatedUser(
+      id: -1,
+      email: 'email',
+      ldapId: 'ldapId',
+      login: 'login',
+      lastName: 'lastName',
+      firstName: 'firstName',
+    );
   }
 }

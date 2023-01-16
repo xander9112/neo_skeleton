@@ -1,1 +1,0 @@
-enum BiometricType { face, fingerprint }

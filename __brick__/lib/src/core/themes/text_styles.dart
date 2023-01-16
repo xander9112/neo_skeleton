@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:google_language_fonts/google_language_fonts.dart' as basic;
 
-abstract class TextStyles {
+class TextStyles {
   static TextStyle headline1 = basic.CyrillicFonts.roboto(
     fontWeight: FontWeight.w300,
     height: 106 / 96,

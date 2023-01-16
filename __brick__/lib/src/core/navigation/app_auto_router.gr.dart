@@ -10,10 +10,10 @@
 //
 // ignore_for_file: type=lint
 
-part of 'app_router.dart';
+part of 'app_auto_router.dart';
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter({
+class _$AppAutoRouter extends RootStackRouter {
+  _$AppAutoRouter({
     GlobalKey<NavigatorState>? navigatorKey,
     required this.updateGuard,
     required this.authGuard,
@@ -56,6 +56,20 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    PinCodeRoute.name: (routeData) {
+      final args = routeData.argsAs<PinCodeRouteArgs>(
+          orElse: () => const PinCodeRouteArgs());
+      return CustomPage<void>(
+        routeData: routeData,
+        child: PinCodePage(
+          key: args.key,
+          onResult: args.onResult,
+        ),
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     MainRoute.name: (routeData) {
       return CustomPage<void>(
         routeData: routeData,
@@ -76,6 +90,11 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           LoginRoute.name,
           path: '/auth/signIn',
+          guards: [updateGuard],
+        ),
+        RouteConfig(
+          PinCodeRoute.name,
+          path: 'pin',
           guards: [updateGuard],
         ),
         RouteConfig(
@@ -155,6 +174,40 @@ class LoginRouteArgs {
   @override
   String toString() {
     return 'LoginRouteArgs{key: $key, onResult: $onResult}';
+  }
+}
+
+/// generated route for
+/// [PinCodePage]
+class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
+  PinCodeRoute({
+    Key? key,
+    void Function(bool)? onResult,
+  }) : super(
+          PinCodeRoute.name,
+          path: 'pin',
+          args: PinCodeRouteArgs(
+            key: key,
+            onResult: onResult,
+          ),
+        );
+
+  static const String name = 'PinCodeRoute';
+}
+
+class PinCodeRouteArgs {
+  const PinCodeRouteArgs({
+    this.key,
+    this.onResult,
+  });
+
+  final Key? key;
+
+  final void Function(bool)? onResult;
+
+  @override
+  String toString() {
+    return 'PinCodeRouteArgs{key: $key, onResult: $onResult}';
   }
 }
 

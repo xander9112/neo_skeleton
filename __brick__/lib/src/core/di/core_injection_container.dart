@@ -1,20 +1,19 @@
 // ignore_for_file: cascade_invocations
 
-import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:get_it/get_it.dart';
 
 final slCore = GetIt.instance;
 
 Future<void> init() async {
-  getIt.registerLazySingleton<CancelToken>(CancelToken.new);
-
   getIt.registerLazySingleton(SecureStorageService.new);
+
+  getIt.registerSingleton<DialogService>(DialogService());
 
   //TODO: flavors
   getIt.registerSingleton<ApiDioClient>(
     ApiDioClient(
-      Uri.parse('https://dev-mobile-neoportal.do.neoflex.ru/api'),
+      Uri.parse('https://mobile-neoportal.neoflex.ru/api'),
       storage: slCore(),
     ),
   );

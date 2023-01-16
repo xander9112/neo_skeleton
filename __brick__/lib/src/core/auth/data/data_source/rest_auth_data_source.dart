@@ -1,6 +1,6 @@
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'rest_auth_data_source.g.dart';
 
@@ -21,4 +21,9 @@ abstract class RestAuthDataSource implements AuthDataSource {
   @override
   @GET(ApiMethods.authVerify)
   Future<AuthenticatedUser> verify();
+
+  @POST(ApiMethods.authUpdateDeviceVersion)
+  Future<void> updateDeviceInfo({
+    @Body() required Map<String, dynamic> request,
+  });
 }

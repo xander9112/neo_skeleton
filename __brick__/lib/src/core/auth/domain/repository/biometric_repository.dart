@@ -1,7 +1,7 @@
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class BiometricRepository {
-  Future<List<BiometricType>> get getAvailableBiometrics;
+  Future<List<BiometricTypeModel>> get getAvailableBiometrics;
 
   Future<bool> get isAvailable;
 
@@ -16,4 +16,6 @@ abstract class BiometricRepository {
   Future<BiometricSupportModel> getBiometricModel();
 
   Future<void> setUseBiometric({required bool value});
+
+  Future<void> deleteUseBiometric();
 }

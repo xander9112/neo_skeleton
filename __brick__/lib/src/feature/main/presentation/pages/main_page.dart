@@ -1,3 +1,5 @@
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/auth/di/auth_injection_container.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -5,9 +7,27 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Main page'),
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              const Text('Main page'),
+              ElevatedButton(
+                onPressed: () {
+                  slAuth<AuthManager<AuthenticatedUser>>().verify();
+                },
+                child: const Text('Verify'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  slAuth<AuthManager<AuthenticatedUser>>().signOut();
+                },
+                child: const Text('Logout'),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_model.freezed.dart';
 part 'auth_model.g.dart';

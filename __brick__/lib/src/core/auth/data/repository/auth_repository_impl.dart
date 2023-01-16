@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:dio/dio.dart';
 
 class AuthRepositoryImpl
     implements AuthRepository<AuthModel, AuthenticatedUser> {
-  AuthRepositoryImpl(this._restAuthDataSource, this._secureStorageService);
+  AuthRepositoryImpl(this.__authDataSource, this._secureStorageService);
 
-  final AuthDataSource _restAuthDataSource;
+  final AuthDataSource __authDataSource;
   final SecureStorageService _secureStorageService;
 
   @override
@@ -75,29 +75,41 @@ class AuthRepositoryImpl
     String password,
   ) async {
     try {
-      final result = await _restAuthDataSource.signIn(
+      final result = await __authDataSource.signIn(
         request: <String, dynamic>{'login': login, 'password': password},
       );
 
       return Right(result);
     } on DioError catch (e) {
-      final httpCode = HttpCodes.values.singleWhere(
+      if (e.type == DioErrorType.other) {
+        return Left(
+          AuthFailure(
+            code: 0,
+            message:
+                AuthFailureReason.checkInternetConnection.getLocalizedString(),
+            reason: AuthFailureReason.checkInternetConnection,
+          ),
+        );
+      }
+
+      final reason = AuthFailureReason.values.singleWhere(
         (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => HttpCodes.unknown,
+        orElse: () => AuthFailureReason.unknown,
       );
+
       return Left(
-        HttpFailure(
-          httpCode,
-          code: httpCode.code,
-          message: httpCode.getLocalizedString(),
+        AuthFailure(
+          code: reason.code,
+          message: reason.getLocalizedString(),
+          reason: reason,
         ),
       );
     } catch (e) {
       return Left(
-        HttpFailure(
-          HttpCodes.unknown,
-          code: HttpCodes.unknown.code,
-          message: HttpCodes.unknown.getLocalizedString(),
+        AuthFailure(
+          code: AuthFailureReason.unknown.code,
+          message: AuthFailureReason.unknown.getLocalizedString(),
+          reason: AuthFailureReason.unknown,
         ),
       );
     }
@@ -106,27 +118,39 @@ class AuthRepositoryImpl
   @override
   Future<Either<Failure, bool>> signOut() async {
     try {
-      await _restAuthDataSource.signOut();
+      await __authDataSource.signOut();
 
       return const Right(true);
     } on DioError catch (e) {
-      final httpCode = HttpCodes.values.singleWhere(
+      if (e.type == DioErrorType.other) {
+        return Left(
+          AuthFailure(
+            code: 0,
+            message:
+                AuthFailureReason.checkInternetConnection.getLocalizedString(),
+            reason: AuthFailureReason.checkInternetConnection,
+          ),
+        );
+      }
+
+      final reason = AuthFailureReason.values.singleWhere(
         (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => HttpCodes.unknown,
+        orElse: () => AuthFailureReason.unknown,
       );
+
       return Left(
-        HttpFailure(
-          httpCode,
-          code: httpCode.code,
-          message: httpCode.getLocalizedString(),
+        AuthFailure(
+          code: reason.code,
+          message: reason.getLocalizedString(),
+          reason: reason,
         ),
       );
     } catch (e) {
       return Left(
-        HttpFailure(
-          HttpCodes.unknown,
-          code: HttpCodes.unknown.code,
-          message: HttpCodes.unknown.getLocalizedString(),
+        AuthFailure(
+          code: AuthFailureReason.unknown.code,
+          message: AuthFailureReason.unknown.getLocalizedString(),
+          reason: AuthFailureReason.unknown,
         ),
       );
     }
@@ -135,27 +159,39 @@ class AuthRepositoryImpl
   @override
   Future<Either<Failure, AuthenticatedUser>> verify() async {
     try {
-      final result = await _restAuthDataSource.verify();
+      final result = await __authDataSource.verify();
 
       return Right(result);
     } on DioError catch (e) {
-      final httpCode = HttpCodes.values.singleWhere(
+      if (e.type == DioErrorType.other) {
+        return Left(
+          AuthFailure(
+            code: 0,
+            message:
+                AuthFailureReason.checkInternetConnection.getLocalizedString(),
+            reason: AuthFailureReason.checkInternetConnection,
+          ),
+        );
+      }
+
+      final reason = AuthFailureReason.values.singleWhere(
         (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => HttpCodes.unknown,
+        orElse: () => AuthFailureReason.unknown,
       );
+
       return Left(
-        HttpFailure(
-          httpCode,
-          code: httpCode.code,
-          message: httpCode.getLocalizedString(),
+        AuthFailure(
+          code: reason.code,
+          message: reason.getLocalizedString(),
+          reason: reason,
         ),
       );
     } catch (e) {
       return Left(
-        HttpFailure(
-          HttpCodes.unknown,
-          code: HttpCodes.unknown.code,
-          message: HttpCodes.unknown.getLocalizedString(),
+        AuthFailure(
+          code: AuthFailureReason.unknown.code,
+          message: AuthFailureReason.unknown.getLocalizedString(),
+          reason: AuthFailureReason.unknown,
         ),
       );
     }

@@ -1,5 +1,5 @@
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
-import 'package:{{name.snakeCase()}}/src/core/ui/widgets/neo_progress_indicator.dart';
 
 const _sizeOverlay = 55.0;
 
@@ -36,7 +36,7 @@ class LoadingOverlay {
               ),
               child: const Padding(
                 padding: EdgeInsets.all(8),
-                child: NeoProgressIndicator(),
+                child: UiProgressIndicator(),
               ),
             ),
           ),

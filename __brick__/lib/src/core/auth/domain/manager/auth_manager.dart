@@ -2,8 +2,8 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_setters_without_getters
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:flutter/material.dart';
 
 abstract class AuthManager<U> extends ChangeNotifier {
   AuthManager({
@@ -23,11 +23,25 @@ abstract class AuthManager<U> extends ChangeNotifier {
 
   Future<Either<Failure, bool>> signIn(String login, String password);
 
-  Future<Either<Failure, bool>> signOut();
+  Future<Either<Failure, bool>> signOut({bool remote = true});
 
   bool get isChecked;
 
   set isChecked(bool value);
+
+  Future<bool> get hasPinCode;
+
+  Future<void> setPinCode(String pinCode);
+
+  Future<bool> checkPinCode(String pinCode);
+
+  Future<BiometricSupportModel> getBiometricSupportModel();
+
+  Future<void> setUseBiometry(bool value);
+
+  Future<bool> checkBiometry();
+
+  Future<Either<Failure, U>> verify();
 }
 
 class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
@@ -44,6 +58,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   AuthenticatedUser _user = const AuthenticatedUser(
     id: 0,
     email: '',
+    ldapId: '',
     login: '',
     lastName: '',
     firstName: '',
@@ -73,12 +88,11 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   @override
   bool get locked {
-    return false;
-    /* if (!settings.useLocalAuth) {
+    if (!settings.useLocalAuth) {
       return false;
     } else {
       return _locked;
-    }*/
+    }
   }
 
   @override
@@ -94,6 +108,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     return result.fold(Left.new, (authModel) async {
       await authRepository.setAccessToken(authModel.token);
 
+      await authRepository.setUserType(authModel.user.type);
+
       _user = authModel.user;
 
       return const Right(true);
@@ -104,22 +120,47 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   AuthenticatedUser get user => _user;
 
   @override
-  Future<Either<Failure, bool>> signOut() async {
-    final result = await authRepository.signOut();
-    //TODO: разлогиниваем в офлайне?
-    return result.fold(Left.new, (success) async {
+  Future<Either<Failure, bool>> signOut({bool remote = true}) async {
+    if (remote) {
+      final result = await authRepository.signOut();
+
+      return result.fold((failure) async {
+        await _clear();
+
+        return Left(failure);
+      }, (success) async {
+        await _clear();
+
+        return Right(success);
+      });
+    } else {
       await _clear();
 
-      return Right(success);
-    });
+      return const Right(true);
+    }
   }
 
   Future<void> _clear() async {
     await authRepository.deletePinCode();
+
     await authRepository.deleteAccessToken();
 
     await authRepository.deleteUserType();
-    await authRepository.deleteUseBiometric();
+
+    await biometricRepository.deleteUseBiometric();
+
+    _locked = true;
+
+    authenticated = false;
+
+    _user = const AuthenticatedUser(
+      id: 0,
+      email: '',
+      ldapId: '',
+      login: '',
+      lastName: '',
+      firstName: '',
+    );
   }
 
   bool _isChecked = false;
@@ -136,6 +177,46 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   @override
   set isChecked(bool value) {
     _isChecked = value;
+  }
+
+  @override
+  Future<bool> get hasPinCode => authRepository.hasPinCode();
+
+  @override
+  Future<void> setPinCode(String pinCode) async {
+    await authRepository.setPinCode(pinCode);
+  }
+
+  @override
+  Future<bool> checkPinCode(String pinCode) {
+    return authRepository.comparePinCode(pinCode);
+  }
+
+  @override
+  Future<BiometricSupportModel> getBiometricSupportModel() async {
+    if (!settings.useBiometric) {
+      return const BiometricSupportModel(
+        status: BiometricStatus.notAvailable,
+        useBiometric: false,
+      );
+    }
+
+    return biometricRepository.getBiometricModel();
+  }
+
+  @override
+  Future<void> setUseBiometry(bool value) {
+    return biometricRepository.setUseBiometric(value: value);
+  }
+
+  @override
+  Future<bool> checkBiometry() async {
+    return biometricRepository.authenticate();
+  }
+
+  @override
+  Future<Either<Failure, AuthenticatedUser>> verify() {
+    return authRepository.verify();
   }
 }
 

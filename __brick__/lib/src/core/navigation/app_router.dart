@@ -1,19 +1,57 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/feature/main/_main.dart';
-import 'package:{{name.snakeCase()}}/src/feature/splash/splash.dart';
 
-part 'app_router.gr.dart';
+class AppRouter {
+  AppRouter(this._router);
 
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute<dynamic>>[...splashRoutes, ...authRoutes, ...mainRoutes],
-)
-class AppRouter extends _$AppRouter {
-  AppRouter({
-    required super.authGuard,
-    required super.updateGuard,
-    required super.localAuthGuard,
-  });
+  final AppAutoRouter _router;
+
+  Future<T?> push<T extends Object?>(PageRouteInfo route) async {
+    return _router.push(route);
+  }
+
+  Future<T?> pushNamed<T extends Object?>(
+    String path, {
+    bool includePrefixMatches = false,
+  }) {
+    return _router.pushNamed(path, includePrefixMatches: includePrefixMatches);
+  }
+
+  Future<T?> replaceNamed<T extends Object?>(
+    String path, {
+    bool includePrefixMatches = false,
+  }) {
+    return _router.replaceNamed(
+      path,
+      includePrefixMatches: includePrefixMatches,
+    );
+  }
+
+  Future<T?> replace<T extends Object?>(
+    PageRouteInfo route, {
+    OnNavigationFailure? onFailure,
+  }) {
+    return _router.replace(route);
+  }
+
+  void popUntilRoot() {
+    _router.popUntilRoot();
+  }
+
+  Future<dynamic> navigate(PageRouteInfo route) async {
+    return _router.navigate(route);
+  }
+
+  Future<void> navigateNamed(
+    String path, {
+    bool includePrefixMatches = false,
+  }) {
+    return _router.navigateNamed(
+      path,
+      includePrefixMatches: includePrefixMatches,
+    );
+  }
+
+  bool removeLast() => _router.removeLast();
 }

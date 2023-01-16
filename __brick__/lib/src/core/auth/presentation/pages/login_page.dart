@@ -1,6 +1,6 @@
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, this.onResult});
@@ -19,13 +19,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
       child: Scaffold(
         body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(Insets.xl),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(BorderRadiusInsets.xl),
-                topRight: Radius.circular(BorderRadiusInsets.xl),
-              ),
-            ),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
@@ -19,7 +21,7 @@ class LoginUseCase
         } else {
           //TODO: переход на главную через navigationManager
           //Only for demo
-          await getIt<AppRouter>().replaceNamed(RoutePath.main);
+          unawaited(getIt<AppAutoRouter>().replaceNamed(RoutePath.main));
         }
       }
 

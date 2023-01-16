@@ -1,19 +1,14 @@
 import 'dart:io';
 
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/network/api_client/_api_client.dart';
-import 'package:{{name.snakeCase()}}/src/core/network/api_client/interceptors/interceptors.dart';
 
 class ApiDioClient {
   ApiDioClient(
     Uri uri, {
     required SecureStorageService storage,
-    CancelToken? cancelToken,
-  })  : _storage = storage,
-        _cancelToken = cancelToken ?? GetIt.I() {
+  }) : _storage = storage {
     // _initBadCertificateCallback();
 
     _initBaseOptions(uri);
@@ -23,8 +18,9 @@ class ApiDioClient {
 
   final Dio _dio = Dio();
   final SecureStorageService _storage;
+  final LogoutInterceptor logoutInterceptor = LogoutInterceptor();
 
-  final CancelToken? _cancelToken;
+  CancelToken cancelToken = CancelToken();
   // final ErrorHandler _errorHandler = ErrorHandler();
 
   Dio get dio => _dio;
@@ -64,6 +60,8 @@ class ApiDioClient {
       // );
     }
 
+    _dio.interceptors.add(LogoutInterceptor());
+
     _dio.interceptors.add(TokenInterceptor(_storage));
 
     _dio.interceptors.add(
@@ -79,7 +77,11 @@ class ApiDioClient {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    options.cancelToken = _cancelToken;
+    if (cancelToken.isCancelled) {
+      cancelToken = CancelToken();
+      logoutInterceptor.cancelToken = cancelToken;
+    }
+    options.cancelToken = cancelToken;
 
     return handler.next(options);
   }

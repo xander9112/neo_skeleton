@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'biometrics_support.freezed.dart';
 part 'biometrics_support.g.dart';
@@ -8,7 +8,7 @@ part 'biometrics_support.g.dart';
 class BiometricSupportModel with _$BiometricSupportModel {
   const factory BiometricSupportModel({
     @Default(BiometricStatus.notAvailable) BiometricStatus status,
-    BiometricType? type,
+    BiometricTypeModel? type,
     bool? useBiometric,
   }) = _BiometricSupportModel;
 
@@ -20,7 +20,7 @@ class BiometricSupportModel with _$BiometricSupportModel {
   @override
   Map<String, dynamic> toJson();
 
-  bool get isFace => type == BiometricType.face;
+  bool get isFace => type == BiometricTypeModel.face;
 
-  bool get isFingerprint => type == BiometricType.fingerprint;
+  bool get isFingerprint => type == BiometricTypeModel.fingerprint;
 }

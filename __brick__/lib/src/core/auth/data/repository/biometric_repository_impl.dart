@@ -1,44 +1,121 @@
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:local_auth/local_auth.dart';
 
 class BiometricRepositoryImpl implements BiometricRepository {
+  BiometricRepositoryImpl(this._secureStorageService);
+
+  final SecureStorageService _secureStorageService;
+
+  LocalAuthentication get localAuth => LocalAuthentication();
+
   @override
-  Future<bool> authenticate() {
-    // TODO: implement authenticate
-    throw UnimplementedError();
+  Future<bool> authenticate() async {
+    try {
+      await localAuth.stopAuthentication();
+
+      return await localAuth.authenticate(
+        localizedReason: AuthI18n.signInToAccessTheApp,
+        authMessages: [],
+      );
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
-  // TODO: implement getAvailableBiometrics
-  Future<List<BiometricType>> get getAvailableBiometrics =>
-      throw UnimplementedError();
+  Future<bool> get isAvailable => localAuth.canCheckBiometrics;
 
   @override
-  Future<BiometricSupportModel> getBiometricModel() {
-    // TODO: implement getBiometricModel
-    throw UnimplementedError();
+  Future<List<BiometricTypeModel>> get getAvailableBiometrics async {
+    try {
+      final availableTypes = await localAuth.getAvailableBiometrics();
+
+      return availableTypes.map((e) {
+        switch (e) {
+          case BiometricType.face:
+            return BiometricTypeModel.face;
+          case BiometricType.fingerprint:
+            return BiometricTypeModel.fingerprint;
+          case BiometricType.iris:
+            return BiometricTypeModel.iris;
+          case BiometricType.strong:
+            return BiometricTypeModel.strong;
+          case BiometricType.weak:
+            return BiometricTypeModel.weak;
+        }
+      }).toList();
+    } catch (_) {
+      return <BiometricTypeModel>[];
+    }
   }
 
   @override
-  // TODO: implement isAvailable
-  Future<bool> get isAvailable => throw UnimplementedError();
+  Future<BiometricSupportModel> getBiometricModel() async {
+    var status = BiometricStatus.installed;
+
+    BiometricTypeModel? type;
+
+    final available = await isAvailable;
+
+    if (!available) {
+      status = BiometricStatus.notAvailable;
+    }
+
+    final availableBiometrics = await getAvailableBiometrics;
+
+    if (availableBiometrics.isEmpty) {
+      status = BiometricStatus.notAvailable;
+    } else {
+      status = BiometricStatus.available;
+
+      if (availableBiometrics.contains(BiometricTypeModel.face)) {
+        type = BiometricTypeModel.face;
+      } else {
+        type = BiometricTypeModel.fingerprint;
+      }
+    }
+
+    return BiometricSupportModel(
+      status: status,
+      useBiometric: await _secureStorageService.useBiometric ?? false,
+      type: type,
+    );
+  }
 
   @override
-  // TODO: implement isBiometricSupport
-  Future<bool> get isBiometricSupport => throw UnimplementedError();
+  Future<bool> get isBiometricSupport async {
+    try {
+      return await isAvailable && await isDeviceSupported;
+    } catch (_) {
+      return false;
+    }
+  }
 
   @override
-  // TODO: implement isDeviceSupported
-  Future<bool> get isDeviceSupported => throw UnimplementedError();
+  Future<bool> get isDeviceSupported => localAuth.isDeviceSupported();
 
   @override
-  Future<bool?> onInitBiometric() {
-    // TODO: implement onInitBiometric
-    throw UnimplementedError();
+  Future<bool?> onInitBiometric() async {
+    if (!(await isAvailable)) {
+      return null;
+    }
+
+    if ((await getAvailableBiometrics).isEmpty) {
+      return null;
+    }
+
+    final didAuthenticate = await authenticate();
+
+    return didAuthenticate;
   }
 
   @override
   Future<void> setUseBiometric({required bool value}) {
-    // TODO: implement setUseBiometric
-    throw UnimplementedError();
+    return _secureStorageService.setUseBiometric(value);
+  }
+
+  @override
+  Future<void> deleteUseBiometric() {
+    return _secureStorageService.removeUseBiometric();
   }
 }

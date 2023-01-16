@@ -22,7 +22,7 @@ BiometricSupportModel _$BiometricSupportModelFromJson(
 /// @nodoc
 mixin _$BiometricSupportModel {
   BiometricStatus get status => throw _privateConstructorUsedError;
-  BiometricType? get type => throw _privateConstructorUsedError;
+  BiometricTypeModel? get type => throw _privateConstructorUsedError;
   bool? get useBiometric => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +37,8 @@ abstract class $BiometricSupportModelCopyWith<$Res> {
           $Res Function(BiometricSupportModel) then) =
       _$BiometricSupportModelCopyWithImpl<$Res, BiometricSupportModel>;
   @useResult
-  $Res call({BiometricStatus status, BiometricType? type, bool? useBiometric});
+  $Res call(
+      {BiometricStatus status, BiometricTypeModel? type, bool? useBiometric});
 }
 
 /// @nodoc
@@ -66,7 +67,7 @@ class _$BiometricSupportModelCopyWithImpl<$Res,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as BiometricType?,
+              as BiometricTypeModel?,
       useBiometric: freezed == useBiometric
           ? _value.useBiometric
           : useBiometric // ignore: cast_nullable_to_non_nullable
@@ -83,7 +84,8 @@ abstract class _$$_BiometricSupportModelCopyWith<$Res>
       __$$_BiometricSupportModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BiometricStatus status, BiometricType? type, bool? useBiometric});
+  $Res call(
+      {BiometricStatus status, BiometricTypeModel? type, bool? useBiometric});
 }
 
 /// @nodoc
@@ -109,7 +111,7 @@ class __$$_BiometricSupportModelCopyWithImpl<$Res>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as BiometricType?,
+              as BiometricTypeModel?,
       useBiometric: freezed == useBiometric
           ? _value.useBiometric
           : useBiometric // ignore: cast_nullable_to_non_nullable
@@ -134,7 +136,7 @@ class _$_BiometricSupportModel extends _BiometricSupportModel {
   @JsonKey()
   final BiometricStatus status;
   @override
-  final BiometricType? type;
+  final BiometricTypeModel? type;
   @override
   final bool? useBiometric;
 
@@ -176,7 +178,7 @@ class _$_BiometricSupportModel extends _BiometricSupportModel {
 abstract class _BiometricSupportModel extends BiometricSupportModel {
   const factory _BiometricSupportModel(
       {final BiometricStatus status,
-      final BiometricType? type,
+      final BiometricTypeModel? type,
       final bool? useBiometric}) = _$_BiometricSupportModel;
   const _BiometricSupportModel._() : super._();
 
@@ -186,7 +188,7 @@ abstract class _BiometricSupportModel extends BiometricSupportModel {
   @override
   BiometricStatus get status;
   @override
-  BiometricType? get type;
+  BiometricTypeModel? get type;
   @override
   bool? get useBiometric;
   @override
