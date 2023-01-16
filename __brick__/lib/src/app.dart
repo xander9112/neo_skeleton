@@ -39,14 +39,12 @@ class App {
   }
 
   static void _startApp(EnvConfig env) {
-    {{name.pacalCase()}};
-    {{name.snakeCase()}};
-    runApp({{name.pacalCase()}}App(router: slCore()));
+    runApp({{name.pascalCase()}}App(router: slCore()));
   }
 }
 
-class {{name.pacalCase()}}App extends StatelessWidget {
-  const {{name.pacalCase()}}App({required this.router, super.key});
+class {{name.pascalCase()}}App extends StatelessWidget {
+  const {{name.pascalCase()}}App({required this.router, super.key});
 
   final AppAutoRouter router;
 
