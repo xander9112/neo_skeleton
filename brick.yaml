@@ -26,3 +26,13 @@ vars:
     description: Project name
     default: NFOProject
     prompt: What is project name?
+  androidBundleId:
+    type: string
+    description: Android bundle id
+    default: com.neoflex.nfo_project
+    prompt: What is Android bundle id?
+  iosBundleId:
+    type: string
+    description: iOS bundle id
+    default: com.neoflex.nfoProject
+    prompt: What is iOS bundle id?
