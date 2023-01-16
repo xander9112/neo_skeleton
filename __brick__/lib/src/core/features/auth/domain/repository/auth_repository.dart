@@ -27,8 +27,4 @@ abstract class AuthRepository<A, U> {
   Future<void> deleteUseBiometric();
 
   Future<void> setUseBiometric({required bool value});
-
-  Future<void> setUserType(String type);
-
-  Future<void> deleteUserType();
 }

@@ -9,8 +9,6 @@ class MockAuthDataSource implements AuthDataSource {
       token: 'token',
       user: AuthenticatedUser(
         id: -1,
-        email: 'email',
-        ldapId: 'ldapId',
         login: 'login',
         lastName: 'lastName',
         firstName: 'firstName',
@@ -25,8 +23,6 @@ class MockAuthDataSource implements AuthDataSource {
   Future<AuthenticatedUser> verify() async {
     return const AuthenticatedUser(
       id: -1,
-      email: 'email',
-      ldapId: 'ldapId',
       login: 'login',
       lastName: 'lastName',
       firstName: 'firstName',
