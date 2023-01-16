@@ -39,6 +39,7 @@ class App {
   }
 
   static void _startApp(EnvConfig env) {
+    {{name.pacalCase()}};
     runApp({{name.pacalCase()}}App(router: slCore()));
   }
 }
