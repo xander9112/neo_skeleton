@@ -39,12 +39,12 @@ class App {
   }
 
   static void _startApp(EnvConfig env) {
-    runApp(JnpAdmin(router: slCore()));
+    runApp({{name.pacalCase()}}App(router: slCore()));
   }
 }
 
-class {{name.pacalCase()}}Admin extends StatelessWidget {
-  const {{name.pacalCase()}}Admin({required this.router, super.key});
+class {{name.pacalCase()}}App extends StatelessWidget {
+  const {{name.pacalCase()}}App({required this.router, super.key});
 
   final AppAutoRouter router;
 
