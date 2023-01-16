@@ -1,6 +1,6 @@
-import 'package:{{name.snakeCase()}}/l10n/generated/messages_all.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:{{name.snakeCase()}}/l10n/generated/messages_all.dart';
 
 class AppLocalizations {
   static const Iterable<Locale> supportedLocales = [Locale('en'), Locale('ru')];

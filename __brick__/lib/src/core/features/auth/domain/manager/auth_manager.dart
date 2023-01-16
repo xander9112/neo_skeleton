@@ -2,8 +2,8 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_setters_without_getters
 
 import 'package:dartz/dartz.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class AuthManager<U> extends ChangeNotifier {
   AuthManager({

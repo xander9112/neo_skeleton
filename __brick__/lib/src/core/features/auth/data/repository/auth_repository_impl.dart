@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:dio/dio.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class AuthRepositoryImpl
     implements AuthRepository<AuthModel, AuthenticatedUser> {

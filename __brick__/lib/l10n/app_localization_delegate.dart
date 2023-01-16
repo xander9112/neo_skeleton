@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationDelegate();

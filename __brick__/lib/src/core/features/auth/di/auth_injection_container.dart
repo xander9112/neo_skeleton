@@ -1,9 +1,9 @@
 // ignore_for_file: cascade_invocations
 
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/di/core_injection_container.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/di/core_injection_container.dart';
 
 final slAuth = GetIt.instance;
 

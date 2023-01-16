@@ -1,6 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
-import 'package:dio/dio.dart';
 
 class LogoutInterceptor extends Interceptor {
   LogoutInterceptor();
