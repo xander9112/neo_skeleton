@@ -40,6 +40,7 @@ class App {
 
   static void _startApp(EnvConfig env) {
     {{name.pacalCase()}};
+    {{name.snakeCase()}};
     runApp({{name.pacalCase()}}App(router: slCore()));
   }
 }
