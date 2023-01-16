@@ -1,7 +1,7 @@
-export 'auth/_auth.dart';
 export 'constants/_constants.dart';
 export 'di/configure_dependencies.dart';
 export 'failure/failure.dart';
+export 'features/auth/_auth.dart';
 export 'localization/l10n.dart';
 export 'navigation/_navigation.dart';
 export 'network/_network.dart';

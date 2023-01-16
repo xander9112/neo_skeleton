@@ -1,4 +1,4 @@
-import 'package:{{name.snakeCase()}}/src/core/auth/_auth.dart';
+import 'package:{{name.snakeCase()}}/src/core/features/auth/_auth.dart';
 import 'package:flutter/material.dart';
 
 class PinCodeTitle extends StatelessWidget {
