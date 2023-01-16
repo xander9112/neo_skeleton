@@ -36,3 +36,8 @@ vars:
     description: iOS bundle id
     default: com.neoflex.nfoProject
     prompt: What is iOS bundle id?
+  useLocalAuth:
+    type: boolean
+    description: true
+    default: true
+    prompt: Do you need LocalAuth?

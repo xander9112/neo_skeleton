@@ -12,7 +12,7 @@ Future<void> init() async {
     () => AuthManagerImpl(
       authRepository: slAuth(),
       biometricRepository: slAuth(),
-      settings: AuthManagerSettings(useBiometric: !kIsWeb, useLocalAuth: true),
+      settings: AuthManagerSettings(useBiometric: !kIsWeb, useLocalAuth: {{useLocalAuth}}),
     ),
   );
 
