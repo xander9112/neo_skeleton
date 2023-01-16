@@ -43,8 +43,8 @@ class App {
   }
 }
 
-class JnpAdmin extends StatelessWidget {
-  const JnpAdmin({required this.router, super.key});
+class {{name.pacalCase()}}Admin extends StatelessWidget {
+  const {{name.pacalCase()}}Admin({required this.router, super.key});
 
   final AppAutoRouter router;
 
