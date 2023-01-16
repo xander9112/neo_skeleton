@@ -15,13 +15,15 @@ class _LoginPageState extends LoadingState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
-      create: (context) => getIt(),
+      create: (context) {
+        return getIt()..checkAuth(widget.onResult);
+      },
       child: Scaffold(
         body: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
@@ -36,7 +38,6 @@ class _LoginPageState extends LoadingState<LoginPage> {
                     );
                   },
                   builder: (context, state) {
-                    context.read<LoginCubit>().checkAuth(widget.onResult);
                     return LoginForm(
                       form: context.read<LoginCubit>().form,
                       message: state.error,
