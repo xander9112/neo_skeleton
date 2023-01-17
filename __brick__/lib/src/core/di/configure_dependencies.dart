@@ -7,7 +7,7 @@ import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> configureDependencies(EnvConfig env) async {
+Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
   await di_core.init();
   await di_navigation.init();
 

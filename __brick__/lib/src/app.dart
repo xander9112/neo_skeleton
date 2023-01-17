@@ -34,11 +34,11 @@ class App {
 
   static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
-  static Future<void> _initDependencies(EnvConfig env) async {
-    return configureDependencies(env);
+  static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
+    return configureDependencies({{#useFlavor}}env{{/useFlavor}});
   }
 
-  static void _startApp(EnvConfig env) {
+  static void _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) {
     runApp({{name.pascalCase()}}App(router: slCore()));
   }
 }
