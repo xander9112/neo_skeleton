@@ -7,22 +7,28 @@
       {
           "name": "{{name.pascalName}} Dev",
           "request": "launch",
-          "type": "dart",
+          "type": "dart"
+          {{#useFlavor}}
+          ,
           "args": [
               "--flavor",
               "dev",
               "--dart-define=flavor=dev"
           ]
+          {{/useFlavor}}
       },
       {
           "name": "{{name.pascalName}} Prod",
           "request": "launch",
-          "type": "dart",
+          "type": "dart"
+          {{#useFlavor}}
+          ,
           "args": [
               "--flavor",
               "prod",
               "--dart-define=flavor=prod"
           ]
+          {{/useFlavor}}
       },
       {
           "name": "{{name.pascalName}} (Profile)",

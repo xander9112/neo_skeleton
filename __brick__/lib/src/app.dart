@@ -8,14 +8,14 @@ import 'package:{{name.snakeCase()}}/src/core/di/core_injection_container.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class App {
-  static Future<void> init(EnvConfig env) async {
+  static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     await _initCommon();
 
-    await _initDependencies(env);
+    await _initDependencies({{#useFlavor}}env{{/useFlavor}});
 
-    await _initFirebase(env);
+    await _initFirebase({{#useFlavor}}env{{/useFlavor}});
 
-    _startApp(env);
+    _startApp({{#useFlavor}}env{{/useFlavor}});
   }
 
   static Future<void> _initCommon([
@@ -32,7 +32,7 @@ class App {
     );
   }
 
-  static Future<void> _initFirebase(EnvConfig env) async {}
+  static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
   static Future<void> _initDependencies(EnvConfig env) async {
     return configureDependencies(env);

@@ -40,3 +40,7 @@ vars:
     type: boolean
     default: true
     prompt: Do you need LocalAuth?
+  useFlavor:
+    type: boolean
+    default: true
+    prompt: Do you need flavor?

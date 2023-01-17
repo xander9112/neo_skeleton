@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'local_auth_cubit.freezed.dart';
 part 'local_auth_cubit.g.dart';
