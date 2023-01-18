@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class ApiDioClient {
   ApiDioClient(
@@ -258,3 +258,4 @@ class ApiDioClient {
     _dio.options.baseUrl = baseUrl;
   }
 }
+

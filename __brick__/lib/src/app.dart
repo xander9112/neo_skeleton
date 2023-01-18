@@ -32,13 +32,13 @@ class App {
     );
   }
 
-  static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
+  static Future<void> _initFirebase() async {}
 
   static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     return configureDependencies({{#useFlavor}}env{{/useFlavor}});
   }
 
-  static void _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) {
+  static void _startApp() {
     runApp({{name.pascalCase()}}App(router: slCore()));
   }
 }
@@ -50,23 +50,37 @@ class {{name.pascalCase()}}App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: router.delegate(),
-      themeMode: ThemeMode.light,
-      theme: createLightTheme(),
-      darkTheme: createDarkTheme(),
-      routeInformationParser:
-          router.defaultRouteParser(includePrefixMatches: true),
-      localizationsDelegates: const [
-        AppLocalizationDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      builder: (BuildContext context, Widget? child) {
-        return DialogManager(child: child);
+    return BlocProvider(
+      create: (context) {
+        final cubit = slCore<SettingsCubit>();
+        return cubit;
       },
+      child: Builder(
+        builder: (context) => BlocBuilder<SettingsCubit, SettingsState>(
+          buildWhen: (previous, current) =>
+              previous.appThemeMode != current.appThemeMode ||
+              previous.locale != current.locale,
+          builder: (context, state) => MaterialApp.router(
+            routerDelegate: router.delegate(),
+            themeMode: state.appThemeMode?.getThemeMode(),
+            theme: createLightTheme(),
+            darkTheme: createDarkTheme(),
+            routeInformationParser:
+                router.defaultRouteParser(includePrefixMatches: true),
+            localizationsDelegates: const [
+              AppLocalizationDelegate(),
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate
+            ],
+            locale: state.locale,
+            supportedLocales: AppLocalizations.supportedLocales,
+            builder: (BuildContext context, Widget? child) {
+              return DialogManager(child: child);
+            },
+          ),
+        ),
+      ),
     );
   }
 }
