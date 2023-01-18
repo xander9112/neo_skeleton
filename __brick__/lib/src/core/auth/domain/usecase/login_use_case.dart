@@ -21,7 +21,7 @@ class LoginUseCase
         } else {
           //TODO: переход на главную через navigationManager
           //Only for demo
-          unawaited(getIt<AppRouter>().replaceNamed(RoutePath.main));
+          unawaited(getIt<AppAutoRouter>().replaceNamed(RoutePath.main));
         }
       }
 

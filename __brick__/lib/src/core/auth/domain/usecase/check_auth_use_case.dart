@@ -16,7 +16,7 @@ class CheckAuthUseCase
       } else {
         //TODO: переход на главную через navigationManager
         //Only for demo
-        await getIt<AppRouter>().replaceNamed(RoutePath.main);
+        await getIt<AppAutoRouter>().replaceNamed(RoutePath.main);
       }
     }
     return Right(isAuth);

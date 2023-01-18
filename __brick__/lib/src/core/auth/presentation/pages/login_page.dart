@@ -15,7 +15,10 @@ class _LoginPageState extends LoadingState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
-      create: (context) => getIt(),
+      create: (context) {
+        final bloc = getIt<LoginCubit>()..checkAuth(widget.onResult);
+        return bloc;
+      },
       child: Scaffold(
         body: SafeArea(
           child: Container(

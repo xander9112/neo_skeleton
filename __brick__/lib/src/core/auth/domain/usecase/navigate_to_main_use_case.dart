@@ -9,8 +9,8 @@ class NavigateToMainUseCase implements UseCase<void, void Function(bool)?> {
       params.call(true);
     } else {
       //TODO: NavigationManager
-      await getIt<AppRouter>().replaceNamed(RoutePath.main);
-      getIt<AppRouter>().removeLast();
+      await getIt<AppAutoRouter>().replaceNamed(RoutePath.main);
+      getIt<AppAutoRouter>().removeLast();
     }
   }
 }

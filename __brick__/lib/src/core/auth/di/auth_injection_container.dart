@@ -24,7 +24,7 @@ Future<void> init() async {
     () => BiometricRepositoryImpl(slAuth()),
   );
 
-  slAuth.registerFactory(() => RestAuthDataSource(slAuth<ApiDioClient>().dio));
+  slAuth.registerFactory<RestAuthDataSource>(MockAuthDataSource.new);
 
   slAuth.registerFactory(() => LoginUseCase(slAuth()));
 
