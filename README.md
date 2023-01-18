@@ -4,6 +4,9 @@ mason add neo_empty_project --git-url https://github.com/xander9112/neo_skeleton
 mason make neo_empty_project  
 ```
 
+## run generator
+flutter pub run build_runner build --delete-conflicting-outputs
+
 ## add localizations
 ```bash
 dart pub global activate intl_translation
