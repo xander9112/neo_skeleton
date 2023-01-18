@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/locale.dart' as intl;
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'settings_cubit.freezed.dart';

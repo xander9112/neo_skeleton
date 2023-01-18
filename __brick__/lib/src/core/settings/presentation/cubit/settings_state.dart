@@ -7,7 +7,7 @@ class SettingsState with _$SettingsState {
   const factory SettingsState.current({
     @JsonKey(fromJson: AppThemeMode.fromJson, toJson: AppThemeMode.toJson)
         AppThemeMode? appThemeMode,
-    @JsonKey(fromJson: AppThemeMode.localeFromJson, toJson: AppThemeMode.localeToJson)
+    @JsonKey(fromJson: localeFromJson, toJson: localeToJson)
         Locale? locale,
     bool? useBiometric,
     @Default(false) bool useLocalAuth,
@@ -20,4 +20,30 @@ class SettingsState with _$SettingsState {
 
   @override
   Map<String, dynamic> toJson();
+}
+
+Locale? localeFromJson(String? value) {
+  if (value == null) {
+    return null;
+  }
+
+  final intlLocale = intl.Locale.tryParse(value);
+
+  if (intlLocale == null) return null;
+
+  return Locale.fromSubtags(
+    languageCode: intlLocale.languageCode,
+    countryCode: intlLocale.countryCode,
+    scriptCode: intlLocale.scriptCode,
+  );
+}
+
+String? localeToJson(Locale? locale) {
+  if (locale == null) return null;
+
+  final localName = locale.countryCode == null || locale.countryCode!.isEmpty
+      ? locale.languageCode
+      : locale.toString();
+
+  return Intl.canonicalizedLocale(localName);
 }
