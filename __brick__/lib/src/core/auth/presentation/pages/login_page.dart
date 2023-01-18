@@ -31,7 +31,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
               ),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {

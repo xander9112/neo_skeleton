@@ -1,5 +1,6 @@
 // ignore_for_file: cascade_invocations
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/auth/di/auth_injection_container.dart';
@@ -12,10 +13,9 @@ Future<void> init() async {
 
   slCore.registerSingleton<DialogService>(DialogService());
 
-  //TODO: flavors
   slCore.registerSingleton<ApiDioClient>(
     ApiDioClient(
-      Uri.parse('https://{{name.snakeCase()}}.com/api'),
+      Uri.parse(dotenv.env['API_URL'] ?? ''),
       storage: slCore(),
     ),
   );

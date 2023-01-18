@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localization_delegate.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
@@ -13,6 +14,8 @@ import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 class App {
   static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     await _initCommon();
+
+    await _initEnv(env);
 
     await _initDependencies({{#useFlavor}}env{{/useFlavor}});
 
@@ -37,6 +40,10 @@ class App {
 
 
   static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
+
+  static Future<void> _initEnv(EnvConfig env) async {
+    await dotenv.load(fileName: '.${env.name}.env');
+  }
 
   static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     return configureDependencies({{#useFlavor}}env{{/useFlavor}});
