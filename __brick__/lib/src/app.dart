@@ -63,34 +63,35 @@ class {{name.pascalCase()}}App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SettingsCubit>(
       create: (context) {
-        final cubit = slCore<SettingsCubit>();
-        return cubit;
+        return slCore<SettingsCubit>();
       },
       child: Builder(
-        builder: (context) => BlocBuilder<SettingsCubit, SettingsState>(
-          buildWhen: (previous, current) =>
-              previous.appThemeMode != current.appThemeMode ||
-              previous.locale != current.locale,
-          builder: (context, state) => MaterialApp.router(
-            routerDelegate: router.delegate(),
-            themeMode: state.appThemeMode?.getThemeMode(),
-            theme: createLightTheme(),
-            darkTheme: createDarkTheme(),
-            routeInformationParser:
-                router.defaultRouteParser(includePrefixMatches: true),
-            localizationsDelegates: const [
-              AppLocalizationDelegate(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate
-            ],
-            locale: state.locale,
-            supportedLocales: AppLocalizations.supportedLocales,
-            builder: (BuildContext context, Widget? child) {
-              return DialogManager(child: child);
-            },
-          ),
-        ),
+        builder: (context) {
+          return BlocBuilder<SettingsCubit, SettingsState>(
+            buildWhen: (previous, current) =>
+                previous.appThemeMode != current.appThemeMode ||
+                previous.locale != current.locale,
+            builder: (context, state) => MaterialApp.router(
+              routerDelegate: router.delegate(),
+              themeMode: state.appThemeMode?.getThemeMode(),
+              theme: createLightTheme(),
+              darkTheme: createDarkTheme(),
+              routeInformationParser:
+                  router.defaultRouteParser(includePrefixMatches: true),
+              localizationsDelegates: const [
+                AppLocalizationDelegate(),
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate
+              ],
+              locale: state.locale,
+              supportedLocales: AppLocalizations.supportedLocales,
+              builder: (BuildContext context, Widget? child) {
+                return DialogManager(child: child);
+              },
+            ),
+          );
+        }
       ),
     );
   }
