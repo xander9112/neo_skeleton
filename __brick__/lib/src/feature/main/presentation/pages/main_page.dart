@@ -1,6 +1,6 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/auth/di/auth_injection_container.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

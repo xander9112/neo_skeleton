@@ -2,19 +2,33 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/auth/di/auth_injection_container.dart';
+import 'package:{{name.snakeCase()}}/src/core/di/external_injection_container.dart';
 
 final slCore = GetIt.instance;
 
 Future<void> init() async {
-  getIt.registerLazySingleton(SecureStorageService.new);
+  slCore.registerLazySingleton(SecureStorageService.new);
 
-  getIt.registerSingleton<DialogService>(DialogService());
+  slCore.registerSingleton<DialogService>(DialogService());
 
   //TODO: flavors
-  getIt.registerSingleton<ApiDioClient>(
+  slCore.registerSingleton<ApiDioClient>(
     ApiDioClient(
       Uri.parse('https://{{name.snakeCase()}}.com/api'),
       storage: slCore(),
+    ),
+  );
+
+
+  slCore.registerLazySingleton(
+    () => SettingsCubit(
+      subscriptAuthEventUseCase: slAuth(),
+      getBiometricSupportModel: slAuth(),
+      getAuthUseCase: slAuth(),
+      setBiometrySettingUseCase: slAuth(),
+      setNewPinCodeUseCase: slAuth(),
+      getGlobalAuthSettings: slAuth(),
     ),
   );
 }
