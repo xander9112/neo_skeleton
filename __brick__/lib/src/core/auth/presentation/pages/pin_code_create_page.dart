@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jnp_admin/src/core/auth/di/auth_injection_container.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/auth/di/auth_injection_container.dart';
 
 class PinCodeCreatePage extends StatelessWidget {
   const PinCodeCreatePage({super.key});

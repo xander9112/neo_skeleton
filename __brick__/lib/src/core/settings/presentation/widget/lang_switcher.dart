@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jnp_admin/l10n/app_localizations.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class LocaleSwitcher extends StatelessWidget {

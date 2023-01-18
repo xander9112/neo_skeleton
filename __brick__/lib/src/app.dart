@@ -1,5 +1,8 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localization_delegate.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
@@ -32,13 +35,14 @@ class App {
     );
   }
 
-  static Future<void> _initFirebase() async {}
+
+  static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
   static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     return configureDependencies({{#useFlavor}}env{{/useFlavor}});
   }
 
-  static void _startApp() {
+  static void _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) {
     runApp({{name.pascalCase()}}App(router: slCore()));
   }
 }
@@ -50,7 +54,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<SettingsCubit>(
       create: (context) {
         final cubit = slCore<SettingsCubit>();
         return cubit;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/auth/presentation/widget/keyboard/keyboard.dart';
 
 class PinCodeKeyboard extends StatelessWidget {

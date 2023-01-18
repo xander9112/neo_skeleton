@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jnp_admin/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 part 'biometrics_support.freezed.dart';
 part 'biometrics_support.g.dart';

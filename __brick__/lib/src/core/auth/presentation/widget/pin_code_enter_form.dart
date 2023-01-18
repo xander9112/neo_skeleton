@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/ui_kit.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class PinCodeEnterForm extends StatefulWidget {

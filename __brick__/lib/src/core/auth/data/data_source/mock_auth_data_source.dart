@@ -12,6 +12,8 @@ class MockAuthDataSource implements RestAuthDataSource {
         login: 'login',
         lastName: 'lastName',
         firstName: 'firstName',
+        email: '',
+        ldapId: '',
       ),
     );
   }
@@ -20,7 +22,7 @@ class MockAuthDataSource implements RestAuthDataSource {
   Future<void> signOut() async {}
 
    @override
-  Future<void> updateDeviceInfo() async {}
+  Future<void> updateDeviceInfo({required Map<String, dynamic> request}) async {}
 
   @override
   Future<AuthenticatedUser> verify() async {
@@ -29,6 +31,8 @@ class MockAuthDataSource implements RestAuthDataSource {
       login: 'login',
       lastName: 'lastName',
       firstName: 'firstName',
+      email: '',
+      ldapId: '',
     );
   }
 }
