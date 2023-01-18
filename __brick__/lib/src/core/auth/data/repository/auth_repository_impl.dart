@@ -4,9 +4,9 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class AuthRepositoryImpl
     implements AuthRepository<AuthModel, AuthenticatedUser> {
-  AuthRepositoryImpl(this._restAuthDatasource, this._secureStorageService);
+  AuthRepositoryImpl(this._restAuthDataSource, this._secureStorageService);
 
-  final RestAuthDataSource _restAuthDatasource;
+  final RestAuthDataSource _restAuthDataSource;
   final SecureStorageService _secureStorageService;
 
   @override
@@ -75,7 +75,7 @@ class AuthRepositoryImpl
     String password,
   ) async {
     try {
-      final result = await _restAuthDatasource.signIn(
+      final result = await _restAuthDataSource.signIn(
         request: <String, dynamic>{'login': login, 'password': password},
       );
 
@@ -118,7 +118,7 @@ class AuthRepositoryImpl
   @override
   Future<Either<Failure, bool>> signOut() async {
     try {
-      await _restAuthDatasource.signOut();
+      await _restAuthDataSource.signOut();
 
       return const Right(true);
     } on DioError catch (e) {
@@ -159,7 +159,7 @@ class AuthRepositoryImpl
   @override
   Future<Either<Failure, AuthenticatedUser>> verify() async {
     try {
-      final result = await _restAuthDatasource.verify();
+      final result = await _restAuthDataSource.verify();
 
       return Right(result);
     } on DioError catch (e) {
