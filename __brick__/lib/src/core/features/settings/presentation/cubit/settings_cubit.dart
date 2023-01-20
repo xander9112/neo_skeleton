@@ -83,6 +83,10 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     emit(state.copyWith(useBiometric: value));
   }
 
+  Future<void> setUseLocalAuth({required bool value}) async {
+    emit(state.copyWith(useLocalAuth: value));
+  }
+
   Future<void> setPinCode() async {
     await setNewPinCodeUseCase(NoParams());
   }

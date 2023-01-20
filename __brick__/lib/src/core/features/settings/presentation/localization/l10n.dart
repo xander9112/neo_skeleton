@@ -48,4 +48,9 @@ class SettingsI18n {
         desc: 'Use biometrics?',
         name: 'SettingsI18n_useBiometrics',
       );
+  static String get useLocalAuth => Intl.message(
+        'Use local auth?',
+        desc: 'Use local auth?',
+        name: 'SettingsI18n_useLocalAuth',
+      );
 }

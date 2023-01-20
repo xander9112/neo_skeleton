@@ -9,18 +9,14 @@ class PinCodeChanger extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: state.useLocalAuth
-                  ? () {
-                      context.read<SettingsCubit>().setPinCode();
-                    }
-                  : null,
-              child: Text(SettingsI18n.changePinCode),
-            )
-          ],
+        if (!state.useLocalAuth) {
+          return const SizedBox();
+        }
+
+        return ListTile(
+          title: Text(SettingsI18n.changePinCode),
+          onTap: context.read<SettingsCubit>().setPinCode,
+          trailing: const Icon(Icons.keyboard_arrow_right),
         );
       },
     );
