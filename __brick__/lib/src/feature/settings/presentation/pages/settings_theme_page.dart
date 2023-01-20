@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
+import 'package:neo_bank/src/core/_core.dart';
+import 'package:neo_bank/src/core/features/auth/di/auth_injection_container.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class SettingsThemePage extends StatelessWidget {
+  const SettingsThemePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Home page'),
+              const Text('Settings page'),
               ElevatedButton(
                 onPressed: () {
                   slAuth<AuthManager<AuthenticatedUser>>().verify();

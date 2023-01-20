@@ -12,6 +12,8 @@ abstract class RoutePath {
 
   static const String settings = 'settings';
 
+  static const String settingsTheme = 'theme';
+
   static const String users = 'users';
 
   static const String user = 'users/:id';
