@@ -8,5 +8,7 @@ extension BuildContextExt on BuildContext {
 
   TextExtension get text => Theme.of(this).extension<TextExtension>()!;
 
+  TextTheme get defaultText => Theme.of(this).textTheme;
+
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }
