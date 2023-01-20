@@ -5,10 +5,6 @@ import 'package:{{name.snakeCase()}}/src/feature/settings/_settings.dart';
 
 const List<AutoRoute> settingsRoutes = <AutoRoute<dynamic>>[
   AutoRoute<void>(
-    path: RoutePath.settings,
-    page: SettingsPage,
-  ),
-  AutoRoute<void>(
     page: EmptyRouterPage,
     path: RoutePath.settings,
     name: 'SettingsRootRouter',

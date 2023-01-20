@@ -7,27 +7,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Home page'),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().verify();
-                },
-                child: const Text('Verify'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().signOut();
-                },
-                child: const Text('Logout'),
-              )
-            ],
-          ),
+     return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Home page',
+              style: context.defaultText.headline3,
+            ),
+          ],
         ),
       ),
     );
