@@ -8,6 +8,15 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(AppConstants.title),
+        actions: <Widget>[
+          IconButton(
+            onPressed: slAuth<AuthManager<AuthenticatedUser>>().signOut,
+            icon: const Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: Column(

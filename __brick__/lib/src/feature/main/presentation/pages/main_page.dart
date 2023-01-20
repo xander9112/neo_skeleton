@@ -1,35 +1,41 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Main page'),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().verify();
-                },
-                child: const Text('Verify'),
+    return AutoTabsRouter(
+      routes: const [
+        HomeRoute(),
+        SettingsRootRouter(),
+      ],
+      builder: (context, child, animation) {
+        final tabsRouter = AutoTabsRouter.of(context);
+
+        return Scaffold(
+          body: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(Icons.home),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().signOut();
-                },
-                child: const Text('Logout'),
-              )
+              BottomNavigationBarItem(
+                label: 'Settings',
+                icon: Icon(Icons.settings),
+              ),
             ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
