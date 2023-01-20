@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
@@ -7,9 +8,9 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
-        title: Text(AppConstants.title),
+        title: const Text('Settings page'),
         actions: <Widget>[
           IconButton(
             onPressed: slAuth<AuthManager<AuthenticatedUser>>().signOut,
@@ -17,27 +18,19 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Settings page'),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().verify();
-                },
-                child: const Text('Verify'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().signOut();
-                },
-                child: const Text('Logout'),
-              )
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const LocaleSwitcher(),
+          const LocalAuthSwitcher(),
+          const BiometrySwitcher(),
+          const PinCodeChanger(),
+          ListTile(
+            title: const Text('Theme'),
+            onTap: () => context.router.pushNamed(RoutePath.settingsTheme),
+            trailing: const Icon(Icons.keyboard_arrow_right),
           ),
-        ),
+        ],
       ),
     );
   }
