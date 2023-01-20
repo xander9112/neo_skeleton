@@ -16,26 +16,8 @@ abstract class RoutePath {
 
   static const String user = 'users/:id';
 
-  static const String userInfo = 'info';
-
-  static const String userContacts = 'contacts';
-
-  static const String cities = 'cities';
-
-  static const String departments = 'departments';
-
-  static const String posts = 'posts';
-
-  static const String post = 'posts/:id';
-
-  static const String stories = 'stories';
-
-  static const String story = 'stories/:id';
-
-  static const String notifications = 'notifications';
-
-  static const String profile = 'profile';
-
+  static const String home = 'home';
+  
   static const String pin = 'pin';
 }
 
