@@ -91,7 +91,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
               },
             ),
           );
-        }
+        },
       ),
     );
   }

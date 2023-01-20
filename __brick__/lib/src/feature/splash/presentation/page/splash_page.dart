@@ -40,7 +40,7 @@ class _SplashPageState extends State<SplashPage> {
               Padding(
               padding: const EdgeInsets.only(bottom: Insets.l),
               child: Text(
-                  '{{name.pascalCase()}} page',
+                  '{{name.pascalCase()}}',
                   style: context.defaultText.headline3,
                 ),
               ),

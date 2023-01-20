@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/auth/presentation/widget/keyboard/keyboard.dart';
 
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
@@ -17,7 +16,7 @@ class PinCodeKeyboard extends StatelessWidget {
 
   final bool useBiometric;
 
-  final Function(String text)? onPressedNumber;
+  final void Function(String text)? onPressedNumber;
   final VoidCallback? onReset;
   final VoidCallback? onDelete;
   final VoidCallback? onBiometricPressed;

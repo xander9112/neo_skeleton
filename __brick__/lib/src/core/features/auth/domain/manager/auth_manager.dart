@@ -228,7 +228,13 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   }
 
   @override
-  Future<Either<Failure, AuthenticatedUser>> verify() {
+  Future<Either<Failure, AuthenticatedUser>> verify() async {
+    /// Проверка на наличие обновление и другие проверки
+
+    isChecked = true;
+
+    await Future<void>.delayed(const Duration(seconds: 2));
+
     return authRepository.verify();
   }
 
