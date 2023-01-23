@@ -4,10 +4,19 @@ class SetNewPinCodeUseCase extends UseCase<void, NoParams> {
   SetNewPinCodeUseCase(this.authManager);
 
   final AuthManager<AuthenticatedUser> authManager;
+
+  final DialogService _dialogService;
+  
   @override
   Future<void> call(NoParams params) async {
-    await authManager.removePinCode();
-    //TODO: dialog
-    authManager.locked = true;
+    final result = await _dialogService.showDialog<bool>(
+      dialogType: DialogTypes.checkPinCode,
+    ) as bool;
+
+    if (result) {
+      await authManager.removePinCode();
+      //TODO: dialog
+      authManager.locked = true;
+    }
   }
 }

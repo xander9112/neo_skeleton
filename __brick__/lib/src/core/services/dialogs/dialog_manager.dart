@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class DialogManager extends StatefulWidget {
   const DialogManager({this.child, super.key});
@@ -74,6 +74,9 @@ class _DialogManagerState extends State<DialogManager> {
               body: body,
               params: params,
             );
+            break;
+          case DialogTypes.checkPinCode:
+            result = await CheckPinCodeDialog.showCurrentDialog(_context);
             break;
           default:
         }

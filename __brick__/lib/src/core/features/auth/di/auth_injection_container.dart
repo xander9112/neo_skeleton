@@ -48,9 +48,11 @@ Future<void> init() async {
 
   slAuth.registerFactory(() => SetBiometrySettingUseCase(slAuth()));
 
-  slAuth.registerFactory(() => SetNewPinCodeUseCase(slAuth()));
+  slAuth.registerFactory(() => SetNewPinCodeUseCase(slAuth(), slCore()));
 
   slAuth.registerFactory(() => GetAuthUseCase(slAuth()));
+
+  slAuth.registerFactory(() => CheckPinCodeFromDialogUseCase(slAuth()));
 
   slAuth.registerFactory(NavigateToMainUseCase.new);
 
@@ -69,4 +71,6 @@ Future<void> init() async {
       navigateToMainUseCase: slAuth(),
     ),
   );
+
+  slAuth.registerFactory(() => CheckPinCodeDialogCubit(slAuth()));
 }
