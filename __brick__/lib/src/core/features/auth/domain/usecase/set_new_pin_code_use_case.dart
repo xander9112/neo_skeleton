@@ -1,7 +1,7 @@
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class SetNewPinCodeUseCase extends UseCase<void, NoParams> {
-  SetNewPinCodeUseCase(this.authManager);
+  SetNewPinCodeUseCase(this.authManager, this._dialogService);
 
   final AuthManager<AuthenticatedUser> authManager;
 
