@@ -34,44 +34,37 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: PinCodeHeader(
-                  hasPinCode: true,
-                  hasTemporaryCode: false,
-                  hasError: false,
-                  pinCodeLength: widget.pinCodeLength,
-                  pinFilledCodeLength: code.length,
-                  isLoading: false,
-                ),
-              ),
-              Text(
-                widget.message ?? '',
-                style: const TextStyle(color: Colors.red),
-              ),
-              Expanded(
-                child: PinCodeKeyboard(
-                  useBiometric: widget.useBiometric,
-                  onPressedNumber: onPressedNumber,
-                  onReset: onPressedReset,
-                  onDelete: onPressedDelete,
-                  onBiometricPressed: onBiometricPressed,
-                  reset: AuthI18n.reset,
-                  delete: AuthI18n.delete,
-                  icon: widget.isFace
-                      ? Assets.icons.face
-                      : Assets.icons.fingerprint,
-                ),
-              )
-            ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: PinCodeHeader(
+              hasPinCode: true,
+              hasTemporaryCode: false,
+              hasError: false,
+              pinCodeLength: widget.pinCodeLength,
+              pinFilledCodeLength: code.length,
+              isLoading: false,
+            ),
           ),
-        )
-      ],
-    );
+          Text(
+            widget.message ?? '',
+            style: const TextStyle(color: Colors.red),
+          ),
+          Expanded(
+            flex: 2,
+            child: PinCodeKeyboard(
+              useBiometric: widget.useBiometric,
+              onPressedNumber: onPressedNumber,
+              onReset: onPressedReset,
+              onDelete: onPressedDelete,
+              onBiometricPressed: onBiometricPressed,
+              reset: AuthI18n.reset,
+              delete: AuthI18n.delete,
+              icon: widget.isFace ? Assets.icons.face : Assets.icons.fingerprint,
+            ),
+          )
+        ],
+      );
   }
 
   void onPressedNumber(String text) {
