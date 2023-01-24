@@ -37,7 +37,7 @@ class PinCodePage extends StatelessWidget {
                               .createPin(pinCode, onResult);
                         },
                       ),
-                      enterPin: (message, length, biometricSupportModel) =>
+                      enterPin: (biometricSupportModel, message, length) =>
                           PinCodeEnterForm(
                         message: message,
                         pinCodeLength: length,

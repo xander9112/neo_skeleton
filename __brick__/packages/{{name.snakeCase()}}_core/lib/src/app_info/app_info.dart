@@ -8,12 +8,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 abstract class AppInfo {
   static Future<DeviceInfoModel> getDeviceInfo() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
     if (kIsWeb) {
-      WebBrowserInfo webBrowserInfo = await deviceInfo.webBrowserInfo;
-      UserAgentParser parser = UserAgentParser();
-      Result result = parser.parseResult(webBrowserInfo.userAgent ?? '');
+      final WebBrowserInfo webBrowserInfo = await deviceInfo.webBrowserInfo;
+      final UserAgentParser parser = UserAgentParser();
+      final Result result = parser.parseResult(webBrowserInfo.userAgent ?? '');
 
       return DeviceInfoModel(
         model: result.browser?.name ?? '',
@@ -23,7 +23,7 @@ abstract class AppInfo {
     }
 
     if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
       return DeviceInfoModel(
         model: '${androidInfo.brand} ${androidInfo.model}',
@@ -33,7 +33,7 @@ abstract class AppInfo {
     }
 
     if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
 
       return DeviceInfoModel(
         model: iosInfo.name ?? '',

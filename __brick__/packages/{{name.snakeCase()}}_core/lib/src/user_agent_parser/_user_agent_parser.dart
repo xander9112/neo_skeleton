@@ -19,14 +19,15 @@ class UserAgentParser {
   ///
   /// Returns `null` if no match.
   Browser? parseBrowser(String userAgent) {
-    for (BrowserParser browserParser in browserParsers) {
-      for (String regex in browserParser.regexes) {
-        RegExp regExp = RegExp(regex, caseSensitive: false);
+    for (final BrowserParser browserParser in browserParsers) {
+      for (final String regex in browserParser.regexes) {
+        final RegExp regExp = RegExp(regex, caseSensitive: false);
 
         if (regExp.hasMatch(userAgent)) {
-          Iterable<RegExpMatch> matches = regExp.allMatches(userAgent);
-          String? unformattedName = matches.first.namedGroup('unformattedName');
-          String? version = matches.first.namedGroup('version');
+          final Iterable<RegExpMatch> matches = regExp.allMatches(userAgent);
+          final String? unformattedName =
+              matches.first.namedGroup('unformattedName');
+          final String? version = matches.first.namedGroup('version');
 
           return Browser(
             name: browserParser.name,
