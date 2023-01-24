@@ -34,43 +34,44 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: PinCodeHeader(
-              hasPinCode: true,
-              hasTemporaryCode: false,
-              hasError: false,
-              pinCodeLength: widget.pinCodeLength,
-              pinFilledCodeLength: code.length,
-              isLoading: false,
-            ),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: PinCodeHeader(
+            hasPinCode: true,
+            hasTemporaryCode: false,
+            hasError: false,
+            pinCodeLength: widget.pinCodeLength,
+            pinFilledCodeLength: code.length,
+            isLoading: false,
           ),
-          Text(
-            widget.message ?? '',
-            style: const TextStyle(color: Colors.red),
+        ),
+        Text(
+          widget.message ?? '',
+          style: TextStyle(color: Theme.of(context).errorColor),
+        ),
+        Expanded(
+          flex: 2,
+          child: PinCodeKeyboard(
+            useBiometric: widget.useBiometric,
+            onPressedNumber: onPressedNumber,
+            onReset: onPressedReset,
+            onDelete: onPressedDelete,
+            onBiometricPressed: onBiometricPressed,
+            reset: AuthI18n.reset,
+            delete: AuthI18n.delete,
+            icon: widget.isFace ? Assets.icons.face : Assets.icons.fingerprint,
           ),
-          Expanded(
-            flex: 2,
-            child: PinCodeKeyboard(
-              useBiometric: widget.useBiometric,
-              onPressedNumber: onPressedNumber,
-              onReset: onPressedReset,
-              onDelete: onPressedDelete,
-              onBiometricPressed: onBiometricPressed,
-              reset: AuthI18n.reset,
-              delete: AuthI18n.delete,
-              icon: widget.isFace ? Assets.icons.face : Assets.icons.fingerprint,
-            ),
-          )
-        ],
-      );
+        )
+      ],
+    );
   }
 
   void onPressedNumber(String text) {
     setState(() {
       code = '$code$text';
     });
+
     if (code.length == widget.pinCodeLength) {
       widget.onComplete?.call(code);
     }
