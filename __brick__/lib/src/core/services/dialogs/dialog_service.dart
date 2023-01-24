@@ -13,6 +13,7 @@ class DialogService {
 
   late Completer<dynamic> _dialogCompleter;
 
+  // ignore: use_setters_to_change_properties
   void registerDialogListener(
     DialogListener showDialogListener,
   ) {

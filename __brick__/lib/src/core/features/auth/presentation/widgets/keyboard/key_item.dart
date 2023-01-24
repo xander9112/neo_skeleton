@@ -1,10 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class KeyItem extends StatelessWidget {
-  const KeyItem({Key? key, this.child, this.onPressedNumber}) : super(key: key);
+  const KeyItem({super.key, this.child, this.onPressedNumber});
 
   final Widget? child;
-  final Function()? onPressedNumber;
+  final VoidCallback? onPressedNumber;
 
   @override
   Widget build(BuildContext context) {

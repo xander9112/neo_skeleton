@@ -1,12 +1,24 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
+
+@immutable
 class DeviceInfoModel {
   const DeviceInfoModel({
     required this.model,
     required this.system,
     required this.version,
   });
+  factory DeviceInfoModel.fromJson(String source) =>
+      DeviceInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  factory DeviceInfoModel.fromMap(Map<String, dynamic> map) {
+    return DeviceInfoModel(
+      model: map['model'] as String,
+      system: map['system'] as String,
+      version: map['version'] as String,
+    );
+  }
 
   final String model;
   final String system;
@@ -32,18 +44,7 @@ class DeviceInfoModel {
     };
   }
 
-  factory DeviceInfoModel.fromMap(Map<String, dynamic> map) {
-    return DeviceInfoModel(
-      model: map['model'] as String,
-      system: map['system'] as String,
-      version: map['version'] as String,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory DeviceInfoModel.fromJson(String source) =>
-      DeviceInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>

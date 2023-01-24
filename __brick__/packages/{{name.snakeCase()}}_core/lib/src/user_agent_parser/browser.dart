@@ -1,7 +1,8 @@
-// ignore_for_file: lines_longer_than_80_chars
+import 'package:flutter/widgets.dart';
 
+@immutable
 class Browser {
-  Browser({
+  const Browser({
     required this.name,
     required this.parsedWithRegex,
     this.unformattedName,
@@ -9,16 +10,17 @@ class Browser {
   });
 
   /// The browser name, set manually for a browser
-  String name;
+  final String name;
 
-  /// The browser name, parsed directly from the user agent string without modification
-  String? unformattedName;
+  /// The browser name, parsed directly from the user agent string
+  /// without modification
+  final String? unformattedName;
 
   /// The browser version
-  String? version;
+  final String? version;
 
   /// The regex that was used to parse this browser
-  String parsedWithRegex;
+  final String parsedWithRegex;
 
   @override
   bool operator ==(Object other) =>

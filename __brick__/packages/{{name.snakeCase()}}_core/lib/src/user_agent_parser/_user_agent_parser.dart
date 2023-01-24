@@ -1,6 +1,6 @@
-import 'browser.dart';
-import 'browser_parser.dart';
-import 'result.dart';
+import 'package:{{name.snakeCase()}}_core/src/user_agent_parser/browser.dart';
+import 'package:{{name.snakeCase()}}_core/src/user_agent_parser/browser_parser.dart';
+import 'package:{{name.snakeCase()}}_core/src/user_agent_parser/result.dart';
 
 export 'browser.dart';
 export 'result.dart';

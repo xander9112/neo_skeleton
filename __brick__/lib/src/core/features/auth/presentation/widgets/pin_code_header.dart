@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class PinCodeHeader extends StatelessWidget {

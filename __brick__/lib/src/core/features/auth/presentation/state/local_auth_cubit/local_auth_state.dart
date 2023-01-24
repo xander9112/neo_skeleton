@@ -13,9 +13,9 @@ class LocalAuthState with _$LocalAuthState {
   }) = _LocalAuthCreatePin;
 
   const factory LocalAuthState.enterPin({
+    required BiometricSupportModel biometricSupportModel,
     String? error,
     @Default(4) int length,
-    required BiometricSupportModel biometricSupportModel,
   }) = _LocalAuthEnterPin;
 
   factory LocalAuthState.fromJson(Object? json) =>

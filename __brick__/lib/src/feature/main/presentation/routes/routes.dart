@@ -13,6 +13,6 @@ const List<AutoRoute> mainRoutes = <AutoRoute<dynamic>>[
     children: <AutoRoute>[
       ...homeRoutes,
       ...settingsRoutes,
-    ]
+    ],
   )
 ];

@@ -22,7 +22,7 @@ class PinCodeEnterForm extends StatefulWidget {
 
   final void Function(String)? onComplete;
 
-  final void Function()? onBiometricPressed;
+  final VoidCallback? onBiometricPressed;
 
   @override
   State<PinCodeEnterForm> createState() => _PinCodeEnterFormState();

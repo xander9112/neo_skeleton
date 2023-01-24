@@ -1,6 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
+
+@immutable
 class AppInfoModel {
+  const AppInfoModel({
+    required this.appName,
+    required this.packageName,
+    required this.version,
+    required this.buildNumber,
+  });
   factory AppInfoModel.fromJson(String source) =>
       AppInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
@@ -12,12 +21,6 @@ class AppInfoModel {
       buildNumber: map['buildNumber'] as String,
     );
   }
-  const AppInfoModel({
-    required this.appName,
-    required this.packageName,
-    required this.version,
-    required this.buildNumber,
-  });
 
   final String appName;
   final String packageName;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class KeyItemNumber extends StatelessWidget {
-  const KeyItemNumber({required this.text, Key? key}) : super(key: key);
+  const KeyItemNumber({required this.text, super.key});
 
   final String text;
 

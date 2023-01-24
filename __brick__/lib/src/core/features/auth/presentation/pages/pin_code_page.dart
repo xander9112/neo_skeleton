@@ -31,7 +31,7 @@ class PinCodePage extends StatelessWidget {
                         isConfirm: confirm,
                         message: message,
                         pinCodeLength: length,
-                        onCompleate: (pinCode) {
+                        onComplete: (pinCode) {
                           context
                               .read<LocalAuthCubit>()
                               .createPin(pinCode, onResult);

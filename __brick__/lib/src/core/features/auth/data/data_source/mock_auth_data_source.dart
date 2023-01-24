@@ -21,8 +21,10 @@ class MockAuthDataSource implements RestAuthDataSource {
   @override
   Future<void> signOut() async {}
 
-   @override
-  Future<void> updateDeviceInfo({required Map<String, dynamic> request}) async {}
+  @override
+  Future<void> updateDeviceInfo({
+    required Map<String, dynamic> request,
+  }) async {}
 
   @override
   Future<AuthenticatedUser> verify() async {

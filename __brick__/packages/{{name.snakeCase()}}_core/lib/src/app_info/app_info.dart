@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:{{name.snakeCase()}}_core/src/app_info/models/_models.dart';
+import 'package:{{name.snakeCase()}}_core/src/user_agent_parser/_user_agent_parser.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import '../user_agent_parser/_user_agent_parser.dart';
-import 'models/_models.dart';
 
 abstract class AppInfo {
   static Future<DeviceInfoModel> getDeviceInfo() async {

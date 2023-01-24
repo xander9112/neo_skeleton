@@ -254,8 +254,11 @@ class ApiDioClient {
     return handler.next(error);
   }
 
-  void setNewBaseUrl(String baseUrl) {
+  set newBaseUrl(String baseUrl) {
     _dio.options.baseUrl = baseUrl;
   }
-}
 
+  String get newBaseUrl {
+    return _dio.options.baseUrl;
+  }
+}

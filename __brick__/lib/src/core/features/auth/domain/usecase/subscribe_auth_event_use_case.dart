@@ -1,13 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class SubscribeAuthEventUseCase extends UseCase<void, void Function()> {
+class SubscribeAuthEventUseCase extends UseCase<void, VoidCallback> {
   SubscribeAuthEventUseCase(this._authManager);
 
   final AuthManager<AuthenticatedUser> _authManager;
 
   @override
-  Future<void> call(void Function() callback) async {
-    _authManager.addListener(callback);
+  Future<void> call(VoidCallback params) async {
+    _authManager.addListener(params);
     return;
   }
 }

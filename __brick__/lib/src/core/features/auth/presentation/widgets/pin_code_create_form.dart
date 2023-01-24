@@ -3,11 +3,11 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class PinCodeCreateForm extends StatefulWidget {
   const PinCodeCreateForm({
-    super.key,
     required this.isConfirm,
+    super.key,
     this.message,
     this.pinCodeLength = 4,
-    this.onCompleate,
+    this.onComplete,
   });
 
   final bool isConfirm;
@@ -16,7 +16,7 @@ class PinCodeCreateForm extends StatefulWidget {
 
   final int pinCodeLength;
 
-  final void Function(String)? onCompleate;
+  final void Function(String)? onComplete;
 
   @override
   State<PinCodeCreateForm> createState() => _PinCodeCreateFormState();
@@ -69,7 +69,7 @@ class _PinCodeCreateFormState extends State<PinCodeCreateForm> {
       code = '$code$text';
     });
     if (code.length == widget.pinCodeLength) {
-      widget.onCompleate?.call(code);
+      widget.onComplete?.call(code);
     }
   }
 

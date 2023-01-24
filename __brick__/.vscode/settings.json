@@ -8,5 +8,13 @@
         "source.fixAll": true,
     },
     "java.configuration.updateBuildConfiguration": "automatic",
-    "cSpell.words": [],
+    "cSpell.words": [
+        "canonicalized",
+        "dartz",
+        "dotenv",
+        "lerp",
+        "regexes",
+        "spinkit",
+        "Subtags"
+    ],
 }
