@@ -11,6 +11,19 @@ class CheckPinCodeDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: const SizedBox(),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            icon: const Icon(Icons.close),
+          )
+        ],
+      ),
       body: BlocProvider<CheckPinCodeDialogCubit>(
         create: (context) => slAuth<CheckPinCodeDialogCubit>(),
         child: Column(
@@ -43,17 +56,6 @@ class CheckPinCodeDialog extends StatelessWidget {
                                   .enterPin(value, null);
                             },
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                icon: const Icon(Icons.close),
-                              )
-                            ],
-                          ),
                         ],
                       );
                     },
@@ -75,6 +77,7 @@ class CheckPinCodeDialog extends StatelessWidget {
   }) {
     return showDialog<bool?>(
       context: context,
+      useSafeArea: false,
       builder: (BuildContext context) {
         return const CheckPinCodeDialog();
       },

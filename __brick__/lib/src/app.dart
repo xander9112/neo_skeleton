@@ -76,6 +76,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
               themeMode: state.appThemeMode?.getThemeMode(),
               theme: createLightTheme(),
               darkTheme: createDarkTheme(),
+              debugShowCheckedModeBanner: false,
               routeInformationParser:
                   router.defaultRouteParser(includePrefixMatches: true),
               localizationsDelegates: const [
