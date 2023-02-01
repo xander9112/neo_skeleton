@@ -30,7 +30,7 @@ class UiProgressIndicator extends StatelessWidget {
       return Container(
         width: double.infinity,
         height: double.infinity,
-        color: Theme.of(context).backgroundColor.withOpacity(0.8),
+        color: Theme.of(context).colorScheme.background.withOpacity(0.8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

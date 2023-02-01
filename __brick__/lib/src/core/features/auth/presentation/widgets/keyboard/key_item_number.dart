@@ -10,7 +10,7 @@ class KeyItemNumber extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        fontSize: 48.0,
+        fontSize: 48,
         height: 1,
       ),
     );

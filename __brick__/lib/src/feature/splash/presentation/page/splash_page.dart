@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
               padding: const EdgeInsets.only(bottom: Insets.l),
               child: Text(
                   '{{name.pascalCase()}}',
-                  style: context.defaultText.headline3,
+                  style: context.defaultText.displaySmall,
                 ),
               ),
               const UiProgressIndicator(),

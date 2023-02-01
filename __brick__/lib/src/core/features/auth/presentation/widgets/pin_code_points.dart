@@ -113,7 +113,7 @@ class _Point extends StatelessWidget {
     }
 
     if (hasError) {
-      bgColor = Theme.of(context).errorColor;
+      bgColor = Theme.of(context).colorScheme.error;
     }
 
     return Container(
@@ -126,7 +126,7 @@ class _Point extends StatelessWidget {
         border: Border.all(
           color: Theme.of(context)
               .textTheme
-              .subtitle1!
+              .titleMedium!
               .color!
               .withOpacity(isFilled || hasError ? 0.0 : 0.6),
         ),

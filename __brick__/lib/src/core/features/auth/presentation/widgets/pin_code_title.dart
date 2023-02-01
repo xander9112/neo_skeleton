@@ -15,7 +15,7 @@ class PinCodeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.subtitle1;
+    final style = Theme.of(context).textTheme.titleMedium;
 
     if (hasPinCode) {
       return Text(AuthI18n.enterPinCode, style: style);

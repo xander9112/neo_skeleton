@@ -1,5 +1,4 @@
 export 'auth/auth_model.dart';
-export 'auth/auth_model.dart';
 export 'auth/contact.dart';
 export 'auth/local_auth_result.dart';
 export 'auth/user/user.dart';

@@ -9,8 +9,8 @@ class KeyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 72.0,
+      width: 100,
+      height: 72,
       child: Material(
         color: Colors.transparent,
         child: InkWell(

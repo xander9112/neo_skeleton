@@ -18,8 +18,6 @@ analyzer:
 
 linter:
   rules:
-    inference_failure_on_function_return_type: true
-    
     avoid_positional_boolean_parameters: false
   
     # ------ Disable individual rules ----- #

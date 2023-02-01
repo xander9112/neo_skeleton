@@ -34,7 +34,7 @@ class UiCommonDialog extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: Insets.l),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyLarge,
         textAlign: textAlign,
       ),
     );
@@ -72,7 +72,7 @@ class UiCommonDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: Insets.l),
                   child: Text(
                     title!,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                     textAlign: textAlign,
                   ),
                 ),

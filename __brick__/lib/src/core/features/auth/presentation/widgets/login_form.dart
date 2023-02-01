@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
             ),
             child: Text(
               AuthI18n.signIn,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
           Padding(
@@ -42,10 +42,8 @@ class LoginForm extends StatelessWidget {
                 Expanded(
                   child: ReactiveTextField<String>(
                     formControlName: 'login',
-                    validationMessages: <String, String Function(Object)>{
-                      ValidationMessage.required: (Object error) =>
-                          AuthI18n.loginRequired
-                    },
+                    validationMessages: (control) =>
+                        {ValidationMessage.required: AuthI18n.loginRequired},
                   ),
                 ),
               ],
@@ -63,8 +61,8 @@ class LoginForm extends StatelessWidget {
                   child: ReactiveTextField<String>(
                     formControlName: 'password',
                     obscureText: true,
-                    validationMessages: <String, String Function(Object)>{
-                      'required': (Object error) => AuthI18n.passwordRequired,
+                    validationMessages: (control) => {
+                      ValidationMessage.required: AuthI18n.passwordRequired,
                     },
                   ),
                 ),

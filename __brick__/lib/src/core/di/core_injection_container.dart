@@ -5,8 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 
-import 'package:{{name.snakeCase()}}/src/core/features/settings/_settings.dart';
-
 final slCore = GetIt.instance;
 
 Future<void> init() async {

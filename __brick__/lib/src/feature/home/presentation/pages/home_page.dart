@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               'Home page',
-              style: context.defaultText.headline3,
+              style: context.defaultText.displaySmall,
             ),
           ],
         ),

@@ -96,7 +96,7 @@ class PinCodeKeyboard extends StatelessWidget {
                 child: Text(
                   reset ?? 'Reset',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               KeyItem(
@@ -109,7 +109,7 @@ class PinCodeKeyboard extends StatelessWidget {
                   child: Text(
                     delete ?? 'Delete',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               if (useBiometric && icon != null)

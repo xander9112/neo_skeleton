@@ -48,7 +48,7 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
         ),
         Text(
           widget.message ?? '',
-          style: TextStyle(color: Theme.of(context).errorColor),
+          style: TextStyle(color: Theme.of(context).colorScheme.error),
         ),
         Expanded(
           flex: 2,
