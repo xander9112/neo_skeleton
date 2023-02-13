@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_core/jnp_core.dart';
 
 part 'main_state.dart';
 part 'main_cubit.freezed.dart';
