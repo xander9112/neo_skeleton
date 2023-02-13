@@ -345,7 +345,7 @@ class DioNetworkError extends DioError {
 
   @override
   String toString() {
-    if ((error as SocketException).osError?.errorCode == 103) {
+    if ((error as SocketException?)?.osError?.errorCode == 103) {
       return 'networkErrors.NetworkState.disconnected';
     }
 

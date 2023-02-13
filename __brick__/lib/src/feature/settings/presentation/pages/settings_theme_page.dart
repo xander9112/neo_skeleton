@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 
 class SettingsThemePage extends StatelessWidget {
   const SettingsThemePage({super.key});
@@ -16,13 +15,13 @@ class SettingsThemePage extends StatelessWidget {
               const Text('Settings page'),
               ElevatedButton(
                 onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().verify();
+                  AuthInjection.sl<AuthManager<AuthenticatedUser>>().verify();
                 },
                 child: const Text('Verify'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  slAuth<AuthManager<AuthenticatedUser>>().signOut();
+                  AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut();
                 },
                 child: const Text('Logout'),
               )

@@ -50,7 +50,7 @@ class App {
   }
 
   static void _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) {
-    runApp({{name.pascalCase()}}App(router: slCore()));
+    runApp({{name.pascalCase()}}App(router: CoreInjection.sl()));
   }
 }
 
@@ -63,7 +63,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SettingsCubit>(
       create: (context) {
-        return slCore<SettingsCubit>();
+        return CoreInjection.sl<SettingsCubit>();
       },
       child: Builder(
         builder: (context) {

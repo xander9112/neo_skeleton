@@ -11,7 +11,12 @@ class UiIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       icon,
-      color: color,
+      colorFilter: color != null
+          ? ColorFilter.mode(
+              color!,
+              BlendMode.color,
+            )
+          : null,
     );
   }
 }

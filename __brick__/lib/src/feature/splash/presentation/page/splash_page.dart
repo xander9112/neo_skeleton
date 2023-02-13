@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> _verify() async {
-    await getIt<AuthManager<AuthenticatedUser>>().verify();
+    await AuthInjection.sl<AuthManager<AuthenticatedUser>>().verify();
 
     if (widget.onResult != null) {
       widget.onResult?.call(true);

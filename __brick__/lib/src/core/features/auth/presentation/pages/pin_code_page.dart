@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 
 class PinCodePage extends StatelessWidget {
   const PinCodePage({super.key, this.onResult});
