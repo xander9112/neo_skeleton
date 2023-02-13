@@ -8,7 +8,7 @@ class AuthFailure extends Failure {
 
   @override
   String getLocalizedString() {
-    switch (this) {
+    switch (code) {
       case 500:
         return CoreI18n.internalError;
       case 403:
