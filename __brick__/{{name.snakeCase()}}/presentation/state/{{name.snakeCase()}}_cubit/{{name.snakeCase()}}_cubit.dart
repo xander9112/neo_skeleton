@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../_profile.dart';
 
 part '{{name.snakeCase()}}_cubit.freezed.dart';
 part '{{name.snakeCase()}}_cubit.g.dart';
