@@ -7,8 +7,6 @@ part '{{name.snakeCase()}}_cubit.g.dart';
 part '{{name.snakeCase()}}_state.dart';
 
 class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
-  {{name.pascalCase()}}Cubit() : super(const {{name.pascalCase()}}State.initial());
-
   {{name.pascalCase()}}Cubit({
     required I{{name.pascalCase()}}Repository repository,
   })  : _repository = repository,
