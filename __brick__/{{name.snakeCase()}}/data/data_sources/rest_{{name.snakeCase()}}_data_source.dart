@@ -8,4 +8,7 @@ part 'rest_{{name.snakeCase()}}_data_source.g.dart';
 abstract class Rest{{name.pascalCase()}}DataSource implements {{name.pascalCase()}}DataSource {
   factory Rest{{name.pascalCase()}}DataSource(Dio dio, {String baseUrl}) = _Rest{{name.pascalCase()}}DataSource;
 
+  @override
+  @GET('/{{name.snakeCase()}}')
+  Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}();
 }
