@@ -6,4 +6,10 @@ class {{name.pascalCase()}}I18n {
         desc: 'Description for {{name.pascalCase()}} title',
         name: '{{name.pascalCase()}}I18n_title',
       );
+
+  static String get {{name.snakeCase()}}NotFound => Intl.message(
+        '{{name.PascalCase()}} not found',
+        desc: 'Description for {{name.PascalCase()}} not found',
+        name: '{{name.pascalCase()}}I18n_{{name.snakeCase()}}NotFound',
+      );
 }
