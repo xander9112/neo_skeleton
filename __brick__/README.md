@@ -2,12 +2,12 @@
 
 Установить глобально пакет для генерации переводов
 ```bash
-dart pub global activate intl_translation
+dart pub global activate intl_generator
 ```
 
 Запустить генерацию arb файла
 ```bash
-fvm flutter pub global run intl_translation:extract_to_arb --output-dir=assets/l10n lib/**/l10n.dart
+fvm flutter pub global run intl_generator:extract_to_arb --output-dir=assets/l10n lib/**/l10n.dart
 ```
 
 после генерации файла intl_messages.arb скопировать и добавить файлы с нужными локализациями intl_messages_{locale}.arb (intl_messages_ru.arb)
@@ -15,5 +15,5 @@ fvm flutter pub global run intl_translation:extract_to_arb --output-dir=assets/l
 
 Из файла assets/l10n/intl_messages.arb скопировать сгенерированные значения в файлы переводов и запустить генерацию кода
 ```bash
-fvm flutter pub global run intl_translation:generate_from_arb lib/**/l10n.dart assets/l10n/*.arb --output-dir=lib/l10n/generated
+fvm flutter pub global run intl_generator:generate_from_arb lib/**/l10n.dart assets/l10n/*.arb --output-dir=lib/l10n/generated
 ```
