@@ -2,7 +2,7 @@ import 'package:jnp/src/core/_core.dart';
 import '../../../_profile.dart';
 
 class {{name.pascalCase()}}Failure extends Failure {
-  {{name.CamelCase()}}Failure({
+  {{name.pascalCase()}}Failure({
     required super.code,
     required super.message,
   });

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import '../../_profile.dart';
 
 class {{name.pascalCase()}}Repository implements I{{name.pascalCase()}}Repository {
   {{name.pascalCase()}}Repository(this._dataSource);

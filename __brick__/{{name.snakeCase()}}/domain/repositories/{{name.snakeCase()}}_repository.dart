@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
 abstract class I{{name.pascalCase()}}Repository {

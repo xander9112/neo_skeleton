@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import '../../_profile.dart';
 
 part 'rest_{{name.snakeCase()}}_data_source.g.dart';
 
