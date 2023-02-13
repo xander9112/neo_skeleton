@@ -1,6 +1,6 @@
 import 'package:jnp/src/core/_core.dart';
 
-class {{name.CamelCase()}}Failure extends Failure {
+class {{name.pascalCase()}}Failure extends Failure {
   {{name.CamelCase()}}Failure({
     required super.code,
     required super.message,
