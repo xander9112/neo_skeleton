@@ -7,6 +7,9 @@ Future<void> run(HookContext context) async {
   // Read vars.
   final useFvm = context.vars['useFvm'] == 'true';
 
+  context.logger.info(context.vars['useFvm']);
+  context.logger.info(context.vars['useFvm'].runtimeType.toString());
+
   context.logger.info('Start install packages');
 
   if (useFvm) {
