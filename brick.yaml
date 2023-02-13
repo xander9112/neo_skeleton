@@ -44,3 +44,7 @@ vars:
     type: boolean
     default: true
     prompt: Do you need flavor?
+  useFvm:
+    type: boolean
+    default: false
+    prompt: Do you use fvm?

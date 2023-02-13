@@ -4,11 +4,16 @@ import 'package:mason/mason.dart';
 Future<void> run(HookContext context) async {
   final progress = context.logger.progress('Installing packages');
 
-  // Run `flutter packages get` after generation.
+  // Read vars.
+  final useFvm = context.vars['useFvm'] == 'true';
 
-  context.logger.info('Start fvm');
+  context.logger.info('Start install packages');
 
-  await Process.run('fvm', ['flutter', 'packages', 'get']);
+  if (useFvm) {
+    await Process.run('fvm', ['flutter', 'packages', 'get']);
+  } else {
+    await Process.run('flutter', ['packages', 'get']);
+  }
 
   progress.complete();
 }
