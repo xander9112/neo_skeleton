@@ -1,1 +1,1 @@
-export '{{name.snakeCase()}}/{{name.snakeCase()}}.dart';
+export '{{name.snakeCase()}}/{{name.snakeCase()}}_model.dart';
