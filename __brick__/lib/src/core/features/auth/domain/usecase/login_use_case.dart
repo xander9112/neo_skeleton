@@ -5,9 +5,11 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class LoginUseCase
     implements UseCase<Either<Failure, bool>, LoginUseCaseParam> {
-  LoginUseCase(this._authManager);
+  LoginUseCase(this._authManager, this._router);
 
   final AuthManager<AuthenticatedUser> _authManager;
+  final AuthRouter _router;
+
   @override
   Future<Either<Failure, bool>> call(LoginUseCaseParam params) async {
     //return _authManager.signIn(params.login, params.password);
@@ -19,9 +21,7 @@ class LoginUseCase
         if (params.onResult != null) {
           params.onResult?.call(true);
         } else {
-          //TODO: переход на главную через navigationManager
-          //Only for demo
-          unawaited(getIt<AppAutoRouter>().replaceNamed(RoutePath.main));
+          unawaited(_router.replaceNamed(RoutePath.main));
         }
       }
 
