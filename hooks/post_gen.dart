@@ -10,32 +10,18 @@ Future<void> run(HookContext context) async {
 Future<void> _installPackages(HookContext context) async {
   final progress = context.logger.progress('Installing packages');
 
-  bool done = false;
+  final List<String> commands = ['packages', 'get'];
 
-  await Process.run('flutter', ['packages', 'get']).onError(
-    (error, stackTrace) => Process.run(
-      'fvm',
-      ['flutter', 'packages', 'get'],
-    ),
+  await Process.run('flutter', commands).onError(
+    (error, stackTrace) {
+      context.logger.info('Using fvm');
+
+      return Process.run(
+        'fvm',
+        ['flutter', ...commands],
+      );
+    },
   );
-
-  // try {
-  //   await Process.run(
-  //     'flutter',
-  //     ['packages', 'get'],
-  //   );
-
-  //   done = true;
-  // } catch (_) {}
-
-  // if (!done) {
-  //   try {
-  //     await Process.run(
-  //       'fvm',
-  //       ['flutter', 'packages', 'get'],
-  //     );
-  //   } catch (_) {}
-  // }
 
   progress.complete();
 }
