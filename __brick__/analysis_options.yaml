@@ -13,6 +13,7 @@ analyzer:
     - "bricks/**"
     - "lib/l10n/generated/intl/*.dart"
     - "lib/l10n/generated/*.dart"
+    - "init_project.dart"
   errors:
     invalid_annotation_target: ignore
 

@@ -2,28 +2,28 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
+import 'package:{{name.snakeCase()}}_core/jnp_core.dart';
 
 abstract class ICoreInjection {
   static final GetIt sl = GetIt.instance;
 
   Future<void> initRouter() async {}
 
-  Future<void> initProviders({bool useMock = false}) async {}
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initRepositories({bool useMock = false}) async {}
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initUseCases({bool useMock = false}) async {}
+  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initState({bool useMock = false}) async {}
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {}
 
   @mustCallSuper
-  Future<void> init({bool useMock = false}) async {
+  Future<void> init(EnvConfig env, {bool useMock = false}) async {
     await initRouter();
-    await initProviders();
-    await initRepositories();
-    await initUseCases();
-    await initState();
+    await initProviders(env, useMock: useMock);
+    await initRepositories(env, useMock: useMock);
+    await initUseCases(env, useMock: useMock);
+    await initState(env, useMock: useMock);
   }
 }
 
@@ -31,30 +31,40 @@ class CoreInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders({bool useMock = false}) async {
-    slCore.registerLazySingleton(SecureStorageService.new)
-
-    slCore.registerSingleton<DialogService>(DialogService());
-
-    slCore.registerSingleton<ApiDioClient>(
-      ApiDioClient(
-        Uri.parse(dotenv.env['API_URL'] ?? ''),
-        storage: slCore(),
+  Future<void> initRouter() async {
+    sl.registerLazySingleton<AppAutoRouter>(
+      () => AppAutoRouter(
+        localAuthGuard: LocalAuthGuard(sl()),
+        authGuard: AuthGuard(sl()),
+        updateGuard: UpdateGuard(sl()),
       ),
     );
   }
 
   @override
-  Future<void> initState({bool useMock = false}) async {
-    slCore.registerLazySingleton(
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+    sl
+      ..registerLazySingleton(SecureStorageService.new)
+      ..registerSingleton<DialogService>(DialogService())
+      ..registerSingleton<ApiDioClient>(
+        ApiDioClient(
+          Uri.parse(dotenv.env['API_URL'] ?? ''),
+          storage: sl(),
+        ),
+      );
+  }
+
+  @override
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+    sl.registerLazySingleton(
       () => SettingsCubit(
-        subscriptAuthEventUseCase: slAuth(),
-        getBiometricSupportModel: slAuth(),
-        getAuthUseCase: slAuth(),
-        setBiometrySettingUseCase: slAuth(),
-        setNewPinCodeUseCase: slAuth(),
-        getGlobalAuthSettings: slAuth(),
+        subscriptAuthEventUseCase: sl(),
+        getBiometricSupportModel: sl(),
+        getAuthUseCase: sl(),
+        setBiometrySettingUseCase: sl(),
+        setNewPinCodeUseCase: sl(),
+        getGlobalAuthSettings: sl(),
       ),
-    ); 
+    );
   }
 }

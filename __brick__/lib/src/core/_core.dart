@@ -1,5 +1,5 @@
 export 'constants/_constants.dart';
-export 'di/configure_dependencies.dart';
+export 'di/_di.dart';
 export 'failure/failure.dart';
 export 'features/_features.dart';
 export 'localization/l10n.dart';
