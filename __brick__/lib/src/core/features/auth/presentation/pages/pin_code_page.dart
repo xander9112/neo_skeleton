@@ -12,8 +12,7 @@ class PinCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LocalAuthCubit>(
       create: (context) {
-        final bloc = slAuth<LocalAuthCubit>()..checkAuth(onResult);
-        return bloc;
+        return AuthInjection.sl<LocalAuthCubit>()..checkAuth(onResult);
       },
       child: Scaffold(
         body: SafeArea(

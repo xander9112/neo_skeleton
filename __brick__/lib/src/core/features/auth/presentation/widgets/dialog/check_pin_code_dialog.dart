@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/auth/di/auth_injection_container.dart';
 
 class CheckPinCodeDialog extends StatelessWidget {
   const CheckPinCodeDialog({super.key});
@@ -25,7 +24,7 @@ class CheckPinCodeDialog extends StatelessWidget {
         ],
       ),
       body: BlocProvider<CheckPinCodeDialogCubit>(
-        create: (context) => slAuth<CheckPinCodeDialogCubit>(),
+        create: (context) => AuthInjection.sl<CheckPinCodeDialogCubit>(),
         child: Column(
           children: [
             Expanded(
