@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:{{projectName.snake_case()}}/src/core/_core.dart';
+import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
 

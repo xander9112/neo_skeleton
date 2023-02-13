@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:{{projectName.snake_case()}}/src/core/_core.dart';
-import 'package:{{projectName.snake_case()}}_core/{{projectName.snake_case()}}_core.dart';
+import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
+import 'package:{{projectName.snakeCase()}}_core/{{projectName.snakeCase()}}_core.dart';
 import '../_profile.dart';
 
 class {{name.pascalCase()}}Injection extends ICoreInjection {
