@@ -40,8 +40,8 @@ class ApiDioClient {
 
   void _initBaseOptions(Uri baseUrl) {
     _dio.options.baseUrl = baseUrl.toString();
-    _dio.options.connectTimeout = 30100; // 30s
-    _dio.options.receiveTimeout = 30100; // 30s
+    _dio.options.connectTimeout = const Duration(seconds: 30); // 30s
+    _dio.options.receiveTimeout = const Duration(seconds: 30); // 30s
 
     _dio.options.headers = <String, String>{
       HttpHeaders.acceptHeader: 'application/json',
@@ -223,7 +223,7 @@ class ApiDioClient {
             error: e.error,
             response: e.response,
           );
-        } else if (e.type == DioErrorType.connectTimeout ||
+        } else if (e.type == DioErrorType.connectionTimeout ||
             e.type == DioErrorType.receiveTimeout ||
             e.type == DioErrorType.sendTimeout) {
           error = DioConnectTimeoutError(
@@ -232,7 +232,7 @@ class ApiDioClient {
             error: e.error,
             response: e.response,
           );
-        } else if (e.type == DioErrorType.other) {
+        } else if (e.type == DioErrorType.unknown) {
           error = DioConnectTimeoutError(
             requestOptions: e.requestOptions,
             type: e.type,
