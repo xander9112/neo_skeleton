@@ -83,34 +83,16 @@ class AuthRepositoryImpl
     } on DioError catch (e) {
       if (e.type == DioErrorType.unknown) {
         return Left(
-          AuthFailure(
-            code: 0,
-            message:
-                AuthFailureReason.checkInternetConnection.getLocalizedString(),
-            reason: AuthFailureReason.checkInternetConnection,
-          ),
+          AuthFailure(code: 0, message: ''),
         );
       }
 
-      final reason = AuthFailureReason.values.singleWhere(
-        (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => AuthFailureReason.unknown,
-      );
-
       return Left(
-        AuthFailure(
-          code: reason.code,
-          message: reason.getLocalizedString(),
-          reason: reason,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
       return Left(
-        AuthFailure(
-          code: AuthFailureReason.unknown.code,
-          message: AuthFailureReason.unknown.getLocalizedString(),
-          reason: AuthFailureReason.unknown,
-        ),
+        AuthFailure(code: 0, message: ''),
       );
     }
   }
@@ -124,34 +106,16 @@ class AuthRepositoryImpl
     } on DioError catch (e) {
       if (e.type == DioErrorType.unknown) {
         return Left(
-          AuthFailure(
-            code: 0,
-            message:
-                AuthFailureReason.checkInternetConnection.getLocalizedString(),
-            reason: AuthFailureReason.checkInternetConnection,
-          ),
+          AuthFailure(code: 0, message: ''),
         );
       }
 
-      final reason = AuthFailureReason.values.singleWhere(
-        (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => AuthFailureReason.unknown,
-      );
-
       return Left(
-        AuthFailure(
-          code: reason.code,
-          message: reason.getLocalizedString(),
-          reason: reason,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
       return Left(
-        AuthFailure(
-          code: AuthFailureReason.unknown.code,
-          message: AuthFailureReason.unknown.getLocalizedString(),
-          reason: AuthFailureReason.unknown,
-        ),
+        AuthFailure(code: 0, message: e.toString()),
       );
     }
   }
@@ -165,34 +129,16 @@ class AuthRepositoryImpl
     } on DioError catch (e) {
       if (e.type == DioErrorType.unknown) {
         return Left(
-          AuthFailure(
-            code: 0,
-            message:
-                AuthFailureReason.checkInternetConnection.getLocalizedString(),
-            reason: AuthFailureReason.checkInternetConnection,
-          ),
+          AuthFailure(code: 0, message: ''),
         );
       }
 
-      final reason = AuthFailureReason.values.singleWhere(
-        (element) => element.code == (e.response?.statusCode ?? 0),
-        orElse: () => AuthFailureReason.unknown,
-      );
-
       return Left(
-        AuthFailure(
-          code: reason.code,
-          message: reason.getLocalizedString(),
-          reason: reason,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
       return Left(
-        AuthFailure(
-          code: AuthFailureReason.unknown.code,
-          message: AuthFailureReason.unknown.getLocalizedString(),
-          reason: AuthFailureReason.unknown,
-        ),
+        AuthFailure(code: 0, message: e.toString()),
       );
     }
   }
