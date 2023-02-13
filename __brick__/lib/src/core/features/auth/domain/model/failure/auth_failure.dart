@@ -6,6 +6,7 @@ class AuthFailure extends Failure {
     required super.message,
   });
 
+  @override
   String getLocalizedString() {
     switch (this) {
       case 500:
@@ -20,7 +21,7 @@ class AuthFailure extends Failure {
         return AuthI18n.minimumPassword;
       case 1:
         return AuthI18n.checkInternetConnection;
-      case 0:
+      default:
         return CoreI18n.unknownError;
     }
   }
