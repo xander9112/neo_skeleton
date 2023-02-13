@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:{{projectName.snake_case()}}/src/core/_core.dart';
 import '../../_profile.dart';
 
 class {{name.pascalCase()}}Repository implements I{{name.pascalCase()}}Repository {

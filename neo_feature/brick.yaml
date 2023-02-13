@@ -21,4 +21,8 @@ vars:
     description: Feature name
     default: Profile
     prompt: What is feature name?
+  projectName:
+    type: string
+    description: Project name
+    prompt: What is project name?
   
