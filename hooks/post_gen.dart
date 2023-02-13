@@ -12,23 +12,30 @@ Future<void> _installPackages(HookContext context) async {
 
   bool done = false;
 
-  try {
-    await Process.run(
-      'flutter',
-      ['packages', 'get'],
-    );
+  await Process.run('flutter', ['packages', 'get']).onError(
+    (error, stackTrace) => Process.run(
+      'fvm',
+      ['flutter', 'packages', 'get'],
+    ),
+  );
 
-    done = true;
-  } catch (_) {}
+  // try {
+  //   await Process.run(
+  //     'flutter',
+  //     ['packages', 'get'],
+  //   );
 
-  if (!done) {
-    try {
-      await Process.run(
-        'fvm',
-        ['flutter', 'packages', 'get'],
-      );
-    } catch (_) {}
-  }
+  //   done = true;
+  // } catch (_) {}
+
+  // if (!done) {
+  //   try {
+  //     await Process.run(
+  //       'fvm',
+  //       ['flutter', 'packages', 'get'],
+  //     );
+  //   } catch (_) {}
+  // }
 
   progress.complete();
 }
