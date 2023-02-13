@@ -1,4 +1,5 @@
 import 'package:jnp/src/core/_core.dart';
+import '../../../_profile.dart';
 
 class {{name.pascalCase()}}Failure extends Failure {
   {{name.CamelCase()}}Failure({
@@ -13,8 +14,6 @@ class {{name.pascalCase()}}Failure extends Failure {
         return CoreI18n.internalError;
       case 404:
         return {{name.pascalCase()}}I18n.{{name.snakeCase()}}NotFound;
-      case 1:
-        return CoreI18n.checkInternetConnection;
       default:
         return CoreI18n.unknownError;
     }
