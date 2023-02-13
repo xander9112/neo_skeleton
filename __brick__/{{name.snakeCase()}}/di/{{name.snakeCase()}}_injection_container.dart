@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import '../../_profile.dart';
+import '../_profile.dart';
 
 class {{name.pascalCase()}}Injection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
