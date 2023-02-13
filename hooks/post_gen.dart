@@ -4,7 +4,7 @@ import 'package:mason/mason.dart';
 Future<void> run(HookContext context) async {
   await _installPackages(context);
 
-  await _buildProject(context);
+  // await _buildProject(context);
 }
 
 Future<void> _installPackages(HookContext context) async {
