@@ -7,6 +7,11 @@ class AuthInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
+  Future<void> initRouter() async {
+    sl.registerFactory(() => AuthRouter(sl()));
+  }
+
+  @override
   Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl
       ..registerLazySingleton<AuthManager<AuthenticatedUser>>(
@@ -36,12 +41,12 @@ class AuthInjection extends ICoreInjection {
   @override
   Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {
     sl
-      ..registerFactory(() => LoginUseCase(sl()))
+      ..registerFactory(() => LoginUseCase(sl(), sl()))
       ..registerFactory(() => CheckLocalAuthUseCase(sl()))
-      ..registerFactory(() => CheckAuthUseCase(sl()))
+      ..registerFactory(() => CheckAuthUseCase(sl(), sl()))
       ..registerFactory(() => SetPinCodeUseCase(sl()))
       ..registerFactory(() => CheckPinCodeUseCase(sl()))
-      ..registerFactory(() => CheckBiometryUseCase(sl()))
+      ..registerFactory(() => CheckBiometryUseCase(sl(), sl()))
       ..registerFactory(() => GetBiometricSupportModel(sl()))
       ..registerFactory(() => SetBiometryUseCase(sl(), sl()))
       ..registerFactory(() => GetGlobalAuthSettingsUseCase(sl()))
@@ -50,7 +55,7 @@ class AuthInjection extends ICoreInjection {
       ..registerFactory(() => SetNewPinCodeUseCase(sl(), sl()))
       ..registerFactory(() => GetAuthUseCase(sl()))
       ..registerFactory(() => CheckPinCodeFromDialogUseCase(sl()))
-      ..registerFactory(NavigateToMainUseCase.new);
+      ..registerFactory(() => NavigateToMainUseCase(sl()));
   }
 
   @override

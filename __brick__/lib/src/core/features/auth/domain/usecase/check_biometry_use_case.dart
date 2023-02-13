@@ -1,9 +1,10 @@
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
-  CheckBiometryUseCase(this._authManager);
+  CheckBiometryUseCase(this._authManager, this._router);
 
   final AuthManager<AuthenticatedUser> _authManager;
+  final AuthRouter _router;
 
   @override
   Future<bool> call(CheckBiometryUseCaseParam params) async {
@@ -21,9 +22,8 @@ class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
       if (params.onResult != null) {
         params.onResult?.call(true);
       } else {
-        //TODO: NavigationManager
-        await getIt<AppAutoRouter>().replaceNamed(RoutePath.main);
-        getIt<AppAutoRouter>().removeLast();
+        await _router.replaceNamed(RoutePath.main);
+        _router.removeLast();
       }
     }
 

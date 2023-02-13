@@ -81,7 +81,7 @@ class AuthRepositoryImpl
 
       return Right(result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.other) {
+      if (e.type == DioErrorType.unknown) {
         return Left(
           AuthFailure(
             code: 0,
@@ -122,7 +122,7 @@ class AuthRepositoryImpl
 
       return const Right(true);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.other) {
+      if (e.type == DioErrorType.unknown) {
         return Left(
           AuthFailure(
             code: 0,
@@ -163,7 +163,7 @@ class AuthRepositoryImpl
 
       return Right(result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.other) {
+      if (e.type == DioErrorType.unknown) {
         return Left(
           AuthFailure(
             code: 0,

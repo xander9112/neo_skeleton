@@ -3,9 +3,10 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class CheckAuthUseCase
     implements UseCase<Either<Failure, bool>, CheckAuthUseCaseParam> {
-  CheckAuthUseCase(this._authManager);
+  CheckAuthUseCase(this._authManager, this._router);
 
   final AuthManager<AuthenticatedUser> _authManager;
+  final AuthRouter _router;
 
   @override
   Future<Either<Failure, bool>> call(CheckAuthUseCaseParam params) async {
@@ -14,9 +15,7 @@ class CheckAuthUseCase
       if (params.onResult != null) {
         params.onResult?.call(true);
       } else {
-        //TODO: переход на главную через navigationManager
-        //Only for demo
-        await getIt<AppAutoRouter>().replaceNamed(RoutePath.main);
+        await _router.replaceNamed(RoutePath.main);
       }
     }
     return Right(isAuth);
