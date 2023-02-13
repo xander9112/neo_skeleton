@@ -5,6 +5,7 @@ class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
   const factory {{name.pascalCase()}}State.initial({
     @Default(FetchStatus.pure) FetchStatus status,
     String? error,
+    {{name.pascalCase()}}Model? {{name.camelCase()}},
   }) = _{{name.pascalCase()}}InitialState;
 
   factory {{name.pascalCase()}}State.fromJson(Object? json) =>

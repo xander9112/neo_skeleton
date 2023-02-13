@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile_cubit.dart';
+part of '{{name.snakeCase()}}_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -22,19 +22,24 @@ ProfileState _$ProfileStateFromJson(Map<String, dynamic> json) {
 mixin _$ProfileState {
   FetchStatus get status => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  ProfileModel? get profile => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(FetchStatus status, String? error) initial,
+    required TResult Function(
+            FetchStatus status, String? error, ProfileModel? profile)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error)? initial,
+    TResult? Function(FetchStatus status, String? error, ProfileModel? profile)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error)? initial,
+    TResult Function(FetchStatus status, String? error, ProfileModel? profile)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,7 +71,9 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({FetchStatus status, String? error});
+  $Res call({FetchStatus status, String? error, ProfileModel? profile});
+
+  $ProfileModelCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -82,11 +89,12 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? error = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FetchStatus,
@@ -94,7 +102,23 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      profile: freezed == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileModelCopyWith<$Res>? get profile {
+    if (_value.profile == null) {
+      return null;
+    }
+
+    return $ProfileModelCopyWith<$Res>(_value.profile!, (value) {
+      return _then(_value.copyWith(profile: value) as $Val);
+    });
   }
 }
 
@@ -106,7 +130,10 @@ abstract class _$$_ProfileInitialStateCopyWith<$Res>
       __$$_ProfileInitialStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FetchStatus status, String? error});
+  $Res call({FetchStatus status, String? error, ProfileModel? profile});
+
+  @override
+  $ProfileModelCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -120,11 +147,12 @@ class __$$_ProfileInitialStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? error = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_$_ProfileInitialState(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FetchStatus,
@@ -132,6 +160,10 @@ class __$$_ProfileInitialStateCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      profile: freezed == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileModel?,
     ));
   }
 }
@@ -139,7 +171,8 @@ class __$$_ProfileInitialStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProfileInitialState extends _ProfileInitialState {
-  const _$_ProfileInitialState({this.status = FetchStatus.pure, this.error})
+  const _$_ProfileInitialState(
+      {this.status = FetchStatus.pure, this.error, this.profile})
       : super._();
 
   factory _$_ProfileInitialState.fromJson(Map<String, dynamic> json) =>
@@ -150,10 +183,12 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   final FetchStatus status;
   @override
   final String? error;
+  @override
+  final ProfileModel? profile;
 
   @override
   String toString() {
-    return 'ProfileState.initial(status: $status, error: $error)';
+    return 'ProfileState.initial(status: $status, error: $error, profile: $profile)';
   }
 
   @override
@@ -161,14 +196,14 @@ class _$_ProfileInitialState extends _ProfileInitialState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProfileInitialState &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(status), error);
+  int get hashCode => Object.hash(runtimeType, status, error, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -180,27 +215,31 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(FetchStatus status, String? error) initial,
+    required TResult Function(
+            FetchStatus status, String? error, ProfileModel? profile)
+        initial,
   }) {
-    return initial(status, error);
+    return initial(status, error, profile);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error)? initial,
+    TResult? Function(FetchStatus status, String? error, ProfileModel? profile)?
+        initial,
   }) {
-    return initial?.call(status, error);
+    return initial?.call(status, error, profile);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error)? initial,
+    TResult Function(FetchStatus status, String? error, ProfileModel? profile)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(status, error);
+      return initial(status, error, profile);
     }
     return orElse();
   }
@@ -243,7 +282,9 @@ class _$_ProfileInitialState extends _ProfileInitialState {
 
 abstract class _ProfileInitialState extends ProfileState {
   const factory _ProfileInitialState(
-      {final FetchStatus status, final String? error}) = _$_ProfileInitialState;
+      {final FetchStatus status,
+      final String? error,
+      final ProfileModel? profile}) = _$_ProfileInitialState;
   const _ProfileInitialState._() : super._();
 
   factory _ProfileInitialState.fromJson(Map<String, dynamic> json) =
@@ -253,6 +294,8 @@ abstract class _ProfileInitialState extends ProfileState {
   FetchStatus get status;
   @override
   String? get error;
+  @override
+  ProfileModel? get profile;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileInitialStateCopyWith<_$_ProfileInitialState> get copyWith =>
