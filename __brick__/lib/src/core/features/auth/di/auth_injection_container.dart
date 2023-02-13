@@ -1,76 +1,75 @@
-// ignore_for_file: cascade_invocations
-
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/core/di/core_injection_container.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
-final slAuth = GetIt.instance;
+class AuthInjection extends ICoreInjection {
+  static final GetIt sl = ICoreInjection.sl;
 
-Future<void> init() async {
-  slAuth.registerLazySingleton<AuthManager<AuthenticatedUser>>(
-    () => AuthManagerImpl(
-      authRepository: slAuth(),
-      biometricRepository: slAuth(),
-      settings: AuthManagerSettings(useBiometric: !kIsWeb, useLocalAuth: true),
-    ),
-  );
+  @override
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+    sl
+      ..registerLazySingleton<AuthManager<AuthenticatedUser>>(
+        () => AuthManagerImpl(
+          authRepository: sl(),
+          biometricRepository: sl(),
+          settings: AuthManagerSettings(
+            useBiometric: !kIsWeb,
+            useLocalAuth: true,
+          ),
+        ),
+      )
+      ..registerFactory<RestAuthDataSource>(MockAuthDataSource.new);
+  }
 
-  slAuth.registerFactory<AuthRepository<AuthModel, AuthenticatedUser>>(
-    () => AuthRepositoryImpl(slAuth(), slAuth()),
-  );
+  @override
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
+    sl
+      ..registerFactory<AuthRepository<AuthModel, AuthenticatedUser>>(
+        () => AuthRepositoryImpl(sl(), sl()),
+      )
+      ..registerFactory<BiometricRepository>(
+        () => BiometricRepositoryImpl(sl()),
+      );
+  }
 
-  slAuth.registerFactory<BiometricRepository>(
-    () => BiometricRepositoryImpl(slAuth()),
-  );
+  @override
+  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {
+    sl
+      ..registerFactory(() => LoginUseCase(sl()))
+      ..registerFactory(() => CheckLocalAuthUseCase(sl()))
+      ..registerFactory(() => CheckAuthUseCase(sl()))
+      ..registerFactory(() => SetPinCodeUseCase(sl()))
+      ..registerFactory(() => CheckPinCodeUseCase(sl()))
+      ..registerFactory(() => CheckBiometryUseCase(sl()))
+      ..registerFactory(() => GetBiometricSupportModel(sl()))
+      ..registerFactory(() => SetBiometryUseCase(sl(), sl()))
+      ..registerFactory(() => GetGlobalAuthSettingsUseCase(sl()))
+      ..registerFactory(() => SubscribeAuthEventUseCase(sl()))
+      ..registerFactory(() => SetBiometrySettingUseCase(sl()))
+      ..registerFactory(() => SetNewPinCodeUseCase(sl(), sl()))
+      ..registerFactory(() => GetAuthUseCase(sl()))
+      ..registerFactory(() => CheckPinCodeFromDialogUseCase(sl()))
+      ..registerFactory(NavigateToMainUseCase.new);
+  }
 
-  slAuth.registerFactory<RestAuthDataSource>(MockAuthDataSource.new);
-
-  slAuth.registerFactory(() => LoginUseCase(slAuth()));
-
-  slAuth.registerFactory(() => CheckLocalAuthUseCase(slAuth()));
-
-  slAuth.registerFactory(() => CheckAuthUseCase(slAuth()));
-
-  slAuth.registerFactory(() => SetPinCodeUseCase(slAuth()));
-
-  slAuth.registerFactory(() => CheckPinCodeUseCase(slAuth()));
-
-  slAuth.registerFactory(() => CheckBiometryUseCase(slAuth()));
-
-  slAuth.registerFactory(() => GetBiometricSupportModel(slAuth()));
-
-  slAuth.registerFactory(() => SetBiometryUseCase(slAuth(), slCore()));
-
-  slAuth.registerFactory(() => GetGlobalAuthSettingsUseCase(slAuth()));
-
-  slAuth.registerFactory(() => SubscribeAuthEventUseCase(slAuth()));
-
-  slAuth.registerFactory(() => SetBiometrySettingUseCase(slAuth()));
-
-  slAuth.registerFactory(() => SetNewPinCodeUseCase(slAuth(), slCore()));
-
-  slAuth.registerFactory(() => GetAuthUseCase(slAuth()));
-
-  slAuth.registerFactory(() => CheckPinCodeFromDialogUseCase(slAuth()));
-
-  slAuth.registerFactory(NavigateToMainUseCase.new);
-
-  slAuth.registerFactory(
-    () => LoginCubit(loginUseCase: slAuth(), checkAuthUseCase: slAuth()),
-  );
-
-  slAuth.registerFactory(
-    () => LocalAuthCubit(
-      checkLocalAuthUseCase: slAuth(),
-      setPinCodeUseCase: slAuth(),
-      checkPinCodeUseCase: slAuth(),
-      setBiometryUseCase: slAuth(),
-      checkBiometryUseCase: slAuth(),
-      getBiometricSupportModel: slAuth(),
-      navigateToMainUseCase: slAuth(),
-    ),
-  );
-
-  slAuth.registerFactory(() => CheckPinCodeDialogCubit(slAuth()));
+  @override
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+    sl
+      ..registerFactory(
+        () => LoginCubit(loginUseCase: sl(), checkAuthUseCase: sl()),
+      )
+      ..registerFactory(
+        () => LocalAuthCubit(
+          checkLocalAuthUseCase: sl(),
+          setPinCodeUseCase: sl(),
+          checkPinCodeUseCase: sl(),
+          setBiometryUseCase: sl(),
+          checkBiometryUseCase: sl(),
+          getBiometricSupportModel: sl(),
+          navigateToMainUseCase: sl(),
+        ),
+      )
+      ..registerFactory(() => CheckPinCodeDialogCubit(sl()));
+  }
 }
