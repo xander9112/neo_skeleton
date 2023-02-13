@@ -6,6 +6,8 @@ Future<void> run(HookContext context) async {
 
   // Run `flutter packages get` after generation.
 
+  context.logger.info('Start fvm');
+
   await Process.run('fvm', ['flutter', 'packages', 'get']);
 
   progress.complete();
