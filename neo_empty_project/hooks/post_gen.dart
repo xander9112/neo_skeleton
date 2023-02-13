@@ -27,7 +27,13 @@ Future<void> _installPackages(HookContext context) async {
 Future<void> _buildProject(HookContext context) async {
   final progress = context.logger.progress('Building project');
 
-  final List<String> commands = ["pub", "run", "build_runner", "build"];
+  final List<String> commands = [
+    "pub",
+    "run",
+    "build_runner",
+    "build",
+    " --delete-conflicting-outputs"
+  ];
 
   await Process.run('flutter', commands).onError(
     (error, stackTrace) {
