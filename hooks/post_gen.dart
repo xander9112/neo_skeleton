@@ -2,17 +2,13 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 Future<void> run(HookContext context) async {
-  final progress = context.logger.progress('Installing packages');
-
   await _installPackages(context);
 
   await _buildProject(context);
-
-  progress.complete();
 }
 
 Future<void> _installPackages(HookContext context) async {
-  context.logger.info('Start install packages');
+  final progress = context.logger.progress('Installing packages');
 
   bool done = false;
 
@@ -29,14 +25,16 @@ Future<void> _installPackages(HookContext context) async {
     try {
       await Process.run(
         'fvm',
-        ['flutter', "pub", "run", "build_runner", "build"],
+        ['flutter', 'packages', 'get'],
       );
     } catch (_) {}
   }
+
+  progress.complete();
 }
 
 Future<void> _buildProject(HookContext context) async {
-  context.logger.info('Start build project');
+  final progress = context.logger.progress('Building project');
 
   bool done = false;
 
@@ -57,4 +55,6 @@ Future<void> _buildProject(HookContext context) async {
       );
     } catch (_) {}
   }
+
+  progress.complete();
 }
