@@ -21,7 +21,7 @@ class AuthInjection extends ICoreInjection {
           settings: AuthManagerSettings(
             useBiometric: !kIsWeb,
             useLocalAuth: {
-              {useLocalAuth}
+              {#useLocalAuth}
             },
           ),
         ),
