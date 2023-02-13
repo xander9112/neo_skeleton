@@ -41,6 +41,8 @@ abstract class AuthManager<U> extends ChangeNotifier {
 
   Future<void> setUseBiometry(bool value);
 
+  Future<void> setUseLocalAuth(bool value);
+
   Future<bool> checkBiometry();
 
   Future<Either<Failure, U>> verify();
@@ -56,10 +58,14 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   }
 
   Future<void> init() async {
-    if (settings.useLocalAuth && !await authRepository.hasPinCode()) {
-      await signOut();
+    if (settings.useLocalAuth) {
+      _locked = await authRepository.useLocalAuth();
 
-      authenticated = false;
+      if (!await authRepository.hasPinCode()) {
+        await signOut();
+
+        authenticated = false;
+      }
     }
   }
 
@@ -220,6 +226,12 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   Future<void> setUseBiometry(bool value) {
     notifyListeners();
     return biometricRepository.setUseBiometric(value: value);
+  }
+
+  @override
+  Future<void> setUseLocalAuth(bool value) {
+    notifyListeners();
+    return authRepository.setUseLocalAuth(value);
   }
 
   @override

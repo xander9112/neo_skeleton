@@ -70,6 +70,16 @@ class AuthRepositoryImpl
   }
 
   @override
+  Future<void> setUseLocalAuth(bool value) {
+    return _secureStorageService.setUseLocalAuth(value);
+  }
+
+  @override
+  Future<bool> useLocalAuth() {
+    return _secureStorageService.getUseLocalAuth();
+  }
+
+  @override
   Future<Either<Failure, AuthModel>> signIn(
     String login,
     String password,

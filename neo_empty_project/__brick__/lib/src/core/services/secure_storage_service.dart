@@ -131,4 +131,25 @@ class SecureStorageService {
 
     return null;
   }
+
+  Future<void> setUseLocalAuth(bool value) {
+    return _secureStorage.write(
+      key: 'use_local_auth',
+      value: value.toString(),
+      aOptions: _getAndroidOptions(),
+    );
+  }
+
+  Future<bool> getUseLocalAuth() async {
+    final useLocalAuth = await _secureStorage.read(
+      key: 'use_local_auth',
+      aOptions: _getAndroidOptions(),
+    );
+
+    if (useLocalAuth != null && useLocalAuth.isNotEmpty) {
+      return useLocalAuth == 'true';
+    }
+
+    return {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}};
+  }
 }

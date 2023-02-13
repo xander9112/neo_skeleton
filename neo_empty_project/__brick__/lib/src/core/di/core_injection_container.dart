@@ -64,6 +64,7 @@ class CoreInjection extends ICoreInjection {
         setBiometrySettingUseCase: sl(),
         setNewPinCodeUseCase: sl(),
         getGlobalAuthSettings: sl(),
+        setLocalAuthUseCase: sl(),
       ),
     );
   }

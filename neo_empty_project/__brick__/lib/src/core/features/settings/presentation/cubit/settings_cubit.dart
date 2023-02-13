@@ -18,6 +18,7 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     required this.setBiometrySettingUseCase,
     required this.setNewPinCodeUseCase,
     required this.getAuthUseCase,
+    required this.setLocalAuthUseCase,
   }) : super(const SettingsState.current()) {
     subscriptAuthEventUseCase(refresh);
     //refresh();
@@ -32,6 +33,8 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
   final SetBiometrySettingUseCase setBiometrySettingUseCase;
 
   final SetNewPinCodeUseCase setNewPinCodeUseCase;
+
+  final SetLocalAuthUseCase setLocalAuthUseCase;
 
   final GetAuthUseCase getAuthUseCase;
 
@@ -85,6 +88,8 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   Future<void> setUseLocalAuth({required bool value}) async {
     emit(state.copyWith(useLocalAuth: value));
+
+    await setLocalAuthUseCase(value);
   }
 
   Future<void> setPinCode() async {
