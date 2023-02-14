@@ -29,14 +29,14 @@ class MainPage extends StatelessWidget {
                   bottomNavigationBar: BottomNavigationBar(
                     currentIndex: tabsRouter.activeIndex,
                     onTap: tabsRouter.setActiveIndex,
-                    items: const [
+                    items: [
                       BottomNavigationBarItem(
-                        label: 'Home',
-                        icon: Icon(Icons.home),
+                        label: MainI18n.homeBottomMenuItem,
+                        icon: const Icon(Icons.home),
                       ),
                       BottomNavigationBarItem(
-                        label: 'Settings',
-                        icon: Icon(Icons.settings),
+                        label: MainI18n.settingsBottomMenuItem,
+                        icon: const Icon(Icons.settings),
                       ),
                     ],
                   ),
@@ -49,4 +49,3 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-

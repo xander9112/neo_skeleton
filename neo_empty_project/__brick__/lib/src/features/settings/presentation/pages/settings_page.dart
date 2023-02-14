@@ -7,28 +7,25 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings page'),
+        title: Text(SettingsI18n.title),
         actions: <Widget>[
           IconButton(
-            onPressed: AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut,
+            onPressed:
+                AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut,
             icon: const Icon(Icons.logout),
           ),
         ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const LocaleSwitcher(),
-          const LocalAuthSwitcher(),
-          const BiometrySwitcher(),
-          const PinCodeChanger(),
-          ListTile(
-            title: const Text('Theme'),
-            onTap: () => context.router.pushNamed(RoutePath.settingsTheme),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-          ),
+        children: const [
+          LocaleSwitcher(),
+          LocalAuthSwitcher(),
+          BiometrySwitcher(),
+          PinCodeChanger(),
+          ThemeSwitcher(),
         ],
       ),
     );

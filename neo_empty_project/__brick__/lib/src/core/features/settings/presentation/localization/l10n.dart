@@ -1,6 +1,18 @@
 import 'package:intl/intl.dart';
 
 class SettingsI18n {
+  static String get title => Intl.message(
+        'Settings page',
+        desc: 'Settings page',
+        name: 'SettingsI18n_title',
+      );
+
+  static String get theme => Intl.message(
+        'theme',
+        desc: 'Theme',
+        name: 'SettingsI18n_theme',
+      );
+
   static String get lightTheme => Intl.message(
         'Light',
         desc: 'Light theme',

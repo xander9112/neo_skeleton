@@ -14,10 +14,6 @@ const List<AutoRoute> settingsRoutes = <AutoRoute<dynamic>>[
         path: '',
         initial: true,
       ),
-      AutoRoute<void>(
-        page: SettingsThemePage,
-        path: RoutePath.settingsTheme,
-      ),
     ],
   ),
 ];
