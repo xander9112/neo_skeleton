@@ -30,11 +30,6 @@ class AuthRepositoryImpl
   }
 
   @override
-  Future<void> deleteUserType() {
-    return _secureStorageService.removeUserType();
-  }
-
-  @override
   Future<String?> getAccessToken() {
     return _secureStorageService.getToken();
   }
@@ -62,11 +57,6 @@ class AuthRepositoryImpl
   @override
   Future<void> setUseBiometric({required bool value}) {
     return _secureStorageService.setUseBiometric(value);
-  }
-
-  @override
-  Future<void> setUserType(String type) {
-    return _secureStorageService.setUserType(type);
   }
 
   @override

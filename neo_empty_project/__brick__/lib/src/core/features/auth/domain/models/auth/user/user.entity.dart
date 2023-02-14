@@ -3,8 +3,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-part '../../../model/auth/user/user.entity.freezed.dart';
-part '../../../model/auth/user/user.entity.g.dart';
+part 'user.entity.freezed.dart';
+part 'user.entity.g.dart';
 
 @immutable
 abstract class UserEntity {

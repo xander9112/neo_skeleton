@@ -78,29 +78,6 @@ class SecureStorageService {
     return pinCode == pinCode;
   }
 
-  Future<bool> get isUserFake async {
-    final type = await _secureStorage.read(
-      key: 'user_type',
-      aOptions: _getAndroidOptions(),
-    );
-
-    return type == 'fake';
-  }
-
-  Future<void> setUserType(String value) {
-    return _secureStorage.write(
-      key: 'user_type',
-      value: value,
-      aOptions: _getAndroidOptions(),
-    );
-  }
-
-  Future<void> removeUserType() async {
-    await setUserType('');
-
-    await _secureStorage.delete(key: 'user_type');
-  }
-
   Future<void> removeUseBiometric() async {
     await _secureStorage.write(
       key: 'use_biometric',
