@@ -5,6 +5,8 @@ Future<void> run(HookContext context) async {
   await _installPackages(context);
 
   await _buildProject(context);
+
+  await _buildLaunchIcons(context);
 }
 
 Future<void> _installPackages(HookContext context) async {
@@ -32,8 +34,25 @@ Future<void> _buildProject(HookContext context) async {
     "run",
     "build_runner",
     "build",
-    " --delete-conflicting-outputs"
+    "--delete-conflicting-outputs"
   ];
+
+  await Process.run('flutter', commands).onError(
+    (error, stackTrace) {
+      return Process.run(
+        'fvm',
+        ['flutter', ...commands],
+      );
+    },
+  );
+
+  progress.complete();
+}
+
+Future<void> _buildLaunchIcons(HookContext context) async {
+  final progress = context.logger.progress('Building launch icons');
+
+  final List<String> commands = ['pub', 'run', 'flutter_launcher_icons'];
 
   await Process.run('flutter', commands).onError(
     (error, stackTrace) {
