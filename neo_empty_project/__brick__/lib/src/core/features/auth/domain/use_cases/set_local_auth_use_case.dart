@@ -7,7 +7,7 @@ class SetLocalAuthUseCase implements UseCase<Either<Failure, bool>, bool> {
   final AuthManager<AuthenticatedUser> _authManager;
   @override
   Future<Either<Failure, bool>> call(bool params) async {
-    _authManager.locked = params;
+    await _authManager.setUseLocalAuth(params);
 
     return const Right(true);
   }

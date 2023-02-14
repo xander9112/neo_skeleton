@@ -58,14 +58,12 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   }
 
   Future<void> init() async {
-    if (settings.useLocalAuth) {
-      _locked = await authRepository.useLocalAuth();
+    settings.useLocalAuth = await authRepository.useLocalAuth();
 
-      if (!await authRepository.hasPinCode()) {
-        await signOut();
+    if (settings.useLocalAuth && !await authRepository.hasPinCode()) {
+      await signOut();
 
-        authenticated = false;
-      }
+      authenticated = false;
     }
   }
 
@@ -260,5 +258,5 @@ class AuthManagerSettings {
   AuthManagerSettings({required this.useBiometric, required this.useLocalAuth});
 
   final bool useBiometric;
-  final bool useLocalAuth;
+  late bool useLocalAuth;
 }
