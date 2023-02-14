@@ -71,6 +71,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
                 previous.appThemeMode != current.appThemeMode ||
                 previous.locale != current.locale,
             builder: (context, state) => MaterialApp.router(
+              key: ValueKey(state.locale?.languageCode),
               routerDelegate: router.delegate(),
               themeMode: state.appThemeMode?.getThemeMode(),
               theme: createLightTheme(),

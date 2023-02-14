@@ -117,6 +117,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "SettingsI18n_useLocalAuth": "Использовать локальную авторизацию?",
+  "@SettingsI18n_useLocalAuth": {
+    "description": "Use local auth?",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
   "CoreI18n_forbiddenError": "Недоступно",
   "@CoreI18n_forbiddenError": {
     "description": "Http Error forbidden",
@@ -145,6 +152,20 @@
   "@CoreI18n_unknownError": {
     "description": "Unknown Error",
     "type": "text",
+    "placeholders": {}
+  },
+  "SettingsI18n_title": "Страница настроек",
+  "@SettingsI18n_title": {
+    "description": "Settings page",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "SettingsI18n_theme": "Тема",
+  "@SettingsI18n_theme": {
+    "description": "Theme",
+    "type": "text",
+    "placeholders_order": [],
     "placeholders": {}
   },
   "SettingsI18n_lightTheme": "Светлая",
@@ -193,6 +214,27 @@
   "@SettingsI18n_useBiometrics": {
     "description": "Use biometrics?",
     "type": "text",
+    "placeholders": {}
+  },
+  "HomeI18n_title": "Главная страница",
+  "@HomeI18n_title": {
+    "description": "Home title",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "MainI18n_homeBottomMenuItem": "Главная",
+  "@MainI18n_homeBottomMenuItem": {
+    "description": "Home bottom menu item",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "MainI18n_settingsBottomMenuItem": "Настройки",
+  "@MainI18n_settingsBottomMenuItem": {
+    "description": "Settings bottom menu item",
+    "type": "text",
+    "placeholders_order": [],
     "placeholders": {}
   },
   "SplashI18n_title": "Splash заголовок",

@@ -117,6 +117,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "SettingsI18n_useLocalAuth": "Use local auth?",
+  "@SettingsI18n_useLocalAuth": {
+    "description": "Use local auth?",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
   "CoreI18n_forbiddenError": "Forbidden",
   "@CoreI18n_forbiddenError": {
     "description": "Http Error forbidden",
@@ -145,6 +152,20 @@
   "@CoreI18n_unknownError": {
     "description": "Unknown Error",
     "type": "text",
+    "placeholders": {}
+  },
+  "SettingsI18n_title": "Settings page",
+  "@SettingsI18n_title": {
+    "description": "Settings page",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "SettingsI18n_theme": "theme",
+  "@SettingsI18n_theme": {
+    "description": "Theme",
+    "type": "text",
+    "placeholders_order": [],
     "placeholders": {}
   },
   "SettingsI18n_lightTheme": "Light",
@@ -193,6 +214,27 @@
   "@SettingsI18n_useBiometrics": {
     "description": "Use biometrics?",
     "type": "text",
+    "placeholders": {}
+  },
+  "HomeI18n_title": "Home page",
+  "@HomeI18n_title": {
+    "description": "Home title",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "MainI18n_homeBottomMenuItem": "Home",
+  "@MainI18n_homeBottomMenuItem": {
+    "description": "Home bottom menu item",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "MainI18n_settingsBottomMenuItem": "Settings",
+  "@MainI18n_settingsBottomMenuItem": {
+    "description": "Settings bottom menu item",
+    "type": "text",
+    "placeholders_order": [],
     "placeholders": {}
   },
   "SplashI18n_title": "Splash title",

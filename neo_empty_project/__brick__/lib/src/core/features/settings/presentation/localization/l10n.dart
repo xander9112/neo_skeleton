@@ -8,7 +8,7 @@ class SettingsI18n {
       );
 
   static String get theme => Intl.message(
-        'theme',
+        'Theme',
         desc: 'Theme',
         name: 'SettingsI18n_theme',
       );
