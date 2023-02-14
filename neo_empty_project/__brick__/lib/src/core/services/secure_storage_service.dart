@@ -129,4 +129,14 @@ class SecureStorageService {
 
     return {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}};
   }
+
+   Future<void> removeUseLocalAuth() async {
+    await _secureStorage.write(
+      key: 'use_local_auth',
+      value: '',
+      aOptions: _getAndroidOptions(),
+    );
+
+    return _secureStorage.delete(key: 'use_local_auth');
+  }
 }

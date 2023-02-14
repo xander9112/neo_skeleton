@@ -70,6 +70,11 @@ class AuthRepositoryImpl
   }
 
   @override
+  Future<void> deleteUseLocalAuth() {
+    return _secureStorageService.removeUseLocalAuth();
+  }
+
+  @override
   Future<Either<Failure, AuthModel>> signIn(
     String login,
     String password,

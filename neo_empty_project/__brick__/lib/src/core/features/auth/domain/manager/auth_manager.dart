@@ -152,6 +152,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
     await authRepository.deleteAccessToken();
 
+    await authRepository.deleteUseLocalAuth();
+
     await biometricRepository.deleteUseBiometric();
 
     _locked = true;
@@ -210,7 +212,6 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   @override
   Future<void> setUseLocalAuth(bool value) {
-    notifyListeners();
     return authRepository.setUseLocalAuth(value);
   }
 
