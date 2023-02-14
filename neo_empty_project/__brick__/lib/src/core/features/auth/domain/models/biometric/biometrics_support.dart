@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-part '../../model/biometric/biometrics_support.freezed.dart';
-part '../../model/biometric/biometrics_support.g.dart';
+part 'biometrics_support.freezed.dart';
+part 'biometrics_support.g.dart';
 
 @freezed
 class BiometricSupportModel with _$BiometricSupportModel {
