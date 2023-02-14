@@ -71,14 +71,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   final BiometricRepository biometricRepository;
 
-  AuthenticatedUser _user = const AuthenticatedUser(
-    id: 0,
-    email: '',
-    ldapId: '',
-    login: '',
-    lastName: '',
-    firstName: '',
-  );
+  AuthenticatedUser _user = const AuthenticatedUser.empty;
 
   bool _authenticated = false;
 
@@ -169,14 +162,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
     authenticated = false;
 
-    _user = const AuthenticatedUser(
-      id: 0,
-      email: '',
-      ldapId: '',
-      login: '',
-      lastName: '',
-      firstName: '',
-    );
+    _user = const AuthenticatedUser.empty;
   }
 
   bool _isChecked = false;

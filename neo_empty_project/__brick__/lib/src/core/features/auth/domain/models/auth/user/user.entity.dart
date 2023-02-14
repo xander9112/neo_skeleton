@@ -3,8 +3,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-part 'user.entity.freezed.dart';
-part 'user.entity.g.dart';
+part '../../../model/auth/user/user.entity.freezed.dart';
+part '../../../model/auth/user/user.entity.g.dart';
 
 @immutable
 abstract class UserEntity {
@@ -14,28 +14,13 @@ abstract class UserEntity {
   const factory UserEntity.authenticated({
     required int id,
     required String email,
-    required String ldapId,
     required String login,
     required String lastName,
     required String firstName,
     String? patronymic,
-    String? manager,
-    String? grade,
-    String? department,
-    String? city,
-    String? officeName,
-    int? cityId,
-    int? departmentId,
     DateTime? birthday,
-    String? ipPhone,
-    DateTime? startWork,
-    String? branch,
-    String? team,
     DateTime? createdAt,
     DateTime? updatedAt,
-    Map<String, dynamic>? images,
-    List<ContactModel> contacts,
-    UserSettingsModel? settings,
   }) = AuthenticatedUser;
 
   bool get isAuthenticated;
@@ -84,48 +69,18 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
   const factory AuthenticatedUser({
     required int id,
     required String email,
-    @JsonKey(name: 'ldap_id')
-        required String ldapId,
     required String login,
     @JsonKey(name: 'last_name')
         required String lastName,
     @JsonKey(name: 'first_name')
         required String firstName,
-    @Default('user')
-        String type,
-    @Default(0)
-    @JsonKey(name: 'vacation_days')
-        int vacationDays,
-    @Default(AbsenceStatus.atWork)
-    @JsonKey(name: 'absence_status')
-        AbsenceStatus absenceStatus,
     String? patronymic,
-    String? manager,
-    String? grade,
-    String? department,
-    String? city,
-    @JsonKey(name: 'office_name')
-        String? officeName,
-    @JsonKey(name: 'city_id')
-        int? cityId,
-    @JsonKey(name: 'department_id')
-        int? departmentId,
     @JsonKey(
       name: 'birthday',
       fromJson: fromJsonDateTime,
       toJson: toJsonDateTime,
     )
         DateTime? birthday,
-    @JsonKey(name: 'ip_phone')
-        String? ipPhone,
-    @JsonKey(
-      name: 'start_work',
-      fromJson: fromJsonDateTime,
-      toJson: toJsonDateTime,
-    )
-        DateTime? startWork,
-    String? branch,
-    String? team,
     @JsonKey(
       name: 'created_at',
       fromJson: fromJsonDateTime,
@@ -138,10 +93,6 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
       toJson: toJsonDateTime,
     )
         DateTime? updatedAt,
-    Map<String, dynamic>? images,
-    @Default(<ContactModel>[])
-        List<ContactModel> contacts,
-    UserSettingsModel? settings,
   }) = _AuthenticatedUser;
 
   factory AuthenticatedUser.fromJson(Object? json) =>
@@ -170,6 +121,14 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
     throw UnimplementedError();
   }
 
+  static const AuthenticatedUser empty = AuthenticatedUser(
+    id: -1,
+    email: '',
+    login: '',
+    lastName: '',
+    firstName: '',
+  );
+
   String get fullName => '$lastName $firstName';
 
   String get shortName {
@@ -180,19 +139,5 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
     }
 
     return shortName;
-  }
-
-  String? get avatar => images?['big'] as String?;
-
-  bool get isFake => type == 'fake';
-  bool get isSystem => type == 'system';
-  bool get isNeonchic => type == 'neonchic';
-
-  List<ContactModel> get availableContacts {
-    return <ContactModel>[
-      ContactModel(type: ContactType.email, value: email),
-      ContactModel(type: ContactType.teams, value: login),
-      ...contacts,
-    ];
   }
 }

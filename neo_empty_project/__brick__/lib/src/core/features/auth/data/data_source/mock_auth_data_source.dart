@@ -7,14 +7,7 @@ class MockAuthDataSource implements RestAuthDataSource {
   }) async {
     return const AuthModel(
       token: 'token',
-      user: AuthenticatedUser(
-        id: -1,
-        login: 'login',
-        lastName: 'lastName',
-        firstName: 'firstName',
-        email: '',
-        ldapId: '',
-      ),
+      user: AuthenticatedUser.empty,
     );
   }
 
@@ -28,13 +21,6 @@ class MockAuthDataSource implements RestAuthDataSource {
 
   @override
   Future<AuthenticatedUser> verify() async {
-    return const AuthenticatedUser(
-      id: -1,
-      login: 'login',
-      lastName: 'lastName',
-      firstName: 'firstName',
-      email: '',
-      ldapId: '',
-    );
+    return const AuthenticatedUser.empty;
   }
 }
