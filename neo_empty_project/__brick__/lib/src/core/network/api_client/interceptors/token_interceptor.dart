@@ -20,7 +20,6 @@ class TokenInterceptor implements Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final hasToken = await _storage.hasToken;
-    final isFake = await _storage.isUserFake;
 
     if (hasToken) {
       final token = await _storage.getToken();
@@ -30,10 +29,6 @@ class TokenInterceptor implements Interceptor {
       options.headers.addAll(<String, String>{
         HttpHeaders.authorizationHeader: 'Bearer $token',
       });
-    }
-
-    if (isFake) {
-      options.headers.addAll(<String, String>{'is-fake': 'true'});
     }
 
     return handler.next(options);
