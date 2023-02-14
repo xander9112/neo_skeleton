@@ -21,6 +21,6 @@ class MockAuthDataSource implements RestAuthDataSource {
 
   @override
   Future<AuthenticatedUser> verify() async {
-    return const AuthenticatedUser.empty;
+    return AuthenticatedUser.empty;
   }
 }

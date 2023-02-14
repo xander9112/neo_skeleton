@@ -28,10 +28,6 @@ abstract class AuthRepository<A, U> {
 
   Future<void> setUseBiometric({required bool value});
 
-  Future<void> setUserType(String type);
-
-  Future<void> deleteUserType();
-
   Future<void> setUseLocalAuth(bool value);
 
   Future<bool> useLocalAuth();
