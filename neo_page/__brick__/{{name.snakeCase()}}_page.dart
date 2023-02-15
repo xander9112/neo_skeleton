@@ -8,7 +8,7 @@ class {{name.pascalCase()}}Page extends StatefulWidget {
 }
 
 class _{{name.pascalCase()}}PageState extends State<{{name.pascalCase()}}Page> {
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +17,7 @@ class _{{name.pascalCase()}}PageState extends State<{{name.pascalCase()}}Page> {
     );
   }
 }{{/stateful}}
-{{^stateful}}
-class {{name.pascalCase()}}Page extends StatelessWidget {
+{{^stateful}}class {{name.pascalCase()}}Page extends StatelessWidget {
 
   const {{name.pascalCase()}}Page({super.key});
 
