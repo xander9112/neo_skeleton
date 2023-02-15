@@ -33,7 +33,7 @@ class {{name.pascalCase()}}Page extends StatelessWidget {
               );
             }
 
-            return Center(child: Text(state.profile?.title ?? 'Unknown'));
+            return Center(child: Text(state.{{name.camelCase()}}?.title ?? 'Unknown'));
           },
         ),
       ),
