@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 {{#stateful}}
 class {{name.pascalCase()}}Page extends StatefulWidget {
   const {{name.pascalCase()}}Page({super.key});
@@ -13,12 +12,11 @@ class _{{name.pascalCase()}}PageState extends State<{{name.pascalCase()}}Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('{{name.pascalCase()}} page')),
-        body: Center(child: Text('Stateful widget')),
+        body: const Center(child: Text('Stateful widget')),
     );
   }
 }
 {{/stateful}}
-
 {{^stateful}}
 class {{name.pascalCase()}}Page extends StatelessWidget {
   const {{name.pascalCase()}}Page({super.key});
@@ -27,9 +25,8 @@ class {{name.pascalCase()}}Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('{{name.pascalCase()}} page')),
-        body: Center(child: Text('Stateless widget')),
+        body: const Center(child: Text('Stateless widget')),
     );
   }
 }
-
 {{/stateful}}
