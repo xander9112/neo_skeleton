@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import 'package:{{projectName.snakeCase()}}_core/{{projectName.snakeCase()}}_core.dart';
-import '../_profile.dart';
+import '../_ {{name.snakeCase()}}.dart';
 
 class {{name.pascalCase()}}Injection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
