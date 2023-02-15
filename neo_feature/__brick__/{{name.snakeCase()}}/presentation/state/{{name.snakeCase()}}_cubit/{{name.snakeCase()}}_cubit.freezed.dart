@@ -14,72 +14,72 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProfileState _$ProfileStateFromJson(Map<String, dynamic> json) {
-  return _ProfileInitialState.fromJson(json);
+{{name.pascalCase()}}State _${{name.pascalCase()}}StateFromJson(Map<String, dynamic> json) {
+  return _{{name.pascalCase()}}InitialState.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProfileState {
+mixin _${{name.pascalCase()}}State {
   FetchStatus get status => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
-  ProfileModel? get profile => throw _privateConstructorUsedError;
+  {{name.pascalCase()}}Model? get {{name.camelCase()}} => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            FetchStatus status, String? error, ProfileModel? profile)
+            FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error, ProfileModel? profile)?
+    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error, ProfileModel? profile)?
+    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
         initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileInitialState value) initial,
+    required TResult Function(_{{name.pascalCase()}}InitialState value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileInitialState value)? initial,
+    TResult? Function(_{{name.pascalCase()}}InitialState value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileInitialState value)? initial,
+    TResult Function(_{{name.pascalCase()}}InitialState value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileStateCopyWith<ProfileState> get copyWith =>
+  ${{name.pascalCase()}}StateCopyWith<{{name.pascalCase()}}State> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileStateCopyWith<$Res> {
-  factory $ProfileStateCopyWith(
-          ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+abstract class ${{name.pascalCase()}}StateCopyWith<$Res> {
+  factory ${{name.pascalCase()}}StateCopyWith(
+          {{name.pascalCase()}}State value, $Res Function({{name.pascalCase()}}State) then) =
+      _${{name.pascalCase()}}StateCopyWithImpl<$Res, {{name.pascalCase()}}State>;
   @useResult
-  $Res call({FetchStatus status, String? error, ProfileModel? profile});
+  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}}});
 
-  $ProfileModelCopyWith<$Res>? get profile;
+  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}};
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
-    implements $ProfileStateCopyWith<$Res> {
-  _$ProfileStateCopyWithImpl(this._value, this._then);
+class _${{name.pascalCase()}}StateCopyWithImpl<$Res, $Val extends {{name.pascalCase()}}State>
+    implements ${{name.pascalCase()}}StateCopyWith<$Res> {
+  _${{name.pascalCase()}}StateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,7 +91,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? status = null,
     Object? error = freezed,
-    Object? profile = freezed,
+    Object? {{name.camelCase()}} = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -102,46 +102,46 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      profile: freezed == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileModel?,
+      {{name.camelCase()}}: freezed == {{name.camelCase()}}
+          ? _value.{{name.camelCase()}}
+          : {{name.camelCase()}} // ignore: cast_nullable_to_non_nullable
+              as {{name.pascalCase()}}Model?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProfileModelCopyWith<$Res>? get profile {
-    if (_value.profile == null) {
+  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}} {
+    if (_value.{{name.camelCase()}} == null) {
       return null;
     }
 
-    return $ProfileModelCopyWith<$Res>(_value.profile!, (value) {
-      return _then(_value.copyWith(profile: value) as $Val);
+    return ${{name.pascalCase()}}ModelCopyWith<$Res>(_value.{{name.camelCase()}}!, (value) {
+      return _then(_value.copyWith({{name.camelCase()}}: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_ProfileInitialStateCopyWith<$Res>
-    implements $ProfileStateCopyWith<$Res> {
-  factory _$$_ProfileInitialStateCopyWith(_$_ProfileInitialState value,
-          $Res Function(_$_ProfileInitialState) then) =
-      __$$_ProfileInitialStateCopyWithImpl<$Res>;
+abstract class _$$_{{name.pascalCase()}}InitialStateCopyWith<$Res>
+    implements ${{name.pascalCase()}}StateCopyWith<$Res> {
+  factory _$$_{{name.pascalCase()}}InitialStateCopyWith(_$_{{name.pascalCase()}}InitialState value,
+          $Res Function(_$_{{name.pascalCase()}}InitialState) then) =
+      __$$_{{name.pascalCase()}}InitialStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FetchStatus status, String? error, ProfileModel? profile});
+  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}}});
 
   @override
-  $ProfileModelCopyWith<$Res>? get profile;
+  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}};
 }
 
 /// @nodoc
-class __$$_ProfileInitialStateCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileInitialState>
-    implements _$$_ProfileInitialStateCopyWith<$Res> {
-  __$$_ProfileInitialStateCopyWithImpl(_$_ProfileInitialState _value,
-      $Res Function(_$_ProfileInitialState) _then)
+class __$$_{{name.pascalCase()}}InitialStateCopyWithImpl<$Res>
+    extends _${{name.pascalCase()}}StateCopyWithImpl<$Res, _$_{{name.pascalCase()}}InitialState>
+    implements _$$_{{name.pascalCase()}}InitialStateCopyWith<$Res> {
+  __$$_{{name.pascalCase()}}InitialStateCopyWithImpl(_$_{{name.pascalCase()}}InitialState _value,
+      $Res Function(_$_{{name.pascalCase()}}InitialState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -149,9 +149,9 @@ class __$$_ProfileInitialStateCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? error = freezed,
-    Object? profile = freezed,
+    Object? {{name.camelCase()}} = freezed,
   }) {
-    return _then(_$_ProfileInitialState(
+    return _then(_$_{{name.pascalCase()}}InitialState(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -160,23 +160,23 @@ class __$$_ProfileInitialStateCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      profile: freezed == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileModel?,
+      {{name.camelCase()}}: freezed == {{name.camelCase()}}
+          ? _value.{{name.camelCase()}}
+          : {{name.camelCase()}} // ignore: cast_nullable_to_non_nullable
+              as {{name.pascalCase()}}Model?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfileInitialState extends _ProfileInitialState {
-  const _$_ProfileInitialState(
-      {this.status = FetchStatus.pure, this.error, this.profile})
+class _$_{{name.pascalCase()}}InitialState extends _{{name.pascalCase()}}InitialState {
+  const _$_{{name.pascalCase()}}InitialState(
+      {this.status = FetchStatus.pure, this.error, this.{{name.camelCase()}}})
       : super._();
 
-  factory _$_ProfileInitialState.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileInitialStateFromJson(json);
+  factory _$_{{name.pascalCase()}}InitialState.fromJson(Map<String, dynamic> json) =>
+      _$$_{{name.pascalCase()}}InitialStateFromJson(json);
 
   @override
   @JsonKey()
@@ -184,62 +184,62 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   @override
   final String? error;
   @override
-  final ProfileModel? profile;
+  final {{name.pascalCase()}}Model? {{name.camelCase()}};
 
   @override
   String toString() {
-    return 'ProfileState.initial(status: $status, error: $error, profile: $profile)';
+    return '{{name.pascalCase()}}State.initial(status: $status, error: $error, {{name.camelCase()}}: ${{name.camelCase()}})';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileInitialState &&
+            other is _$_{{name.pascalCase()}}InitialState &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            (identical(other.{{name.camelCase()}}, {{name.camelCase()}}) || other.{{name.camelCase()}} == {{name.camelCase()}}));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, error, profile);
+  int get hashCode => Object.hash(runtimeType, status, error, {{name.camelCase()}});
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileInitialStateCopyWith<_$_ProfileInitialState> get copyWith =>
-      __$$_ProfileInitialStateCopyWithImpl<_$_ProfileInitialState>(
+  _$$_{{name.pascalCase()}}InitialStateCopyWith<_$_{{name.pascalCase()}}InitialState> get copyWith =>
+      __$$_{{name.pascalCase()}}InitialStateCopyWithImpl<_$_{{name.pascalCase()}}InitialState>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            FetchStatus status, String? error, ProfileModel? profile)
+            FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})
         initial,
   }) {
-    return initial(status, error, profile);
+    return initial(status, error, {{name.camelCase()}});
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error, ProfileModel? profile)?
+    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
         initial,
   }) {
-    return initial?.call(status, error, profile);
+    return initial?.call(status, error, {{name.camelCase()}});
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error, ProfileModel? profile)?
+    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(status, error, profile);
+      return initial(status, error, {{name.camelCase()}});
     }
     return orElse();
   }
@@ -247,7 +247,7 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileInitialState value) initial,
+    required TResult Function(_{{name.pascalCase()}}InitialState value) initial,
   }) {
     return initial(this);
   }
@@ -255,7 +255,7 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileInitialState value)? initial,
+    TResult? Function(_{{name.pascalCase()}}InitialState value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -263,7 +263,7 @@ class _$_ProfileInitialState extends _ProfileInitialState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileInitialState value)? initial,
+    TResult Function(_{{name.pascalCase()}}InitialState value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -274,30 +274,30 @@ class _$_ProfileInitialState extends _ProfileInitialState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileInitialStateToJson(
+    return _$$_{{name.pascalCase()}}InitialStateToJson(
       this,
     );
   }
 }
 
-abstract class _ProfileInitialState extends ProfileState {
-  const factory _ProfileInitialState(
+abstract class _{{name.pascalCase()}}InitialState extends {{name.pascalCase()}}State {
+  const factory _{{name.pascalCase()}}InitialState(
       {final FetchStatus status,
       final String? error,
-      final ProfileModel? profile}) = _$_ProfileInitialState;
-  const _ProfileInitialState._() : super._();
+      final {{name.pascalCase()}}Model? {{name.camelCase()}}}) = _$_{{name.pascalCase()}}InitialState;
+  const _{{name.pascalCase()}}InitialState._() : super._();
 
-  factory _ProfileInitialState.fromJson(Map<String, dynamic> json) =
-      _$_ProfileInitialState.fromJson;
+  factory _{{name.pascalCase()}}InitialState.fromJson(Map<String, dynamic> json) =
+      _$_{{name.pascalCase()}}InitialState.fromJson;
 
   @override
   FetchStatus get status;
   @override
   String? get error;
   @override
-  ProfileModel? get profile;
+  {{name.pascalCase()}}Model? get {{name.camelCase()}};
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileInitialStateCopyWith<_$_ProfileInitialState> get copyWith =>
+  _$$_{{name.pascalCase()}}InitialStateCopyWith<_$_{{name.pascalCase()}}InitialState> get copyWith =>
       throw _privateConstructorUsedError;
 }

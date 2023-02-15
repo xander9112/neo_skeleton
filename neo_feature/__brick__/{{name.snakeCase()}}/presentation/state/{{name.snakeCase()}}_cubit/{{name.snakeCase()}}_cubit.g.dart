@@ -6,19 +6,19 @@ part of '{{name.snakeCase()}}_cubit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProfileInitialState _$$_ProfileInitialStateFromJson(
+_$_{{name.pascalCase()}}InitialState _$$_{{name.pascalCase()}}InitialStateFromJson(
         Map<String, dynamic> json) =>
-    _$_ProfileInitialState(
+    _$_{{name.pascalCase()}}InitialState(
       status: $enumDecodeNullable(_$FetchStatusEnumMap, json['status']) ??
           FetchStatus.pure,
       error: json['error'] as String?,
       profile: json['profile'] == null
           ? null
-          : ProfileModel.fromJson(json['profile'] as Object),
+          : {{name.pascalCase()}}Model.fromJson(json['profile'] as Object),
     );
 
-Map<String, dynamic> _$$_ProfileInitialStateToJson(
-        _$_ProfileInitialState instance) =>
+Map<String, dynamic> _$$_{{name.pascalCase()}}InitialStateToJson(
+        _$_{{name.pascalCase()}}InitialState instance) =>
     <String, dynamic>{
       'status': _$FetchStatusEnumMap[instance.status]!,
       'error': instance.error,

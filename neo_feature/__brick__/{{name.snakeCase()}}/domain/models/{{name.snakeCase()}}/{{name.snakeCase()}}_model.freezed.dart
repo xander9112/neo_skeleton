@@ -14,33 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
-  return _ProfileModel.fromJson(json);
+{{name.pascalCase()}}Model _${{name.pascalCase()}}ModelFromJson(Map<String, dynamic> json) {
+  return _{{name.pascalCase()}}Model.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProfileModel {
+mixin _${{name.pascalCase()}}Model {
   String get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileModelCopyWith<ProfileModel> get copyWith =>
+  ${{name.pascalCase()}}ModelCopyWith<{{name.pascalCase()}}Model> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileModelCopyWith<$Res> {
-  factory $ProfileModelCopyWith(
-          ProfileModel value, $Res Function(ProfileModel) then) =
-      _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
+abstract class ${{name.pascalCase()}}ModelCopyWith<$Res> {
+  factory ${{name.pascalCase()}}ModelCopyWith(
+          {{name.pascalCase()}}Model value, $Res Function({{name.pascalCase()}}Model) then) =
+      _${{name.pascalCase()}}ModelCopyWithImpl<$Res, {{name.pascalCase()}}Model>;
   @useResult
   $Res call({String title});
 }
 
 /// @nodoc
-class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
-    implements $ProfileModelCopyWith<$Res> {
-  _$ProfileModelCopyWithImpl(this._value, this._then);
+class _${{name.pascalCase()}}ModelCopyWithImpl<$Res, $Val extends {{name.pascalCase()}}Model>
+    implements ${{name.pascalCase()}}ModelCopyWith<$Res> {
+  _${{name.pascalCase()}}ModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -62,22 +62,22 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
 }
 
 /// @nodoc
-abstract class _$$_ProfileModelCopyWith<$Res>
-    implements $ProfileModelCopyWith<$Res> {
-  factory _$$_ProfileModelCopyWith(
-          _$_ProfileModel value, $Res Function(_$_ProfileModel) then) =
-      __$$_ProfileModelCopyWithImpl<$Res>;
+abstract class _$$_{{name.pascalCase()}}ModelCopyWith<$Res>
+    implements ${{name.pascalCase()}}ModelCopyWith<$Res> {
+  factory _$$_{{name.pascalCase()}}ModelCopyWith(
+          _$_{{name.pascalCase()}}Model value, $Res Function(_$_{{name.pascalCase()}}Model) then) =
+      __$$_{{name.pascalCase()}}ModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title});
 }
 
 /// @nodoc
-class __$$_ProfileModelCopyWithImpl<$Res>
-    extends _$ProfileModelCopyWithImpl<$Res, _$_ProfileModel>
-    implements _$$_ProfileModelCopyWith<$Res> {
-  __$$_ProfileModelCopyWithImpl(
-      _$_ProfileModel _value, $Res Function(_$_ProfileModel) _then)
+class __$$_{{name.pascalCase()}}ModelCopyWithImpl<$Res>
+    extends _${{name.pascalCase()}}ModelCopyWithImpl<$Res, _$_{{name.pascalCase()}}Model>
+    implements _$$_{{name.pascalCase()}}ModelCopyWith<$Res> {
+  __$$_{{name.pascalCase()}}ModelCopyWithImpl(
+      _$_{{name.pascalCase()}}Model _value, $Res Function(_$_{{name.pascalCase()}}Model) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_ProfileModelCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
   }) {
-    return _then(_$_ProfileModel(
+    return _then(_$_{{name.pascalCase()}}Model(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -96,25 +96,25 @@ class __$$_ProfileModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfileModel implements _ProfileModel {
-  const _$_ProfileModel({required this.title});
+class _$_{{name.pascalCase()}}Model implements _{{name.pascalCase()}}Model {
+  const _$_{{name.pascalCase()}}Model({required this.title});
 
-  factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileModelFromJson(json);
+  factory _$_{{name.pascalCase()}}Model.fromJson(Map<String, dynamic> json) =>
+      _$$_{{name.pascalCase()}}ModelFromJson(json);
 
   @override
   final String title;
 
   @override
   String toString() {
-    return 'ProfileModel(title: $title)';
+    return '{{name.pascalCase()}}Model(title: $title)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileModel &&
+            other is _$_{{name.pascalCase()}}Model &&
             (identical(other.title, title) || other.title == title));
   }
 
@@ -125,27 +125,27 @@ class _$_ProfileModel implements _ProfileModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>
-      __$$_ProfileModelCopyWithImpl<_$_ProfileModel>(this, _$identity);
+  _$$_{{name.pascalCase()}}ModelCopyWith<_$_{{name.pascalCase()}}Model> get copyWith =>
+      __$$_{{name.pascalCase()}}ModelCopyWithImpl<_$_{{name.pascalCase()}}Model>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileModelToJson(
+    return _$$_{{name.pascalCase()}}ModelToJson(
       this,
     );
   }
 }
 
-abstract class _ProfileModel implements ProfileModel {
-  const factory _ProfileModel({required final String title}) = _$_ProfileModel;
+abstract class _{{name.pascalCase()}}Model implements {{name.pascalCase()}}Model {
+  const factory _{{name.pascalCase()}}Model({required final String title}) = _$_{{name.pascalCase()}}Model;
 
-  factory _ProfileModel.fromJson(Map<String, dynamic> json) =
-      _$_ProfileModel.fromJson;
+  factory _{{name.pascalCase()}}Model.fromJson(Map<String, dynamic> json) =
+      _$_{{name.pascalCase()}}Model.fromJson;
 
   @override
   String get title;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>
+  _$$_{{name.pascalCase()}}ModelCopyWith<_$_{{name.pascalCase()}}Model> get copyWith =>
       throw _privateConstructorUsedError;
 }
