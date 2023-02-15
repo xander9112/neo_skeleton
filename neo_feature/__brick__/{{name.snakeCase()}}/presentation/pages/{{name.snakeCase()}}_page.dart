@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
-import '../../_ {{name.snakeCase()}}.dart';
+import '../../_{{name.snakeCase()}}.dart';
 
 class {{name.pascalCase()}}Page extends StatelessWidget {
   const {{name.pascalCase()}}Page({super.key});

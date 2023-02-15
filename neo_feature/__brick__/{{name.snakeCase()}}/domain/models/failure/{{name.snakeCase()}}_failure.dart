@@ -1,5 +1,5 @@
 import 'package:jnp/src/core/_core.dart';
-import '../../../_ {{name.snakeCase()}}.dart';
+import '../../../_{{name.snakeCase()}}.dart';
 
 class {{name.pascalCase()}}Failure extends Failure {
   {{name.pascalCase()}}Failure({

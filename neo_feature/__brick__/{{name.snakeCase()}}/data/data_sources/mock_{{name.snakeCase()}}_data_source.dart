@@ -1,4 +1,4 @@
-import '../../_ {{name.snakeCase()}}.dart';
+import '../../_{{name.snakeCase()}}.dart';
 
 class Mock{{name.pascalCase()}}DataSource implements {{name.pascalCase()}}DataSource {
   @override
