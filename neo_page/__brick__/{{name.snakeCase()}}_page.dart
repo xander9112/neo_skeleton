@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-{{#stateful}}
-class {{name.pascalCase()}}Page extends StatefulWidget {
+{{#stateful}}class {{name.pascalCase()}}Page extends StatefulWidget {
   const {{name.pascalCase()}}Page({super.key});
 
   @override
@@ -15,8 +14,7 @@ class _{{name.pascalCase()}}PageState extends State<{{name.pascalCase()}}Page> {
         body: const Center(child: Text('Stateful widget')),
     );
   }
-}
-{{/stateful}}
+}{{/stateful}}
 {{^stateful}}
 class {{name.pascalCase()}}Page extends StatelessWidget {
   const {{name.pascalCase()}}Page({super.key});
