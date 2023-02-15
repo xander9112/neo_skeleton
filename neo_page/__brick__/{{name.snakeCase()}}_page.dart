@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-{{#stateful}}class {{name.pascalCase()}}Page extends StatefulWidget {
+{{#stateful}}
+class {{name.pascalCase()}}Page extends StatefulWidget {
   const {{name.pascalCase()}}Page({super.key});
 
   @override
