@@ -18,7 +18,6 @@ class _{{name.pascalCase()}}PageState extends State<{{name.pascalCase()}}Page> {
   }
 }{{/stateful}}
 {{^stateful}}class {{name.pascalCase()}}Page extends StatelessWidget {
-
   const {{name.pascalCase()}}Page({super.key});
 
   @override
