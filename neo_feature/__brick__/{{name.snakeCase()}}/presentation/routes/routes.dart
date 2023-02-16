@@ -4,6 +4,6 @@ import '../../_{{name.snakeCase()}}.dart';
 const List<AutoRoute> {{name.camelCase()}}Routes = <AutoRoute<dynamic>>[
   AutoRoute<void>(
     page: {{name.pascalCase()}}Page,
-    path: '{{name.pascalCase()}}RoutePath.{{name.camelCase()}}',
+    path: {{name.pascalCase()}}RoutePath.{{name.camelCase()}},
   ),  
 ];
