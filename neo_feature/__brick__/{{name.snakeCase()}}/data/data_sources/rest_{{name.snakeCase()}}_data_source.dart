@@ -5,7 +5,7 @@ import '../../_{{name.snakeCase()}}.dart';
 part 'rest_{{name.snakeCase()}}_data_source.g.dart';
 
 @RestApi()
-abstract class Rest{{name.pascalCase()}}DataSource implements {{name.pascalCase()}}DataSource {
+abstract class Rest{{name.pascalCase()}}DataSource implements I{{name.pascalCase()}}DataSource {
   factory Rest{{name.pascalCase()}}DataSource(Dio dio, {String baseUrl}) = _Rest{{name.pascalCase()}}DataSource;
 
   @override

@@ -22,8 +22,7 @@ class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
       if (params.onResult != null) {
         params.onResult?.call(true);
       } else {
-        await _router.replaceNamed(RoutePath.main);
-        _router.removeLast();
+        await _router.goToMain(true);
       }
     }
 

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}_core/jnp_core.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
 part 'main_state.dart';
 part 'main_cubit.freezed.dart';
@@ -23,6 +24,6 @@ class MainCubit extends Cubit<MainState> {
     EnvConfig env, {
     bool useMock = false,
   }) async {
-    await Future<void>.delayed(const Duration(seconds: 2));
+    await MainInjection().init(env);
   }
 }

@@ -13,7 +13,7 @@ class {{name.pascalCase()}}Failure extends Failure {
       case 500:
         return CoreI18n.internalError;
       case 404:
-        return {{name.pascalCase()}}I18n.{{name.snakeCase()}}NotFound;
+        return {{name.pascalCase()}}I18n.{{name.camelCase()}}NotFound;
       default:
         return CoreI18n.unknownError;
     }

@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainInjection.sl<MainCubit>()..init(),
+      create: (context) => MainCubit()..init(),
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {
           return UiEither(

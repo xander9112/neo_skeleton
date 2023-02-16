@@ -14,8 +14,7 @@ class NavigateToMainUseCase implements UseCase<void, void Function(bool)?> {
     if (params != null) {
       params.call(true);
     } else {
-      unawaited(_router.replaceNamed(RoutePath.main));
-      _router.removeLast();
+      unawaited(_router.goToMain(true));
     }
   }
 }

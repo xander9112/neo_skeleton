@@ -15,7 +15,7 @@ class CheckAuthUseCase
       if (params.onResult != null) {
         params.onResult?.call(true);
       } else {
-        await _router.replaceNamed(RoutePath.main);
+        await _router.goToMain();
       }
     }
     return Right(isAuth);

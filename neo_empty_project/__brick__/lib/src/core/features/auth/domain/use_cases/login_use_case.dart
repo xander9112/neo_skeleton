@@ -21,7 +21,7 @@ class LoginUseCase
         if (params.onResult != null) {
           params.onResult?.call(true);
         } else {
-          unawaited(_router.replaceNamed(RoutePath.main));
+          unawaited(_router.goToMain());
         }
       }
 
