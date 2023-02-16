@@ -78,4 +78,32 @@ class AuthInjection extends ICoreInjection {
       )
       ..registerFactory(() => CheckPinCodeDialogCubit(sl()));
   }
+
+  @override
+  Future<void> close() async {
+    sl
+      ..unregister<AuthRouter>()
+      ..unregister<AuthManager<AuthenticatedUser>>()
+      ..unregister<AuthRepository<AuthModel, AuthenticatedUser>>()
+      ..unregister<BiometricRepository>()
+      ..unregister<LoginUseCase>()
+      ..unregister<CheckLocalAuthUseCase>()
+      ..unregister<CheckAuthUseCase>()
+      ..unregister<SetPinCodeUseCase>()
+      ..unregister<CheckPinCodeUseCase>()
+      ..unregister<CheckBiometryUseCase>()
+      ..unregister<GetBiometricSupportModel>()
+      ..unregister<SetBiometryUseCase>()
+      ..unregister<GetGlobalAuthSettingsUseCase>()
+      ..unregister<SubscribeAuthEventUseCase>()
+      ..unregister<SetBiometrySettingUseCase>()
+      ..unregister<SetNewPinCodeUseCase>()
+      ..unregister<GetAuthUseCase>()
+      ..unregister<CheckPinCodeFromDialogUseCase>()
+      ..unregister<SetLocalAuthUseCase>()
+      ..unregister<NavigateToMainUseCase>()
+      ..unregister<LoginCubit>()
+      ..unregister<LocalAuthCubit>()
+      ..unregister<CheckPinCodeDialogCubit>();
+  }
 }

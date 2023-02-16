@@ -25,6 +25,8 @@ abstract class ICoreInjection {
     await initUseCases(env, useMock: useMock);
     await initState(env, useMock: useMock);
   }
+
+  Future<void> close();
 }
 
 class CoreInjection extends ICoreInjection {
@@ -67,5 +69,15 @@ class CoreInjection extends ICoreInjection {
         setLocalAuthUseCase: sl(),
       ),
     );
+  }
+
+  @override
+  Future<void> close() async {
+    sl
+      ..unregister<AppAutoRouter>()
+      ..unregister<SecureStorageService>()
+      ..unregister<DialogService>()
+      ..unregister<ApiDioClient>()
+      ..unregister<SettingsCubit>();
   }
 }

@@ -7,9 +7,14 @@ class MainInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
-    sl.registerFactory(
-      MainCubit.new,
-    );
+  Future<void> init(EnvConfig env, {bool useMock = false}) async {
+    await super.init(env, useMock: useMock);
+
+    await HomeInjection().init(env, useMock: true);
+  }
+
+  @override
+  Future<void> close() async {
+    await HomeInjection().close();
   }
 }
