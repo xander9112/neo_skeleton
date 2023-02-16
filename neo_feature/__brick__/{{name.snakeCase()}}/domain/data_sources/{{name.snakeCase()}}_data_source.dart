@@ -1,5 +1,5 @@
 import '../../_{{name.snakeCase()}}.dart';
 
-abstract class I{{name.pascalCase()}}DataSource {
+abstract class {{name.pascalCase()}}DataSource {
   Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}();
 }

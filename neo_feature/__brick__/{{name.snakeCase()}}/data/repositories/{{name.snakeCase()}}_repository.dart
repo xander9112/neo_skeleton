@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
-class {{name.pascalCase()}}Repository implements I{{name.pascalCase()}}Repository {
+class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
   {{name.pascalCase()}}Repository(this._dataSource);
 
   final {{name.pascalCase()}}DataSource _dataSource;
