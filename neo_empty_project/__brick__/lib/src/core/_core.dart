@@ -2,7 +2,7 @@ export 'constants/_constants.dart';
 export 'di/_di.dart';
 export 'failure/failure.dart';
 export 'features/_features.dart';
-export 'localization/l10n.dart';
+export 'localization/i10n.dart';
 export 'navigation/_navigation.dart';
 export 'network/_network.dart';
 export 'services/_services.dart';
