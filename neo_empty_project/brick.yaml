@@ -44,3 +44,5 @@ vars:
     type: boolean
     default: true
     prompt: Do you need flavor?
+
+
