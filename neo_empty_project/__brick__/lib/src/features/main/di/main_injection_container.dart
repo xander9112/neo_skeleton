@@ -9,12 +9,8 @@ class MainInjection extends ICoreInjection {
   @override
   Future<void> init(EnvConfig env, {bool useMock = false}) async {
     await super.init(env, useMock: useMock);
-
-    await HomeInjection().init(env, useMock: true);
   }
 
   @override
-  Future<void> close() async {
-    await HomeInjection().close();
-  }
+  Future<void> close() async {}
 }
