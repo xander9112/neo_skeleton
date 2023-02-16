@@ -1,3 +1,3 @@
-export 'localization/i10n.dart';
+export 'localization/l10n.dart';
 export 'states/_states.dart';
 export 'widgets/_widgets.dart';
