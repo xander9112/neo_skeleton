@@ -28,7 +28,7 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
 
   @override
   Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
-    sl.registerFactory<I{{name.pascalCase()}}Repository>(() => {{name.pascalCase()}}Repository(sl()));
+    sl.registerFactory<{{name.pascalCase()}}Repository>(() => {{name.pascalCase()}}RepositoryImpl(sl()));
   }
 
   @override

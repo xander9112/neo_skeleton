@@ -9,11 +9,11 @@ part '{{name.snakeCase()}}_state.dart';
 
 class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
   {{name.pascalCase()}}Cubit({
-    required I{{name.pascalCase()}}Repository repository,
+    required {{name.pascalCase()}}Repository repository,
   })  : _repository = repository,
         super(const {{name.pascalCase()}}State.initial());
 
-  final I{{name.pascalCase()}}Repository _repository;
+  final {{name.pascalCase()}}Repository _repository;
 
   Future<void> init() async {
     await get{{name.pascalCase()}}();

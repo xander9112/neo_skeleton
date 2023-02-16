@@ -4,7 +4,7 @@ import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
-  {{name.pascalCase()}}Repository(this._dataSource);
+  {{name.pascalCase()}}RepositoryImpl(this._dataSource);
 
   final {{name.pascalCase()}}DataSource _dataSource;
 
