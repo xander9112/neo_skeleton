@@ -1,3 +1,3 @@
 abstract class {{name.pascalCase()}}RoutePath {
-  static const String {{name.camelCase()}} = '/{{name.paramCase()}}';
+  static const String {{name.camelCase()}} = '{{name.paramCase()}}';
 }
