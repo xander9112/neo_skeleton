@@ -8,8 +8,8 @@ class {{name.pascalCase()}}I18n {
       );
 
   static String get {{name.camelCase()}}NotFound => Intl.message(
-        '{{name.PascalCase()}} not found',
-        desc: 'Description for {{name.PascalCase()}} not found',
-        name: '{{name.pascalCase()}}I18n_{{name.snakeCase()}}NotFound',
+        '{{name.pascalCase()}} not found',
+        desc: 'Description for {{name.pascalCase()}} not found',
+        name: '{{name.pascalCase()}}I18n_{{name.camelCase()}}NotFound',
       );
 }
