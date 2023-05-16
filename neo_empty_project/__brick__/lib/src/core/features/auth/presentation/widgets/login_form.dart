@@ -42,8 +42,9 @@ class LoginForm extends StatelessWidget {
                 Expanded(
                   child: ReactiveTextField<String>(
                     formControlName: 'login',
-                    validationMessages: (control) =>
-                        {ValidationMessage.required: AuthI18n.loginRequired},
+                    validationMessages: {
+                      ValidationMessage.required: (_) => AuthI18n.loginRequired
+                    },
                   ),
                 ),
               ],
@@ -61,8 +62,9 @@ class LoginForm extends StatelessWidget {
                   child: ReactiveTextField<String>(
                     formControlName: 'password',
                     obscureText: true,
-                    validationMessages: (control) => {
-                      ValidationMessage.required: AuthI18n.passwordRequired,
+                 validationMessages: {
+                      ValidationMessage.required: (_) =>
+                          AuthI18n.passwordRequired,
                     },
                   ),
                 ),
