@@ -1,9 +1,6 @@
 include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false    
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
@@ -19,7 +16,7 @@ analyzer:
 linter:
   rules:
     avoid_positional_boolean_parameters: false
-  
+
     # ------ Disable individual rules ----- #
     #                 ---                   #
     # Turn off what you don't like.         #
@@ -27,9 +24,9 @@ linter:
 
     # Use parameter order as in json response
     always_put_required_named_parameters_first: true
-    
+
     depend_on_referenced_packages: false
-    
+
     omit_local_variable_types: false
 
     # Util classes are awesome!
@@ -54,7 +51,7 @@ linter:
     always_specify_types: false
 
     use_build_context_synchronously: false
-    
+
     no_leading_underscores_for_local_identifiers: false
 
     # Back to the 80s
