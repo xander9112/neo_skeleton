@@ -44,7 +44,7 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
       ..registerLazySingleton(SecureStorageService.new)
       ..registerSingleton<DialogService>(DialogService())

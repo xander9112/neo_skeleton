@@ -7,7 +7,7 @@ class ExternalInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl.registerLazySingleton(FlutterSecureStorage.new);
   }
 

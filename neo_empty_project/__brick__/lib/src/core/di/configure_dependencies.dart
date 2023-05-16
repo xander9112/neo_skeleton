@@ -5,12 +5,12 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
-  await ExternalInjection().init(env);
+  await ExternalInjection().init({{#useFlavor}}env{{/useFlavor}});
 
-  await CoreInjection().init(env);
+  await CoreInjection().init({{#useFlavor}}env{{/useFlavor}});
 
   //feature
-  await AuthInjection().init(env);
+  await AuthInjection().init({{#useFlavor}}env{{/useFlavor}});
 
   await additionalExternalInit();
 }

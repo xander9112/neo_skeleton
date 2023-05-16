@@ -12,7 +12,7 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
   }
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     if (useMock) {
       sl.registerFactory<{{name.pascalCase()}}DataSource>(
         Mock{{name.pascalCase()}}DataSource.new,
