@@ -28,7 +28,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
+ Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
       ..registerFactory<AuthRepository<AuthModel, AuthenticatedUser>>(
         () => AuthRepositoryImpl(sl(), sl()),
@@ -39,7 +39,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {
+ Future<void> initUseCases({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
       ..registerFactory(() => LoginUseCase(sl(), sl()))
       ..registerFactory(() => CheckLocalAuthUseCase(sl()))
@@ -60,7 +60,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+ Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
       ..registerFactory(
         () => LoginCubit(loginUseCase: sl(), checkAuthUseCase: sl()),

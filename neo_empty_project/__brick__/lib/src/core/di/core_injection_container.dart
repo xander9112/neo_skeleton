@@ -57,7 +57,7 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+ Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl.registerLazySingleton(
       () => SettingsCubit(
         subscriptAuthEventUseCase: sl(),
