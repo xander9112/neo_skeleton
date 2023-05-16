@@ -24,6 +24,6 @@ class MainCubit extends Cubit<MainState> {
     {{#useFlavor}}EnvConfig env,{{/useFlavor}} {
     bool useMock = false,
   }) async {
-    await MainInjection().init(env);
+    await MainInjection().init({{#useFlavor}}env{{/useFlavor}});
   }
 }
