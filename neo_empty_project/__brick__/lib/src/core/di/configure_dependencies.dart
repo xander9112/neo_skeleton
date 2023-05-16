@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
-Future<void> configureDependencies(EnvConfig env) async {
+Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
   await ExternalInjection().init(env);
 
   await CoreInjection().init(env);

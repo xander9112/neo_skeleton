@@ -14,14 +14,14 @@ class MainCubit extends Cubit<MainState> {
     emit(state.copyWith(status: FetchStatus.fetchingInProgress));
 
     try {
-      await _configureDependencies(await Env.getCurrentEnv(), useMock: true);
+      await _configureDependencies({{#useFlavor}}await Env.getCurrentEnv(), {{/useFlavor}}useMock: true);
     } finally {
       emit(state.copyWith(status: FetchStatus.fetchingSuccess));
     }
   }
 
   Future<void> _configureDependencies(
-    EnvConfig env, {
+    {{#useFlavor}}EnvConfig env,{{/useFlavor}} {
     bool useMock = false,
   }) async {
     await MainInjection().init(env);

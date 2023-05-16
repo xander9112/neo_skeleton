@@ -12,7 +12,7 @@ class App {
   static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     await _initCommon();
 
-    await _initEnv(env);
+    await _initEnv({{#useFlavor}}env{{/useFlavor}});
 
     await _initDependencies({{#useFlavor}}env{{/useFlavor}});
 
@@ -38,8 +38,8 @@ class App {
 
   static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
-  static Future<void> _initEnv(EnvConfig env) async {
-    await dotenv.load(fileName: '.${env.name}.env');
+  static Future<void> _initEnv({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
+    {{#useFlavor}}await dotenv.load(fileName: '.${env.name}.env');{{/useFlavor}}
   }
 
   static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
