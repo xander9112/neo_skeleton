@@ -7,7 +7,7 @@ class MainInjection extends ICoreInjection {
 
   @override
  Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
-    await super.init({{#useFlavor}}env,{{/useFlavor}}, useMock: useMock);
+    await super.init({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
   }
 
   @override
