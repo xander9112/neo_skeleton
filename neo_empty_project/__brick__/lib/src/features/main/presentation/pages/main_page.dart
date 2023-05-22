@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
+import 'package:super_banners/super_banners.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -10,7 +12,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainCubit()..init(),
+      create: (context) => GetIt.I<MainCubit>()..init(),
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {
           return UiEither(

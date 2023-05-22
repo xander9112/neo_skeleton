@@ -22,6 +22,7 @@ class AuthInjection extends ICoreInjection {
             useBiometric: !kIsWeb,
             useLocalAuth: {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}},
           ),
+          demoUserRepository: DemoUserRepositoryImpl(),
         ),
       )
       ..registerFactory<RestAuthDataSource>(MockAuthDataSource.new);

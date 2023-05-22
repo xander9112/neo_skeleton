@@ -3,6 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
 Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
   await ExternalInjection().init({{#useFlavor}}env{{/useFlavor}});

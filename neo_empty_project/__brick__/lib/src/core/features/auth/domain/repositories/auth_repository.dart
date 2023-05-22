@@ -33,4 +33,8 @@ abstract class AuthRepository<A, U> {
   Future<bool> useLocalAuth();
 
   Future<void> deleteUseLocalAuth();
+
+  Future<Either<Failure, U>> getCurrentUser();
+
+  Future<Either<Failure, void>> setCurrentUser(U user);
 }

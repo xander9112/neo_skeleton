@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
 class MainInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
@@ -12,7 +13,7 @@ class MainInjection extends ICoreInjection {
 
   @override
   Future<void> initState(EnvConfig env, {bool useMock = false}) async {
-    sl.registerFactory(
+    sl.registerFactory<MainCubit>(
       () => buildDependency<MainCubit>(
         useMock: useMock,
         factoryFunc: () => MainCubit(false),

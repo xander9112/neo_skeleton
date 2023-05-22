@@ -55,6 +55,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     required this.authRepository,
     required this.biometricRepository,
     required super.settings,
+    this.demoUserRepository,
   }) {
     init();
   }
@@ -87,6 +88,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
 
   }
+
+  final DemoUserRepository? demoUserRepository;
 
   final AuthRepository<AuthModel, AuthenticatedUser> authRepository;
 
