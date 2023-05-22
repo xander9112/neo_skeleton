@@ -12,6 +12,8 @@ Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) as
   //feature
   await AuthInjection().init({{#useFlavor}}env{{/useFlavor}});
 
+  await MainInjection().init(env);
+
   await additionalExternalInit();
 }
 

@@ -11,5 +11,16 @@ class MainInjection extends ICoreInjection {
   }
 
   @override
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+    sl.registerFactory(
+      () => buildDependency<MainCubit>(
+        useMock: useMock,
+        factoryFunc: () => MainCubit(false),
+        mockFactoryFunc: () => MainCubit(true),
+      ),
+    );
+  }
+
+  @override
   Future<void> close() async {}
 }

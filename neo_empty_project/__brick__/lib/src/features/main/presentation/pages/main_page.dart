@@ -25,7 +25,20 @@ class MainPage extends StatelessWidget {
                 final tabsRouter = AutoTabsRouter.of(context);
 
                 return Scaffold(
-                  body: FadeTransition(opacity: animation, child: child),
+                  body: Stack(
+                    children: [
+                      FadeTransition(opacity: animation, child: child),
+                      Visibility(
+                        visible: state.isDemo,
+                        child: CornerBanner(
+                          bannerColor: Colors.cyan,
+                          shadowColor: Colors.black.withOpacity(0.8),
+                          elevation: 5,
+                          child: const Text('Demo'),
+                        ),
+                      ),
+                    ],
+                  ),
                   bottomNavigationBar: BottomNavigationBar(
                     currentIndex: tabsRouter.activeIndex,
                     onTap: tabsRouter.setActiveIndex,

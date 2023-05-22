@@ -129,6 +129,14 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
     firstName: '',
   );
 
+  static const AuthenticatedUser demo = AuthenticatedUser(
+    id: -2,
+    email: 'demo',
+    login: 'demo',
+    lastName: 'demo',
+    firstName: 'demo',
+  );
+
   String get fullName => '$lastName $firstName';
 
   String get shortName {
