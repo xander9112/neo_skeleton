@@ -46,6 +46,8 @@ abstract class AuthManager<U> extends ChangeNotifier {
   Future<bool> checkBiometry();
 
   Future<Either<Failure, U>> verify();
+
+  bool get mocked;
 }
 
 class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
@@ -53,9 +55,13 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     required this.authRepository,
     required this.biometricRepository,
     required super.settings,
+    this.demoUserRepository,
   }) {
     init();
   }
+
+  @override
+  bool get mocked => _mocked;
 
   Future<void> init() async {
     settings.useLocalAuth = await authRepository.useLocalAuth();
@@ -64,8 +70,26 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
       await signOut();
 
       authenticated = false;
+
+      return;
     }
+
+    await authRepository.getCurrentUser().then(
+          (user) => user.fold(
+            (l) => _user = AuthenticatedUser.empty,
+            (r) => _user = r,
+          ),
+        );
+
+    if (user == AuthenticatedUser.demo) {
+      _mocked = true;
+      notifyListeners();
+    }
+
+
   }
+
+  final DemoUserRepository? demoUserRepository;
 
   final AuthRepository<AuthModel, AuthenticatedUser> authRepository;
 
@@ -74,6 +98,9 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   AuthenticatedUser _user = AuthenticatedUser.empty;
 
   bool _authenticated = false;
+
+  bool _mocked = false;
+
 
   @override
   Future<bool> get isAuth async {
@@ -110,8 +137,30 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     notifyListeners();
   }
 
+  Future<bool> _checkDemoUser(String login, String password) async {
+    return demoUserRepository?.signIn(login, password) ?? Future.value(false);
+  }
+
   @override
   Future<Either<Failure, bool>> signIn(String login, String password) async {
+
+    final isDemoUser = await _checkDemoUser(login, password);
+
+    if (isDemoUser) {
+      await authRepository.setAccessToken('demo');
+
+      _user = AuthenticatedUser.demo;
+
+      await authRepository.setCurrentUser(user);
+
+      _mocked = true;
+
+      notifyListeners();
+      debugPrint('<AuthManager> Mocked auth =  true');
+      return const Right(true);
+    }
+
+
     final result = await authRepository.signIn(login, password);
 
     return result.fold(Left.new, (authModel) async {
@@ -128,6 +177,12 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   @override
   Future<Either<Failure, bool>> signOut({bool remote = true}) async {
+
+    if (mocked) {
+      await _clear();
+      return const Right(true);
+    }
+
     if (remote) {
       final result = await authRepository.signOut();
 
@@ -157,6 +212,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     await biometricRepository.deleteUseBiometric();
 
     _locked = true;
+
+    _mocked = false;
 
     authenticated = false;
 
@@ -223,6 +280,15 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   @override
   Future<Either<Failure, AuthenticatedUser>> verify() async {
     /// Проверка на наличие обновление и другие проверки
+    /// 
+    if (mocked) {
+      _user = AuthenticatedUser.demo;
+
+      _mocked = true;
+      notifyListeners();
+
+      return Right(_user);
+    }
 
     isChecked = true;
 

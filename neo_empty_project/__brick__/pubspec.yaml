@@ -32,7 +32,8 @@ dependencies:
   json_serializable: ^6.6.1
   local_auth: ^2.1.3
   reactive_forms: ^14.3.0
-  retrofit: ^4.0.1  
+  retrofit: ^4.0.1
+  super_banners: ^0.0.1  
   {{name.snakeCase()}}_core:
     path: ./packages/{{name.snakeCase()}}_core
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
@@ -84,6 +86,9 @@ class AuthRepositoryImpl
         request: <String, dynamic>{'login': login, 'password': password},
       );
 
+       await _secureStorageService
+          .saveCurrentUser(jsonEncode(result.user.toJson()));
+
       return Right(result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.unknown) {
@@ -106,6 +111,8 @@ class AuthRepositoryImpl
   Future<Either<Failure, bool>> signOut() async {
     try {
       await _restAuthDataSource.signOut();
+
+      await _secureStorageService.removeCurrentUser();
 
       return const Right(true);
     } on DioError catch (e) {
@@ -130,6 +137,8 @@ class AuthRepositoryImpl
     try {
       final result = await _restAuthDataSource.verify();
 
+      await _secureStorageService.saveCurrentUser(jsonEncode(result.toJson()));
+
       return Right(result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.unknown) {
@@ -144,6 +153,37 @@ class AuthRepositoryImpl
     } catch (e) {
       return Left(
         AuthFailure(code: 0, message: e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, AuthenticatedUser>> getCurrentUser() async {
+    try {
+      final user = await _secureStorageService.getCurrentUser();
+      if (user != null) {
+        return Right(AuthenticatedUser.fromJson(jsonDecode(user)));
+      }
+
+      return Left(
+        AuthFailure(code: 0, message: ''),
+      );
+    } catch (e) {
+      return Left(
+        AuthFailure(code: 0, message: ''),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> setCurrentUser(AuthenticatedUser user) async {
+    try {
+      await _secureStorageService.saveCurrentUser(jsonEncode(user));
+
+      return const Right(null);
+    } catch (e) {
+      return Left(
+        AuthFailure(code: 0, message: ''),
       );
     }
   }

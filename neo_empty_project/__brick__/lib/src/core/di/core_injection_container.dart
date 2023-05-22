@@ -27,6 +27,41 @@ abstract class ICoreInjection {
   }
 
   Future<void> close();
+
+
+  T Function<T>({
+    required bool useMock,
+    required T Function() factoryFunc,
+    required T Function() mockFactoryFunc,
+  }) buildDependency = <T>({
+    required bool useMock,
+    required T Function() factoryFunc,
+    required T Function() mockFactoryFunc,
+  }) {
+    if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
+      return mockFactoryFunc();
+    }
+
+    return factoryFunc();
+  };
+
+  T Function<T>(
+    bool useMock,
+    EnvConfig env,
+    T Function(EnvConfig) factoryFunc,
+    T Function(EnvConfig) mockFactoryFunc,
+  ) buildDependencyWithEnv = <T>(
+    useMock,
+    env,
+    T Function(EnvConfig) factoryFunc,
+    T Function(EnvConfig) mockFactoryFunc,
+  ) {
+    if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
+      return mockFactoryFunc(env);
+    }
+
+    return factoryFunc(env);
+  };
 }
 
 class CoreInjection extends ICoreInjection {

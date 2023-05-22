@@ -4,5 +4,6 @@ part of 'main_cubit.dart';
 class MainState with _$MainState {
   const factory MainState({
     @Default(FetchStatus.pure) FetchStatus status,
+    @Default(false) bool isDemo,
   }) = _Initial;
 }

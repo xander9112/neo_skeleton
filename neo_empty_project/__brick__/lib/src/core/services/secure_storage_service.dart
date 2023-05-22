@@ -139,4 +139,26 @@ class SecureStorageService {
 
     return _secureStorage.delete(key: 'use_local_auth');
   }
+
+  Future<void> saveCurrentUser(String value) async {
+    return _secureStorage.write(
+      key: 'currentUser',
+      value: value,
+      aOptions: _getAndroidOptions(),
+    );
+  }
+
+  Future<String?> getCurrentUser() async {
+    return _secureStorage.read(
+      key: 'currentUser',
+      aOptions: _getAndroidOptions(),
+    );
+  }
+
+  Future<String?> removeCurrentUser() async {
+    await saveCurrentUser('');
+
+    await _secureStorage.delete(key: 'currentUser');
+    return null;
+  }
 }
