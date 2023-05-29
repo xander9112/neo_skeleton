@@ -7,11 +7,6 @@ class LocalAuthGuard extends AutoRouteGuard {
   final AuthManager<AuthenticatedUser> authManager;
 
   @override
-  Future<bool> canNavigate(RouteMatch<dynamic> route) async {
-    return !authManager.locked;
-  }
-
-  @override
   Future<void> onNavigation(
     NavigationResolver resolver,
     StackRouter router,

@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           LocaleSwitcher(),
           LocalAuthSwitcher(),
           BiometrySwitcher(),

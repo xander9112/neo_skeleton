@@ -27,9 +27,4 @@ class AuthGuard extends AutoRouteGuard {
       ),
     );
   }
-
-  @override
-  Future<bool> canNavigate(RouteMatch<dynamic> route) async {
-    return authManager.isAuth;
-  }
 }

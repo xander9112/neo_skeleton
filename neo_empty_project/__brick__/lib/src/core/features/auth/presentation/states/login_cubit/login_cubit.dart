@@ -17,10 +17,10 @@ class LoginCubit extends Cubit<LoginState> {
 
   final FormGroup form = FormGroup(<String, AbstractControl<dynamic>>{
     'login': FormControl<String>(
-      validators: <ValidatorFunction>[Validators.required],
+      validators: <Validator<dynamic>>[Validators.required],
     ),
     'password': FormControl<String>(
-      validators: <ValidatorFunction>[Validators.required],
+      validators: <Validator<dynamic>>[Validators.required],
     ),
   });
 
