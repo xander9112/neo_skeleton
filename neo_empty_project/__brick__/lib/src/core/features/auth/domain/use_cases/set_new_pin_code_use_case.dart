@@ -15,7 +15,7 @@ class SetNewPinCodeUseCase extends UseCase<void, NoParams> {
 
     if (result) {
       await authManager.removePinCode();
-      //TODO: dialog
+      // TODO(username): dialog
       authManager.locked = true;
     }
   }

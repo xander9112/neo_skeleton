@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
+@RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key, this.onResult});
 

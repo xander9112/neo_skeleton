@@ -1,14 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class AuthGuard extends AutoRedirectGuard {
-  AuthGuard(this.authManager) {
-    authManager.addListener(() async {
-      if (!await authManager.isAuth) {
-        reevaluate();
-      }
-    });
-  }
+class AuthGuard extends AutoRouteGuard {
+  AuthGuard(this.authManager);
 
   final AuthManager<AuthenticatedUser> authManager;
 

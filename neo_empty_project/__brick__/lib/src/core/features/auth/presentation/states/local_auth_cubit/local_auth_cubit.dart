@@ -156,7 +156,6 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         (failure) => emit(
               LocalAuthState.enterPin(
                 error: AuthI18n.unknownError,
-                length: 4,
                 biometricSupportModel: biometricSupportModel,
               ),
             ), (isSuccess) async {
@@ -168,7 +167,6 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         emit(
           LocalAuthState.enterPin(
             error: AuthI18n.invalidPin,
-            length: 4,
             biometricSupportModel: biometricSupportModel,
           ),
         );

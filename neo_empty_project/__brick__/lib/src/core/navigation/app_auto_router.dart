@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
@@ -9,14 +8,10 @@ import 'package:{{name.snakeCase()}}/src/features/splash/_splash.dart';
 
 part 'app_auto_router.gr.dart';
 
-@AdaptiveAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute<dynamic>>[...splashRoutes, ...authRoutes, ...mainRoutes],
 )
 class AppAutoRouter extends _$AppAutoRouter {
-  AppAutoRouter({
-    required super.authGuard,
-    required super.updateGuard,
-    required super.localAuthGuard,
-  });
+  @override
+  List<AutoRoute> get routes => [...splashRoutes, ...authRoutes, ...mainRoutes];
 }

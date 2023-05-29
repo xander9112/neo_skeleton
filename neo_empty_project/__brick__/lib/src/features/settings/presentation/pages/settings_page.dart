@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
+@RoutePage()
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
@@ -17,7 +19,7 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           LocaleSwitcher(),

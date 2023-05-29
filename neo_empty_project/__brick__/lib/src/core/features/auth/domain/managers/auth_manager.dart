@@ -253,7 +253,6 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   Future<BiometricSupportModel> getBiometricSupportModel() async {
     if (!settings.useBiometric) {
       return const BiometricSupportModel(
-        status: BiometricStatus.notAvailable,
         useBiometric: false,
       );
     }

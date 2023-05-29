@@ -1,29 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-const List<AutoRoute> authRoutes = <AutoRoute<dynamic>>[
-  CustomRoute<void>(
+List<AutoRoute> authRoutes = [
+  CustomRoute(
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    page: LoginPage,
+    page: LoginRoute.page,
     path: RoutePath.authSignIn,
-    guards: <Type>[UpdateGuard],
+    guards: <AutoRouteGuard>[
+      UpdateGuard(AuthInjection.sl<AuthManager<AuthenticatedUser>>())
+    ],
   ),
-  CustomRoute<void>(
+  CustomRoute(
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    page: PinCodePage,
+    page: PinCodeRoute.page,
     path: RoutePath.pin,
-    guards: <Type>[UpdateGuard],
+    guards: <AutoRouteGuard>[
+      UpdateGuard(AuthInjection.sl<AuthManager<AuthenticatedUser>>())
+    ],
   ),
-  /* CustomRoute<void>(
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-    page: PinCodeCreatePage,
-    path: RoutePath.pinNew,
-    guards: <Type>[UpdateGuard],
-  ),
-  CustomRoute<void>(
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-    page: PinCodeEnterPage,
-    path: RoutePath.pinEnter,
-    guards: <Type>[UpdateGuard],
-  ),*/
 ];

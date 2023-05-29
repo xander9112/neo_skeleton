@@ -6,6 +6,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 import 'package:super_banners/super_banners.dart';
 
+@RoutePage()
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
@@ -21,15 +22,19 @@ class MainPage extends StatelessWidget {
             onTrue: AutoTabsRouter(
               routes: const [
                 HomeRoute(),
-                SettingsRootRouter(),
+                SettingsRouter(),
               ],
-              builder: (context, child, animation) {
+              transitionBuilder: (context, child, animation) => FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+              builder: (context, child) {
                 final tabsRouter = AutoTabsRouter.of(context);
 
                 return Scaffold(
                   body: Stack(
                     children: [
-                      FadeTransition(opacity: animation, child: child),
+                      child,
                       Visibility(
                         visible: state.isDemo,
                         child: CornerBanner(

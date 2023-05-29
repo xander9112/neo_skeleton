@@ -19,8 +19,8 @@ abstract class RoutePath {
   static const String user = 'users/:id';
 
   static const String home = 'home';
-  
-  static const String pin = 'pin';
+
+  static const String pin = '/auth/pin';
 }
 
 extension RouteWithParams on String {

@@ -70,11 +70,7 @@ class CoreInjection extends ICoreInjection {
   @override
   Future<void> initRouter() async {
     sl.registerLazySingleton<AppAutoRouter>(
-      () => AppAutoRouter(
-        localAuthGuard: LocalAuthGuard(sl()),
-        authGuard: AuthGuard(sl()),
-        updateGuard: UpdateGuard(sl()),
-      ),
+      AppAutoRouter.new,
     );
   }
 

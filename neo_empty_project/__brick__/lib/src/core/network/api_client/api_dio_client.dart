@@ -90,8 +90,11 @@ class ApiDioClient {
     Response<dynamic> response,
     ResponseInterceptorHandler handler,
   ) async {
+    // ignore: avoid_dynamic_calls
     if (response.data.runtimeType != String) {
+      // ignore: avoid_dynamic_calls
       if (response.data != null && response.data['data'] != null) {
+        // ignore: avoid_dynamic_calls
         response.data = response.data['data'];
       }
     }
