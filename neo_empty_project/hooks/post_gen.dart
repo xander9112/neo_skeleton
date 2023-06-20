@@ -65,3 +65,20 @@ Future<void> _buildLaunchIcons(HookContext context) async {
 
   progress.complete();
 }
+
+Future<void> _dartFix(HookContext context) async {
+  final progress = context.logger.progress('Fix');
+
+  final List<String> commands = ['fix', '--apply'];
+
+  await Process.run('dart', commands).onError(
+    (error, stackTrace) {
+      return Process.run(
+        'dart',
+        [...commands],
+      );
+    },
+  );
+
+  progress.complete();
+}
