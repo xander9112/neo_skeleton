@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+{{#useFlavor}}import 'package:flutter_dotenv/flutter_dotenv.dart';{{/useFlavor}}
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localization_delegate.dart';
 import 'package:{{name.snakeCase()}}/l10n/app_localizations.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
 
 class App {
   static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
