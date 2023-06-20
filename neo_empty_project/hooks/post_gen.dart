@@ -17,8 +17,8 @@ Future<void> _installPackages(HookContext context) async {
   await Process.run('flutter', commands).onError(
     (error, stackTrace) {
       return Process.run(
-        'fvm',
-        ['flutter', ...commands],
+        'flutter',
+        [...commands],
       );
     },
   );
@@ -40,8 +40,8 @@ Future<void> _buildProject(HookContext context) async {
   await Process.run('flutter', commands).onError(
     (error, stackTrace) {
       return Process.run(
-        'fvm',
-        ['flutter', ...commands],
+        'flutter',
+        [...commands],
       );
     },
   );
@@ -57,8 +57,8 @@ Future<void> _buildLaunchIcons(HookContext context) async {
   await Process.run('flutter', commands).onError(
     (error, stackTrace) {
       return Process.run(
-        'fvm',
-        ['flutter', ...commands],
+        'flutter',
+        [...commands],
       );
     },
   );
