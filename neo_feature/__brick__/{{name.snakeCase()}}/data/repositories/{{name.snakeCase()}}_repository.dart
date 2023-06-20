@@ -14,7 +14,7 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
       final response = await _dataSource.get{{name.pascalCase()}}();
 
       return Right(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       if (error.response?.statusCode == 404) {
         return Left({{name.pascalCase()}}Failure(code: 1, message: '1'));
       }

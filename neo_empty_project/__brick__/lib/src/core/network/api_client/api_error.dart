@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-class DioUnauthorizedError extends DioError {
+class DioUnauthorizedError extends DioException {
   DioUnauthorizedError({
     required super.requestOptions,
     required super.type,
@@ -25,7 +25,7 @@ class DioUnauthorizedError extends DioError {
   }
 }
 
-class DioForbiddenError extends DioError {
+class DioForbiddenError extends DioException {
   DioForbiddenError({
     required super.requestOptions,
     required super.type,
@@ -49,7 +49,7 @@ class DioForbiddenError extends DioError {
   }
 }
 
-class DioTooManyRequestsError extends DioError {
+class DioTooManyRequestsError extends DioException {
   DioTooManyRequestsError({
     required super.requestOptions,
     required super.type,
@@ -73,7 +73,7 @@ class DioTooManyRequestsError extends DioError {
   }
 }
 
-class DioMethodNotAllowedError extends DioError {
+class DioMethodNotAllowedError extends DioException {
   DioMethodNotAllowedError({
     required super.requestOptions,
     required super.type,
@@ -97,7 +97,7 @@ class DioMethodNotAllowedError extends DioError {
   }
 }
 
-class DioBadRequestError extends DioError {
+class DioBadRequestError extends DioException {
   DioBadRequestError({
     required super.requestOptions,
     required super.type,
@@ -127,7 +127,7 @@ class DioBadRequestError extends DioError {
   }
 }
 
-class DioUnprocessableEntityError extends DioError {
+class DioUnprocessableEntityError extends DioException {
   DioUnprocessableEntityError({
     required super.requestOptions,
     required super.type,
@@ -167,7 +167,7 @@ class DioUnprocessableEntityError extends DioError {
   }
 }
 
-class DioAuthenticationTimeoutError extends DioError {
+class DioAuthenticationTimeoutError extends DioException {
   DioAuthenticationTimeoutError({
     required super.requestOptions,
     required super.type,
@@ -185,7 +185,7 @@ class DioAuthenticationTimeoutError extends DioError {
   }
 }
 
-class DioNotFoundError extends DioError {
+class DioNotFoundError extends DioException {
   DioNotFoundError({
     required super.requestOptions,
     required super.type,
@@ -215,7 +215,7 @@ class DioNotFoundError extends DioError {
   }
 }
 
-class DioInternalServerError extends DioError {
+class DioInternalServerError extends DioException {
   DioInternalServerError({
     required super.requestOptions,
     required super.type,
@@ -245,7 +245,7 @@ class DioInternalServerError extends DioError {
   }
 }
 
-class DioBadGatewayError extends DioError {
+class DioBadGatewayError extends DioException {
   DioBadGatewayError({
     required super.requestOptions,
     required super.type,
@@ -275,7 +275,7 @@ class DioBadGatewayError extends DioError {
   }
 }
 
-class DioGatewayTimeoutError extends DioError {
+class DioGatewayTimeoutError extends DioException {
   DioGatewayTimeoutError({
     required super.requestOptions,
     required super.type,
@@ -305,7 +305,7 @@ class DioGatewayTimeoutError extends DioError {
   }
 }
 
-class DioServiceUnavailableError extends DioError {
+class DioServiceUnavailableError extends DioException {
   DioServiceUnavailableError({
     required super.requestOptions,
     required super.type,
@@ -335,7 +335,7 @@ class DioServiceUnavailableError extends DioError {
   }
 }
 
-class DioNetworkError extends DioError {
+class DioNetworkError extends DioException {
   DioNetworkError({
     required super.requestOptions,
     required super.type,
@@ -353,7 +353,7 @@ class DioNetworkError extends DioError {
   }
 }
 
-class DioConnectTimeoutError extends DioError {
+class DioConnectTimeoutError extends DioException {
   DioConnectTimeoutError({
     required super.requestOptions,
     required super.type,
@@ -367,7 +367,7 @@ class DioConnectTimeoutError extends DioError {
   }
 }
 
-class DioCancelError extends DioError {
+class DioCancelError extends DioException {
   DioCancelError({
     required super.requestOptions,
     required super.type,

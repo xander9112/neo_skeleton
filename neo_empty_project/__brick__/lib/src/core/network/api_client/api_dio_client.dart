@@ -102,8 +102,8 @@ class ApiDioClient {
     return handler.next(response);
   }
 
-  Future<void> _onError(DioError e, ErrorInterceptorHandler handler) async {
-    late DioError error;
+  Future<void> _onError(DioException e, ErrorInterceptorHandler handler) async {
+    late DioException error;
 
     switch (e.response?.statusCode) {
       case DioForbiddenError.code:
@@ -226,23 +226,23 @@ class ApiDioClient {
             error: e.error,
             response: e.response,
           );
-        } else if (e.type == DioErrorType.connectionTimeout ||
-            e.type == DioErrorType.receiveTimeout ||
-            e.type == DioErrorType.sendTimeout) {
+        } else if (e.type == DioExceptionType.connectionTimeout ||
+            e.type == DioExceptionType.receiveTimeout ||
+            e.type == DioExceptionType.sendTimeout) {
           error = DioConnectTimeoutError(
             requestOptions: e.requestOptions,
             type: e.type,
             error: e.error,
             response: e.response,
           );
-        } else if (e.type == DioErrorType.unknown) {
+        } else if (e.type == DioExceptionType.unknown) {
           error = DioConnectTimeoutError(
             requestOptions: e.requestOptions,
             type: e.type,
             error: e.error,
             response: e.response,
           );
-        } else if (e.type == DioErrorType.cancel) {
+        } else if (e.type == DioExceptionType.cancel) {
           error = DioCancelError(
             requestOptions: e.requestOptions,
             type: e.type,

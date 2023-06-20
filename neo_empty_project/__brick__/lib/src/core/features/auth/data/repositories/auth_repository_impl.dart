@@ -90,8 +90,8 @@ class AuthRepositoryImpl
           .saveCurrentUser(jsonEncode(result.user.toJson()));
 
       return Right(result);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.unknown) {
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
         return Left(
           AuthFailure(code: 0, message: ''),
         );
@@ -115,8 +115,8 @@ class AuthRepositoryImpl
       await _secureStorageService.removeCurrentUser();
 
       return const Right(true);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.unknown) {
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
         return Left(
           AuthFailure(code: 0, message: ''),
         );
@@ -140,8 +140,8 @@ class AuthRepositoryImpl
       await _secureStorageService.saveCurrentUser(jsonEncode(result.toJson()));
 
       return Right(result);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.unknown) {
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
         return Left(
           AuthFailure(code: 0, message: ''),
         );
