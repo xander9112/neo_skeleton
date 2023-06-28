@@ -15,13 +15,15 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
 
       return Right(response);
     } on DioException catch (error) {
-      if (error.response?.statusCode == 404) {
-        return Left({{name.pascalCase()}}Failure(code: 1, message: '1'));
-      }
+       return Left(
+        {{name.pascalCase()}}Failure(
+          code: error.response?.statusCode ?? 1,
+          message: error.response?.data.toString() ?? error.errorMessage,
+        ),
+      );
 
-      rethrow;
     } catch (error) {
-      return Left({{name.pascalCase()}}Failure(code: 1, message: '1'));
+      return Left({{name.pascalCase()}}Failure(code: 1, message: error.toString()));
     }
   }
 }
