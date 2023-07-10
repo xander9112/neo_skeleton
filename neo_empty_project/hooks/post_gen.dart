@@ -73,7 +73,7 @@ Future<void> _dartFix(HookContext context) async {
 
   final List<String> commands = ['fix', '--apply'];
 
-  new Directory('./android/app/src/main/kotlin/com/example').delete(recursive: true);  
+  new Directory('./android/app/src/main/kotlin/com/example').delete(recursive: true);
 
   await Process.run('dart', commands).onError(
     (error, stackTrace) {
