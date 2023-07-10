@@ -75,7 +75,7 @@ Future<void> _dartFix(HookContext context) async {
 
 //  new Directory('./android').delete(recursive: true)
 
-context.logger.log((new Directory('./android')));
+context.logger.info((new Directory('./android')));
 
   await Process.run('dart', commands).onError(
     (error, stackTrace) {
