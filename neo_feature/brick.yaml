@@ -25,4 +25,7 @@ vars:
     type: string
     description: Project name
     prompt: What is project name?
-  
+  useFlavor:
+    type: boolean
+    default: true
+    prompt: Do you need flavor?
