@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
+@RoutePage()
 class {{name.pascalCase()}}Page extends StatelessWidget {
   const {{name.pascalCase()}}Page({super.key});
 
@@ -22,12 +23,7 @@ class {{name.pascalCase()}}Page extends StatelessWidget {
               return Center(
                 child: Column(
                   children: [
-                    Text(
-                      state.error ?? '',
-                      style: context.defaultText.bodyLarge?.copyWith(
-                        color: context.colorScheme.error,
-                      ),
-                    )
+                    Text(state.error ?? '')
                   ],
                 ),
               );
