@@ -26,9 +26,6 @@ abstract class ICoreInjection {
     await initState({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
   }
 
-  Future<void> close();
-
-
   T Function<T>({
     required bool useMock,
     required T Function() factoryFunc,
@@ -100,15 +97,5 @@ class CoreInjection extends ICoreInjection {
         setLocalAuthUseCase: sl(),
       ),
     );
-  }
-
-  @override
-  Future<void> close() async {
-    sl
-      ..unregister<AppAutoRouter>()
-      ..unregister<SecureStorageService>()
-      ..unregister<DialogService>()
-      ..unregister<ApiDioClient>()
-      ..unregister<SettingsCubit>();
   }
 }

@@ -20,8 +20,5 @@ class MainInjection extends ICoreInjection {
         mockFactoryFunc: () => MainCubit(true),
       ),
     );
-  }
-
-  @override
-  Future<void> close() async {}
+  }  
 }
