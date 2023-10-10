@@ -12,6 +12,8 @@ part 'settings_state.dart';
 
 class SettingsCubit extends HydratedCubit<SettingsState> {
   SettingsCubit({
+    required this.appInfo,
+    required this.deviceInfo,
     required this.getBiometricSupportModel,
     required this.getGlobalAuthSettings,
     required this.subscriptAuthEventUseCase,
@@ -19,10 +21,19 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     required this.setNewPinCodeUseCase,
     required this.getAuthUseCase,
     required this.setLocalAuthUseCase,
-  }) : super(const SettingsState.current()) {
+  }) : super(
+          SettingsState.current(
+            appInfo: appInfo,
+            deviceInfo: deviceInfo,
+          ),
+        ) {
+    getVersions();
     subscriptAuthEventUseCase(refresh);
-    //refresh();
   }
+
+  final AppInfoModel appInfo;
+
+  final DeviceInfoModel deviceInfo;
 
   final GetBiometricSupportModel getBiometricSupportModel;
 
@@ -96,12 +107,20 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     await setNewPinCodeUseCase(NoParams());
   }
 
+  Future<void> getVersions() async {}
+
   @override
   SettingsState? fromJson(Map<String, dynamic> json) {
     try {
-      return SettingsState.fromJson(json['settings']);
+      return SettingsState.fromJson(json['settings']).copyWith(
+        appInfo: appInfo,
+        deviceInfo: deviceInfo,
+      );
     } catch (e) {
-      return const SettingsState.current();
+      return SettingsState.current(
+        appInfo: appInfo,
+        deviceInfo: deviceInfo,
+      );
     }
   }
 

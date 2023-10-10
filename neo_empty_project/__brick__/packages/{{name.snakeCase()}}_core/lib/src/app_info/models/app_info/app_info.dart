@@ -1,6 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
+
+import 'package:{{name.snakeCase()}}_core/src/_src.dart';
 
 @immutable
 class AppInfoModel {
@@ -8,36 +11,23 @@ class AppInfoModel {
     required this.appName,
     required this.packageName,
     required this.version,
-    required this.buildNumber,
   });
-  factory AppInfoModel.fromJson(String source) =>
-      AppInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  factory AppInfoModel.fromMap(Map<String, dynamic> map) {
-    return AppInfoModel(
-      appName: map['appName'] as String,
-      packageName: map['packageName'] as String,
-      version: map['version'] as String,
-      buildNumber: map['buildNumber'] as String,
-    );
-  }
 
   final String appName;
   final String packageName;
-  final String version;
-  final String buildNumber;
+  final AppVersionEntity version;
+
+  String get fullVersion => '$appName ${version.fullVersion}';
 
   AppInfoModel copyWith({
     String? appName,
     String? packageName,
-    String? version,
-    String? buildNumber,
+    AppVersionEntity? version,
   }) {
     return AppInfoModel(
       appName: appName ?? this.appName,
       packageName: packageName ?? this.packageName,
       version: version ?? this.version,
-      buildNumber: buildNumber ?? this.buildNumber,
     );
   }
 
@@ -45,17 +35,27 @@ class AppInfoModel {
     return <String, dynamic>{
       'appName': appName,
       'packageName': packageName,
-      'version': version,
-      'buildNumber': buildNumber,
+      'version': version.toMap(),
     };
+  }
+
+  factory AppInfoModel.fromMap(Map<String, dynamic> map) {
+    return AppInfoModel(
+      appName: map['appName'] as String,
+      packageName: map['packageName'] as String,
+      version: AppVersionEntity.fromMap(map['version'] as Map<String, dynamic>),
+    );
   }
 
   String toJson() => json.encode(toMap());
 
+  factory AppInfoModel.fromJson(String source) =>
+      AppInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
   @override
   String toString() {
     // ignore: lines_longer_than_80_chars
-    return 'AppInfoModel(appName: $appName, packageName: $packageName, version: $version, buildNumber: $buildNumber)';
+    return 'AppInfoModel(appName: $appName, packageName: $packageName, version: $version)';
   }
 
   @override
@@ -64,17 +64,11 @@ class AppInfoModel {
 
     return other.appName == appName &&
         other.packageName == packageName &&
-        other.version == version &&
-        other.buildNumber == buildNumber;
+        other.version == version;
   }
 
   @override
   int get hashCode {
-    return appName.hashCode ^
-        packageName.hashCode ^
-        version.hashCode ^
-        buildNumber.hashCode;
+    return appName.hashCode ^ packageName.hashCode ^ version.hashCode;
   }
-
-  String get fullVersion => '$appName $version:$buildNumber';
 }

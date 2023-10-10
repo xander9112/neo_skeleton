@@ -19,15 +19,27 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          LocaleSwitcher(),
-          LocalAuthSwitcher(),
-          BiometrySwitcher(),
-          PinCodeChanger(),
-          ThemeSwitcher(),
-        ],
+      body: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LocaleSwitcher(),
+                    LocalAuthSwitcher(),
+                    BiometrySwitcher(),
+                    PinCodeChanger(),
+                    ThemeSwitcher(),
+                  ],
+                ),
+              ),
+              Center(child: Text(state.appInfo.fullVersion)),
+            ],
+          );
+        },
       ),
     );
   }

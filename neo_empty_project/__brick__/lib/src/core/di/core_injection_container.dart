@@ -86,8 +86,13 @@ class CoreInjection extends ICoreInjection {
 
   @override
  Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+    final appInfo = await AppInfo.getAppInfo();
+    final deviceInfo = await AppInfo.getDeviceInfo();
+
     sl.registerLazySingleton(
       () => SettingsCubit(
+        appInfo: appInfo,
+        deviceInfo: deviceInfo,
         subscriptAuthEventUseCase: sl(),
         getBiometricSupportModel: sl(),
         getAuthUseCase: sl(),
