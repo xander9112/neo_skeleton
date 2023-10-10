@@ -60,8 +60,7 @@ abstract class AppInfo {
     return AppInfoModel(
       appName: appName,
       packageName: packageName,
-      version: version,
-      buildNumber: buildNumber,
+      version: AppVersionEntity.parse('$version+$buildNumber'),
     );
   }
 }
