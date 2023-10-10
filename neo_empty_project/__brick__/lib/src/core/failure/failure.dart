@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class Failure {
@@ -18,4 +19,28 @@ class HttpFailure extends Failure {
   String getLocalizedString() {
     return CoreI18n.unknownError;
   }
+}
+
+extension DioExceptionLog on DioException {
+  String get errorMessage {
+    String msg =
+        'Type: $type, Message: ${message ?? error}, url: ${requestOptions.uri}';
+
+    if (response?.data != null) {
+      msg += ', ${response!.data}';
+    }
+
+    return msg;
+  }
+
+  String get errorResponseMessage {
+    try {
+      // ignore: avoid_dynamic_calls
+      return response?.data['message'] as String;
+    } catch (_) {
+      return errorMessage;
+    }
+  }
+
+  int get errorResponseCode => response?.statusCode ?? -1;
 }
