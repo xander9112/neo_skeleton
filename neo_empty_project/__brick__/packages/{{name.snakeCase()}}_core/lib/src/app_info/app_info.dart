@@ -54,7 +54,7 @@ abstract class AppInfo {
 
     final String appName = packageInfo.appName;
     final String packageName = packageInfo.packageName;
-    final String version = packageInfo.version;
+    final String version = packageInfo.version.replaceAll('-dev', '');
     final String buildNumber = packageInfo.buildNumber;
 
     return AppInfoModel(
