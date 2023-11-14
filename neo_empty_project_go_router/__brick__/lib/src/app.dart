@@ -86,7 +86,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
               locale: state.locale,
               supportedLocales: AppLocalizations.supportedLocales,
               builder: (BuildContext context, Widget? child) {
-                return DialogManager(child: child);
+                return DialogManager(router: router, child: child);
               },
             ),
           );

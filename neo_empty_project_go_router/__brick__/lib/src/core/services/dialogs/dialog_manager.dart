@@ -6,7 +6,9 @@ import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class DialogManager extends StatefulWidget {
-  const DialogManager({this.child, super.key});
+  const DialogManager({required this.router, this.child, super.key});
+
+  final AppAutoRouter router;
 
   final Widget? child;
 
@@ -17,8 +19,7 @@ class DialogManager extends StatefulWidget {
 class _DialogManagerState extends State<DialogManager> {
   final DialogService _dialogService = GetIt.I();
 
-  BuildContext get _context =>
-      GetIt.I<AppAutoRouter>().navigatorKey.currentState!.context;
+  BuildContext get _context => widget.router.context;
 
   @override
   void initState() {
@@ -52,13 +53,11 @@ class _DialogManagerState extends State<DialogManager> {
               _context,
               params,
             );
-            break;
           case DialogTypes.engineeringWorks:
             result = await UiEngineeringWorksDialog.showCurrentDialog<dynamic>(
               _context,
               params,
             );
-            break;
           case DialogTypes.confirmDialog:
             result = await UiConfirmDialog.showCurrentDialog<dynamic>(
               _context,
@@ -66,7 +65,6 @@ class _DialogManagerState extends State<DialogManager> {
               body: body,
               params: params,
             );
-            break;
           case DialogTypes.selectDialog:
             result = await UiSelectDialog.showCurrentDialog(
               _context,
@@ -74,10 +72,6 @@ class _DialogManagerState extends State<DialogManager> {
               body: body,
               params: params,
             );
-            break;
-          case DialogTypes.checkPinCode:
-            result = await CheckPinCodeDialog.showCurrentDialog(_context);
-            break;
           default:
         }
 
