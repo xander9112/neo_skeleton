@@ -1,0 +1,13 @@
+{
+  "explorer.fileNesting.patterns": {
+    "mason.yaml": "mason-lock.json",
+    "pubspec.yaml": ".packages, .metadata, pubspec.lock, analysis_options.yaml, neoflex_neoportal.iml",
+    "*.dart": "${capture}.g.dart, ${capture}.freezed.dart"
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "cSpell.words": [],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.formatOnSave": true
+}
