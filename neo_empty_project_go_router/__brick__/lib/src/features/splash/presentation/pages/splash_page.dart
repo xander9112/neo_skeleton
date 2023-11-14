@@ -16,17 +16,15 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    _verify();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _verify();
+    });
   }
 
   Future<void> _verify() async {
     await AuthInjection.sl<AuthManager<AuthenticatedUser>>().verify();
 
-    if (widget.onResult != null) {
-      widget.onResult?.call(true);
-    } else {
-      context.go('/home');
-    }
+    context.go(HomeRoutePath.initial);
   }
 
   @override
