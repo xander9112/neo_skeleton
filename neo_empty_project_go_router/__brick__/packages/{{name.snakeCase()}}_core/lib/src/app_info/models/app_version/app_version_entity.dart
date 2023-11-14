@@ -21,8 +21,9 @@ class AppVersionEntity {
     );
   }
 
-  factory AppVersionEntity.fromJson(String source) =>
-      AppVersionEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AppVersionEntity.fromJson(Map<String, dynamic> json) =>
+      AppVersionEntity.fromMap(json);
+
 
   final int major;
   final int minor;
@@ -88,7 +89,7 @@ class AppVersionEntity {
     };
   }
 
-  String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() => toMap();
 
   @override
   String toString() {
