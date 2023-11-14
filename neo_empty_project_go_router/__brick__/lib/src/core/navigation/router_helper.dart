@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:neo_auth/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 extension RouterHelperExt on BuildContext {
   void goRelative(String location, {Object? extra}) => GoRouter.of(this).go(
