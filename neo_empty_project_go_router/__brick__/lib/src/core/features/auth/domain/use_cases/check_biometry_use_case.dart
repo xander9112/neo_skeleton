@@ -19,11 +19,7 @@ class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
     if (isSuccess) {
       _authManager.locked = false;
 
-      if (params.onResult != null) {
-        params.onResult?.call(true);
-      } else {
-        await _router.goToMain(true);
-      }
+      await _router.goToMain(true);
     }
 
     return isSuccess;
@@ -31,9 +27,7 @@ class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
 }
 
 class CheckBiometryUseCaseParam {
-  CheckBiometryUseCaseParam({
-    this.onResult,
-  });
+  CheckBiometryUseCaseParam();
 
-  final void Function(bool)? onResult;
+  
 }

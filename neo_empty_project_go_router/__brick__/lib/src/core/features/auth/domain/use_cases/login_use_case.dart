@@ -18,11 +18,7 @@ class LoginUseCase
 
     return result.fold(Left.new, (isSuccess) async {
       if (isSuccess) {
-        if (params.onResult != null) {
-          params.onResult?.call(true);
-        } else {
-          unawaited(_router.goToMain());
-        }
+        unawaited(_router.goToMain());        
       }
 
       return Right(isSuccess);
@@ -34,10 +30,8 @@ class LoginUseCaseParam {
   LoginUseCaseParam({
     required this.login,
     required this.password,
-    this.onResult,
   });
 
   final String login;
   final String password;
-  final void Function(bool)? onResult;
 }

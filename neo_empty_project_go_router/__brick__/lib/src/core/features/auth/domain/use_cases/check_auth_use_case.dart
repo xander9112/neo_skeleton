@@ -11,13 +11,11 @@ class CheckAuthUseCase
   @override
   Future<Either<Failure, bool>> call(CheckAuthUseCaseParam params) async {
     final isAuth = await _authManager.isAuth;
+    
     if (isAuth) {
-      if (params.onResult != null) {
-        params.onResult?.call(true);
-      } else {
-        await _router.goToMain();
-      }
+      await _router.goToMain();      
     }
+    
     return Right(isAuth);
   }
 }
