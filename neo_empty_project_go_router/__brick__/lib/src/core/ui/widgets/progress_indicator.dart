@@ -20,7 +20,7 @@ class UiProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget loader = SpinKitWave(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.primary,
       size: size,
       itemCount: 8,
       type: SpinKitWaveType.center,

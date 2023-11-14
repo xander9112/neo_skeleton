@@ -42,7 +42,7 @@ class AuthInjection extends ICoreInjection {
   @override
   Future<void> initUseCases({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
-      ..registerFactory(() => LoginUseCase(sl(), sl()))
+      ..registerFactory(() => LoginUseCase(sl()))
       ..registerFactory(() => CheckLocalAuthUseCase(sl()))
       ..registerFactory(() => CheckAuthUseCase(sl(), sl()))
       ..registerFactory(() => SetPinCodeUseCase(sl()))

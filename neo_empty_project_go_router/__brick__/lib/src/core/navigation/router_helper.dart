@@ -43,12 +43,12 @@ class RouterHelper {
   FutureOr<String?> redirect(
     BuildContext context,
     Uri uri,
-  ) async {
+  ) {
     if (uri.path == _initialLocation) {
       return null;
     }
 
-    final _isAuth = await _authManager.isAuth;
+    final _isAuth =  _authManager.isAuth;
     final _isVerify = !_authManager.locked;
 
     if (_isAuthPath(uri)) {

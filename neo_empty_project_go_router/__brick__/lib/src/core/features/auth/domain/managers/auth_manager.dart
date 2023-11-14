@@ -13,7 +13,7 @@ abstract class AuthManager<U> extends ChangeNotifier {
 
   U get user;
 
-  Future<bool> get isAuth;
+  bool get isAuth;
 
   set authenticated(bool value);
 
@@ -65,9 +65,13 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   @override
   Future<void> init() async {
+    final hasToken = await authRepository.hasAccessToken();
+
+    _authenticated = hasToken;
+
     settings.useLocalAuth = await authRepository.useLocalAuth();
 
-    if (settings.useLocalAuth && !await authRepository.hasPinCode()) {
+    if (settings.useLocalAuth && !hasToken) {
       await signOut();
 
       authenticated = false;
@@ -101,14 +105,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   bool _mocked = false;
 
   @override
-  Future<bool> get isAuth async {
-    final hasToken = await authRepository.hasAccessToken();
-
-    if (hasToken != _authenticated) {
-      _authenticated = hasToken;
-      notifyListeners();
-    }
-
+  bool get isAuth {
     return _authenticated;
   }
 
@@ -152,8 +149,11 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
       _mocked = true;
 
+      _authenticated = true;
+
       notifyListeners();
       debugPrint('<AuthManager> Mocked auth =  true');
+
       return const Right(true);
     }
 
@@ -164,6 +164,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
       await authRepository.setAccessToken(authModel.token);
 
       _user = authModel.user;
+
+      authenticated = true;
 
       return const Right(true);
     });

@@ -109,7 +109,7 @@ class _Point extends StatelessWidget {
     var bgColor = Colors.transparent;
 
     if (isFilled) {
-      bgColor = Theme.of(context).primaryColor;
+      bgColor = Theme.of(context).colorScheme.primary;
     }
 
     if (hasError) {
