@@ -6,23 +6,21 @@ part of '{{name.snakeCase()}}_cubit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_{{name.pascalCase()}}InitialState _$$_{{name.pascalCase()}}InitialStateFromJson(
+_${{name.pascalCase()}}InitialStateImpl _$${{name.pascalCase()}}InitialStateImplFromJson(
         Map<String, dynamic> json) =>
-    _$_{{name.pascalCase()}}InitialState(
+    _${{name.pascalCase()}}InitialStateImpl(
       status: $enumDecodeNullable(_$FetchStatusEnumMap, json['status']) ??
           FetchStatus.pure,
       error: json['error'] as String?,
-      profile: json['profile'] == null
-          ? null
-          : {{name.pascalCase()}}Model.fromJson(json['profile'] as Object),
+      users: json['users'] == null ? null : {{name.pascalCase()}}Model.fromJson(json['users']),
     );
 
-Map<String, dynamic> _$$_{{name.pascalCase()}}InitialStateToJson(
-        _$_{{name.pascalCase()}}InitialState instance) =>
+Map<String, dynamic> _$${{name.pascalCase()}}InitialStateImplToJson(
+        _${{name.pascalCase()}}InitialStateImpl instance) =>
     <String, dynamic>{
       'status': _$FetchStatusEnumMap[instance.status]!,
       'error': instance.error,
-      'profile': instance.profile,
+      'users': instance.users,
     };
 
 const _$FetchStatusEnumMap = {
@@ -31,3 +29,4 @@ const _$FetchStatusEnumMap = {
   FetchStatus.fetchingSuccess: 'fetchingSuccess',
   FetchStatus.fetchingFailure: 'fetchingFailure',
 };
+
