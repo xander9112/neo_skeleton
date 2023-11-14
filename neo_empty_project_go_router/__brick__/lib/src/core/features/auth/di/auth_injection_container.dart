@@ -53,7 +53,6 @@ class AuthInjection extends ICoreInjection {
       ..registerFactory(() => GetGlobalAuthSettingsUseCase(sl()))
       ..registerFactory(() => SubscribeAuthEventUseCase(sl()))
       ..registerFactory(() => SetBiometrySettingUseCase(sl()))
-      ..registerFactory(() => SetNewPinCodeUseCase(sl(), sl()))
       ..registerFactory(() => GetAuthUseCase(sl()))
       ..registerFactory(() => CheckPinCodeFromDialogUseCase(sl()))
       ..registerFactory(() => SetLocalAuthUseCase(sl()));

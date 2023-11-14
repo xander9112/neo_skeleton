@@ -41,7 +41,6 @@ class SettingsInjection extends ICoreInjection {
         getBiometricSupportModel: sl(),
         getAuthUseCase: sl(),
         setBiometrySettingUseCase: sl(),
-        setNewPinCodeUseCase: sl(),
         getGlobalAuthSettings: sl(),
         setLocalAuthUseCase: sl(),
       ),
