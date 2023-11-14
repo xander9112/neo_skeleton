@@ -26,6 +26,8 @@ class App {
   ]) async {
     WidgetsFlutterBinding.ensureInitialized();
 
+    configureUrlStrategyApp();
+
     await SystemChrome.setPreferredOrientations(
       orientations ??
           <DeviceOrientation>[
