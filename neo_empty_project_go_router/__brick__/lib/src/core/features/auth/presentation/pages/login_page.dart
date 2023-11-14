@@ -14,7 +14,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
       create: (context) {
-        return AuthInjection.sl<LoginCubit>()..checkAuth(widget.onResult);
+        return AuthInjection.sl<LoginCubit>()..checkAuth();
       },
       child: Scaffold(
         body: SafeArea(
@@ -37,7 +37,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
                   form: context.read<LoginCubit>().form,
                   message: state.error,
                   onSubmitForm: () {
-                    context.read<LoginCubit>().login(widget.onResult);
+                    context.read<LoginCubit>().login();
                   },
                 );
               },

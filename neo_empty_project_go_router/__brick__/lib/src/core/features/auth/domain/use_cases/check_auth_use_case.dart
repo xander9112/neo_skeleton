@@ -23,9 +23,5 @@ class CheckAuthUseCase
 }
 
 class CheckAuthUseCaseParam {
-  CheckAuthUseCaseParam({
-    this.onResult,
-  });
-
-  final void Function(bool)? onResult;
+  CheckAuthUseCaseParam();  
 }

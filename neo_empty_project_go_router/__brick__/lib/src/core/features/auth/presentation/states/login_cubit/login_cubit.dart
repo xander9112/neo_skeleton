@@ -36,9 +36,9 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(error: null, status: FetchStatus.fetchingSuccess));
   }
 
-  Future<void> checkAuth(void Function(bool)? onResult) async {
+  Future<void> checkAuth() async {
     final result =
-        await checkAuthUseCase.call(CheckAuthUseCaseParam(onResult: onResult));
+        await checkAuthUseCase.call(CheckAuthUseCaseParam());
 
     result.fold(
       (failure) => null,
@@ -46,9 +46,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> login(
-    void Function(bool)? onResult,
-  ) async {
+  Future<void> login() async {
     final login = form.value['login'].toString();
     final password = form.value['password'].toString();
 
