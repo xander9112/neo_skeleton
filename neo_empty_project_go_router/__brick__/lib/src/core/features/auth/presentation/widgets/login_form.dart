@@ -16,6 +16,14 @@ class LoginForm extends StatelessWidget {
 
   final VoidCallback? onSubmitForm;
 
+  void _onSubmit() {
+    form.markAllAsTouched();
+
+    if (form.valid) {
+      onSubmitForm?.call();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ReactiveForm(
@@ -48,6 +56,7 @@ class LoginForm extends StatelessWidget {
                         label: Text(AuthI18n.login),
                         border: const OutlineInputBorder(),
                       ),
+                      onSubmitted: (control) => _onSubmit(),
                       validationMessages: {
                         ValidationMessage.required: (_) =>
                             AuthI18n.loginRequired,
@@ -63,6 +72,7 @@ class LoginForm extends StatelessWidget {
                         label: Text(AuthI18n.password),
                         border: const OutlineInputBorder(),
                       ),
+                      onSubmitted: (control) => _onSubmit(),
                       validationMessages: {
                         ValidationMessage.required: (_) =>
                             AuthI18n.passwordRequired,
@@ -70,13 +80,7 @@ class LoginForm extends StatelessWidget {
                     ),
                   ),
                   UiButton(
-                    onPressed: () {
-                      form.markAllAsTouched();
-
-                      if (form.valid) {
-                        onSubmitForm?.call();
-                      }
-                    },
+                    onPressed: _onSubmit,
                     text: AuthI18n.signIn,
                   ),
                   Visibility(

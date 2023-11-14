@@ -3,7 +3,7 @@ import 'package:mason/mason.dart';
 import 'package:path/path.dart' as path;
 
 Future<void> run(HookContext context) async {
-  await _renameFolder(context);
+  // await _renameFolder(context);
 }
 
 Future<void> _renameFolder(HookContext context) async {
