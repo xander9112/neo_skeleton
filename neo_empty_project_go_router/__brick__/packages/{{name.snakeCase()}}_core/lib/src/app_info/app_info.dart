@@ -36,9 +36,9 @@ abstract class AppInfo {
       final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
 
       return DeviceInfoModel(
-        model: iosInfo.name ?? '',
-        system: iosInfo.systemName ?? 'iOS',
-        version: iosInfo.systemVersion ?? '',
+        model: iosInfo.name,
+        system: iosInfo.systemName,
+        version: iosInfo.systemVersion,
       );
     }
 

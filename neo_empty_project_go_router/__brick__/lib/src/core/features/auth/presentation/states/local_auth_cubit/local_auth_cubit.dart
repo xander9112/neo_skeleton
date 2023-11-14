@@ -56,19 +56,12 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
           );
 
           unawaited(_checkBiometryUseCase(CheckBiometryUseCaseParam()));
-
-          break;
         case LocalAuthResult.unlocked:
           emit(const LocalAuthState.success());
-
-          break;
         case LocalAuthResult.notAvailable:
           emit(const LocalAuthState.success());
-
-          break;
         case LocalAuthResult.notInitialized:
           emit(const LocalAuthState.createPin());
-          break;
       }
     });
   }

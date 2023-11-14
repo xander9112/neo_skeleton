@@ -81,7 +81,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
                 AppLocalizationDelegate(),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate
+                GlobalCupertinoLocalizations.delegate,
               ],
               locale: state.locale,
               supportedLocales: AppLocalizations.supportedLocales,
