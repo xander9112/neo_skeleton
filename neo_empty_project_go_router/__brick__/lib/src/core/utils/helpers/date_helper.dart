@@ -35,7 +35,7 @@ abstract class DateHelper {
             endDate.year,
             endDate.month + i,
             endDate.day,
-          )
+          ),
         ]);
       } else if (i == 0) {
         months.add(<DateTime>[
@@ -48,7 +48,7 @@ abstract class DateHelper {
             initialDate.year,
             initialDate.month + i + 1,
             0,
-          )
+          ),
         ]);
       } else if (i == monthCount - 1) {
         months.add(<DateTime>[
@@ -60,7 +60,7 @@ abstract class DateHelper {
             endDate.year,
             endDate.month,
             endDate.day,
-          )
+          ),
         ]);
       } else {
         months.add(<DateTime>[
@@ -72,7 +72,7 @@ abstract class DateHelper {
             initialDate.year,
             initialDate.month + i + 1,
             0,
-          )
+          ),
         ]);
       }
     }
