@@ -10,7 +10,7 @@ class PinCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LocalAuthCubit>(
       create: (context) {
-        return AuthInjection.sl<LocalAuthCubit>()..checkAuth(onResult);
+        return AuthInjection.sl<LocalAuthCubit>()..checkAuth();
       },
       child: Scaffold(
         body: SafeArea(
@@ -38,7 +38,7 @@ class PinCodePage extends StatelessWidget {
                         onComplete: (pinCode) {
                           context
                               .read<LocalAuthCubit>()
-                              .createPin(pinCode, onResult);
+                              .createPin(pinCode);
                         },
                       ),
                       enterPin: (biometricSupportModel, message, length) =>
@@ -50,14 +50,12 @@ class PinCodePage extends StatelessWidget {
                             (biometricSupportModel.useBiometric ?? false),
                         isFace: biometricSupportModel.isFace,
                         onBiometricPressed: () {
-                          context.read<LocalAuthCubit>().biometricAuth(
-                                onResult,
-                              );
+                          context.read<LocalAuthCubit>().biometricAuth();
                         },
                         onComplete: (pinCode) async {
                           await context
                               .read<LocalAuthCubit>()
-                              .enterPin(pinCode, onResult);
+                              .enterPin(pinCode);
                         },
                       ),
                     );

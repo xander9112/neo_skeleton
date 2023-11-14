@@ -39,7 +39,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
   String pin1 = '';
   String pin2 = '';
 
-  Future<void> checkAuth(void Function(bool)? onResult) async {
+  Future<void> checkAuth() async {
     final result = await _checkLocalAuthUseCase(NoParams());
 
     await result.fold((failure) => null, (localAuthResult) async {
@@ -55,11 +55,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
             ),
           );
 
-          unawaited(
-            _checkBiometryUseCase(
-              CheckBiometryUseCaseParam(onResult: onResult),
-            ),
-          );
+          unawaited(_checkBiometryUseCase(CheckBiometryUseCaseParam()));
 
           break;
         case LocalAuthResult.unlocked:
@@ -77,7 +73,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
     });
   }
 
-  Future<void> createPin(String pinCode, void Function(bool)? onResult) async {
+  Future<void> createPin(String pinCode) async {
     if (pin1.isEmpty && pin2.isEmpty) {
       if (pinCode.length == AppConstants.pinCodeLength) {
         pin1 = pinCode;
@@ -133,7 +129,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
     }
   }
 
-  Future<void> enterPin(String pinCode, void Function(bool)? onResult) async {
+  Future<void> enterPin(String pinCode) async {
     final result = await _checkPinCodeUseCase(pinCode);
 
     final biometricSupportModel = await _getBiometricSupportModel(NoParams());
@@ -158,10 +154,10 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
     });
   }
 
-  void biometricAuth(void Function(bool)? onResult) {
+  void biometricAuth() {
     unawaited(
       _checkBiometryUseCase(
-        CheckBiometryUseCaseParam(onResult: onResult),
+        CheckBiometryUseCaseParam(),
       ),
     );
   }
