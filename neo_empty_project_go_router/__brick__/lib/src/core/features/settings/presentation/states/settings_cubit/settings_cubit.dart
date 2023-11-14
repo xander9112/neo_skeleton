@@ -5,7 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/locale.dart' as intl;
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 part 'settings_cubit.freezed.dart';
 part 'settings_cubit.g.dart';
