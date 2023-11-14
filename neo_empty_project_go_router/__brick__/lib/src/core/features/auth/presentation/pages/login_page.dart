@@ -18,30 +18,27 @@ class _LoginPageState extends LoadingState<LoginPage> {
       },
       child: Scaffold(
         body: SafeArea(
-          child: Scaffold(
-          body: SafeArea(
-            child: BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                state.when(
-                  initial: (status, error) {
-                    if (status.isFetchingInProgress) {
-                      loadingOverlay.show(context);
-                    } else {
-                      loadingOverlay.hide();
-                    }
-                  },
-                );
-              },
-              builder: (context, state) {
-                return LoginForm(
-                  form: context.read<LoginCubit>().form,
-                  message: state.error,
-                  onSubmitForm: () {
-                    context.read<LoginCubit>().login();
-                  },
-                );
-              },
-            ),
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              state.when(
+                initial: (status, error) {
+                  if (status.isFetchingInProgress) {
+                    loadingOverlay.show(context);
+                  } else {
+                    loadingOverlay.hide();
+                  }
+                },
+              );
+            },
+            builder: (context, state) {
+              return LoginForm(
+                form: context.read<LoginCubit>().form,
+                message: state.error,
+                onSubmitForm: () {
+                  context.read<LoginCubit>().login();
+                },
+              );
+            },
           ),
         ),
       ),
