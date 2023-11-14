@@ -1,21 +1,20 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:go_router/go_router.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/features/settings/_settings.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
-List<AutoRoute> mainRoutes = [
-  CustomRoute(
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-    path: RoutePath.main,
-    guards: [
-      UpdateGuard(AuthInjection.sl<AuthManager<AuthenticatedUser>>()),
-      AuthGuard(AuthInjection.sl<AuthManager<AuthenticatedUser>>()),
-      LocalAuthGuard(AuthInjection.sl<AuthManager<AuthenticatedUser>>())
+List<RouteBase> mainRoutes = [
+  StatefulShellRoute.indexedStack(
+    builder: (context, state, navigationShell) => MainPage(
+      navigationShell: navigationShell,
+    ),
+    branches: [
+      StatefulShellBranch(
+        routes: homeRoutes,
+      ),
+      StatefulShellBranch(
+        routes: settingsRoutes,
+      ),
     ],
-    page: MainRoute.page,
-    children: <AutoRoute>[
-      ...homeRoutes,
-      ...settingsRoutes,
-    ],
-  )
+  ),
 ];

@@ -1,14 +1,15 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 import 'package:super_banners/super_banners.dart';
 
-@RoutePage()
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  const MainPage({required this.navigationShell, super.key});
+
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
@@ -19,49 +20,38 @@ class MainPage extends StatelessWidget {
           return UiEither(
             condition: state.status.isFetchingSuccess,
             onFalse: const Scaffold(body: UiProgressIndicator()),
-            onTrue: AutoTabsRouter(
-              routes: const [
-                HomeRoute(),
-                SettingsRouter(),
-              ],
-              transitionBuilder: (context, child, animation) => FadeTransition(
-                opacity: animation,
-                child: child,
+            onTrue: Scaffold(
+              body: Stack(
+                children: [
+                  navigationShell,
+                  Visibility(
+                    visible: state.isDemo,
+                    child: CornerBanner(
+                      bannerColor: Colors.cyan,
+                      shadowColor: Colors.black.withOpacity(0.8),
+                      elevation: 5,
+                      child: const Text('Demo'),
+                    ),
+                  ),
+                ],
               ),
-              builder: (context, child) {
-                final tabsRouter = AutoTabsRouter.of(context);
-
-                return Scaffold(
-                  body: Stack(
-                    children: [
-                      child,
-                      Visibility(
-                        visible: state.isDemo,
-                        child: CornerBanner(
-                          bannerColor: Colors.cyan,
-                          shadowColor: Colors.black.withOpacity(0.8),
-                          elevation: 5,
-                          child: const Text('Demo'),
-                        ),
-                      ),
-                    ],
+              bottomNavigationBar: BottomNavigationBar(
+                currentIndex: navigationShell.currentIndex,
+                onTap: (index) => navigationShell.goBranch(
+                  index,
+                  initialLocation: index == navigationShell.currentIndex,
+                ),
+                items: [
+                  BottomNavigationBarItem(
+                    label: MainI18n.homeBottomMenuItem,
+                    icon: const Icon(Icons.home),
                   ),
-                  bottomNavigationBar: BottomNavigationBar(
-                    currentIndex: tabsRouter.activeIndex,
-                    onTap: tabsRouter.setActiveIndex,
-                    items: [
-                      BottomNavigationBarItem(
-                        label: MainI18n.homeBottomMenuItem,
-                        icon: const Icon(Icons.home),
-                      ),
-                      BottomNavigationBarItem(
-                        label: MainI18n.settingsBottomMenuItem,
-                        icon: const Icon(Icons.settings),
-                      ),
-                    ],
+                  BottomNavigationBarItem(
+                    label: MainI18n.settingsBottomMenuItem,
+                    icon: const Icon(Icons.settings),
                   ),
-                );
-              },
+                ],
+              ),
             ),
           );
         },

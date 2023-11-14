@@ -1,8 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-@RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key, this.onResult});
 
@@ -26,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
     if (widget.onResult != null) {
       widget.onResult?.call(true);
     } else {
-      await context.router.pushNamed(RoutePath.main);
+      context.go('/home');
     }
   }
 
@@ -39,9 +38,9 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-              padding: const EdgeInsets.only(bottom: Insets.l),
-              child: Text(
-                  '{{name.pascalCase()}}',
+                padding: const EdgeInsets.only(bottom: Insets.l),
+                child: Text(
+                  'NeoAuth',
                   style: context.defaultText.displaySmall,
                 ),
               ),

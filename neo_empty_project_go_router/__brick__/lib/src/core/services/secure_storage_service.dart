@@ -69,13 +69,13 @@ class SecureStorageService {
     );
   }
 
-  Future<bool> comparePinCode(String pinCode) async {
+  Future<bool> comparePinCode(String value) async {
     final pinCode = await _secureStorage.read(
       key: 'pinCode',
       aOptions: _getAndroidOptions(),
     );
 
-    return pinCode == pinCode;
+    return pinCode == value;
   }
 
   Future<void> removeUseBiometric() async {
@@ -130,7 +130,7 @@ class SecureStorageService {
     return {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}};
   }
 
-   Future<void> removeUseLocalAuth() async {
+  Future<void> removeUseLocalAuth() async {
     await _secureStorage.write(
       key: 'use_local_auth',
       value: '',
