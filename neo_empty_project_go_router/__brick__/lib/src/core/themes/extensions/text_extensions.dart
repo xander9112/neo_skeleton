@@ -89,10 +89,4 @@ class TextExtension extends ThemeExtension<TextExtension> {
     }
     return const TextExtension();
   }
-
-  // static TextExtension get light => TextExtension(
-  //       mainText: TextStyles.mainText.copyWith(
-  //         color: ThemeConfig.smallTextColor,
-  //       ),
-  //     );
 }

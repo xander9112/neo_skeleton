@@ -1,3 +1,9 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 
 def localPropertiesFile = rootProject.file('local.properties')
@@ -48,11 +54,8 @@ if (flutterTargetSdkVersion == null) {
     flutterTargetSdkVersion = 33
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
+    namespace "{{androidBundleId}}"
     compileSdkVersion flutterCompileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -107,6 +110,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
+dependencies {}

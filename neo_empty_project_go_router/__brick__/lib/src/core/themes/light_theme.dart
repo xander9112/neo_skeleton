@@ -4,9 +4,24 @@ import 'package:flutter/material.dart';
 ThemeData createLightTheme() {
   return ThemeData(
     useMaterial3: true,
+    brightness: Brightness.light,
     extensions: <ThemeExtension<dynamic>>[
       ThemeColors.light(),
-      const TextExtension(),
+      TextExtension(
+        displayLarge: TextStyles.displayLarge,
+        displayMedium: TextStyles.displayMedium,
+        displaySmall: TextStyles.displaySmall,
+        headlineMedium: TextStyles.headlineMedium,
+        headlineSmall: TextStyles.headlineSmall,
+        titleLarge: TextStyles.titleLarge,
+        titleMedium: TextStyles.titleMedium,
+        titleSmall: TextStyles.titleSmall,
+        bodyLarge: TextStyles.bodyLarge,
+        bodyMedium: TextStyles.bodyMedium,
+        labelLarge: TextStyles.labelLarge,
+        bodySmall: TextStyles.bodySmall,
+        labelSmall: TextStyles.labelSmall,
+      ),
     ],
   );
 }
