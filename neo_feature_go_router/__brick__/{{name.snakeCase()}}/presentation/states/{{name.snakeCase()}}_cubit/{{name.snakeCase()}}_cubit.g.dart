@@ -12,7 +12,9 @@ _${{name.pascalCase()}}InitialStateImpl _$${{name.pascalCase()}}InitialStateImpl
       status: $enumDecodeNullable(_$FetchStatusEnumMap, json['status']) ??
           FetchStatus.pure,
       error: json['error'] as String?,
-      users: json['users'] == null ? null : {{name.pascalCase()}}Model.fromJson(json['users']),
+      {{name.camelCase()}}: json['{{name.camelCase()}}'] == null
+          ? null
+          : {{name.pascalCase()}}Model.fromJson(json['{{name.camelCase()}}']),
     );
 
 Map<String, dynamic> _$${{name.pascalCase()}}InitialStateImplToJson(
@@ -20,7 +22,7 @@ Map<String, dynamic> _$${{name.pascalCase()}}InitialStateImplToJson(
     <String, dynamic>{
       'status': _$FetchStatusEnumMap[instance.status]!,
       'error': instance.error,
-      'users': instance.users,
+      '{{name.camelCase()}}': instance.{{name.camelCase()}},
     };
 
 const _$FetchStatusEnumMap = {
@@ -29,4 +31,3 @@ const _$FetchStatusEnumMap = {
   FetchStatus.fetchingSuccess: 'fetchingSuccess',
   FetchStatus.fetchingFailure: 'fetchingFailure',
 };
-
