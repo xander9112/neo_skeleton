@@ -6,7 +6,7 @@ import '../../_{{name.snakeCase()}}.dart';
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
   {{name.pascalCase()}}RepositoryImpl(this._dataSource);
 
-  final {{name.pascalCase()}}DataSource _dataSource;
+  final Remote{{name.pascalCase()}}DataSource _dataSource;
 
   @override
   Future<Either<Failure, {{name.pascalCase()}}Model>> get{{name.pascalCase()}}() async {

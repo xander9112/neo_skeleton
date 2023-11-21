@@ -12,11 +12,11 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
   @override
   Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     if (useMock) {
-      sl.registerFactory<{{name.pascalCase()}}DataSource>(
+      sl.registerFactory<Remote{{name.pascalCase()}}DataSource>(
         Mock{{name.pascalCase()}}DataSource.new,
       );
     } else {
-      sl.registerFactory<{{name.pascalCase()}}DataSource>(
+      sl.registerFactory<Remote{{name.pascalCase()}}DataSource>(
         () => Rest{{name.pascalCase()}}DataSource(
           sl<ApiDioClient>().dio,
         ),
