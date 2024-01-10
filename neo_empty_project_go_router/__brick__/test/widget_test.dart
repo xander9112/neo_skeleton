@@ -11,6 +11,6 @@ import 'package:{{name.snakeCase()}}/src/core/{{name.snakeCase()}}_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget({{name.pascalCase()}}App(router: GetIt.I()));
+    await tester.pumpWidget({{name.pascalCase()}}App());
   });
 }
