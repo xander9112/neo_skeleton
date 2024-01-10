@@ -1,4 +1,4 @@
-name: { { name.snakeCase() } }
+name: {{ name.snakeCase() }}
 description: Neoflex {{name.snakeCase()}} template
 
 publish_to: "none"
