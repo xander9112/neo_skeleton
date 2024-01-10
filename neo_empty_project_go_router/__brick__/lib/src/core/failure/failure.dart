@@ -10,6 +10,15 @@ abstract class Failure {
   String getLocalizedString();
 }
 
+class LocalFailure extends Failure {
+  LocalFailure({required super.code, required super.message});
+
+  @override
+  String getLocalizedString() {
+    return CoreI18n.unknownError;
+  }
+}
+
 class HttpFailure extends Failure {
   HttpFailure(this.httpCode, {required super.code, required super.message});
 

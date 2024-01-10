@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class UiConfirmDialog extends StatelessWidget {
   const UiConfirmDialog({
@@ -51,14 +51,16 @@ class UiConfirmDialog extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: UiButton(
-              text: 'Нет',
+              margin: EdgeInsets.zero,
+              text: CoreI18n.no,
               onPressed: () => onPressedCancel(context),
             ),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: UiButton(
-              text: 'Да',
+              margin: EdgeInsets.zero,
+              text: CoreI18n.yes,
               onPressed: () => onPressedOk(context),
             ),
           ),

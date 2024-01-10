@@ -1,4 +1,4 @@
-flutter_icons:
+flutter_launcher_icons:
   image_path: "assets/launcher_icon/dev.png"
   adaptive_icon_foreground: "assets/launcher_icon/dev.png"
   android: true

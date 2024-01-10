@@ -21,7 +21,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               state.when(
-                initial: (status, error) {
+                initial: (status, error, blockTime) {
                   if (status.isFetchingInProgress) {
                     loadingOverlay.show(context);
                   } else {

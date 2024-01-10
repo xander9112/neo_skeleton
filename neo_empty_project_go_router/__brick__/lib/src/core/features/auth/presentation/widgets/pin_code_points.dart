@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class PinCodePoints extends StatefulWidget {
   const PinCodePoints({
@@ -109,11 +110,11 @@ class _Point extends StatelessWidget {
     var bgColor = Colors.transparent;
 
     if (isFilled) {
-      bgColor = Theme.of(context).colorScheme.primary;
+      bgColor = context.colorScheme.primary;
     }
 
     if (hasError) {
-      bgColor = Theme.of(context).colorScheme.error;
+      bgColor = context.colorScheme.error;
     }
 
     return Container(
@@ -124,10 +125,7 @@ class _Point extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(96),
         border: Border.all(
-          color: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .color!
+          color: context.theme.textTheme.titleMedium!.color!
               .withOpacity(isFilled || hasError ? 0.0 : 0.6),
         ),
       ),

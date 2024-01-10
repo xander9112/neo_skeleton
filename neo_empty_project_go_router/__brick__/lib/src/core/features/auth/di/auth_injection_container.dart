@@ -1,18 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class AuthInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
   Future<void> initRouter() async {
-    sl.registerFactory(AuthRouter.new);
+    sl.registerFactory<AuthRouter>(AuthRouter.new);
   }
 
   @override
-  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl
       ..registerLazySingleton<AuthManager<AuthenticatedUser>>(
         () => AuthManagerImpl(
@@ -20,7 +20,7 @@ class AuthInjection extends ICoreInjection {
           biometricRepository: sl(),
           settings: AuthManagerSettings(
             useBiometric: !kIsWeb,
-            useLocalAuth: {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}},
+            useLocalAuth: true,
           ),
           demoUserRepository: DemoUserRepositoryImpl(),
         ),
@@ -29,7 +29,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
     sl
       ..registerFactory<AuthRepository<AuthModel, AuthenticatedUser>>(
         () => AuthRepositoryImpl(sl(), sl()),
@@ -40,9 +40,9 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initUseCases({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {
     sl
-      ..registerFactory(() => LoginUseCase(sl()))
+      ..registerFactory(() => LoginUseCase(sl(), sl()))
       ..registerFactory(() => CheckLocalAuthUseCase(sl()))
       ..registerFactory(() => CheckAuthUseCase(sl(), sl()))
       ..registerFactory(() => SetPinCodeUseCase(sl()))
@@ -55,23 +55,32 @@ class AuthInjection extends ICoreInjection {
       ..registerFactory(() => SetBiometrySettingUseCase(sl()))
       ..registerFactory(() => GetAuthUseCase(sl()))
       ..registerFactory(() => CheckPinCodeFromDialogUseCase(sl()))
+      ..registerFactory(() => CheckBlockUseCase(sl()))
+      ..registerFactory(() => UnBlockUseCase(sl()))
       ..registerFactory(() => SetLocalAuthUseCase(sl()));
   }
 
   @override
-  Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
     sl
       ..registerFactory(
-        () => LoginCubit(loginUseCase: sl(), checkAuthUseCase: sl()),
+        () => LoginCubit(
+          loginUseCase: sl(),
+          checkAuthUseCase: sl(),
+          checkBlockUseCase: sl(),
+          unBlockUseCase: sl(),
+        ),
       )
       ..registerFactory(
         () => LocalAuthCubit(
+          manager: sl(),
           checkLocalAuthUseCase: sl(),
           setPinCodeUseCase: sl(),
           checkPinCodeUseCase: sl(),
           setBiometryUseCase: sl(),
           checkBiometryUseCase: sl(),
           getBiometricSupportModel: sl(),
+          dialogService: sl(),
         ),
       )
       ..registerFactory(() => ChangePinCodeCubit(sl(), sl()));

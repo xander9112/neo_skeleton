@@ -25,6 +25,7 @@
     "Codegen",
     "cupertino",
     "dartdoc",
+    "dartz",
     "datepicker",
     "DATETIME",
     "dkovalev",
@@ -84,7 +85,7 @@
     "Фурманчук"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true
 }

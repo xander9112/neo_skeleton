@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
+
 class DemoUserRepositoryImpl extends DemoUserRepository {
   final _demoUsers = [
     {

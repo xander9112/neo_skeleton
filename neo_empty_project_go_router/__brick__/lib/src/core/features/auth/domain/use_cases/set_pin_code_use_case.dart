@@ -8,7 +8,9 @@ class SetPinCodeUseCase implements UseCase<Either<Failure, bool>, String> {
   @override
   Future<Either<Failure, bool>> call(String params) async {
     await _authManager.setPinCode(params);
-    _authManager.locked = false;
+
+    _authManager.unlock();
+
     return const Right(true);
   }
 }

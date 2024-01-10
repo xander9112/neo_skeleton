@@ -38,18 +38,25 @@ class RouterHelper {
 
   String get initialLocation => _initialLocation;
 
+  String get homeLocation => _homeLocation;
+
   Listenable? get refreshListenable => _authManager;
 
   FutureOr<String?> redirect(
     BuildContext context,
     Uri uri,
-  ) {
+  ) async {
     if (uri.path == _initialLocation) {
       return null;
     }
 
-    final _isAuth =  _authManager.isAuth;
+    final _isAuth = await _authManager.isAuth;
     final _isVerify = !_authManager.locked;
+    final _isBlocked = _authManager.blocked;
+
+    if (!publicPaths.contains(uri.path) && _isBlocked) {
+      return AuthRoutePath.blocked;
+    }
 
     if (_isAuthPath(uri)) {
       if (_isAuth && _isVerify) {

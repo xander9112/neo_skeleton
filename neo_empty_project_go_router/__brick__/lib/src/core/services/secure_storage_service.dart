@@ -127,7 +127,7 @@ class SecureStorageService {
       return useLocalAuth == 'true';
     }
 
-    return {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}};
+    return true;
   }
 
   Future<void> removeUseLocalAuth() async {
@@ -160,5 +160,33 @@ class SecureStorageService {
 
     await _secureStorage.delete(key: 'currentUser');
     return null;
+  }
+
+  Future<void> blocUser(DateTime value) async {
+    return _secureStorage.write(
+      key: 'block_user_duration',
+      value: value.toString(),
+      aOptions: _getAndroidOptions(),
+    );
+  }
+
+  Future<void> unBlocUser() async {
+    return _secureStorage.delete(
+      key: 'block_user_duration',
+      aOptions: _getAndroidOptions(),
+    );
+  }
+
+  Future<DateTime?> getBlockTime() async {
+    final String? value = await _secureStorage.read(
+      key: 'block_user_duration',
+      aOptions: _getAndroidOptions(),
+    );
+
+    if (value == null) {
+      return null;
+    }
+
+    return DateTime.tryParse(value);
   }
 }

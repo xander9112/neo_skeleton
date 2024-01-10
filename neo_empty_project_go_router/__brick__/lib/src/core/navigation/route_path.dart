@@ -6,21 +6,9 @@ abstract class RoutePath {
 
   static const String splash = '/splash';
 
-  static const String authSignIn = '/auth/signIn';
-
-  static const String main = '/main';
-
-  static const String settings = 'settings';
+  static const String settings = '/settings';
 
   static const String settingsTheme = 'theme';
-
-  static const String users = 'users';
-
-  static const String user = 'users/:id';
-
-  static const String home = 'home';
-
-  static const String pin = '/auth/pin';
 }
 
 extension RouteWithParams on String {

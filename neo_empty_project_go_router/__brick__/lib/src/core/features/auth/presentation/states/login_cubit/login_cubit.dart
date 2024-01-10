@@ -1,19 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 part 'login_cubit.freezed.dart';
 part 'login_cubit.g.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit({required this.loginUseCase, required this.checkAuthUseCase})
-      : super(const LoginState.initial());
+  LoginCubit({
+    required this.loginUseCase,
+    required this.checkAuthUseCase,
+    required this.checkBlockUseCase,
+    required this.unBlockUseCase,
+  }) : super(const LoginState.initial());
 
   final LoginUseCase loginUseCase;
 
   final CheckAuthUseCase checkAuthUseCase;
+
+  final CheckBlockUseCase checkBlockUseCase;
+
+  final UnBlockUseCase unBlockUseCase;
 
   final FormGroup form = FormGroup(<String, AbstractControl<dynamic>>{
     'login': FormControl<String>(
@@ -37,8 +45,11 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> checkAuth() async {
-    final result =
-        await checkAuthUseCase.call(CheckAuthUseCaseParam());
+    final Duration duration = await checkBlockUseCase(NoParams());
+
+    emit(state.copyWith(blockTime: duration));
+
+    final result = await checkAuthUseCase.call(NoParams());
 
     result.fold(
       (failure) => null,
@@ -59,5 +70,9 @@ class LoginCubit extends Cubit<LoginState> {
       (failure) => setError(failure.message),
       (success) => removeError(),
     );
+  }
+
+  Future<void> unBlock() async {
+    await unBlockUseCase(NoParams());
   }
 }

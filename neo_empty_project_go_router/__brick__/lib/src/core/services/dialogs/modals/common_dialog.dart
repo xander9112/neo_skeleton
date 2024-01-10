@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class UiCommonDialog extends StatelessWidget {
   const UiCommonDialog({
@@ -43,11 +43,10 @@ class UiCommonDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.transparent,
-      insetPadding: EdgeInsets.zero,
+      elevation: 0,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 25),
         constraints: BoxConstraints(
+          maxWidth: 480,
           maxHeight: MediaQuery.of(context).size.height * 0.6,
         ),
         padding: padding ??
@@ -55,10 +54,6 @@ class UiCommonDialog extends StatelessWidget {
               vertical: Insets.xl,
               horizontal: Insets.xxl,
             ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(Insets.l),
-        ),
         child: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[

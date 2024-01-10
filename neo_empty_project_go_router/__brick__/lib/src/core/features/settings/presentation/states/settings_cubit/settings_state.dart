@@ -3,11 +3,6 @@ part of 'settings_cubit.dart';
 @freezed
 class SettingsState with _$SettingsState {
   const factory SettingsState.current({
-    required AppInfoModel appInfo,
-    required DeviceInfoModel deviceInfo,
-    @JsonKey(fromJson: AppThemeMode.fromJson, toJson: AppThemeMode.toJson)
-    AppThemeMode? appThemeMode,
-    @JsonKey(fromJson: localeFromJson, toJson: localeToJson) Locale? locale,
     bool? useBiometric,
     @Default(false) bool useLocalAuth,
     @Default(AppVersionEntity(major: 0, minor: 0, patch: 0))

@@ -1,4 +1,4 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/features/settings/_settings.dart';
 
 class MockSettingsDataSource implements SettingsDataSource {
   @override

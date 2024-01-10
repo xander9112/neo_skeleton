@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class UiButton extends StatelessWidget {
   const UiButton({
@@ -7,6 +7,7 @@ class UiButton extends StatelessWidget {
     this.onPressed,
     this.suffixIcon,
     super.key,
+    this.margin = const EdgeInsets.only(bottom: Insets.l),
     this.mainAxisAlignment = MainAxisAlignment.center,
   });
 
@@ -14,11 +15,12 @@ class UiButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? suffixIcon;
   final MainAxisAlignment mainAxisAlignment;
+  final EdgeInsets margin;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: Insets.l),
+      padding: margin,
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(

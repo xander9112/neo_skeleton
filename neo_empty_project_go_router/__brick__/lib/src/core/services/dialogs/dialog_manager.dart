@@ -8,7 +8,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class DialogManager extends StatefulWidget {
   const DialogManager({required this.router, this.child, super.key});
 
-  final AppAutoRouter router;
+  final AppRouter router;
 
   final Widget? child;
 

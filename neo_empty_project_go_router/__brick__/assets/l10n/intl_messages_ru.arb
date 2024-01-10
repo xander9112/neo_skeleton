@@ -31,6 +31,41 @@
     "type": "text",
     "placeholders": {}
   },
+  "CoreI18n_no": "Нет",
+  "@CoreI18n_no": {
+    "description": "No",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "CoreI18n_yes": "Да",
+  "@CoreI18n_yes": {
+    "description": "Yes",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "AuthI18n_resetDescription": "После сброса PIN-кода, вам необходимо будет авторизоваться.",
+  "@AuthI18n_resetDescription": {
+    "description": "After resetting the PIN-code, you will need to log in.",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "AuthI18n_resetTitle": "Вы уверены?",
+  "@AuthI18n_resetTitle": {
+    "description": "Are you sure?",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "SettingsI18n_signOutTitle": "Вы уверены что хотите выйти?",
+  "@SettingsI18n_signOutTitle": {
+    "description": "Are you sure you want to sign out?",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
   "AuthI18n_userNotFound": "Некорректный логин или пароль",
   "@AuthI18n_userNotFound": {
     "description": "Incorrect username or password message",

@@ -7,39 +7,46 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(SettingsI18n.title),
-        actions: <Widget>[
-          IconButton(
-            onPressed:
-                AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
-      body: BlocBuilder<SettingsCubit, SettingsState>(
-        builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Expanded(
-                child: Column(
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return Title(
+          color: Colors.black,
+          title: 'Settings',
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(SettingsI18n.title),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: context.read<SettingsCubit>().signOut,
+                  icon: const Icon(Icons.logout),
+                ),
+              ],
+            ),
+            body: BlocBuilder<SettingsCubit, SettingsState>(
+              builder: (context, state) {
+                return const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    LocaleSwitcher(),
-                    LocalAuthSwitcher(),
-                    BiometrySwitcher(),
-                    PinCodeChanger(),
-                    ThemeSwitcher(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LocaleSwitcher(),
+                          LocalAuthSwitcher(),
+                          BiometrySwitcher(),
+                          PinCodeChanger(),
+                          ThemeSwitcher(),
+                        ],
+                      ),
+                    ),
+                    // Center(child: Text(state.appInfo.fullVersion)),
                   ],
-                ),
-              ),
-              Center(child: Text(state.appInfo.fullVersion)),
-            ],
-          );
-        },
-      ),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

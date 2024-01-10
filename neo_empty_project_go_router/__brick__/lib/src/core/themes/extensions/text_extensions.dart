@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class TextExtension extends ThemeExtension<TextExtension> {
   const TextExtension({
@@ -89,4 +89,10 @@ class TextExtension extends ThemeExtension<TextExtension> {
     }
     return const TextExtension();
   }
+
+  // static TextExtension get light => TextExtension(
+  //       mainText: TextStyles.mainText.copyWith(
+  //         color: ThemeConfig.smallTextColor,
+  //       ),
+  //     );
 }

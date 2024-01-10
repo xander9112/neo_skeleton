@@ -1,5 +1,6 @@
 export 'check_auth_use_case.dart';
 export 'check_biometry_use_case.dart';
+export 'check_block_use_case.dart';
 export 'check_local_auth_use_case.dart';
 export 'check_pin_code_from_dialog_use_case.dart';
 export 'check_pin_code_use_case.dart';
@@ -12,3 +13,4 @@ export 'set_biometry_use_case.dart';
 export 'set_local_auth_use_case.dart';
 export 'set_pin_code_use_case.dart';
 export 'subscribe_auth_event_use_case.dart';
+export 'un_block_use_case.dart';

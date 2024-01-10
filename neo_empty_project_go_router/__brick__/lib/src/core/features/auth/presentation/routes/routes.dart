@@ -38,4 +38,12 @@ List<RouteBase> authRoutes = [
       ),
     ],
   ),
+  GoRoute(
+    path: AuthRoutePath.blocked,
+    pageBuilder: (context, state) => RouterHelper.noTransitionPage(
+      context: context,
+      state: state,
+      child: const BlockPage(),
+    ),
+  ),
 ];

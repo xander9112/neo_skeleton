@@ -86,19 +86,24 @@ class AuthRepositoryImpl
         request: <String, dynamic>{'login': login, 'password': password},
       );
 
-       await _secureStorageService
+      await _secureStorageService
           .saveCurrentUser(jsonEncode(result.user.toJson()));
 
       return Right(result);
     } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
+        return Left(
+          AuthFailure(code: 0, message: ''),
+        );
+      }
+
       return Left(
-        AuthFailure(
-          code: e.response?.statusCode ?? 0,
-          message: e.errorResponseMessage,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
-      return Left(AuthFailure(code: 0, message: e.toString()));
+      return Left(
+        AuthFailure(code: 0, message: ''),
+      );
     }
   }
 
@@ -111,14 +116,19 @@ class AuthRepositoryImpl
 
       return const Right(true);
     } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
+        return Left(
+          AuthFailure(code: 0, message: ''),
+        );
+      }
+
       return Left(
-        AuthFailure(
-          code: e.response?.statusCode ?? 0,
-          message: e.errorResponseMessage,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
-      return Left(AuthFailure(code: 0, message: e.toString()));
+      return Left(
+        AuthFailure(code: 0, message: e.toString()),
+      );
     }
   }
 
@@ -131,14 +141,19 @@ class AuthRepositoryImpl
 
       return Right(result);
     } on DioException catch (e) {
+      if (e.type == DioExceptionType.unknown) {
+        return Left(
+          AuthFailure(code: 0, message: ''),
+        );
+      }
+
       return Left(
-        AuthFailure(
-          code: e.response?.statusCode ?? 0,
-          message: e.errorResponseMessage,
-        ),
+        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
       );
     } catch (e) {
-      return Left(AuthFailure(code: 0, message: e.toString()));
+      return Left(
+        AuthFailure(code: 0, message: e.toString()),
+      );
     }
   }
 
@@ -171,5 +186,20 @@ class AuthRepositoryImpl
         AuthFailure(code: 0, message: ''),
       );
     }
+  }
+
+  @override
+  Future<void> blocUser(DateTime value) {
+    return _secureStorageService.blocUser(value);
+  }
+
+  @override
+  Future<void> unBlocUser() {
+    return _secureStorageService.unBlocUser();
+  }
+
+  @override
+  Future<DateTime?> getBlockTime() async {
+    return _secureStorageService.getBlockTime();
   }
 }

@@ -9,11 +9,11 @@ class BiometrySwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-          if (!state.useLocalAuth) {
+        if (!state.useLocalAuth) {
           return const SizedBox();
         }
-        
-         return ListTile(
+
+        return ListTile(
           title: Text(SettingsI18n.useBiometrics),
           trailing: Switch(
             value: state.useBiometric ?? false,

@@ -6,6 +6,12 @@ abstract class AuthRepository<A, U> {
 
   Future<Either<Failure, bool>> signOut();
 
+  Future<void> blocUser(DateTime value);
+
+  Future<void> unBlocUser();
+
+  Future<DateTime?> getBlockTime();
+
   Future<bool> hasAccessToken();
 
   Future<void> setAccessToken(String value);

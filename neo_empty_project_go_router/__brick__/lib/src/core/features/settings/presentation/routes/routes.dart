@@ -7,7 +7,7 @@ List<RouteBase> settingsRoutes = [
     path: SettingsRoutePath.initial,
     routes: [
       GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
+        parentNavigatorKey: AppGlobalKeys.rootNavigatorKey,
         path: SettingsRoutePath.changePinCode,
         pageBuilder: (context, state) => RouterHelper.adaptivePage(
           context: context,

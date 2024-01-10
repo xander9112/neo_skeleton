@@ -1,7 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/locale.dart' as intl;
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
@@ -11,7 +11,7 @@ part 'settings_cubit.freezed.dart';
 part 'settings_cubit.g.dart';
 part 'settings_state.dart';
 
-class SettingsCubit extends HydratedCubit<SettingsState> {
+class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit({
     required this.appInfo,
     required this.deviceInfo,
@@ -21,15 +21,22 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     required this.setBiometrySettingUseCase,
     required this.getAuthUseCase,
     required this.setLocalAuthUseCase,
-  }) : super(
-          SettingsState.current(
-            appInfo: appInfo,
-            deviceInfo: deviceInfo,
-          ),
+    required AuthManager<AuthenticatedUser> manager,
+    required DialogService dialogService,
+  })  : _manager = manager,
+        _dialogService = dialogService,
+        super(
+          const SettingsState.current(),
         ) {
     getVersions();
     subscriptAuthEventUseCase(refresh);
+
+    init();
   }
+
+  final DialogService _dialogService;
+
+  final AuthManager<AuthenticatedUser> _manager;
 
   final AppInfoModel appInfo;
 
@@ -47,20 +54,41 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   final GetAuthUseCase getAuthUseCase;
 
+  Future<void> init() async {
+    final settings = await getGlobalAuthSettings(NoParams());
+
+    final biometricSupportModel = await getBiometricSupportModel(NoParams());
+
+    emit(
+      state.copyWith(
+        useBiometric:
+            biometricSupportModel.status == BiometricStatus.notAvailable
+                ? null
+                : settings.useBiometric,
+        useLocalAuth: settings.useLocalAuth,
+      ),
+    );
+  }
+
   Future<void> refresh() async {
     final isAuth = await getAuthUseCase(NoParams());
 
     final globalAuthSettings = await getGlobalAuthSettings(NoParams());
 
-    bool? useBiometric = false;
+    bool? useBiometric;
 
     if (globalAuthSettings.useBiometric == false) {
       useBiometric = null;
     } else {
       final biometricSupportModel = await getBiometricSupportModel(NoParams());
+
       if (biometricSupportModel.status == BiometricStatus.available) {
         useBiometric = biometricSupportModel.useBiometric ?? false;
       }
+    }
+
+    if (isClosed) {
+      return;
     }
 
     if (isAuth) {
@@ -73,8 +101,6 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     } else {
       emit(
         state.copyWith(
-          locale: null,
-          appThemeMode: null,
           useBiometric: useBiometric,
           useLocalAuth: globalAuthSettings.useLocalAuth,
         ),
@@ -82,16 +108,9 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     }
   }
 
-  void setTheme(AppThemeMode? mode) {
-    emit(state.copyWith(appThemeMode: mode));
-  }
-
-  void setLocale(Locale? locale) {
-    emit(state.copyWith(locale: locale));
-  }
-
   Future<void> setBiometry({required bool value}) async {
     await setBiometrySettingUseCase(value);
+
     emit(state.copyWith(useBiometric: value));
   }
 
@@ -103,23 +122,14 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   Future<void> getVersions() async {}
 
-  @override
-  SettingsState? fromJson(Map<String, dynamic> json) {
-    try {
-      return SettingsState.fromJson(json['settings']).copyWith(
-        appInfo: appInfo,
-        deviceInfo: deviceInfo,
-      );
-    } catch (e) {
-      return SettingsState.current(
-        appInfo: appInfo,
-        deviceInfo: deviceInfo,
-      );
-    }
-  }
+  Future<void> signOut() async {
+    final result = await _dialogService.showDialog<bool>(
+      dialogType: DialogTypes.confirmDialog,
+      body: SettingsI18n.signOutTitle,
+    );
 
-  @override
-  Map<String, dynamic>? toJson(SettingsState state) {
-    return <String, dynamic>{'settings': state.toJson()};
+    if (result ?? false) {
+      await _manager.signOut();
+    }
   }
 }

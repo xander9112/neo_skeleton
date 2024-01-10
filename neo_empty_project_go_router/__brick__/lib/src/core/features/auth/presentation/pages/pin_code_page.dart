@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
+import 'package:{{name.snakeCase()}}/src/features/home/presentation/_presentation.dart';
 
 class PinCodePage extends StatelessWidget {
-  const PinCodePage({super.key});
+  const PinCodePage({super.key, this.onResult});
+
+  final void Function(bool)? onResult;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LocalAuthCubit>(
       create: (context) {
-        return AuthInjection.sl<LocalAuthCubit>()..checkAuth();
+        return AuthInjection.sl<LocalAuthCubit>()..checkAuth(onResult);
       },
       child: Scaffold(
         body: SafeArea(
@@ -39,10 +41,15 @@ class PinCodePage extends StatelessWidget {
                         onComplete: (pinCode) {
                           context
                               .read<LocalAuthCubit>()
-                              .createPin(pinCode);
+                              .createPin(pinCode, onResult);
                         },
                       ),
-                      enterPin: (biometricSupportModel, message, length) =>
+                      enterPin: (
+                        biometricSupportModel,
+                        message,
+                        length,
+                        errorCount,
+                      ) =>
                           PinCodeEnterForm(
                         message: message,
                         pinCodeLength: length,
@@ -51,12 +58,16 @@ class PinCodePage extends StatelessWidget {
                             (biometricSupportModel.useBiometric ?? false),
                         isFace: biometricSupportModel.isFace,
                         onBiometricPressed: () {
-                          context.read<LocalAuthCubit>().biometricAuth();
+                          context.read<LocalAuthCubit>().biometricAuth(
+                                onResult,
+                              );
                         },
+                        onPressedReset:
+                            context.read<LocalAuthCubit>().resetPinCode,
                         onComplete: (pinCode) async {
                           await context
                               .read<LocalAuthCubit>()
-                              .enterPin(pinCode);
+                              .enterPin(pinCode, onResult);
                         },
                       ),
                     );
