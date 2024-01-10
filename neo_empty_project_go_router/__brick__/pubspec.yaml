@@ -33,7 +33,7 @@ dependencies:
   json_annotation: ^4.8.1
   json_serializable: ^6.7.1
   local_auth: ^2.1.7
-  neo_auth_core:
+  {{ name.snakeCase() }}_core:
     path: ./packages/{{ name.snakeCase() }}_core
   reactive_forms: ^16.1.1
   retrofit: ^4.0.3
