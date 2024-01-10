@@ -24,7 +24,7 @@ vars:
   name:
     type: string
     description: Project name
-    default: NFOProject
+    default: NfoProject
     prompt: What is project name?
   androidBundleId:
     type: string
