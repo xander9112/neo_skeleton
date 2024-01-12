@@ -18,7 +18,7 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
        return Left(
         {{name.pascalCase()}}Failure(
           code: error.response?.statusCode ?? 1,
-          message: error.response?.data.toString() ?? error.errorMessage,
+          message: error.errorResponseMessage,
         ),
       );
 
