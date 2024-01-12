@@ -9,7 +9,7 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
   final Remote{{name.pascalCase()}}DataSource _dataSource;
 
   @override
-  Future<Either<Failure, {{name.pascalCase()}}Model>> get{{name.pascalCase()}}() async {
+  Future<Either<Failure, {{name.pascalCase()}}DTO>> get{{name.pascalCase()}}() async {
     try {
       final response = await _dataSource.get{{name.pascalCase()}}();
 

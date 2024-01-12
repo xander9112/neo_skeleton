@@ -202,6 +202,8 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
       _user = authModel.user;
 
+      authenticated = true;
+
       return const Right(true);
     });
   }

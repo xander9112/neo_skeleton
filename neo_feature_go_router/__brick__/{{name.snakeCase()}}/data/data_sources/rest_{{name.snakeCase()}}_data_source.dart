@@ -10,5 +10,5 @@ abstract class Rest{{name.pascalCase()}}DataSource implements Remote{{name.pasca
 
   @override
   @GET('/{{name.snakeCase()}}')
-  Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}();
+  Future<{{name.pascalCase()}}DTO> get{{name.pascalCase()}}();
 }

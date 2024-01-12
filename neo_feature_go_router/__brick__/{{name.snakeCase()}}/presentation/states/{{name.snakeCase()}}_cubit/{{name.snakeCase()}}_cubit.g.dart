@@ -14,7 +14,7 @@ _${{name.pascalCase()}}InitialStateImpl _$${{name.pascalCase()}}InitialStateImpl
       error: json['error'] as String?,
       {{name.camelCase()}}: json['{{name.camelCase()}}'] == null
           ? null
-          : {{name.pascalCase()}}Model.fromJson(json['{{name.camelCase()}}']),
+          : {{name.pascalCase()}}DTO.fromJson(json['{{name.camelCase()}}']),
     );
 
 Map<String, dynamic> _$${{name.pascalCase()}}InitialStateImplToJson(

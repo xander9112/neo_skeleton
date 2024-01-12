@@ -92,13 +92,14 @@ class AuthRepositoryImpl
       return Right(result);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.unknown) {
-        return Left(
-          AuthFailure(code: 0, message: ''),
-        );
+        return Left(          AuthFailure(code: 0, message: e.errorResponseMessage)        );
       }
 
       return Left(
-        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
+        AuthFailure(
+          code: e.response?.statusCode ?? 0,
+          message: e.errorResponseMessage,
+        ),
       );
     } catch (e) {
       return Left(

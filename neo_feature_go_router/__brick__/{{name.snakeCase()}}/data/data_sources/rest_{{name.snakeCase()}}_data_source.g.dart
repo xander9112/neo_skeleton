@@ -19,13 +19,13 @@ class _Rest{{name.pascalCase()}}DataSource implements Rest{{name.pascalCase()}}D
   String? baseUrl;
 
   @override
-  Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}() async {
+  Future<{{name.pascalCase()}}DTO> get{{name.pascalCase()}}() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<{{name.pascalCase()}}Model>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<{{name.pascalCase()}}DTO>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,7 +37,7 @@ class _Rest{{name.pascalCase()}}DataSource implements Rest{{name.pascalCase()}}D
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = {{name.pascalCase()}}Model.fromJson(_result.data!);
+    final value = {{name.pascalCase()}}DTO.fromJson(_result.data!);
     return value;
   }
 
