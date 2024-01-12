@@ -1,1 +1,1 @@
-export '{{name.snakeCase()}}_cubit/{{name.snakeCase()}}.dart';
+export '{{name.snakeCase()}}/{{name.snakeCase()}}_cubit.dart';
