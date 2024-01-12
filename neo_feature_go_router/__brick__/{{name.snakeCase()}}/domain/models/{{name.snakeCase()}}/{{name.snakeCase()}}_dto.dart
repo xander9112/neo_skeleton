@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '{{name.snakeCase()}}_model.freezed.dart';
-part '{{name.snakeCase()}}_model.g.dart';
+part '{{name.snakeCase()}}_dto.freezed.dart';
+part '{{name.snakeCase()}}_dto.g.dart';
 
 @freezed
 class {{name.pascalCase()}}DTO with _${{name.pascalCase()}}DTO {
