@@ -25,7 +25,13 @@ class AuthInjection extends ICoreInjection {
           demoUserRepository: DemoUserRepositoryImpl(),
         ),
       )
-      ..registerFactory<RestAuthDataSource>(MockAuthDataSource.new);
+      ..registerFactory<RestAuthDataSource>(
+        () => buildDependency<RestAuthDataSource>(
+          useMock: useMock,
+          factoryFunc: () => RestAuthDataSource(sl()),
+          mockFactoryFunc: MockAuthDataSource.new,
+        ),
+      );
   }
 
   @override
