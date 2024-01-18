@@ -143,7 +143,7 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
         state.maybeMap(
           orElse: () => state,
           enterPin: (value) =>
-              value.copyWith(status: FetchStatus.fetchingInProgress),
+              value.copyWith(status: FetchStatus.fetchingInProgress, error: null),
         ),
       );
 
