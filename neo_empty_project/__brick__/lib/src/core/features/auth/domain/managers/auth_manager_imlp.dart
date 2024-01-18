@@ -106,6 +106,10 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     }
 
     if (hasToken) {
+      if (await authRepository.getAccessToken() == 'demo') {
+        _mocked = true;
+      }
+      
       await verify();
     }
 
