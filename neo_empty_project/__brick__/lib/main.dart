@@ -51,7 +51,6 @@ void main() async {
                 navigatorObservers: () {
                   return [MyObserver()];
                 },
-                // rebuildStackOnDeepLink: true,
                 deepLinkBuilder: (PlatformDeepLink link) async {
                   if (link.uri.path != '/') {
                     return link;
@@ -60,7 +59,6 @@ void main() async {
                   final path = Uri.base.path;
 
                   return DeepLink.path(path);
-                  // return const DeepLink.path('/main/users');
                 },
               ),
               builder: (BuildContext context, Widget? child) {

@@ -22,8 +22,6 @@ class AuthGuard extends AutoRouteGuard {
         onResult: (bool success) {
           if (success) {
             resolver.next(success);
-
-            router.removeLast();
           }
         },
       ),

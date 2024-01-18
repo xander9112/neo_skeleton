@@ -68,8 +68,6 @@ class App {
   static Future<void> _startApp(EnvConfig env) async {
     await AuthInjection.sl<AuthManager<AuthenticatedUser>>().init();
 
-    // await AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut();
-
     _updateProgress(100);
 
     return _completer.future;
