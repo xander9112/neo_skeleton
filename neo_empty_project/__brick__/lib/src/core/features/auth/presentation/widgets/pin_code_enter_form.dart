@@ -11,6 +11,7 @@ class PinCodeEnterForm extends StatefulWidget {
     this.onBiometricPressed,
     this.onPressedReset,
     this.isFace = true,
+    this.isLoading = false,
   });
 
   final String? message;
@@ -26,6 +27,8 @@ class PinCodeEnterForm extends StatefulWidget {
   final VoidCallback? onBiometricPressed;
 
   final VoidCallback? onPressedReset;
+
+  final bool isLoading;
 
   @override
   State<PinCodeEnterForm> createState() => _PinCodeEnterFormState();
@@ -52,6 +55,10 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
         Text(
           widget.message ?? '',
           style: TextStyle(color: Theme.of(context).colorScheme.error),
+        ),
+        Opacity(
+          opacity: widget.isLoading ? 1 : 0,
+          child: const UiProgressIndicator(),
         ),
         Expanded(
           flex: 2,

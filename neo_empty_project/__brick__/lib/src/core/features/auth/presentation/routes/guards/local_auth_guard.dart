@@ -17,12 +17,10 @@ class LocalAuthGuard extends AutoRouteGuard {
 
     await router.replace(
       PinCodeRoute(
-        onResult: (bool success) {
-          if (success) {
-            resolver.next(success);
+        onResult: (isSuccess) {
+          resolver.nextOrBack(isSuccess);
 
-            router.removeLast();
-          }
+          router.removeLast();
         },
       ),
     );

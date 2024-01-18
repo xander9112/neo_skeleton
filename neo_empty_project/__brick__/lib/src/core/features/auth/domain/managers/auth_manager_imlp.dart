@@ -98,7 +98,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     }
 
     if (settings.useLocalAuth && (!hasPinCode && !kIsWeb)) {
-      await signOut();
+      await signOut(remote: false);
 
       authenticated = false;
 

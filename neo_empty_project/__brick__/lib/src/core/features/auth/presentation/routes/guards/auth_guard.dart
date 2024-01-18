@@ -19,10 +19,8 @@ class AuthGuard extends AutoRouteGuard {
 
     await router.replace(
       LoginRoute(
-        onResult: (bool success) {
-          if (success) {
-            resolver.next(success);
-          }
+        onResult: (bool isSuccess) {
+          resolver.next(isSuccess);          
         },
       ),
     );
