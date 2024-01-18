@@ -22,13 +22,13 @@ class DialogService {
 
   /// Calls the dialog listener and
   /// returns a Future that will wait for dialogComplete.
-  Future<dynamic> showDialog<T>({
+  Future<T?> showDialog<T>({
     required int dialogType,
     String? title,
     String? body,
     dynamic params,
   }) {
-    _dialogCompleter = Completer<T>();
+    _dialogCompleter = Completer<T?>();
 
     _showDialogListener(
       dialogType: dialogType,
@@ -38,7 +38,7 @@ class DialogService {
       params: params,
     );
 
-    return _dialogCompleter.future;
+    return _dialogCompleter.future as Future<T?>;
   }
 
   /// Completes the _dialogCompleter to resume the Future's execution call

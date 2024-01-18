@@ -113,4 +113,16 @@ class AuthI18n {
         desc: 'Use biometrics to login?',
         name: 'AuthI18n_useBiometricsToLogin',
       );
+
+  static String get resetTitle => Intl.message(
+        'Are you sure?',
+        desc: 'Are you sure?',
+        name: 'AuthI18n_resetTitle',
+      );
+
+  static String get resetDescription => Intl.message(
+        'After resetting the PIN-code, you will need to log in.',
+        desc: 'After resetting the PIN-code, you will need to log in.',
+        name: 'AuthI18n_resetDescription',
+      );
 }

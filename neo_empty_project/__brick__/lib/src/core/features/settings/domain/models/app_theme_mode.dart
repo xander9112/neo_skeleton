@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:intl/locale.dart' as intl;
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-
 enum AppThemeMode {
   light,
   dark;

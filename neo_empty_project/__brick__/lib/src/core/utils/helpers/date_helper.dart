@@ -35,7 +35,7 @@ abstract class DateHelper {
             endDate.year,
             endDate.month + i,
             endDate.day,
-          )
+          ),
         ]);
       } else if (i == 0) {
         months.add(<DateTime>[
@@ -48,7 +48,7 @@ abstract class DateHelper {
             initialDate.year,
             initialDate.month + i + 1,
             0,
-          )
+          ),
         ]);
       } else if (i == monthCount - 1) {
         months.add(<DateTime>[
@@ -60,7 +60,7 @@ abstract class DateHelper {
             endDate.year,
             endDate.month,
             endDate.day,
-          )
+          ),
         ]);
       } else {
         months.add(<DateTime>[
@@ -72,7 +72,7 @@ abstract class DateHelper {
             initialDate.year,
             initialDate.month + i + 1,
             0,
-          )
+          ),
         ]);
       }
     }
@@ -191,5 +191,85 @@ abstract class DateHelper {
 
   static bool isSameMonth(DateTime? dateA, DateTime? dateB) {
     return dateA?.year == dateB?.year && dateA?.month == dateB?.month;
+  }
+
+  static bool isAnniversary(
+    DateTime? workInCompany,
+    DateTime date,
+    int years, {
+    bool onlyYear = false,
+  }) {
+    if (workInCompany == null) {
+      return false;
+    }
+
+    if (onlyYear) {
+      return getMonthSizeBetweenDates(workInCompany, date) == years * 12;
+    }
+
+    return workInCompany.month == date.month &&
+        workInCompany.day == date.day &&
+        getMonthSizeBetweenDates(workInCompany, date) == years * 12;
+  }
+
+  static DateDifference getTheDateDifference(DateTime date) {
+    final now = DateTime.now();
+
+    var years = now.year - date.year;
+    var months = now.month - date.month;
+    var days = now.day - date.day;
+
+    if (months < 0 || (months == 0 && days < 0)) {
+      years--;
+      months += days < 0 ? 11 : 12;
+    }
+
+    if (days < 0) {
+      final monthAgo = DateTime(now.year, now.month - 1, date.day);
+      days = now.difference(monthAgo).inDays + 1;
+    }
+
+    return DateDifference(years: years, months: months, days: days);
+  }
+
+  static bool isWeekend(DateTime date) {
+    return date.weekday == 6 || date.weekday == 7;
+  }
+
+  static DateTime getFirstDateForLogTime() {
+    final now = DateTime.now();
+
+    var firstDate = DateTime(now.year, now.month);
+
+    if (now.day < 4) {
+      firstDate = DateTime(now.year, now.month - 1);
+    }
+
+    return firstDate;
+  }
+
+  static DateTime getLastDateForLogTime() {
+    final now = DateTime.now();
+
+    var lastDate = DateTime(now.year, now.month + 1, 0);
+
+    if (lastDate.difference(now).inDays < 7) {
+      lastDate = DateTime(now.year, now.month, now.day + 7);
+    }
+
+    return lastDate;
+  }
+}
+
+class DateDifference {
+  DateDifference({this.years = 0, this.months = 0, this.days = 0});
+
+  int years;
+  int months;
+  int days;
+
+  @override
+  String toString() {
+    return '{ years: $years, months: $months, days: $days }';
   }
 }

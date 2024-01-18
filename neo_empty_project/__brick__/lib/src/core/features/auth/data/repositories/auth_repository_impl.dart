@@ -86,23 +86,30 @@ class AuthRepositoryImpl
         request: <String, dynamic>{'login': login, 'password': password},
       );
 
-       await _secureStorageService
+      await _secureStorageService
           .saveCurrentUser(jsonEncode(result.user.toJson()));
 
       return Right(result);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.unknown) {
+        return Left(AuthFailure(code: 0, message: e.errorResponseMessage));
+      }
+
+      if (e.type == DioExceptionType.connectionTimeout) {
         return Left(
-          AuthFailure(code: 0, message: ''),
+          AuthFailure(code: 503, message: e.errorResponseMessage),
         );
       }
 
       return Left(
-        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
+        AuthFailure(
+          code: e.response?.statusCode ?? 0,
+          message: e.errorResponseMessage,
+        ),
       );
     } catch (e) {
       return Left(
-        AuthFailure(code: 0, message: ''),
+        AuthFailure(code: 0, message: e.toString()),
       );
     }
   }
@@ -137,23 +144,28 @@ class AuthRepositoryImpl
     try {
       final result = await _restAuthDataSource.verify();
 
+      final token = await _secureStorageService.getToken();
+
+      if (token != null) {
+        await _secureStorageService.setToken(token);
+      }
+
       await _secureStorageService.saveCurrentUser(jsonEncode(result.toJson()));
 
       return Right(result);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.unknown) {
-        return Left(
-          AuthFailure(code: 0, message: ''),
-        );
+        return Left(AuthFailure(code: 0, message: e.errorResponseMessage));
       }
 
       return Left(
-        AuthFailure(code: e.response?.statusCode ?? 0, message: ''),
+        AuthFailure(
+          code: e.response?.statusCode ?? 0,
+          message: e.errorResponseMessage,
+        ),
       );
     } catch (e) {
-      return Left(
-        AuthFailure(code: 0, message: e.toString()),
-      );
+      return Left(AuthFailure(code: 0, message: e.toString()));
     }
   }
 
@@ -161,17 +173,14 @@ class AuthRepositoryImpl
   Future<Either<Failure, AuthenticatedUser>> getCurrentUser() async {
     try {
       final user = await _secureStorageService.getCurrentUser();
+
       if (user != null) {
         return Right(AuthenticatedUser.fromJson(jsonDecode(user)));
       }
 
-      return Left(
-        AuthFailure(code: 0, message: ''),
-      );
+      return Left(AuthFailure(code: 0, message: 'User not found'));
     } catch (e) {
-      return Left(
-        AuthFailure(code: 0, message: ''),
-      );
+      return Left(AuthFailure(code: 0, message: e.toString()));
     }
   }
 
@@ -186,5 +195,20 @@ class AuthRepositoryImpl
         AuthFailure(code: 0, message: ''),
       );
     }
+  }
+
+  @override
+  Future<void> blocUser(DateTime value) {
+    return _secureStorageService.blocUser(value);
+  }
+
+  @override
+  Future<void> unBlocUser() {
+    return _secureStorageService.unBlocUser();
+  }
+
+  @override
+  Future<DateTime?> getBlockTime() async {
+    return _secureStorageService.getBlockTime();
   }
 }

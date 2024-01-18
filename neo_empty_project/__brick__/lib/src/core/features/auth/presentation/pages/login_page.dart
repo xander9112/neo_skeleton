@@ -14,50 +14,47 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends LoadingState<LoginPage> {
+  void onFinish(BuildContext context) {
+    if (widget.onResult == null) {
+      context.router.pushNamed('/');
+    } else {
+      widget.onResult?.call(true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
       create: (context) {
-        return AuthInjection.sl<LoginCubit>()..checkAuth(widget.onResult);
+        return AuthInjection.sl<LoginCubit>()..checkAuth();
       },
       child: Scaffold(
         body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(Insets.xl),
-            decoration: const BoxDecoration(
-              // color: context.theme.cardColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(BorderRadiusInsets.xl),
-                topRight: Radius.circular(BorderRadiusInsets.xl),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                BlocConsumer<LoginCubit, LoginState>(
-                  listener: (context, state) {
-                    state.when(
-                      initial: (status, error) {
-                        if (status.isFetchingInProgress) {
-                          loadingOverlay.show(context);
-                        } else {
-                          loadingOverlay.hide();
-                        }
-                      },
-                    );
-                  },
-                  builder: (context, state) {
-                    return LoginForm(
-                      form: context.read<LoginCubit>().form,
-                      message: state.error,
-                      onSubmitForm: () {
-                        context.read<LoginCubit>().login(widget.onResult);
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              state.when(
+                initial: (status, stateStatus, error, blockTime) {
+                  if (status.isFetchingInProgress) {
+                    loadingOverlay.show(context);
+                  } else {
+                    loadingOverlay.hide();
+                  }
+
+                  if (stateStatus.isFinish) {
+                    onFinish(context);
+                  }
+                },
+              );
+            },
+            builder: (context, state) {
+              return LoginForm(
+                form: context.read<LoginCubit>().form,
+                message: state.error,
+                onSubmitForm: () {
+                  context.read<LoginCubit>().login();
+                },
+              );
+            },
           ),
         ),
       ),

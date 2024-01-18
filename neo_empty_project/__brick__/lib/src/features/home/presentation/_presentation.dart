@@ -1,3 +1,4 @@
 export 'localization/l10n.dart';
 export 'pages/_pages.dart';
-export 'routes/routes.dart';
+export 'routes/_routes.dart';
+export 'widgets/_widgets.dart';

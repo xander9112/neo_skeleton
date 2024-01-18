@@ -64,6 +64,8 @@ class ApiDioClient {
 
     _dio.interceptors.add(TokenInterceptor(_storage));
 
+    _dio.interceptors.add(AuthInterceptor(_storage, _dio));
+
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: _onRequest,
@@ -114,7 +116,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioUnauthorizedError.code:
         error = DioUnauthorizedError(
           requestOptions: e.requestOptions,
@@ -127,7 +128,6 @@ class ApiDioClient {
           // _cancelToken?.cancel();
         }
 
-        break;
       case DioBadRequestError.code:
         error = DioBadRequestError(
           requestOptions: e.requestOptions,
@@ -136,7 +136,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioAuthenticationTimeoutError.code:
         error = DioAuthenticationTimeoutError(
           requestOptions: e.requestOptions,
@@ -145,7 +144,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioUnprocessableEntityError.code:
         error = DioUnprocessableEntityError(
           requestOptions: e.requestOptions,
@@ -154,7 +152,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioNotFoundError.code:
         error = DioNotFoundError(
           requestOptions: e.requestOptions,
@@ -163,7 +160,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioBadGatewayError.code:
         error = DioBadGatewayError(
           requestOptions: e.requestOptions,
@@ -172,7 +168,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioGatewayTimeoutError.code:
         error = DioGatewayTimeoutError(
           requestOptions: e.requestOptions,
@@ -181,7 +176,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioServiceUnavailableError.code:
         error = DioServiceUnavailableError(
           requestOptions: e.requestOptions,
@@ -190,7 +184,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioMethodNotAllowedError.code:
         error = DioMethodNotAllowedError(
           requestOptions: e.requestOptions,
@@ -199,7 +192,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioTooManyRequestsError.code:
         error = DioTooManyRequestsError(
           requestOptions: e.requestOptions,
@@ -208,7 +200,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       case DioInternalServerError.code:
         error = DioInternalServerError(
           requestOptions: e.requestOptions,
@@ -217,7 +208,6 @@ class ApiDioClient {
           response: e.response,
         );
 
-        break;
       default:
         if (e.response == null && e.error is SocketException) {
           error = DioNetworkError(

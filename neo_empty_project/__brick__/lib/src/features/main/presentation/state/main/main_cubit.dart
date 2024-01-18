@@ -1,12 +1,21 @@
-import 'package:bloc/bloc.dart';
+import 'dart:async';
+
+import 'package:event_bus/event_bus.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
-part 'main_state.dart';
 part 'main_cubit.freezed.dart';
+part 'main_state.dart';
 
-class MainCubit extends Cubit<MainState> {
-  MainCubit(this.mocked) : super(const MainState());
+class MainCubit extends BaseCubit<MainState> {
+  MainCubit(
+    this.mocked, {
+    required EventBus eventBus,
+  })  : _eventBus = eventBus,
+        super(const MainState());
+
+  final EventBus _eventBus;
 
   final bool mocked;
 
@@ -14,5 +23,15 @@ class MainCubit extends Cubit<MainState> {
     emit(state.copyWith(status: FetchStatus.fetchingInProgress));
 
     emit(state.copyWith(status: FetchStatus.fetchingSuccess, isDemo: mocked));
+  }
+
+  void onPressedMenu(BottomMenuEnum menuItem) {
+    _eventBus.fire(menuItem);
+  }
+
+  @override
+  Future<void> close() {
+    // _eventBus
+    return super.close();
   }
 }

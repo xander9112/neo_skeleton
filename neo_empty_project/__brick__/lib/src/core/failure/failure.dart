@@ -10,6 +10,15 @@ abstract class Failure {
   String getLocalizedString();
 }
 
+class LocalFailure extends Failure {
+  LocalFailure({required super.code, required super.message});
+
+  @override
+  String getLocalizedString() {
+    return CoreI18n.unknownError;
+  }
+}
+
 class HttpFailure extends Failure {
   HttpFailure(this.httpCode, {required super.code, required super.message});
 
@@ -35,6 +44,12 @@ extension DioExceptionLog on DioException {
 
   String get errorResponseMessage {
     try {
+      // ignore: avoid_dynamic_calls
+      if (response?.data['error'] != null) {
+        // ignore: avoid_dynamic_calls
+        return response?.data['error']['message'] as String;
+      }
+
       // ignore: avoid_dynamic_calls
       return response?.data['message'] as String;
     } catch (_) {

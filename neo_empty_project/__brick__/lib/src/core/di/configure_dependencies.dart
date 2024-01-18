@@ -1,19 +1,22 @@
 import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
-Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
-  await ExternalInjection().init({{#useFlavor}}env{{/useFlavor}});
+Future<void> configureDependencies(EnvConfig env) async {
+  await GetIt.instance.reset();
 
-  await CoreInjection().init({{#useFlavor}}env{{/useFlavor}});
+  await ExternalInjection().init(env);
 
-  //feature
-  await AuthInjection().init({{#useFlavor}}env{{/useFlavor}});
+  await CoreInjection().init(env);
 
-  await MainInjection().init({{#useFlavor}}env{{/useFlavor}});
+  //features
+  await AuthInjection().init(env);
+
+  await MainInjection().init(env, useMock: true);
 
   await additionalExternalInit();
 }

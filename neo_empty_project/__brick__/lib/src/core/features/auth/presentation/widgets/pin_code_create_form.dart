@@ -28,38 +28,33 @@ class _PinCodeCreateFormState extends State<PinCodeCreateForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: PinCodeHeader(
-                  hasPinCode: false,
-                  hasTemporaryCode: widget.isConfirm,
-                  hasError: false,
-                  pinCodeLength: widget.pinCodeLength,
-                  pinFilledCodeLength: code.length,
-                  isLoading: false,
-                ),
-              ),
-              Text(
-                widget.message ?? '',
-                style: const TextStyle(color: Colors.red),
-              ),
-              Expanded(
-                child: PinCodeKeyboard(
-                  useBiometric: false,
-                  onPressedNumber: onPressedNumber,
-                  onReset: onPressedReset,
-                  onDelete: onPressedDelete,
-                  reset: AuthI18n.reset,
-                  delete: AuthI18n.delete,
-                ),
-              )
-            ],
+          child: PinCodeHeader(
+            hasPinCode: false,
+            hasTemporaryCode: widget.isConfirm,
+            hasError: false,
+            pinCodeLength: widget.pinCodeLength,
+            pinFilledCodeLength: code.length,
+            isLoading: false,
           ),
-        )
+        ),
+        Text(
+          widget.message ?? '',
+          style: const TextStyle(color: Colors.red),
+        ),
+        Expanded(
+          flex: 2,
+          child: PinCodeKeyboard(
+            useBiometric: false,
+            onPressedNumber: onPressedNumber,
+            onReset: onPressedReset,
+            onDelete: onPressedDelete,
+            reset: AuthI18n.reset,
+            delete: AuthI18n.delete,
+          ),
+        ),
       ],
     );
   }

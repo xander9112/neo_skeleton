@@ -16,6 +16,7 @@ class LocalAuthState with _$LocalAuthState {
     required BiometricSupportModel biometricSupportModel,
     String? error,
     @Default(4) int length,
+    @Default(0) int errorCount,
   }) = _LocalAuthEnterPin;
 
   factory LocalAuthState.fromJson(Object? json) =>

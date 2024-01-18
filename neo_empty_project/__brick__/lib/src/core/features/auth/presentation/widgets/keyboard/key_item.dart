@@ -11,11 +11,14 @@ class KeyItem extends StatelessWidget {
     return SizedBox(
       width: 100,
       height: 72,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onPressedNumber?.call,
-          child: Center(child: child),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onPressedNumber?.call,
+            child: Center(child: child),
+          ),
         ),
       ),
     );

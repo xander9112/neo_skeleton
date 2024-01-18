@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 class UiProgressIndicator extends StatelessWidget {
   const UiProgressIndicator({
@@ -20,7 +21,7 @@ class UiProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget loader = SpinKitWave(
-      color: Theme.of(context).primaryColor,
+      color: context.colorScheme.primary,
       size: size,
       itemCount: 8,
       type: SpinKitWaveType.center,

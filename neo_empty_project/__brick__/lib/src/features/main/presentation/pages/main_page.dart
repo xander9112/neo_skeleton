@@ -4,11 +4,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 import 'package:super_banners/super_banners.dart';
 
 @RoutePage()
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
+
+  Future<void> onPressedPopTop(BuildContext context, int index) async {
+    final router = AutoTabsRouter.of(context);
+
+    if (router.activeIndex == index) {
+      if (router.canPop()) {
+        await router.popTop();
+
+        await onPressedPopTop(context, index);
+      } else {
+        context
+            .read<MainCubit>()
+            .onPressedMenu(BottomMenuEnum.values.elementAt(index));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +37,15 @@ class MainPage extends StatelessWidget {
             condition: state.status.isFetchingSuccess,
             onFalse: const Scaffold(body: UiProgressIndicator()),
             onTrue: AutoTabsRouter(
+              lazyLoad: false,
               routes: const [
-                HomeRoute(),
-                SettingsRouter(),
+                HomeRootRouter(),
+                SettingsRoute(),
               ],
-              transitionBuilder: (context, child, animation) => FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
               builder: (context, child) {
                 final tabsRouter = AutoTabsRouter.of(context);
 
-                return Scaffold(
+                return NeoScaffold(
                   body: Stack(
                     children: [
                       child,
@@ -48,15 +62,23 @@ class MainPage extends StatelessWidget {
                   ),
                   bottomNavigationBar: BottomNavigationBar(
                     currentIndex: tabsRouter.activeIndex,
-                    onTap: tabsRouter.setActiveIndex,
+                    onTap: (index) {
+                      onPressedPopTop(context, index);
+
+                      tabsRouter.setActiveIndex(index);
+                    },
                     items: [
                       BottomNavigationBarItem(
                         label: MainI18n.homeBottomMenuItem,
-                        icon: const Icon(Icons.home),
+                        icon: const Icon(
+                          Icons.home,
+                        ),
                       ),
                       BottomNavigationBarItem(
                         label: MainI18n.settingsBottomMenuItem,
-                        icon: const Icon(Icons.settings),
+                        icon: const Icon(
+                          Icons.settings,
+                        ),
                       ),
                     ],
                   ),

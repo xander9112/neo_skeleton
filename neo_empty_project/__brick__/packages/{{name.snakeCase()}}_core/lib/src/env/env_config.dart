@@ -14,17 +14,21 @@ abstract class Env {
   static Future<EnvConfig> getCurrentEnv() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    late final String? flavor;
+    try {
+      late final String? flavor;
 
-    if (kIsWeb) {
-      flavor = const String.fromEnvironment('flavor');
-    } else {
-      flavor =
-          await const MethodChannel('flavor').invokeMethod<String>('getFlavor');
+      if (kIsWeb) {
+        flavor = const String.fromEnvironment('flavor');
+      } else {
+        flavor = await const MethodChannel('flavor')
+            .invokeMethod<String>('getFlavor');
+      }
+
+      return EnvConfig.values
+              .firstWhereOrNull((EnvConfig env) => env.name == flavor) ??
+          EnvConfig.prod;
+    } catch (_) {
+      return EnvConfig.prod;
     }
-
-    return EnvConfig.values
-            .firstWhereOrNull((EnvConfig env) => env.name == flavor) ??
-        EnvConfig.prod;
   }
 }

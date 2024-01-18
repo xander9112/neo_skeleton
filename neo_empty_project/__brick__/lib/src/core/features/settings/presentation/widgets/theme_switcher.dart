@@ -7,27 +7,29 @@ class ThemeSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
+    return BlocBuilder<DevicePreferencesBloc, DevicePreferencesState>(
       builder: (context, state) {
         return ListTile(
           title: Text(SettingsI18n.selectTheme),
-          trailing: DropdownButton<AppThemeMode?>(
-            value: state.appThemeMode,
-            items: [null, ...AppThemeMode.values]
+          trailing: DropdownButton<ThemeMode?>(
+            value: state.themeMode,
+            items: ThemeMode.values
                 .map(
-                  (e) => DropdownMenuItem<AppThemeMode?>(
+                  (e) => DropdownMenuItem<ThemeMode>(
                     value: e,
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Text(
-                        e?.getLocalizedString() ?? SettingsI18n.systemTheme,
-                      ),
+                      child: Text(e.name),
                     ),
                   ),
                 )
                 .toList(),
             onChanged: (value) {
-              context.read<SettingsCubit>().setTheme(value);
+              context.read<DevicePreferencesBloc>().add(
+                    DevicePreferencesEvent.setThemeMode(
+                      value,
+                    ),
+                  );
             },
           ),
         );

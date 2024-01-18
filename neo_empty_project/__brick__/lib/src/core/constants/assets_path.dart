@@ -7,6 +7,6 @@ class AppIcons {
   String get face => '$_iconsPath/face_id.svg';
 }
 
-class Assets {
+class OldAssets {
   static const AppIcons icons = AppIcons();
 }

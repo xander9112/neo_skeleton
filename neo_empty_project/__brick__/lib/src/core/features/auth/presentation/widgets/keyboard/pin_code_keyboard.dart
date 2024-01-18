@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
@@ -115,7 +116,7 @@ class PinCodeKeyboard extends StatelessWidget {
               if (useBiometric && icon != null)
                 KeyItem(
                   onPressedNumber: onBiometricPressed,
-                  child: UiIcon(icon!),
+                  child: NeoIcon(icon!),
                 ),
             ],
           ),

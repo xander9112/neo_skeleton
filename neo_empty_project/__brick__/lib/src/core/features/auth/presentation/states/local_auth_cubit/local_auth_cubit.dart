@@ -1,36 +1,40 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 part 'local_auth_cubit.freezed.dart';
 part 'local_auth_cubit.g.dart';
 part 'local_auth_state.dart';
 
-class LocalAuthCubit extends Cubit<LocalAuthState> {
+class LocalAuthCubit extends BaseCubit<LocalAuthState> {
   LocalAuthCubit({
+    required AuthManager<AuthenticatedUser> manager,
+    required DialogService dialogService,
     required CheckLocalAuthUseCase checkLocalAuthUseCase,
     required SetPinCodeUseCase setPinCodeUseCase,
     required CheckPinCodeUseCase checkPinCodeUseCase,
     required SetBiometryUseCase setBiometryUseCase,
     required CheckBiometryUseCase checkBiometryUseCase,
     required GetBiometricSupportModel getBiometricSupportModel,
-    required NavigateToMainUseCase navigateToMainUseCase,
-  })  : _checkLocalAuthUseCase = checkLocalAuthUseCase,
+  })  : _manager = manager,
+        _dialogService = dialogService,
+        _checkLocalAuthUseCase = checkLocalAuthUseCase,
         _setPinCodeUseCase = setPinCodeUseCase,
         _checkPinCodeUseCase = checkPinCodeUseCase,
         _setBiometryUseCase = setBiometryUseCase,
         _checkBiometryUseCase = checkBiometryUseCase,
         _getBiometricSupportModel = getBiometricSupportModel,
-        _navigateToMainUseCase = navigateToMainUseCase,
         super(const LocalAuthState.initial());
+
+  final AuthManager<AuthenticatedUser> _manager;
+
+  final DialogService _dialogService;
 
   final CheckLocalAuthUseCase _checkLocalAuthUseCase;
 
   final SetPinCodeUseCase _setPinCodeUseCase;
-
-  final NavigateToMainUseCase _navigateToMainUseCase;
 
   final CheckPinCodeUseCase _checkPinCodeUseCase;
 
@@ -65,27 +69,14 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
             ),
           );
 
-          break;
         case LocalAuthResult.unlocked:
           emit(const LocalAuthState.success());
 
-          if (onResult != null) {
-            onResult.call(true);
-          } else {
-            await _navigateToMainUseCase(null);
-          }
-          break;
         case LocalAuthResult.notAvailable:
           emit(const LocalAuthState.success());
-          if (onResult != null) {
-            onResult.call(true);
-          } else {
-            await _navigateToMainUseCase(null);
-          }
-          break;
+
         case LocalAuthResult.notInitialized:
           emit(const LocalAuthState.createPin());
-          break;
       }
     });
   }
@@ -109,6 +100,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
           ),
         );
       }
+
       return;
     }
 
@@ -140,15 +132,29 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
 
       await _setBiometryUseCase(NoParams());
 
-      emit(const LocalAuthState.success());
-
       await _setPinCodeUseCase(pin1);
-      await _navigateToMainUseCase(onResult);
+
+      emit(const LocalAuthState.success());
     }
   }
 
   Future<void> enterPin(String pinCode, void Function(bool)? onResult) async {
-    final result = await _checkPinCodeUseCase(pinCode);
+    final result = await _checkPinCodeUseCase(
+      CheckPinCodeUseCaseParams(
+        code: pinCode,
+        blockIfError: state.maybeWhen(
+          orElse: () => false,
+          enterPin: (
+            BiometricSupportModel biometricSupportModel,
+            String? error,
+            int length,
+            int errorCount,
+          ) {
+            return errorCount == 2;
+          },
+        ),
+      ),
+    );
 
     final biometricSupportModel = await _getBiometricSupportModel(NoParams());
 
@@ -161,17 +167,39 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
             ), (isSuccess) async {
       if (isSuccess) {
         emit(const LocalAuthState.success());
-
-        await _navigateToMainUseCase(onResult);
       } else {
-        emit(
-          LocalAuthState.enterPin(
-            error: AuthI18n.invalidPin,
-            biometricSupportModel: biometricSupportModel,
-          ),
+        state.maybeWhen(
+          orElse: () {},
+          enterPin: (
+            BiometricSupportModel biometricSupportModel,
+            String? error,
+            int length,
+            int errorCount,
+          ) {
+            emit(
+              LocalAuthState.enterPin(
+                biometricSupportModel: biometricSupportModel,
+                error: AuthI18n.invalidPin,
+                length: length,
+                errorCount: errorCount + 1,
+              ),
+            );
+          },
         );
       }
     });
+  }
+
+  Future<void> resetPinCode() async {
+    final result = await _dialogService.showDialog<bool?>(
+      dialogType: DialogTypes.confirmDialog,
+      title: AuthI18n.resetTitle,
+      body: AuthI18n.resetDescription,
+    );
+
+    if (result ?? false) {
+      await _manager.signOut();
+    }
   }
 
   void biometricAuth(void Function(bool)? onResult) {

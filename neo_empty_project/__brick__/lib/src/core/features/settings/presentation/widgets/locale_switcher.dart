@@ -8,7 +8,7 @@ class LocaleSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
+    return BlocBuilder<DevicePreferencesBloc, DevicePreferencesState>(
       builder: (context, state) {
         return ListTile(
           title: Text(SettingsI18n.selectLanguage),
@@ -28,7 +28,9 @@ class LocaleSwitcher extends StatelessWidget {
                 )
                 .toList(),
             onChanged: (value) {
-              context.read<SettingsCubit>().setLocale(value);
+              context
+                  .read<DevicePreferencesBloc>()
+                  .add(DevicePreferencesEvent.setLocale(value));
             },
           ),
         );

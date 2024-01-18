@@ -1,5 +1,6 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 class UiUpdateDialog extends StatelessWidget {
   const UiUpdateDialog({super.key, this.canClose = true});

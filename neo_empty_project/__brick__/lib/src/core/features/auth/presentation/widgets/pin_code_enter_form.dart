@@ -9,6 +9,7 @@ class PinCodeEnterForm extends StatefulWidget {
     this.useBiometric = false,
     this.onComplete,
     this.onBiometricPressed,
+    this.onPressedReset,
     this.isFace = true,
   });
 
@@ -20,9 +21,11 @@ class PinCodeEnterForm extends StatefulWidget {
 
   final bool isFace;
 
-  final void Function(String)? onComplete;
+  final Future<void> Function(String)? onComplete;
 
   final VoidCallback? onBiometricPressed;
+
+  final VoidCallback? onPressedReset;
 
   @override
   State<PinCodeEnterForm> createState() => _PinCodeEnterFormState();
@@ -60,30 +63,44 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
             onBiometricPressed: onBiometricPressed,
             reset: AuthI18n.reset,
             delete: AuthI18n.delete,
-            icon: widget.isFace ? Assets.icons.face : Assets.icons.fingerprint,
+            icon: widget.isFace
+                ? OldAssets.icons.face
+                : OldAssets.icons.fingerprint,
           ),
-        )
+        ),
       ],
     );
   }
 
-  void onPressedNumber(String text) {
+  Future<void> onPressedNumber(String text) async {
     setState(() {
       code = '$code$text';
     });
 
     if (code.length == widget.pinCodeLength) {
-      widget.onComplete?.call(code);
+      await widget.onComplete?.call(code);
+
+      onPressedReset();
     }
   }
 
   void onPressedDelete() {
+    if (code.isEmpty) {
+      return;
+    }
+
     setState(() {
       code = code.substring(0, code.length - 1);
     });
   }
 
   void onPressedReset() {
+    if (code.isEmpty) {
+      widget.onPressedReset?.call();
+
+      return;
+    }
+
     setState(() {
       code = '';
     });

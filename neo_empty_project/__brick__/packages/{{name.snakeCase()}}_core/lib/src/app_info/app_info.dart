@@ -19,6 +19,7 @@ abstract class AppInfo {
         model: result.browser?.name ?? '',
         system: webBrowserInfo.platform ?? '',
         version: result.browser?.version ?? '',
+        deviceId: webBrowserInfo.appCodeName ?? '',
       );
     }
 
@@ -29,6 +30,7 @@ abstract class AppInfo {
         model: '${androidInfo.brand} ${androidInfo.model}',
         system: 'Android',
         version: androidInfo.version.release,
+        deviceId: androidInfo.fingerprint,
       );
     }
 
@@ -36,9 +38,10 @@ abstract class AppInfo {
       final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
 
       return DeviceInfoModel(
-        model: iosInfo.name ?? '',
-        system: iosInfo.systemName ?? 'iOS',
-        version: iosInfo.systemVersion ?? '',
+        model: iosInfo.name,
+        system: iosInfo.systemName,
+        version: iosInfo.systemVersion,
+        deviceId: iosInfo.identifierForVendor ?? '',
       );
     }
 
@@ -46,6 +49,7 @@ abstract class AppInfo {
       model: '',
       system: '',
       version: '',
+      deviceId: '',
     );
   }
 

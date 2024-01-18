@@ -17,7 +17,7 @@ class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
 
     final isSuccess = await _authManager.checkBiometry();
     if (isSuccess) {
-      _authManager.locked = false;
+      _authManager.lock();
 
       if (params.onResult != null) {
         params.onResult?.call(true);

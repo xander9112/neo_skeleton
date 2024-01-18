@@ -1,4 +1,4 @@
-export 'dialog/check_pin_code_dialog.dart';
+export 'block_timer.dart';
 export 'keyboard/_keyboard.dart';
 export 'login_form.dart';
 export 'pin_code_create_form.dart';

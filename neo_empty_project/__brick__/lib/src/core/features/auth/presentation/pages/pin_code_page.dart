@@ -20,7 +20,10 @@ class PinCodePage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: BlocBuilder<LocalAuthCubit, LocalAuthState>(
+                child: BlocConsumer<LocalAuthCubit, LocalAuthState>(
+                  listener: (context, state) {
+                    state.mapOrNull(success: (value) => onResult?.call(true));
+                  },
                   builder: (context, state) {
                     return state.when(
                       initial: () => const SizedBox.shrink(),
@@ -37,7 +40,12 @@ class PinCodePage extends StatelessWidget {
                               .createPin(pinCode, onResult);
                         },
                       ),
-                      enterPin: (biometricSupportModel, message, length) =>
+                      enterPin: (
+                        biometricSupportModel,
+                        message,
+                        length,
+                        errorCount,
+                      ) =>
                           PinCodeEnterForm(
                         message: message,
                         pinCodeLength: length,
@@ -50,8 +58,10 @@ class PinCodePage extends StatelessWidget {
                                 onResult,
                               );
                         },
-                        onComplete: (pinCode) {
-                          context
+                        onPressedReset:
+                            context.read<LocalAuthCubit>().resetPinCode,
+                        onComplete: (pinCode) async {
+                          await context
                               .read<LocalAuthCubit>()
                               .enterPin(pinCode, onResult);
                         },
@@ -59,7 +69,7 @@ class PinCodePage extends StatelessWidget {
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -11,7 +11,9 @@ class AuthGuard extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (await authManager.isAuth) {
+    final bool isAuth = await authManager.isAuth;
+
+    if (isAuth) {
       return resolver.next();
     }
 

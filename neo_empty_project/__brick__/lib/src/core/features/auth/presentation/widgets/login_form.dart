@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -18,71 +18,80 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return ReactiveForm(
       formGroup: form,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: Insets.l,
-            ),
-            child: Text(
-              AuthI18n.signIn,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(Insets.l),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(Insets.s),
-                  child: Text(AuthI18n.login),
+      child: Center(
+        child: SizedBox(
+          width: width > 480 ? 480 : double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(bottom: Insets.xxxl),
+                child: Text(
+                  AuthI18n.signIn,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
-                Expanded(
-                  child: ReactiveTextField<String>(
-                    formControlName: 'login',
-                    validationMessages: {
-                      ValidationMessage.required: (_) => AuthI18n.loginRequired
-                    },
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(Insets.l),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: Insets.l),
+                      child: ReactiveTextField<String>(
+                        formControlName: 'login',
+                        decoration: InputDecoration(
+                          label: Text(AuthI18n.login),
+                          border: const OutlineInputBorder(),
+                        ),
+                        validationMessages: {
+                          ValidationMessage.required: (_) =>
+                              AuthI18n.loginRequired,
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: Insets.l),
+                      child: ReactiveTextField<String>(
+                        formControlName: 'password',
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          label: Text(AuthI18n.password),
+                          border: const OutlineInputBorder(),
+                        ),
+                        validationMessages: {
+                          ValidationMessage.required: (_) =>
+                              AuthI18n.passwordRequired,
+                        },
+                      ),
+                    ),
+                    UiButton(
+                      onPressed: () {
+                        form.markAllAsTouched();
+
+                        if (form.valid) {
+                          onSubmitForm?.call();
+                        }
+                      },
+                      text: AuthI18n.signIn,
+                    ),
+                    Visibility(
+                      visible: message != null,
+                      child: Text(
+                        message ?? '',
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(Insets.l),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(Insets.s),
-                  child: Text(AuthI18n.password),
-                ),
-                Expanded(
-                  child: ReactiveTextField<String>(
-                    formControlName: 'password',
-                    obscureText: true,
-                 validationMessages: {
-                      ValidationMessage.required: (_) =>
-                          AuthI18n.passwordRequired,
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          UiButton.outline(
-            onPressed: () => form.valid ? onSubmitForm?.call() : null,
-            text: AuthI18n.signIn,
-          ),
-          Visibility(
-            visible: message != null,
-            child: Text(
-              message ?? '',
-              style: const TextStyle(color: Colors.red),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

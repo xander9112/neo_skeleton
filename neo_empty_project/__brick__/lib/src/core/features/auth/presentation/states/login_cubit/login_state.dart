@@ -4,7 +4,9 @@ part of 'login_cubit.dart';
 class LoginState with _$LoginState {
   const factory LoginState.initial({
     @Default(FetchStatus.pure) FetchStatus status,
+    @Default(StateStatus.notReady) StateStatus stateStatus,
     String? error,
+    @Default(Duration.zero) Duration blockTime,
   }) = _LoginInitialState;
 
   factory LoginState.fromJson(Object? json) =>
@@ -14,4 +16,6 @@ class LoginState with _$LoginState {
 
   @override
   Map<String, dynamic> toJson();
+
+  bool get isBlocked => blockTime.inSeconds > 0;
 }

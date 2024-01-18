@@ -1,57 +1,21 @@
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/widgets.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
-class AppRouter {
-  AppRouter(this._router);
+part 'app_router.gr.dart';
 
-  final AppAutoRouter _router;
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        ...authRoutes,
+        ...mainRoutes,
+      ];
 
-  Future<T?> push<T extends Object?>(PageRouteInfo route) async {
-    return _router.push(route);
-  }
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
-  Future<T?> pushNamed<T extends Object?>(
-    String path, {
-    bool includePrefixMatches = false,
-  }) {
-    return _router.pushNamed(path, includePrefixMatches: includePrefixMatches);
-  }
-
-  Future<T?> replaceNamed<T extends Object?>(
-    String path, {
-    bool includePrefixMatches = false,
-  }) {
-    return _router.replaceNamed(
-      path,
-      includePrefixMatches: includePrefixMatches,
-    );
-  }
-
-  Future<T?> replace<T extends Object?>(
-    PageRouteInfo route, {
-    OnNavigationFailure? onFailure,
-  }) {
-    return _router.replace(route);
-  }
-
-  void popUntilRoot() {
-    _router.popUntilRoot();
-  }
-
-  Future<dynamic> navigate(PageRouteInfo route) async {
-    return _router.navigate(route);
-  }
-
-  Future<void> navigateNamed(
-    String path, {
-    bool includePrefixMatches = false,
-  }) {
-    return _router.navigateNamed(
-      path,
-      includePrefixMatches: includePrefixMatches,
-    );
-  }
-
-  bool removeLast() => _router.removeLast();
+  BuildContext get context => navigatorKey.currentState!.context;
 }
