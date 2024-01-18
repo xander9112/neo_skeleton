@@ -22,13 +22,31 @@ class PinCodePage extends StatelessWidget {
               Expanded(
                 child: BlocConsumer<LocalAuthCubit, LocalAuthState>(
                   listener: (context, state) {
-                    state.mapOrNull(success: (value) => onResult?.call(true));
+                    state.mapOrNull(
+                      success: (value) {
+                        onResult?.call(true);
+                      },
+                      resetPinCode: (value) async {
+                        onResult?.call(false);
+
+                        context.reloadWidget();
+                      },
+                    );
                   },
                   builder: (context, state) {
                     return state.when(
-                      initial: () => const SizedBox.shrink(),
-                      success: () => const SizedBox.shrink(),
-                      createPin: (message, confirm, length) =>
+                      initial: UiProgressIndicator.new,
+                      success: () => const UiProgressIndicator(),
+                      resetPinCode: () => GestureDetector(
+                        onTap: () {
+                          print('PPp');
+                          print(context.router.stack);
+                          onResult?.call(false);
+                          context.router.pushNamed('/');
+                        },
+                        child: const UiProgressIndicator(),
+                      ),
+                      createPin: (message, confirm, length, status) =>
                           PinCodeCreateForm(
                         key: UniqueKey(),
                         isConfirm: confirm,
@@ -45,8 +63,10 @@ class PinCodePage extends StatelessWidget {
                         message,
                         length,
                         errorCount,
+                        status,
                       ) =>
                           PinCodeEnterForm(
+                        isLoading: status.isFetchingInProgress,
                         message: message,
                         pinCodeLength: length,
                         useBiometric: biometricSupportModel.status ==
