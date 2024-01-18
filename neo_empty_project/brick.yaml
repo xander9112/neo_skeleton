@@ -24,17 +24,17 @@ vars:
   name:
     type: string
     description: Project name
-    default: NFOProject
+    default: NewProject
     prompt: What is project name?
   androidBundleId:
     type: string
     description: Android bundle id
-    default: com.neoflex.nfo_project
+    default: com.neoflex.new_project
     prompt: What is Android bundle id?
   iosBundleId:
     type: string
     description: iOS bundle id
-    default: com.neoflex.nfoProject
+    default: com.neoflex.newProject
     prompt: What is iOS bundle id?
   useLocalAuth:
     type: boolean
@@ -44,5 +44,3 @@ vars:
     type: boolean
     default: true
     prompt: Do you need flavor?
-
-
