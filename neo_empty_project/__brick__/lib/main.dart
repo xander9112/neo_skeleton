@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/app.dart';
-import 'package:{{name.snakeCase()}}/src/core/jnp_app.dart';
+import 'package:{{name.snakeCase()}}/src/core/{{name.snakeCase()}}_app.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class CustomWidgetsFlutterBinding extends WidgetsFlutterBinding {}
