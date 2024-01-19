@@ -89,7 +89,9 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     final bool hasPinCode = await authRepository.hasPinCode();
     final bool hasToken = await authRepository.hasAccessToken();
 
-    settings.useLocalAuth = await authRepository.useLocalAuth();
+    if (settings.useLocalAuth) {
+      settings.useLocalAuth = await authRepository.useLocalAuth();
+    }
 
     if (value != null) {
       if (value.difference(DateTime.now()).inSeconds > 0) {

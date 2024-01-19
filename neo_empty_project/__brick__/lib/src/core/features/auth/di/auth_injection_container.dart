@@ -20,7 +20,7 @@ class AuthInjection extends ICoreInjection {
           biometricRepository: sl(),
           settings: AuthManagerSettings(
             useBiometric: !kIsWeb,
-            useLocalAuth: true,
+            useLocalAuth: {{#useLocalAuth}}true{{/useLocalAuth}}{{^useLocalAuth}}false{{/useLocalAuth}},
           ),
           demoUserRepository: DemoUserRepositoryImpl(),
         ),
