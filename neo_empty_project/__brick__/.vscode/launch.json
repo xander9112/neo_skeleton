@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "{{name.PascalCase()}} (Dev)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "dev",
+                "--dart-define=flavor=dev"
+            ]
+        },
+        {
+            "name": "{{name.PascalCase()}}",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "prod",
+                "--dart-define=flavor=prod"
+            ]
+        },
+        {
+            "name": "{{name.PascalCase()}} (Dev) Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor",
+                "dev",
+                "--dart-define=flavor=dev"
+            ]
+        },
+        {
+            "name": "{{name.PascalCase()}} (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}
