@@ -1,3 +1,4 @@
+import 'package:app_runner/app_runner.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +40,6 @@ class PinCodePage extends StatelessWidget {
                       success: () => const UiProgressIndicator(),
                       resetPinCode: () => GestureDetector(
                         onTap: () {
-                          print('PPp');
-                          print(context.router.stack);
                           onResult?.call(false);
                           context.router.pushNamed('/');
                         },

@@ -157,6 +157,7 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
             String? error,
             int length,
             int errorCount,
+            FetchStatus status,
           ) {
             return errorCount == 2;
           },
@@ -185,6 +186,7 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
             String? error,
             int length,
             int errorCount,
+            FetchStatus status,
           ) {
             emit(
               LocalAuthState.enterPin(
