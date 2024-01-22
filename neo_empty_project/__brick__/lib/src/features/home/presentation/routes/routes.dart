@@ -7,11 +7,13 @@ List<AutoRoute> homeRoutes = [
     transitionsBuilder: TransitionsBuilders.fadeIn,
     page: HomeRootRouter.page,
     initial: true,
+    meta: const {'showBottomMenu': true},
     children: [
       CustomRoute(
         transitionsBuilder: TransitionsBuilders.fadeIn,
         page: HomeRoute.page,
         initial: true,
+        meta: const {'showBottomMenu': true},
         path: HomeRoutePath.initial,
       ),
     ],

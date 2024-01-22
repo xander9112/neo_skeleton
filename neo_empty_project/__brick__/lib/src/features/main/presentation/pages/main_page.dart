@@ -8,8 +8,23 @@ import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 import 'package:super_banners/super_banners.dart';
 
 @RoutePage()
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Костыль чтобы получить showBottomMenu из meta информации
+      setState(() {}); 
+    });
+  }
 
   Future<void> onPressedPopTop(BuildContext context, int index) async {
     final router = AutoTabsRouter.of(context);
@@ -18,13 +33,19 @@ class MainPage extends StatelessWidget {
       if (router.canPop()) {
         await router.popTop();
 
-        await onPressedPopTop(context, index);
+        if (router.canPop()) {
+          await onPressedPopTop(context, index);
+        }
       } else {
         context
             .read<MainCubit>()
             .onPressedMenu(BottomMenuEnum.values.elementAt(index));
       }
     }
+  }
+
+  bool showBottomMenu(Map<String, dynamic>? data) {
+    return data?['showBottomMenu'] == true;
   }
 
   @override
@@ -44,6 +65,7 @@ class MainPage extends StatelessWidget {
               ],
               builder: (context, child) {
                 final tabsRouter = AutoTabsRouter.of(context);
+                final meta = tabsRouter.current.router.topPage?.routeData.meta;
 
                 return NeoScaffold(
                   body: Stack(
@@ -60,28 +82,27 @@ class MainPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  bottomNavigationBar: BottomNavigationBar(
-                    currentIndex: tabsRouter.activeIndex,
-                    onTap: (index) {
-                      onPressedPopTop(context, index);
+                  bottomNavigationBar: Visibility(
+                    visible: showBottomMenu(meta),
+                    child: BottomNavigationBar(
+                      currentIndex: tabsRouter.activeIndex,
+                      onTap: (index) {
+                        onPressedPopTop(context, index);
 
-                      tabsRouter.setActiveIndex(index);
-                    },
-                    items: [
-                      BottomNavigationBarItem(
-                        label: MainI18n.homeBottomMenuItem,
-                        icon: const Icon(
-                          Icons.home,
+                        tabsRouter.setActiveIndex(index);
+                      },
+                      items: [
+                        BottomNavigationBarItem(
+                          label: MainI18n.homeBottomMenuItem,
+                          icon: const Icon(Icons.home),
                         ),
-                      ),
-                      BottomNavigationBarItem(
-                        label: MainI18n.settingsBottomMenuItem,
-                        icon: const Icon(
-                          Icons.settings,
+                        BottomNavigationBarItem(
+                          label: MainI18n.settingsBottomMenuItem,
+                          icon: const Icon(Icons.settings),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ),                 
                 );
               },
             ),
