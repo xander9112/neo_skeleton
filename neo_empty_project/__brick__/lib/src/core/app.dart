@@ -15,6 +15,8 @@ class App {
 
   App._internal();
 
+  static int _milliseconds = 20;
+
   static App? _singleton;
 
   static final Completer<void> _completer = Completer<void>();
@@ -26,11 +28,19 @@ class App {
 
     await _initCommon();
 
+    await _updateProgress(progress.value + 20);
+
     await _initEnv(env);
+
+    await _updateProgress(progress.value + 20);
 
     await _initDependencies(env);
 
+    await _updateProgress(progress.value + 20);
+
     await _initFirebase(env);
+
+    await _updateProgress(progress.value + 20);
 
     return _startApp(env);
   }
@@ -45,24 +55,16 @@ class App {
             DeviceOrientation.portraitDown,
           ],
     );
-
-    _updateProgress(progress.value + 20);
   }
 
-  static Future<void> _initFirebase(EnvConfig env) async {
-    _updateProgress(progress.value + 20);
-  }
+  static Future<void> _initFirebase(EnvConfig env) async {}
 
   static Future<void> _initEnv(EnvConfig env) async {
     await dotenv.load(fileName: '.${env.name}.env');
-
-    _updateProgress(progress.value + 20);
   }
 
   static Future<void> _initDependencies(EnvConfig env) async {
     await configureDependencies(env);
-
-    _updateProgress(progress.value + 20);
   }
 
   static Future<void> _startApp(EnvConfig env) async {
@@ -79,7 +81,17 @@ class App {
     }
   }
 
-  static void _updateProgress(int value) {
-    progress.sink.add(value);
+  static Future<void> _updateProgress(int value) async {
+    if (value == 0) {
+      progress.sink.add(value);
+    } else {
+      final list = List.generate(value - progress.value, (index) => index);
+
+      await Future.forEach(list, (_) async {
+        await Future<void>.delayed(const Duration(milliseconds: _milliseconds), () {
+          progress.sink.add(progress.value + 1);
+        });
+      });
+    }
   }
 }
