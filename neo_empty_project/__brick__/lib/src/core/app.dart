@@ -15,7 +15,7 @@ class App {
 
   App._internal();
 
-  static int _milliseconds = 20;
+  static const int _milliseconds = 20;
 
   static App? _singleton;
 

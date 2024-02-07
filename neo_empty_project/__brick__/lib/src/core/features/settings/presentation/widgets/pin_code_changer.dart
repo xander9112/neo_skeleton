@@ -15,8 +15,9 @@ class PinCodeChanger extends StatelessWidget {
 
         return ListTile(
           title: Text(SettingsI18n.changePinCode),
-          onTap: () => context.goRelative(SettingsRoutePath.changePinCode),
-          // onTap: context.read<SettingsCubit>().setPinCode,
+          onTap: () {
+            context.router.push(const ChangePinCodeRoute());
+          },
           trailing: const Icon(Icons.keyboard_arrow_right),
         );
       },

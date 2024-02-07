@@ -26,3 +26,13 @@ dart helpers/check_intl_translates.dart
 ```bash
 dart helpers/gen_from_arb.dart
 ```
+
+## Сборка проекта
+
+```bash
+flutter build apk --release --flavor=prod
+```
+
+```bash
+flutter build appbundle --release --flavor=prod
+```
