@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "{{name.PascalCase()}} (Dev)",
+            "name": "{{name.pascalCase()}} (Dev)",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -15,7 +15,7 @@
             ]
         },
         {
-            "name": "{{name.PascalCase()}}",
+            "name": "{{name.pascalCase()}}",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -25,7 +25,7 @@
             ]
         },
         {
-            "name": "{{name.PascalCase()}} (Dev) Release",
+            "name": "{{name.pascalCase()}} (Dev) Release",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "name": "{{name.PascalCase()}} (profile mode)",
+            "name": "{{name.pascalCase()}} (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
