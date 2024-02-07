@@ -67,6 +67,5 @@ flutter:
     - assets/
     - assets/l10n/
     - assets/launcher_icon/
-    - assets/icons/
     - .prod.env
     - .dev.env
