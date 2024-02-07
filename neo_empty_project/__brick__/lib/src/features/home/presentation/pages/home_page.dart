@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:neo_auth_ui_kit/neo_auth_ui_kit.dart';
 
 @RoutePage(name: 'HomeRootRouter')
 class HomeRootPage extends AutoRouter {

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:neo_auth_ui_kit/neo_auth_ui_kit.dart';
 import 'package:super_banners/super_banners.dart';
 
 @RoutePage()
@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Костыль чтобы получить showBottomMenu из meta информации
-      setState(() {}); 
+      setState(() {});
     });
   }
 
@@ -102,7 +102,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
-                  ),                 
+                  ),
                 );
               },
             ),

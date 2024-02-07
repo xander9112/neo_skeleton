@@ -7,11 +7,6 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initRouter() async {
-    sl.registerFactory(() => {{name.pascalCase()}}Router(sl()));
-  }
-
-  @override
   Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl.registerFactory<{{name.pascalCase()}}DataSource>(
       () => buildDependency<{{name.pascalCase()}}DataSource>(

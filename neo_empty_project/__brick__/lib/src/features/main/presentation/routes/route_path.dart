@@ -1,3 +1,3 @@
 abstract class MainRoutePath {
-  static const String initial = '/main';
+  static const String main = '/main';
 }
