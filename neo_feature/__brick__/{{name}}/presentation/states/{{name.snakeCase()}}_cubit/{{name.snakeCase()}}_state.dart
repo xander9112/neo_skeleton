@@ -8,11 +8,5 @@ class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
     {{name.pascalCase()}}Model? {{name.camelCase()}},
   }) = _{{name.pascalCase()}}InitialState;
 
-  factory {{name.pascalCase()}}State.fromJson(Object? json) =>
-      _${{name.pascalCase()}}StateFromJson(json! as Map<String, dynamic>);
-
   const {{name.pascalCase()}}State._();
-
-  @override
-  Map<String, dynamic> toJson();
 }

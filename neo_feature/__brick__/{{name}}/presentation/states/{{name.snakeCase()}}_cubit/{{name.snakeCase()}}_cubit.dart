@@ -4,7 +4,6 @@ import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../../_{{name.snakeCase()}}.dart';
 
 part '{{name.snakeCase()}}_cubit.freezed.dart';
-part '{{name.snakeCase()}}_cubit.g.dart';
 part '{{name.snakeCase()}}_state.dart';
 
 class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
