@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
-import 'package:neo_auth_core/neo_auth_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class MainInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;

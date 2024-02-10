@@ -5,6 +5,6 @@ import '../../_{{name.snakeCase()}}.dart';
 List<AutoRoute> {{name.camelCase()}}Routes = [
   AutoRoute(
     page: {{name.pascalCase()}}Route.page,
-    path: {{name.pascalCase()}}RoutePath.{{name.camelCase()}},    
+    path: {{name.pascalCase()}}RoutePath.initial,
   ),  
 ];
