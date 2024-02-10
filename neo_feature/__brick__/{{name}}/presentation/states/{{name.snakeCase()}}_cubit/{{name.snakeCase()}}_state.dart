@@ -5,7 +5,7 @@ class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
   const factory {{name.pascalCase()}}State.initial({
     @Default(FetchStatus.pure) FetchStatus status,
     String? error,
-    {{name.pascalCase()}}Model? {{name.camelCase()}},
+    {{name.pascalCase()}}DTO? {{name.camelCase()}},
   }) = _{{name.pascalCase()}}InitialState;
 
   const {{name.pascalCase()}}State._();

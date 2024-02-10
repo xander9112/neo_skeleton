@@ -14,7 +14,7 @@ _$_{{name.pascalCase()}}InitialState _$$_{{name.pascalCase()}}InitialStateFromJs
       error: json['error'] as String?,
       profile: json['profile'] == null
           ? null
-          : {{name.pascalCase()}}Model.fromJson(json['profile'] as Object),
+          : {{name.pascalCase()}}DTO.fromJson(json['profile'] as Object),
     );
 
 Map<String, dynamic> _$$_{{name.pascalCase()}}InitialStateToJson(

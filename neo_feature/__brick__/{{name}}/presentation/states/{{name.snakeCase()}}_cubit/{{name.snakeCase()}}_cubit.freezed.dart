@@ -22,23 +22,23 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _${{name.pascalCase()}}State {
   FetchStatus get status => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
-  {{name.pascalCase()}}Model? get {{name.camelCase()}} => throw _privateConstructorUsedError;
+  {{name.pascalCase()}}DTO? get {{name.camelCase()}} => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})
+            FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
+    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
+    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})?
         initial,
     required TResult orElse(),
   }) =>
@@ -71,9 +71,9 @@ abstract class ${{name.pascalCase()}}StateCopyWith<$Res> {
           {{name.pascalCase()}}State value, $Res Function({{name.pascalCase()}}State) then) =
       _${{name.pascalCase()}}StateCopyWithImpl<$Res, {{name.pascalCase()}}State>;
   @useResult
-  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}}});
+  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}}});
 
-  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}};
+  ${{name.pascalCase()}}DTOCopyWith<$Res>? get {{name.camelCase()}};
 }
 
 /// @nodoc
@@ -105,18 +105,18 @@ class _${{name.pascalCase()}}StateCopyWithImpl<$Res, $Val extends {{name.pascalC
       {{name.camelCase()}}: freezed == {{name.camelCase()}}
           ? _value.{{name.camelCase()}}
           : {{name.camelCase()}} // ignore: cast_nullable_to_non_nullable
-              as {{name.pascalCase()}}Model?,
+              as {{name.pascalCase()}}DTO?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}} {
+  ${{name.pascalCase()}}DTOCopyWith<$Res>? get {{name.camelCase()}} {
     if (_value.{{name.camelCase()}} == null) {
       return null;
     }
 
-    return ${{name.pascalCase()}}ModelCopyWith<$Res>(_value.{{name.camelCase()}}!, (value) {
+    return ${{name.pascalCase()}}DTOCopyWith<$Res>(_value.{{name.camelCase()}}!, (value) {
       return _then(_value.copyWith({{name.camelCase()}}: value) as $Val);
     });
   }
@@ -130,10 +130,10 @@ abstract class _$$_{{name.pascalCase()}}InitialStateCopyWith<$Res>
       __$$_{{name.pascalCase()}}InitialStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}}});
+  $Res call({FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}}});
 
   @override
-  ${{name.pascalCase()}}ModelCopyWith<$Res>? get {{name.camelCase()}};
+  ${{name.pascalCase()}}DTOCopyWith<$Res>? get {{name.camelCase()}};
 }
 
 /// @nodoc
@@ -163,7 +163,7 @@ class __$$_{{name.pascalCase()}}InitialStateCopyWithImpl<$Res>
       {{name.camelCase()}}: freezed == {{name.camelCase()}}
           ? _value.{{name.camelCase()}}
           : {{name.camelCase()}} // ignore: cast_nullable_to_non_nullable
-              as {{name.pascalCase()}}Model?,
+              as {{name.pascalCase()}}DTO?,
     ));
   }
 }
@@ -184,7 +184,7 @@ class _$_{{name.pascalCase()}}InitialState extends _{{name.pascalCase()}}Initial
   @override
   final String? error;
   @override
-  final {{name.pascalCase()}}Model? {{name.camelCase()}};
+  final {{name.pascalCase()}}DTO? {{name.camelCase()}};
 
   @override
   String toString() {
@@ -216,7 +216,7 @@ class _$_{{name.pascalCase()}}InitialState extends _{{name.pascalCase()}}Initial
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})
+            FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})
         initial,
   }) {
     return initial(status, error, {{name.camelCase()}});
@@ -225,7 +225,7 @@ class _$_{{name.pascalCase()}}InitialState extends _{{name.pascalCase()}}Initial
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
+    TResult? Function(FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})?
         initial,
   }) {
     return initial?.call(status, error, {{name.camelCase()}});
@@ -234,7 +234,7 @@ class _$_{{name.pascalCase()}}InitialState extends _{{name.pascalCase()}}Initial
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}Model? {{name.camelCase()}})?
+    TResult Function(FetchStatus status, String? error, {{name.pascalCase()}}DTO? {{name.camelCase()}})?
         initial,
     required TResult orElse(),
   }) {
@@ -284,7 +284,7 @@ abstract class _{{name.pascalCase()}}InitialState extends {{name.pascalCase()}}S
   const factory _{{name.pascalCase()}}InitialState(
       {final FetchStatus status,
       final String? error,
-      final {{name.pascalCase()}}Model? {{name.camelCase()}}}) = _$_{{name.pascalCase()}}InitialState;
+      final {{name.pascalCase()}}DTO? {{name.camelCase()}}}) = _$_{{name.pascalCase()}}InitialState;
   const _{{name.pascalCase()}}InitialState._() : super._();
 
   factory _{{name.pascalCase()}}InitialState.fromJson(Map<String, dynamic> json) =
@@ -295,7 +295,7 @@ abstract class _{{name.pascalCase()}}InitialState extends {{name.pascalCase()}}S
   @override
   String? get error;
   @override
-  {{name.pascalCase()}}Model? get {{name.camelCase()}};
+  {{name.pascalCase()}}DTO? get {{name.camelCase()}};
   @override
   @JsonKey(ignore: true)
   _$$_{{name.pascalCase()}}InitialStateCopyWith<_$_{{name.pascalCase()}}InitialState> get copyWith =>
