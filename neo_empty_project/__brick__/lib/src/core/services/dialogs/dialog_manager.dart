@@ -6,9 +6,16 @@ import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class DialogManager extends StatefulWidget {
-  const DialogManager({required this.router, this.child, super.key});
+  const DialogManager({
+    required this.dialogService,
+    required this.router,
+    this.child,
+    super.key,
+  });
 
   final AppRouter router;
+
+  final DialogService dialogService;
 
   final Widget? child;
 
@@ -17,15 +24,11 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
-  final DialogService _dialogService = GetIt.I();
-
-  BuildContext get _context => widget.router.context;
-
   @override
   void initState() {
     super.initState();
 
-    _dialogService.registerDialogListener(_showDialog());
+    widget.dialogService.registerDialogListener(_showDialog());
   }
 
   @override
@@ -39,41 +42,23 @@ class _DialogManagerState extends State<DialogManager> {
   }
 
   DialogListener _showDialog() => ({
-        required int dialogType,
+        required Widget child,
         required Completer<dynamic> completer,
-        String? title,
-        String? body,
-        dynamic params,
+        bool barrierDismissible = true,
+        bool useSafeArea = true,
+        bool useRootNavigator = true,
+        RouteSettings? routeSettings,
       }) async {
         dynamic result;
 
-        switch (dialogType) {
-          case DialogTypes.updateDialog:
-            result = await UiUpdateDialog.showCurrentDialog<dynamic>(
-              _context,
-              params,
-            );
-          case DialogTypes.engineeringWorks:
-            result = await UiEngineeringWorksDialog.showCurrentDialog<dynamic>(
-              _context,
-              params,
-            );
-          case DialogTypes.confirmDialog:
-            result = await UiConfirmDialog.showCurrentDialog<dynamic>(
-              _context,
-              title: title,
-              body: body,
-              params: params,
-            );
-          case DialogTypes.selectDialog:
-            result = await UiSelectDialog.showCurrentDialog(
-              _context,
-              title: title,
-              body: body,
-              params: params,
-            );
-          default:
-        }
+        result = await showDialog<dynamic>(
+          context: widget.router.context,
+          barrierDismissible: barrierDismissible,
+          useSafeArea: useSafeArea,
+          useRootNavigator: useRootNavigator,
+          routeSettings: routeSettings,
+          builder: (BuildContext context) => child,
+        );
 
         return completer.complete(result);
       };

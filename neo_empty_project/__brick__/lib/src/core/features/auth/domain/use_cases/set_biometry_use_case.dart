@@ -17,8 +17,9 @@ class SetBiometryUseCase implements UseCase<bool, NoParams> {
 
     if (result.status == BiometricStatus.available) {
       final useBio = await _dialogService.showDialog<bool>(
-        dialogType: DialogTypes.confirmDialog,
-        title: AuthI18n.useBiometricsToLogin,
+        child: UiConfirmDialog(
+          title: AuthI18n.useBiometricsToLogin,
+        ),
       );
 
       if (useBio ?? false) {

@@ -3,13 +3,7 @@ import 'dart:async';
 import 'package:{{name.snakeCase()}}/src/core/services/dialogs/types.dart';
 
 class DialogService {
-  late void Function({
-    required int dialogType,
-    required Completer<dynamic> completer,
-    String? title,
-    String? body,
-    dynamic params,
-  }) _showDialogListener;
+  late DialogListener _showDialogListener;
 
   late Completer<dynamic> _dialogCompleter;
 
@@ -23,19 +17,21 @@ class DialogService {
   /// Calls the dialog listener and
   /// returns a Future that will wait for dialogComplete.
   Future<T?> showDialog<T>({
-    required int dialogType,
-    String? title,
-    String? body,
-    dynamic params,
+    required Widget child,
+    bool barrierDismissible = true,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
   }) {
     _dialogCompleter = Completer<T?>();
 
     _showDialogListener(
-      dialogType: dialogType,
       completer: _dialogCompleter,
-      title: title,
-      body: body,
-      params: params,
+      child: child,
+      barrierDismissible: barrierDismissible,
+      routeSettings: routeSettings,
+      useRootNavigator: useRootNavigator,
+      useSafeArea: useSafeArea,
     );
 
     return _dialogCompleter.future as Future<T?>;

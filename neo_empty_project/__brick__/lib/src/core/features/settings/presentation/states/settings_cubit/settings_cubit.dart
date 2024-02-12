@@ -122,8 +122,9 @@ class SettingsCubit extends BaseCubit<SettingsState> {
 
   Future<void> signOut() async {
     final result = await _dialogService.showDialog<bool>(
-      dialogType: DialogTypes.confirmDialog,
-      body: SettingsI18n.signOutTitle,
+      child: UiConfirmDialog(
+        title: SettingsI18n.signOutTitle,
+      ),
     );
 
     if (result ?? false) {

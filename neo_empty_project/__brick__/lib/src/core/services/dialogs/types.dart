@@ -1,9 +1,10 @@
 import 'dart:async';
 
 typedef DialogListener = Future<dynamic> Function({
-  required int dialogType,
+  required Widget child,
   required Completer<dynamic> completer,
-  String? title,
-  String? body,
-  dynamic params,
+  bool barrierDismissible,
+  bool useSafeArea,
+  bool useRootNavigator,
+  RouteSettings? routeSettings,
 });

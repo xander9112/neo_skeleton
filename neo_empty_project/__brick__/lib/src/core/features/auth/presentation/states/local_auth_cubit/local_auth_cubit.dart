@@ -203,10 +203,11 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
   }
 
   Future<void> resetPinCode() async {
-    final result = await _dialogService.showDialog<bool?>(
-      dialogType: DialogTypes.confirmDialog,
-      title: AuthI18n.resetTitle,
-      body: AuthI18n.resetDescription,
+    final result = await _dialogService.showDialog<bool>(
+      child: UiConfirmDialog(
+        title: AuthI18n.resetTitle,
+        body: AuthI18n.resetDescription,
+      ),
     );
 
     if (result ?? false) {
