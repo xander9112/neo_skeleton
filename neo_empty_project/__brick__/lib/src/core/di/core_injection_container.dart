@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 abstract class ICoreInjection {
   static final GetIt sl = GetIt.instance;
@@ -68,7 +68,11 @@ class CoreInjection extends ICoreInjection {
 
   @override
   Future<void> initRouter() async {
-    sl.registerLazySingleton<AppRouter>(AppRouter.new);
+    sl.registerLazySingleton<AppRouter>(
+      () => AppRouter(
+        navigatorKey: DialogService.navigatorKey,
+      ),
+    );
   }
 
   @override

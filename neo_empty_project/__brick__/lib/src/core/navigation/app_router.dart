@@ -8,6 +8,8 @@ part 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
+  AppRouter({super.navigatorKey});
+
   @override
   List<AutoRoute> get routes => [
         ...authRoutes,

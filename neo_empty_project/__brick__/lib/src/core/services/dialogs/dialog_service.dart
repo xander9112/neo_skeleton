@@ -1,45 +1,28 @@
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:{{name.snakeCase()}}/src/core/services/dialogs/types.dart';
+import 'package:flutter/material.dart' as material;
 
 class DialogService {
-  late DialogListener _showDialogListener;
+  factory DialogService() {
+    _singleton ??= DialogService._internal();
 
-  late Completer<dynamic> _dialogCompleter;
-
-  // ignore: use_setters_to_change_properties
-  void registerDialogListener(
-    DialogListener showDialogListener,
-  ) {
-    _showDialogListener = showDialogListener;
+    return _singleton!;
   }
 
-  /// Calls the dialog listener and
-  /// returns a Future that will wait for dialogComplete.
-  Future<T?> showDialog<T>({
-    required Widget child,
+  DialogService._internal();
+
+  static DialogService? _singleton;
+
+  static material.GlobalKey<material.NavigatorState> navigatorKey =
+      material.GlobalKey<material.NavigatorState>();
+
+  static Future<T?> showDialog<T>({
+    required material.Widget child,
     bool barrierDismissible = true,
-    bool useSafeArea = true,
-    bool useRootNavigator = true,
-    RouteSettings? routeSettings,
   }) {
-    _dialogCompleter = Completer<T?>();
-
-    _showDialogListener(
-      completer: _dialogCompleter,
-      child: child,
-      barrierDismissible: barrierDismissible,
-      routeSettings: routeSettings,
-      useRootNavigator: useRootNavigator,
-      useSafeArea: useSafeArea,
+    return material.showDialog<T>(
+      context: navigatorKey.currentContext!,
+      builder: (context) => child,
     );
-
-    return _dialogCompleter.future as Future<T?>;
   }
 
-  /// Completes the _dialogCompleter to resume the Future's execution call
-  void dialogComplete() {
-    _dialogCompleter.complete();
-  }
+  // Добавьте другие методы для показа различных видов диалогов, например, showAlertDialog, showBottomSheet, и т.д.
 }

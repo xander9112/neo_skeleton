@@ -39,13 +39,13 @@ class {{name.pascalCase()}}App extends StatelessWidget {
 
           if (routerConfig == null) {
             return MaterialApp(
-              title: 'JNP',
+              title: '{{name.pascalCase()}}App',
               key: ValueKey(state.locale?.languageCode),
               themeMode: state.themeMode,
               theme: createLightTheme(),
               darkTheme: createDarkTheme(),
               debugShowCheckedModeBanner: false,
-              localizationsDelegates: const [
+              localizationsDelegates: const [˚
                 AppLocalizationDelegate(),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
@@ -53,6 +53,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
               ],
               locale: state.locale,
               supportedLocales: AppLocalizations.supportedLocales,
+              navigatorKey: DialogService.navigatorKey,
               builder: builder,
               initialRoute: Uri.base.path,
               onGenerateRoute: (settings) {
@@ -65,7 +66,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
           }
 
           return MaterialApp.router(
-            title: 'JNP',
+            title: '{{name.pascalCase()}}App',
             routerConfig: routerConfig,
             themeMode: state.themeMode,
             theme: createLightTheme(),
