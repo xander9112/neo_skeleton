@@ -45,7 +45,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
               theme: createLightTheme(),
               darkTheme: createDarkTheme(),
               debugShowCheckedModeBanner: false,
-              localizationsDelegates: const [˚
+              localizationsDelegates: const [
                 AppLocalizationDelegate(),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
