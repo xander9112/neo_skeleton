@@ -2,15 +2,15 @@ def localProperties = new Properties()
 
 def localPropertiesFile = rootProject.file('local.properties')
 
-def versionProperties = new Properties()
-
-def versionPropertiesFile = rootProject.file('version.properties')
-
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
 }
+
+def versionProperties = new Properties()
+
+def versionPropertiesFile = rootProject.file('version.properties')
 
 if (versionPropertiesFile.exists()) {
     versionPropertiesFile.withReader('UTF-8') { reader ->
@@ -48,11 +48,8 @@ if (flutterTargetSdkVersion == null) {
     flutterTargetSdkVersion = 33
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
+    namespace "{{androidBundleId}}"
     compileSdkVersion flutterCompileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -107,6 +104,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
+dependencies {}
