@@ -80,7 +80,7 @@ extension ScaffoldExt on BuildContext {
     ShapeBorder? shape,
     Clip? clipBehaviour,
   }) =>
-      Scaffold.of(this).showBottomSheet<T>(
+      Scaffold.of(this).showBottomSheet(
         builder,
         backgroundColor: backgroundColor,
         elevation: elevation,

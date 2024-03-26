@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:{{name.snakeCase()}}/src/core/services/dialogs/types.dart';
 
 class DialogService {
