@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
@@ -68,7 +69,7 @@ class CoreInjection extends ICoreInjection {
 
   @override
   Future<void> initRouter() async {
-    sl.registerLazySingleton<AppRouter>(
+    sl.registerLazySingleton<RootStackRouter>(
       () => AppRouter(
         navigatorKey: DialogService.navigatorKey,
       ),

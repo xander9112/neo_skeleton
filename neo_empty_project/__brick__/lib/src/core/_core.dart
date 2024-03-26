@@ -1,3 +1,4 @@
+export 'app/_app.dart';
 export 'constants/_constants.dart';
 export 'di/_di.dart';
 export 'domain/_domain.dart';

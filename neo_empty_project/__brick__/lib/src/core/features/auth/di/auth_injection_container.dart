@@ -55,7 +55,7 @@ class AuthInjection extends ICoreInjection {
       ..registerFactory(() => CheckPinCodeUseCase(sl()))
       ..registerFactory(() => CheckBiometryUseCase(sl(), sl()))
       ..registerFactory(() => GetBiometricSupportModel(sl()))
-      ..registerFactory(() => SetBiometryUseCase(sl(), sl()))
+      ..registerFactory(() => SetBiometryUseCase(sl()))
       ..registerFactory(() => GetGlobalAuthSettingsUseCase(sl()))
       ..registerFactory(() => SubscribeAuthEventUseCase(sl()))
       ..registerFactory(() => SetBiometrySettingUseCase(sl()))
