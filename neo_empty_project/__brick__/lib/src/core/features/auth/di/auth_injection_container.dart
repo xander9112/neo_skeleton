@@ -86,7 +86,6 @@ class AuthInjection extends ICoreInjection {
           setBiometryUseCase: sl(),
           checkBiometryUseCase: sl(),
           getBiometricSupportModel: sl(),
-          dialogService: sl(),
         ),
       )
       ..registerFactory(() => ChangePinCodeCubit(sl(), sl()));

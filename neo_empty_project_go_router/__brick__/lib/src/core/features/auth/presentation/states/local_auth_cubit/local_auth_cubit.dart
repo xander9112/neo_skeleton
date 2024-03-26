@@ -11,7 +11,6 @@ part 'local_auth_state.dart';
 class LocalAuthCubit extends Cubit<LocalAuthState> {
   LocalAuthCubit({
     required AuthManager<AuthenticatedUser> manager,
-    required DialogService dialogService,
     required CheckLocalAuthUseCase checkLocalAuthUseCase,
     required SetPinCodeUseCase setPinCodeUseCase,
     required CheckPinCodeUseCase checkPinCodeUseCase,
@@ -19,7 +18,6 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
     required CheckBiometryUseCase checkBiometryUseCase,
     required GetBiometricSupportModel getBiometricSupportModel,
   })  : _manager = manager,
-        _dialogService = dialogService,
         _checkLocalAuthUseCase = checkLocalAuthUseCase,
         _setPinCodeUseCase = setPinCodeUseCase,
         _checkPinCodeUseCase = checkPinCodeUseCase,
@@ -29,8 +27,6 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         super(const LocalAuthState.initial());
 
   final AuthManager<AuthenticatedUser> _manager;
-
-  final DialogService _dialogService;
 
   final CheckLocalAuthUseCase _checkLocalAuthUseCase;
 
@@ -191,7 +187,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
   }
 
   Future<void> resetPinCode() async {
-    final result = await _dialogService.showDialog<bool?>(
+    final result = await DialogService.showDialog<bool?>(
       dialogType: DialogTypes.confirmDialog,
       title: AuthI18n.resetTitle,
       body: AuthI18n.resetDescription,

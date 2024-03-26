@@ -39,7 +39,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
 
           if (routerConfig == null) {
             return MaterialApp(
-              title: '{{name.pascalCase()}}App',
+              title: '{{name.pascalCase()}} App',
               key: ValueKey(state.locale?.languageCode),
               themeMode: state.themeMode,
               theme: createLightTheme(),
@@ -66,7 +66,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
           }
 
           return MaterialApp.router(
-            title: '{{name.pascalCase()}}App',
+            title: '{{name.pascalCase()}} App',
             routerConfig: routerConfig,
             themeMode: state.themeMode,
             theme: createLightTheme(),

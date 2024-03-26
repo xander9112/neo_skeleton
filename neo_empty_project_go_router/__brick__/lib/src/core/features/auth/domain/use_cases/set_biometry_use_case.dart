@@ -1,11 +1,9 @@
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class SetBiometryUseCase implements UseCase<bool, NoParams> {
-  SetBiometryUseCase(this._authManager, this._dialogService);
+  SetBiometryUseCase(this._authManager);
 
   final AuthManager<AuthenticatedUser> _authManager;
-
-  final DialogService _dialogService;
 
   @override
   Future<bool> call(NoParams params) async {
@@ -16,7 +14,7 @@ class SetBiometryUseCase implements UseCase<bool, NoParams> {
     }
 
     if (result.status == BiometricStatus.available) {
-      final useBio = await _dialogService.showDialog<bool>(
+      final useBio = await DialogService.showDialog<bool>(
         dialogType: DialogTypes.confirmDialog,
         title: AuthI18n.useBiometricsToLogin,
       );

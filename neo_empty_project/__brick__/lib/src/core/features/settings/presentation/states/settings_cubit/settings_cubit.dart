@@ -19,10 +19,8 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     required this.setBiometrySettingUseCase,
     required this.getAuthUseCase,
     required this.setLocalAuthUseCase,
-    required AuthManager<AuthenticatedUser> manager,
-    required DialogService dialogService,
+    required AuthManager<AuthenticatedUser> manager,    
   })  : _manager = manager,
-        _dialogService = dialogService,
         super(
           const SettingsState.current(),
         ) {
@@ -31,8 +29,6 @@ class SettingsCubit extends BaseCubit<SettingsState> {
 
     init();
   }
-
-  final DialogService _dialogService;
 
   final AuthManager<AuthenticatedUser> _manager;
 
@@ -121,7 +117,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
   Future<void> getVersions() async {}
 
   Future<void> signOut() async {
-    final result = await _dialogService.showDialog<bool>(
+    final result = await DialogService.showDialog<bool>(
       child: UiConfirmDialog(
         title: SettingsI18n.signOutTitle,
       ),

@@ -64,11 +64,7 @@ void main() async {
               builder: (BuildContext context, Widget? child) {
                 return BlocProvider<SettingsCubit>(
                   create: (context) => CoreInjection.sl(),
-                  child: DialogManager(
-                    router: router,
-                    dialogService: CoreInjection.sl(),
-                    child: child,
-                  ),
+                  child: child,
                 );
               },
             );

@@ -39,7 +39,6 @@ class SettingsInjection extends ICoreInjection {
         setBiometrySettingUseCase: sl(),
         getGlobalAuthSettings: sl(),
         setLocalAuthUseCase: sl(),
-        dialogService: sl(),
         manager: sl(),
       ),
     );
