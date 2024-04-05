@@ -3,13 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+{{#useFlavor}}import 'package:{{name.snakeCase()}}/src/core/_core.dart';{{/useFlavor}}
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 final WidgetConfiguration widgetConfiguration = WidgetConfiguration(
   child: AppBuilder<void>(
     preInitialize: (WidgetsBinding binding) async {
-      return App.init(await Env.getCurrentEnv());
+      return App.init({{#useFlavor}}await Env.getCurrentEnv(){{/useFlavor}});
     },
     builder: (context, snapshot, child) {
       late final Widget _child;
