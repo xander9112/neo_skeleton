@@ -67,10 +67,6 @@ flutter:
     - assets/
     - assets/l10n/
     - assets/launcher_icon/
-    {{#useFlavor}}    
     - .prod.env
     - .dev.env
-    {{/useFlavor}}
-    {{!#useFlavor}}    
-    - .env
-    {{/useFlavor}}
+    - .env   
