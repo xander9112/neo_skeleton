@@ -6,17 +6,17 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
-Future<void> configureDependencies(EnvConfig env) async {
+Future<void> configureDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
   await GetIt.instance.reset();
 
-  await ExternalInjection().init(env);
+  await ExternalInjection().init({{#useFlavor}}env{{/useFlavor}});
 
-  await CoreInjection().init(env);
+  await CoreInjection().init({{#useFlavor}}env{{/useFlavor}});
 
   //features
-  await AuthInjection().init(env);
+  await AuthInjection().init({{#useFlavor}}env{{/useFlavor}});
 
-  await MainInjection().init(env, useMock: true);
+  await MainInjection().init({{#useFlavor}}env,{{/useFlavor}} useMock: true);
 
   await additionalExternalInit();
 }
