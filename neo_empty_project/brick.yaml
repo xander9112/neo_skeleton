@@ -26,16 +26,11 @@ vars:
     description: Project name
     default: NewProject
     prompt: What is project name?
-  androidBundleId:
+  org:
     type: string
-    description: Android bundle id
-    default: com.neoflex.new_project
-    prompt: What is Android bundle id?
-  iosBundleId:
-    type: string
-    description: iOS bundle id
-    default: com.neoflex.newProject
-    prompt: What is iOS bundle id?
+    description: org
+    default: com.neoflex
+    prompt: Reverse domain name notation. "com.neoflex"
   useLocalAuth:
     type: boolean
     default: true
