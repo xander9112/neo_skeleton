@@ -23,10 +23,10 @@ abstract class ICoreInjection {
   @mustCallSuper
   Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     await initRouter();
-    await initProviders(env, useMock: useMock);
-    await initRepositories(env, useMock: useMock);
-    await initUseCases(env, useMock: useMock);
-    await initState(env, useMock: useMock);
+    await initProviders({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+    await initRepositories({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+    await initUseCases({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+    await initState({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
   }
 
   T Function<T>({
@@ -77,7 +77,7 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     sl
       ..registerLazySingleton(
         () => TalkerFlutter.init(settings: TalkerSettings()),
@@ -100,9 +100,9 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> init(EnvConfig env, {bool useMock = false}) async {
-    await super.init(env, useMock: useMock);
+  Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+    await super.init({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
 
-    await SettingsInjection().init(env, useMock: useMock);
+    await SettingsInjection().init({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
   }
 }
