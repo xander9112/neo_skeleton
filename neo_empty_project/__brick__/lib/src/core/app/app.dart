@@ -30,7 +30,7 @@ class App {
 
   static BehaviorSubject<int> progress = BehaviorSubject.seeded(0);
 
-  static Future<void> init(EnvConfig env) async {
+  static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     const increment = 100 ~/ _methodsCount;
 
     await _updateProgress(0);
@@ -38,27 +38,27 @@ class App {
     try {
       await _initCommon();
 
-      await _initEnv(env);
+      await _initEnv({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initStorage(env);
+      await _initStorage({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initFirebase(env);
+      await _initFirebase({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initDependencies(env);
+      await _initDependencies({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initSettings(env);
+      await _initSettings({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initMetrics(env);
+      await _initMetrics({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
@@ -66,7 +66,7 @@ class App {
 
       await _updateProgress(progress.value + increment);
 
-      await _startApp(env);
+      await _startApp({{#useFlavor}}env{{/useFlavor}});
     } catch (errorDetails, stackTrace) {
       TerminalLogger.log(
         errorDetails.toString(),
@@ -91,29 +91,34 @@ class App {
     );
   }
 
-  static Future<void> _initEnv(EnvConfig env) async {
+  static Future<void> _initEnv({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     try {
+      {{#useFlavor}}
       await dotenv.load(fileName: '.${env.name}.env');
+      {{/useFlavor}}
+      {{!#useFlavor}}
+      await dotenv.load(fileName: '.env');
+      {{/useFlavor}}
     } catch (_) {
       debugPrint(_.toString());
     }
   }
 
-  static Future<void> _initFirebase(EnvConfig env) async {}
+  static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
-  static Future<void> _initSettings(EnvConfig env) async {
+  static Future<void> _initSettings({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await AppSettingsInjection.sl<AppSettingsCubit>().init();
   }
 
-  static Future<void> _initMetrics(EnvConfig env) async {
+  static Future<void> _initMetrics({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await CoreSL.sl<AppMetrics>().init(env);
   }
 
-  static Future<void> _initDependencies(EnvConfig env) async {
+  static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     return configureDependencies(env);
   }
 
-  static Future<void> _initStorage(EnvConfig env) async {
+  static Future<void> _initStorage({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     Hive.init(
       (kIsWeb
               ? HydratedStorage.webStorageDirectory
@@ -130,7 +135,7 @@ class App {
 
   static Future<void> _initSubscription() async {}
 
-  static Future<void> _startApp(EnvConfig env) async {
+  static Future<void> _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await AppSettingsInjection.sl<AppSettingsCubit>().check();
 
     // await AuthInjection.sl<AuthCubit>().init();
