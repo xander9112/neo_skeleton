@@ -30,7 +30,7 @@ class App {
 
   static BehaviorSubject<int> progress = BehaviorSubject.seeded(0);
 
-  static Future<void> init(EnvConfig env) async {
+  static Future<void> init({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     const increment = 100 ~/ _methodsCount;
 
     await _updateProgress(0);
