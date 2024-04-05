@@ -38,27 +38,27 @@ class App {
     try {
       await _initCommon();
 
-      await _initEnv(env);
+      await _initEnv({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initStorage(env);
+      await _initStorage({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initFirebase(env);
+      await _initFirebase({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initDependencies(env);
+      await _initDependencies({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initSettings(env);
+      await _initSettings({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
-      await _initMetrics(env);
+      await _initMetrics({{#useFlavor}}env{{/useFlavor}});
 
       await _updateProgress(progress.value + increment);
 
@@ -66,7 +66,7 @@ class App {
 
       await _updateProgress(progress.value + increment);
 
-      await _startApp(env);
+      await _startApp({{#useFlavor}}env{{/useFlavor}});
     } catch (errorDetails, stackTrace) {
       TerminalLogger.log(
         errorDetails.toString(),
