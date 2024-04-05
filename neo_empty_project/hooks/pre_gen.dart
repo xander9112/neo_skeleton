@@ -6,20 +6,21 @@ void run(HookContext context) {
   context.vars = {
     ...context.vars,
     'androidBundleId':
-        '${context.vars['org']}.${_toCamelCase(context.vars['name'])}',
+        '${context.vars['org']}.${_convertToCamelCase(context.vars['name'])}',
     'iosBundleId':
-        '${context.vars['org']}.${_toCamelCase(context.vars['name'])}',
+        '${context.vars['org']}.${_convertToCamelCase(context.vars['name'])}',
   };
 }
 
-String _toCamelCase(String text) {
-  if (text.isEmpty) {
-    return '';
+String _convertToCamelCase(String input) {
+  final List<String> words = input.split(RegExp(r'[\s_]+'));
+  String result = '';
+  for (int i = 0; i < words.length; i++) {
+    if (i == 0) {
+      result += words[i].substring(0, 1).toLowerCase() + words[i].substring(1);
+    } else {
+      result += words[i][0].toUpperCase() + words[i].substring(1);
+    }
   }
-
-  final words = text.split(' ');
-  final firstWord = words.first.toLowerCase();
-  final otherWords =
-      words.skip(1).map((word) => word[0].toUpperCase() + word.substring(1));
-  return firstWord + otherWords.join('');
+  return result;
 }
