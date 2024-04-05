@@ -136,12 +136,14 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
 
   Future<void> enterPin(String pinCode, void Function(bool)? onResult) async {
     emit(
-        state.maybeMap(
-          orElse: () => state,
-          enterPin: (value) =>
-              value.copyWith(status: FetchStatus.fetchingInProgress, error: null),
+      state.maybeMap(
+        orElse: () => state,
+        enterPin: (value) => value.copyWith(
+          status: FetchStatus.fetchingInProgress,
+          error: null,
         ),
-      );
+      ),
+    );
 
     final result = await _checkPinCodeUseCase(
       CheckPinCodeUseCaseParams(

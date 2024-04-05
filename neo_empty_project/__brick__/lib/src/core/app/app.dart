@@ -99,24 +99,7 @@ class App {
     }
   }
 
-  static Future<void> _initFirebase(EnvConfig env) async {
-    // await Firebase.initializeApp(
-    //   options: DefaultFirebaseOptions.currentPlatform(env),
-    // );
-
-    // if (kDebugMode) {
-    //   // Force disable Crashlytics collection while doing every day development.
-    //   // Temporarily toggle this to true
-    //   // if you want to test crash reporting in your app.
-    //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-    // } else {
-    //   // Handle Crashlytics enabled status when not in Debug,
-    //   // e.g. allow your users to opt-in to crash reporting.
-    // }
-
-    // // Pass all uncaught errors from the framework to Crashlytics.
-    // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  }
+  static Future<void> _initFirebase(EnvConfig env) async {}
 
   static Future<void> _initSettings(EnvConfig env) async {
     // await AppSettingsInjection.sl<AppSettingsCubit>().init();

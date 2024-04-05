@@ -24,5 +24,6 @@ class DialogService {
     );
   }
 
-  // Добавьте другие методы для показа различных видов диалогов, например, showAlertDialog, showBottomSheet, и т.д.
+  // Добавьте другие методы для показа различных видов диалогов, например, 
+  // showAlertDialog, showBottomSheet, и т.д.
 }

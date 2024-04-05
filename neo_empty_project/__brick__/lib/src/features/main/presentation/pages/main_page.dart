@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
 
     if (router.activeIndex == index) {
       if (router.canPop()) {
-        await router.popTop();
+        await router.maybePopTop();
 
         if (router.canPop()) {
           await onPressedPopTop(context, index);
