@@ -115,7 +115,7 @@ class App {
   }
 
   static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
-    return configureDependencies(env);
+    return configureDependencies({{#useFlavor}}env{{/useFlavor}});
   }
 
   static Future<void> _initStorage({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
