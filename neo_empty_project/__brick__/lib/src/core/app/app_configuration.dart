@@ -3,8 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-{{#useFlavor}}import 'package:{{name.snakeCase()}}/src/core/_core.dart';{{/useFlavor}}
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
 
 final WidgetConfiguration widgetConfiguration = WidgetConfiguration(
   child: AppBuilder<void>(
