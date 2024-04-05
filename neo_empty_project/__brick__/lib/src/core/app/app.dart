@@ -93,7 +93,7 @@ class App {
 
   static Future<void> _initEnv({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     try {
-      await dotenv.load(fileName: '.${env.name}.env');
+      await dotenv.load(fileName: '.{{#useFlavor}}${env.name}.{{/useFlavor}}env');            
     } catch (_) {
       debugPrint(_.toString());
     }
