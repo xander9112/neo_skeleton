@@ -91,7 +91,7 @@ class App {
     );
   }
 
-  static Future<void> _initEnv(EnvConfig env) async {
+  static Future<void> _initEnv({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     try {
       await dotenv.load(fileName: '.${env.name}.env');
     } catch (_) {
@@ -99,21 +99,21 @@ class App {
     }
   }
 
-  static Future<void> _initFirebase(EnvConfig env) async {}
+  static Future<void> _initFirebase({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {}
 
-  static Future<void> _initSettings(EnvConfig env) async {
+  static Future<void> _initSettings({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await AppSettingsInjection.sl<AppSettingsCubit>().init();
   }
 
-  static Future<void> _initMetrics(EnvConfig env) async {
+  static Future<void> _initMetrics({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await CoreSL.sl<AppMetrics>().init(env);
   }
 
-  static Future<void> _initDependencies(EnvConfig env) async {
+  static Future<void> _initDependencies({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     return configureDependencies({{#useFlavor}}env{{/useFlavor}});
   }
 
-  static Future<void> _initStorage(EnvConfig env) async {
+  static Future<void> _initStorage({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     Hive.init(
       (kIsWeb
               ? HydratedStorage.webStorageDirectory
@@ -130,7 +130,7 @@ class App {
 
   static Future<void> _initSubscription() async {}
 
-  static Future<void> _startApp(EnvConfig env) async {
+  static Future<void> _startApp({{#useFlavor}}EnvConfig env{{/useFlavor}}) async {
     // await AppSettingsInjection.sl<AppSettingsCubit>().check();
 
     // await AuthInjection.sl<AuthCubit>().init();
