@@ -12,16 +12,16 @@ abstract class ICoreInjection {
 
   Future<void> initRouter() async {}
 
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {}
+  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
 
-  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {}
+  Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
 
-  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {}
+  Future<void> initUseCases({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
 
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {}
+  Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
 
   @mustCallSuper
-  Future<void> init(EnvConfig env, {bool useMock = false}) async {
+  Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
     await initRouter();
     await initProviders(env, useMock: useMock);
     await initRepositories(env, useMock: useMock);
@@ -47,14 +47,14 @@ abstract class ICoreInjection {
 
   T Function<T>(
     bool useMock,
-    EnvConfig env,
-    T Function(EnvConfig) factoryFunc,
-    T Function(EnvConfig) mockFactoryFunc,
+    {{#useFlavor}}EnvConfig env,{{/useFlavor}}
+    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) factoryFunc,
+    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
   ) buildDependencyWithEnv = <T>(
     useMock,
     env,
-    T Function(EnvConfig) factoryFunc,
-    T Function(EnvConfig) mockFactoryFunc,
+    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) factoryFunc,
+    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
   ) {
     if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
       return mockFactoryFunc(env);
