@@ -52,15 +52,15 @@ abstract class ICoreInjection {
     T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
   ) buildDependencyWithEnv = <T>(
     useMock,
-    env,
+    {{#useFlavor}}env,{{/useFlavor}}
     T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) factoryFunc,
     T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
   ) {
     if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
-      return mockFactoryFunc(env);
+      return mockFactoryFunc({{#useFlavor}}env{{/useFlavor}});
     }
 
-    return factoryFunc(env);
+    return factoryFunc({{#useFlavor}}env{{/useFlavor}});
   };
 }
 
