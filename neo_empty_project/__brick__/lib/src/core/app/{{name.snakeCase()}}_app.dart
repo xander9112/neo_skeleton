@@ -46,29 +46,31 @@ class {{name.pascalCase()}}App extends StatelessWidget {
             return const SizedBox.shrink();
           }
 
-          return MaterialApp(
-            key: UniqueKey(),
-            themeMode: ThemeMode.light,
-            theme: createLightTheme(),
-            darkTheme: createDarkTheme(),
-            localizationsDelegates: const [
-              AppLocalizationDelegate(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: state.locale,
-            initialRoute: Uri.base.path,
-            navigatorKey: DialogService.navigatorKey,
-            onGenerateRoute: (settings) {
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => builder(context, null),
-              );
-            },
-          );
-        
+          if (routerConfig == null) {
+            return MaterialApp(
+              key: UniqueKey(),
+              themeMode: ThemeMode.light,
+              theme: createLightTheme(),
+              darkTheme: createDarkTheme(),
+              localizationsDelegates: const [
+                AppLocalizationDelegate(),
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              locale: state.locale,
+              initialRoute: Uri.base.path,
+              navigatorKey: DialogService.navigatorKey,
+              onGenerateRoute: (settings) {
+                return MaterialPageRoute(
+                  settings: settings,
+                  builder: (context) => builder(context, null),
+                );
+              },
+            );
+          }
+
           return MaterialApp.router(
             key: ValueKey(state.locale?.languageCode),
             routerConfig: routerConfig,

@@ -18,7 +18,7 @@ final WidgetConfiguration widgetConfiguration = WidgetConfiguration(
         case ConnectionState.none:
         case ConnectionState.active:
         case ConnectionState.waiting:
-          _child = JnpChatApp(
+          _child = {{name.pascalCase()}}App(
             builder: (context, child) => SplashPage(
               onFinishSplash: App.onFinishSplash,
               progress: App.progress,
@@ -31,7 +31,7 @@ final WidgetConfiguration widgetConfiguration = WidgetConfiguration(
           final AuthManager<AuthenticatedUser> manager =
               CoreInjection.sl<AuthManager<AuthenticatedUser>>();
 
-          _child = JnpChatApp(
+          _child = {{name.pascalCase()}}App(
             routerConfig: router.config(
               reevaluateListenable: manager,
               includePrefixMatches: true,
