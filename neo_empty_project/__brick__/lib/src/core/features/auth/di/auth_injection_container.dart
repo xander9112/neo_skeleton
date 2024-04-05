@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
 
 class AuthInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
@@ -12,7 +12,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl
       ..registerLazySingleton<AuthManager<AuthenticatedUser>>(
         () => AuthManagerImpl(
@@ -35,7 +35,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initRepositories({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl
       ..registerFactory<AuthRepository<AuthModel, AuthenticatedUser>>(
         () => AuthRepositoryImpl(sl(), sl()),
@@ -46,7 +46,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initUseCases({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl
       ..registerFactory(() => LoginUseCase(sl()))
       ..registerFactory(() => CheckLocalAuthUseCase(sl()))
@@ -67,7 +67,7 @@ class AuthInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initState({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl
       ..registerFactory(
         () => LoginCubit(

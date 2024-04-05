@@ -7,7 +7,7 @@ class HomeInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl.registerFactory<HomeDataSource>(
       () => buildDependency<HomeDataSource>(
         useMock: useMock,
@@ -18,12 +18,12 @@ class HomeInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initRepositories({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl.registerFactory<HomeRepository>(() => HomeRepositoryImpl(sl()));
   }
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initState({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl.registerFactory(() => HomeCubit(repository: sl()));
   }
 }

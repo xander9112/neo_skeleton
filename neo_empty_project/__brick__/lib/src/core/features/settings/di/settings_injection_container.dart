@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+{{#useFlavor}}import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';{{/useFlavor}}
 
 class SettingsInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
@@ -9,7 +9,7 @@ class SettingsInjection extends ICoreInjection {
   Future<void> initRouter() async {}
 
   @override
-  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initProviders({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl.registerFactory<SettingsDataSource>(
       () => buildDependency<SettingsDataSource>(
         useMock: useMock,
@@ -20,12 +20,12 @@ class SettingsInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initRepositories({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     sl.registerFactory<SettingsRepository>(() => SettingsRepositoryImpl(sl()));
   }
 
   @override
-  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
+  Future<void> initState({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
     final appInfo = await AppInfo.getAppInfo();
     final deviceInfo = await AppInfo.getDeviceInfo();
 
