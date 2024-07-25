@@ -9,46 +9,49 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: (context, state) {
-        return Title(
-          color: Colors.black,
-          title: 'Settings',
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(SettingsI18n.title),
-              actions: <Widget>[
-                IconButton(
-                  onPressed: context.read<SettingsCubit>().signOut,
-                  icon: const Icon(Icons.logout),
-                ),
-              ],
-            ),
-            body: BlocBuilder<SettingsCubit, SettingsState>(
-              builder: (context, state) {
-                return const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LocaleSwitcher(),
-                          LocalAuthSwitcher(),
-                          BiometrySwitcher(),
-                          PinCodeChanger(),
-                          ThemeSwitcher(),
-                        ],
+    return BlocProvider.value(
+      value: SettingsInjection.sl<SettingsCubit>(),
+      child: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          return Title(
+            color: Colors.black,
+            title: 'Settings',
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(SettingsI18n.title),
+                actions: <Widget>[
+                  IconButton(
+                    onPressed: context.read<SettingsCubit>().signOut,
+                    icon: const Icon(Icons.logout),
+                  ),
+                ],
+              ),
+              body: BlocBuilder<SettingsCubit, SettingsState>(
+                builder: (context, state) {
+                  return const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LocaleSwitcher(),
+                            LocalAuthSwitcher(),
+                            BiometrySwitcher(),
+                            PinCodeChanger(),
+                            ThemeSwitcher(),
+                          ],
+                        ),
                       ),
-                    ),
-                    // Center(child: Text(state.appInfo.fullVersion)),
-                  ],
-                );
-              },
+                      // Center(child: Text(state.appInfo.fullVersion)),
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

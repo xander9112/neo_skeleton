@@ -9,11 +9,16 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                {{#useFlavor}}
+                {
+                    {#useFlavor
+                    }
+                }
                 "--flavor",
                 "dev",
-                "--dart-define=flavor=dev"
-                {{/useFlavor}}
+                "--dart-define=flavor=dev"{
+                    {/useFlavor
+                    }
+                }
             ]
         },
         {
@@ -21,11 +26,16 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                {{#useFlavor}}
+                {
+                    {#useFlavor
+                    }
+                }
                 "--flavor",
                 "prod",
-                "--dart-define=flavor=prod"
-                {{/useFlavor}}
+                "--dart-define=flavor=prod"{
+                    {/useFlavor
+                    }
+                }
             ]
         },
         {
@@ -34,11 +44,16 @@
             "type": "dart",
             "flutterMode": "release",
             "args": [
-                {{#useFlavor}}
+                {
+                    {#useFlavor
+                    }
+                }
                 "--flavor",
                 "dev",
-                "--dart-define=flavor=dev"
-                {{/useFlavor}}
+                "--dart-define=flavor=dev"{
+                    {/useFlavor
+                    }
+                }
             ]
         },
         {
