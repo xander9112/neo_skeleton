@@ -8,7 +8,7 @@ ThemeData createLightTheme() {
   );
 
   return ThemeData.light(useMaterial3: true).copyWith(
-    colorScheme: const ColorScheme.light(
+    colorScheme: ColorScheme.light(
       primary: themeColors.primary,
     ),
     extensions: <ThemeExtension<dynamic>>[

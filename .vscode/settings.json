@@ -6,9 +6,10 @@
   },
   "java.configuration.updateBuildConfiguration": "automatic",
   "cSpell.words": [],
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
+  "editor.codeActionsOnSave": [],
+  // {
+  //   "source.fixAll": "explicit",
+  //   "source.organizeImports": "explicit"
+  // },
   "editor.formatOnSave": false
 }
