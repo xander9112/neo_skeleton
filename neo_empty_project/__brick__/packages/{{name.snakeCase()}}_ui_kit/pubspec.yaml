@@ -3,8 +3,8 @@ description: "{{name.pascalCase()}} UI-Kit"
 version: 0.0.1
 
 environment:
-  sdk: ">=3.2.3 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.4.4 <4.0.0"
+  flutter: ">=3.22.3"
 
 dependencies:
   cached_network_image: ^3.3.1
