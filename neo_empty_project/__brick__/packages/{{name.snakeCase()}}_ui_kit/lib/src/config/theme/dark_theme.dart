@@ -8,7 +8,7 @@ ThemeData createDarkTheme() {
   );
 
   return ThemeData.dark(useMaterial3: true).copyWith(
-    colorScheme: const ColorScheme.dark(
+    colorScheme: ColorScheme.dark(
       primary: themeColors.primary,
     ),
     extensions: <ThemeExtension<dynamic>>[
