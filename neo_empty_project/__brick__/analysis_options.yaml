@@ -14,6 +14,10 @@ analyzer:
   errors:
     invalid_annotation_target: ignore
 
+dart_code_metrics:
+  rules:
+    - always-remove-listener
+
 linter:
   rules:
     avoid_positional_boolean_parameters: false
