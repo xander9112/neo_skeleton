@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:skeleton_core/skeleton_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class EnvVariables {
   static bool get isDebug {

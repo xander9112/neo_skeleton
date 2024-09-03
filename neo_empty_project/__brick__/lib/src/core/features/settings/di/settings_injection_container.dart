@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:skeleton_core/skeleton_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class SettingsInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
