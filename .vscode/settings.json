@@ -10,5 +10,5 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false
 }

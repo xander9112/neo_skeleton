@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 class UiProgressIndicator extends StatelessWidget {
   const UiProgressIndicator({

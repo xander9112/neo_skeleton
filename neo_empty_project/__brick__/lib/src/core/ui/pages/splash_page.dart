@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 @RoutePage()
 class SplashPage extends StatefulWidget {

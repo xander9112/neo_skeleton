@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 class UiInfoNotify extends StatelessWidget {
   const UiInfoNotify({

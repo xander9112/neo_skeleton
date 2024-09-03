@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:super_banners/super_banners.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
-import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
-import 'package:super_banners/super_banners.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 @RoutePage()
 class MainPage extends StatefulWidget {
