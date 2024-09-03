@@ -5,7 +5,7 @@ class CheckLocalAuthUseCase
     implements UseCase<Either<Failure, LocalAuthResult>, NoParams> {
   CheckLocalAuthUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
   @override
   Future<Either<Failure, LocalAuthResult>> call(NoParams params) async {
     if (!_authManager.settings.useLocalAuth) {

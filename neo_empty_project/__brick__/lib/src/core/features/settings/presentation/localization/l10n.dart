@@ -7,6 +7,12 @@ class SettingsI18n {
         name: 'SettingsI18n_title',
       );
 
+  static String get update => Intl.message(
+        'Update page',
+        desc: 'Update page',
+        name: 'SettingsI18n_update',
+      );
+
   static String get theme => Intl.message(
         'Theme',
         desc: 'Theme',

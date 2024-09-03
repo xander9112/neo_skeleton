@@ -7,7 +7,7 @@ class ThemeSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DevicePreferencesBloc, DevicePreferencesState>(
+    return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         return ListTile(
           title: Text(SettingsI18n.selectTheme),
@@ -25,11 +25,7 @@ class ThemeSwitcher extends StatelessWidget {
                 )
                 .toList(),
             onChanged: (value) {
-              context.read<DevicePreferencesBloc>().add(
-                    DevicePreferencesEvent.setThemeMode(
-                      value,
-                    ),
-                  );
+              context.read<SettingsCubit>().setThemeMode(value);
             },
           ),
         );

@@ -3,7 +3,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
   CheckBiometryUseCase(this._authManager, this._router);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
   final AuthRouter _router;
 
   @override

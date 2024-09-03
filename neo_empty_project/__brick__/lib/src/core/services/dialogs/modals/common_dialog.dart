@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
 
 class UiCommonDialog extends StatelessWidget {
   const UiCommonDialog({

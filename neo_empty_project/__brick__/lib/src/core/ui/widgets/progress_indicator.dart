@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
 
 class UiProgressIndicator extends StatelessWidget {
   const UiProgressIndicator({
@@ -31,7 +31,7 @@ class UiProgressIndicator extends StatelessWidget {
       return Container(
         width: double.infinity,
         height: double.infinity,
-        color: Theme.of(context).colorScheme.background.withOpacity(0.8),
+        color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

@@ -2,13 +2,22 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
 
 @RoutePage()
 class BlockPage extends StatelessWidget {
   const BlockPage({super.key, this.onResult});
 
   final void Function(bool)? onResult;
+
+  void _redirect(BuildContext context) {
+    if (onResult == null) {
+      context.router.replaceNamed('/');
+      AppInitializer.updateKey();
+    } else {
+      onResult?.call(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +27,7 @@ class BlockPage extends StatelessWidget {
         listener: (context, state) {
           if (state.stateStatus.isReady) {
             if (!state.isBlocked) {
-              if (onResult != null) {
-                onResult?.call(true);
-              } else {
-                context.router.replaceNamed('/');
-              }
+              _redirect(context);
             }
           }
         },
@@ -58,7 +63,7 @@ class BlockPage extends StatelessWidget {
                                 onPressedRepeat: () async {
                                   await context.read<LoginCubit>().unBlock();
 
-                                  onResult?.call(true);
+                                  _redirect(context);
                                 },
                               )
                             : const SizedBox.shrink(),

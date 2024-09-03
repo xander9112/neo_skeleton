@@ -2,13 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
 import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 
 class MainInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<MainDataSource>(
       () => buildDependency<MainDataSource>(
         useMock: useMock,
@@ -19,12 +19,12 @@ class MainInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<MainRepository>(() => MainRepositoryImpl(sl()));
   }
 
   @override
-  Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<MainCubit>(
       () => buildDependency<MainCubit>(
         useMock: useMock,
@@ -41,9 +41,9 @@ class MainInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> init({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
-    await super.init({{#useFlavor}}env{{/useFlavor}} useMock: useMock);
+  Future<void> init(EnvConfig env, {bool useMock = false}) async {
+    await super.init(env, useMock: useMock);
 
-    await HomeInjection().init({{#useFlavor}}env, {{/useFlavor}}useMock: useMock);
+    await HomeInjection().init(env, useMock: useMock);
   }
 }

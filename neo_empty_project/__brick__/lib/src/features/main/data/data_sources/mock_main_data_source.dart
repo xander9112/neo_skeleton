@@ -4,7 +4,7 @@ class MockMainDataSource implements MainDataSource {
   @override
   Future<MainModel> getMain() async {
     await Future<void>.delayed(const Duration(seconds: 2));
-    
+
     return const MainModel(title: 'New Main');
   }
 }

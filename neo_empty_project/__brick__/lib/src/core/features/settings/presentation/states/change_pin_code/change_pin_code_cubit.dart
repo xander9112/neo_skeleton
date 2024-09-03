@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 part 'change_pin_code_cubit.freezed.dart';
 part 'change_pin_code_cubit.g.dart';

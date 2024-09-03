@@ -4,7 +4,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class SetPinCodeUseCase implements UseCase<Either<Failure, bool>, String> {
   SetPinCodeUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<Either<Failure, bool>> call(String params) async {

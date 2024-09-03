@@ -1,11 +1,9 @@
-// ignore: lines_longer_than_80_chars
-// ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_setters_without_getters
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
+class AuthManagerImpl extends AuthManager<UserEntity> {
   AuthManagerImpl({
     required this.authRepository,
     required this.biometricRepository,
@@ -15,138 +13,25 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
   final DemoUserRepository? demoUserRepository;
 
-  final AuthRepository<AuthModel, AuthenticatedUser> authRepository;
+  final AuthRepository<AuthModel, UserEntity> authRepository;
 
   final BiometricRepository biometricRepository;
 
+  final BehaviorSubject<UserEntity> _user =
+      BehaviorSubject.seeded(const UserEntity.notAuthenticated());
+
   @override
-  bool get mocked => _mocked;
+  bool get mocked => _user.value.isDemo;
 
   bool _blocked = false;
 
   @override
   bool get blocked => _blocked;
 
-  AuthenticatedUser _user = AuthenticatedUser.empty;
-
-  bool _authenticated = false;
-
-  bool _mocked = false;
+  bool _isReady = false;
 
   @override
-  void lock() {
-    if (kIsWeb) {
-      return;
-    }
-
-    _locked = true;
-
-    notifyListeners();
-  }
-
-  @override
-  void unlock() {
-    _locked = false;
-
-    notifyListeners();
-  }
-
-  @override
-  Future<void> block() async {
-    await authRepository
-        .blocUser(DateTime.now().add(const Duration(seconds: 60)));
-
-    _blocked = true;
-
-    notifyListeners();
-  }
-
-  @override
-  Future<void> unblock() async {
-    await authRepository.unBlocUser();
-
-    _blocked = false;
-
-    notifyListeners();
-  }
-
-  @override
-  Future<Duration> getBlockTime() async {
-    final DateTime? value = await authRepository.getBlockTime();
-
-    if (value != null) {
-      if (value.difference(DateTime.now()).inSeconds > 0) {
-        return value.difference(DateTime.now());
-      }
-    }
-
-    return Duration.zero;
-  }
-
-  @override
-  Future<void> init() async {
-    final DateTime? value = await authRepository.getBlockTime();
-    final bool hasPinCode = await authRepository.hasPinCode();
-    final bool hasToken = await authRepository.hasAccessToken();
-
-    if (settings.useLocalAuth) {
-      settings.useLocalAuth = await authRepository.useLocalAuth();
-    }
-
-    if (value != null) {
-      if (value.difference(DateTime.now()).inSeconds > 0) {
-        _blocked = true;
-      }
-    }
-
-    if (settings.useLocalAuth && (!hasPinCode && !kIsWeb)) {
-      await signOut(remote: false);
-
-      authenticated = false;
-
-      return;
-    }
-
-    if (hasToken) {
-      if (await authRepository.getAccessToken() == 'demo') {
-        _mocked = true;
-      }
-      
-      await verify();
-    }
-
-    await authRepository.getCurrentUser().then(
-          (user) => user.fold(
-            (l) => _user = AuthenticatedUser.empty,
-            (r) => _user = r,
-          ),
-        );
-
-    if (user == AuthenticatedUser.demo) {
-      _mocked = true;
-
-      notifyListeners();
-    }
-  }
-
-  @override
-  Future<bool> get isAuth async {
-    final hasToken = await authRepository.hasAccessToken();
-
-    if (hasToken != _authenticated) {
-      _authenticated = hasToken;
-
-      notifyListeners();
-    }
-
-    return _authenticated;
-  }
-
-  @override
-  set authenticated(bool value) {
-    _authenticated = value;
-    notifyListeners();
-  }
+  bool get isReady => _isReady;
 
   bool _locked = true;
 
@@ -163,30 +48,50 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     }
   }
 
-  bool _isChecked = false;
-
   @override
-  bool get isChecked {
-    if (_isChecked == false) {
-      _isChecked = true;
-      return false;
-    }
-    return _isChecked;
-  }
-
-  @override
-  set isChecked(bool value) {
-    _isChecked = value;
-  }
+  bool get isAuth => _user.value.isAuthenticated;
 
   @override
   Future<bool> get hasPinCode => authRepository.hasPinCode();
 
   @override
-  AuthenticatedUser get user => _user;
+  BehaviorSubject<UserEntity> get user => _user;
 
-  Future<bool> _checkDemoUser(String login, String password) async {
-    return demoUserRepository?.signIn(login, password) ?? Future.value(false);
+  @override
+  Future<void> init() async {
+    await _checkUserBlocking();
+
+    final bool hasPinCode = await authRepository.hasPinCode();
+    final bool hasToken = await authRepository.hasAccessToken();
+
+    if (settings.useLocalAuth) {
+      settings.useLocalAuth = await authRepository.useLocalAuth();
+    }
+
+    if (settings.useLocalAuth && (!hasPinCode && !kIsWeb)) {
+      await signOut(remote: false);
+
+      _user.sink.add(const UserEntity.notAuthenticated());
+
+      _isReady = true;
+
+      return;
+    }
+
+    if (hasToken) {
+      await verify();
+    }
+
+    await authRepository.getCurrentUser().then(
+          (user) => user.fold(
+            (l) => _user.sink.add(const UserEntity.notAuthenticated()),
+            (r) => _user.sink.add(r),
+          ),
+        );
+
+    _isReady = true;
+
+    notifyListeners();
   }
 
   @override
@@ -194,17 +99,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     final isDemoUser = await _checkDemoUser(login, password);
 
     if (isDemoUser) {
-      await authRepository.setAccessToken('demo');
-
-      _user = AuthenticatedUser.demo;
-
-      await authRepository.setCurrentUser(user);
-
-      _mocked = true;
-
-      notifyListeners();
-
-      return const Right(true);
+      return _initDemoUser();
     }
 
     final result = await authRepository.signIn(login, password);
@@ -212,9 +107,7 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     return result.fold(Left.new, (authModel) async {
       await authRepository.setAccessToken(authModel.token);
 
-      _user = authModel.user;
-
-      authenticated = true;
+      _user.sink.add(authModel.user);
 
       return const Right(true);
     });
@@ -255,6 +148,72 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
     }
   }
 
+  @override
+  void lock() {
+    if (kIsWeb) {
+      return;
+    }
+
+    _locked = true;
+
+    notifyListeners();
+  }
+
+  @override
+  void unlock() {
+    _locked = false;
+
+    notifyListeners();
+  }
+
+  @override
+  Future<void> block({Duration? value}) async {
+    await authRepository
+        .blockUser(DateTime.now().add(value ?? EnvVariables.blockSeconds));
+
+    _blocked = true;
+
+    notifyListeners();
+  }
+
+  @override
+  Future<void> unblock() async {
+    await authRepository.unBlocUser();
+
+    _blocked = false;
+
+    notifyListeners();
+  }
+
+  @override
+  Future<Duration> getBlockTime() async {
+    final DateTime? value = await authRepository.getBlockTime();
+
+    if (value != null) {
+      if (value.difference(DateTime.now()).inSeconds > 0) {
+        return value.difference(DateTime.now());
+      }
+    }
+
+    return Duration.zero;
+  }
+
+  Future<bool> _checkDemoUser(String login, String password) async {
+    return demoUserRepository?.signIn(login, password) ?? Future.value(false);
+  }
+
+  Future<Either<Failure, bool>> _initDemoUser() async {
+    await authRepository.setAccessToken('demo');
+
+    _user.sink.add(AuthenticatedUser.demo);
+
+    await authRepository.setCurrentUser(_user.value);
+
+    notifyListeners();
+
+    return const Right(true);
+  }
+
   Future<void> _clear() async {
     await authRepository.deletePinCode();
 
@@ -266,11 +225,9 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
 
     _locked = true;
 
-    _mocked = false;
+    _user.sink.add(const UserEntity.notAuthenticated());
 
-    authenticated = false;
-
-    _user = AuthenticatedUser.empty;
+    notifyListeners();
   }
 
   @override
@@ -312,19 +269,16 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   }
 
   @override
-  Future<Either<Failure, AuthenticatedUser>> verify() async {
+  Future<Either<Failure, UserEntity>> verify() async {
     /// Проверка на наличие обновление и другие проверки
-    ///
-    if (mocked) {
-      _user = AuthenticatedUser.demo;
 
-      _mocked = true;
+    if (mocked) {
+      _user.sink.add(AuthenticatedUser.demo);
+
       notifyListeners();
 
-      return Right(_user);
+      return Right(_user.value);
     }
-
-    isChecked = true;
 
     return authRepository.verify();
   }
@@ -332,6 +286,18 @@ class AuthManagerImpl extends AuthManager<AuthenticatedUser> {
   @override
   Future<void> removePinCode() {
     return authRepository.deletePinCode();
+  }
+
+  Future<void> _checkUserBlocking() async {
+    _blocked = false;
+
+    final DateTime? value = await authRepository.getBlockTime();
+
+    if (value != null) {
+      if (value.difference(DateTime.now()).inSeconds > 0) {
+        _blocked = true;
+      }
+    }
   }
 }
 

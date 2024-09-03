@@ -1,0 +1,4 @@
+enum BottomMenuEnum {
+  home,
+  settings,  
+}

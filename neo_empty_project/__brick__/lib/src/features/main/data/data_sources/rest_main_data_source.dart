@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:{{name.snakeCase()}}/src/features/main/_main.dart';
 
 part 'rest_main_data_source.g.dart';
 

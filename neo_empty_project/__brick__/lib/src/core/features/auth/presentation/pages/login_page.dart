@@ -5,9 +5,11 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, this.onResult});
+  const LoginPage({super.key, this.onResult, this.useAppBar = false});
 
   final void Function(bool)? onResult;
+
+  final bool useAppBar;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -29,6 +31,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
         return AuthInjection.sl<LoginCubit>()..checkAuth();
       },
       child: Scaffold(
+        appBar: widget.useAppBar ? AppBar() : null,
         body: SafeArea(
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
@@ -50,9 +53,7 @@ class _LoginPageState extends LoadingState<LoginPage> {
               return LoginForm(
                 form: context.read<LoginCubit>().form,
                 message: state.error,
-                onSubmitForm: () {
-                  context.read<LoginCubit>().login();
-                },
+                onSubmitForm: context.read<LoginCubit>().login,
               );
             },
           ),

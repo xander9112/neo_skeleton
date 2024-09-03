@@ -34,12 +34,10 @@ class _GetDevicePreferencesState extends State<GetDevicePreferences> {
   }
 
   void setLocale(BuildContext context) {
-    if (context.read<DevicePreferencesBloc>().state.locale == null) {
+    if (context.read<SettingsCubit>().state.locale == null) {
       final Locale locale = Localizations.localeOf(context);
 
-      context
-          .read<DevicePreferencesBloc>()
-          .add(DevicePreferencesEvent.setLocale(locale));
+      context.read<SettingsCubit>().setLocale(locale);
     }
   }
 

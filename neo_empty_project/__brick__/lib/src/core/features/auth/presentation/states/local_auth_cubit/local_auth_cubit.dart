@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 
 part 'local_auth_cubit.freezed.dart';
 part 'local_auth_cubit.g.dart';
@@ -10,7 +10,7 @@ part 'local_auth_state.dart';
 
 class LocalAuthCubit extends BaseCubit<LocalAuthState> {
   LocalAuthCubit({
-    required AuthManager<AuthenticatedUser> manager,
+    required AuthManager<UserEntity> manager,
     required CheckLocalAuthUseCase checkLocalAuthUseCase,
     required SetPinCodeUseCase setPinCodeUseCase,
     required CheckPinCodeUseCase checkPinCodeUseCase,
@@ -26,7 +26,7 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
         _getBiometricSupportModel = getBiometricSupportModel,
         super(const LocalAuthState.initial());
 
-  final AuthManager<AuthenticatedUser> _manager;
+  final AuthManager<UserEntity> _manager;
 
   final CheckLocalAuthUseCase _checkLocalAuthUseCase;
 
@@ -174,7 +174,7 @@ class LocalAuthCubit extends BaseCubit<LocalAuthState> {
             ), (isSuccess) async {
       if (isSuccess) {
         await Future<void>.delayed(const Duration(seconds: 1));
-        
+
         emit(const LocalAuthState.success());
       } else {
         state.maybeWhen(

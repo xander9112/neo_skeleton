@@ -6,6 +6,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class LayoutUtils {
   static bool isPortrait(BuildContext context) =>
       MediaQuery.of(context).orientation == Orientation.portrait;
+
   static bool isLandscape(BuildContext context) =>
       MediaQuery.of(context).orientation == Orientation.landscape;
 

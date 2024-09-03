@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 class AuthInterceptor extends QueuedInterceptorsWrapper {
   AuthInterceptor(SecureStorageService storage, Dio dio)
@@ -102,7 +102,7 @@ class AuthInterceptor extends QueuedInterceptorsWrapper {
   void _cancelRequest() {
     cancelToken?.cancel();
 
-    AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut(remote: false);
+    AuthInjection.sl<AuthManager<UserEntity>>().signOut(remote: false);
   }
 
   Future<bool> refreshToken() async {
@@ -119,7 +119,7 @@ class AuthInterceptor extends QueuedInterceptorsWrapper {
         final refreshToken = await _storage.getRefreshToken() ?? '';
 
         final response = await refreshDio.post<dynamic>(
-          ApiMethods.authTokenRefresh,
+          AuthApiMethods.refresh,
           data: jsonEncode({'refreshToken': refreshToken}),
         );
         if (kDebugMode) {

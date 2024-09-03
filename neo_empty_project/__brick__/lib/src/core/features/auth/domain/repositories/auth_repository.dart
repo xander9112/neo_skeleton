@@ -6,7 +6,7 @@ abstract class AuthRepository<A, U> {
 
   Future<Either<Failure, bool>> signOut();
 
-  Future<void> blocUser(DateTime value);
+  Future<void> blockUser(DateTime value);
 
   Future<void> unBlocUser();
 

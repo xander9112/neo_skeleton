@@ -15,13 +15,12 @@ class MainRepositoryImpl implements MainRepository {
 
       return Right(response);
     } on DioException catch (error) {
-       return Left(
+      return Left(
         MainFailure(
           code: error.response?.statusCode ?? 1,
           message: error.response?.data.toString() ?? error.errorMessage,
         ),
       );
-
     } catch (error) {
       return Left(MainFailure(code: 1, message: error.toString()));
     }

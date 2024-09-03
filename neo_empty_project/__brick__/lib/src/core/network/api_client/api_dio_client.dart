@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class ApiDioClient {
@@ -9,8 +8,6 @@ class ApiDioClient {
     Uri uri, {
     required SecureStorageService storage,
   }) : _storage = storage {
-    // _initBadCertificateCallback();
-
     _initBaseOptions(uri);
 
     _initInterceptors();
@@ -21,22 +18,12 @@ class ApiDioClient {
   final LogoutInterceptor logoutInterceptor = LogoutInterceptor();
 
   CancelToken cancelToken = CancelToken();
-  // final ErrorHandler _errorHandler = ErrorHandler();
 
   Dio get dio => _dio;
 
   Map<String, String> get headers {
     return Map.castFrom<String, dynamic, String, String>(_dio.options.headers);
   }
-
-  // void _initBadCertificateCallback() {
-  //   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-  //       (HttpClient client) {
-  //     client.badCertificateCallback =
-  //         (X509Certificate cert, String host, int port) => true;
-  //     return client;
-  //   };
-  // }
 
   void _initBaseOptions(Uri baseUrl) {
     _dio.options.baseUrl = baseUrl.toString();
@@ -50,16 +37,6 @@ class ApiDioClient {
   }
 
   void _initInterceptors() {
-    if (kDebugMode) {
-      // _dio.interceptors.add(
-      //   PrettyDioLogger(
-      //     requestHeader: true,
-      //     // requestBody: true,
-      //     responseBody: false,
-      //   ),
-      // );
-    }
-
     _dio.interceptors.add(LogoutInterceptor());
 
     _dio.interceptors.add(TokenInterceptor(_storage));
@@ -92,15 +69,6 @@ class ApiDioClient {
     Response<dynamic> response,
     ResponseInterceptorHandler handler,
   ) async {
-    // ignore: avoid_dynamic_calls
-    if (response.data.runtimeType != String) {
-      // ignore: avoid_dynamic_calls
-      if (response.data != null && response.data['data'] != null) {
-        // ignore: avoid_dynamic_calls
-        response.data = response.data['data'];
-      }
-    }
-
     return handler.next(response);
   }
 
@@ -123,10 +91,6 @@ class ApiDioClient {
           error: e.error,
           response: e.response,
         );
-
-        if (e.requestOptions.path != ApiMethods.authLogout) {
-          // _cancelToken?.cancel();
-        }
 
       case DioBadRequestError.code:
         error = DioBadRequestError(

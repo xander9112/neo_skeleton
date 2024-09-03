@@ -31,6 +31,8 @@ abstract class UserEntity {
     required final T Function(AuthenticatedUser user) authenticated,
     required final T Function() notAuthenticated,
   });
+
+  bool get isDemo => isAuthenticated;
 }
 
 @immutable
@@ -62,6 +64,9 @@ class NotAuthenticatedUser implements UserEntity {
 
   @override
   int get hashCode => 0;
+
+  @override
+  bool get isDemo => false;
 }
 
 @freezed
@@ -70,29 +75,27 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
     required int id,
     required String email,
     required String login,
-    @JsonKey(name: 'last_name')
-        required String lastName,
-    @JsonKey(name: 'first_name')
-        required String firstName,
+    @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'first_name') required String firstName,
     String? patronymic,
     @JsonKey(
       name: 'birthday',
       fromJson: fromJsonDateTime,
       toJson: toJsonDateTime,
     )
-        DateTime? birthday,
+    DateTime? birthday,
     @JsonKey(
       name: 'created_at',
       fromJson: fromJsonDateTime,
       toJson: toJsonDateTime,
     )
-        DateTime? createdAt,
+    DateTime? createdAt,
     @JsonKey(
       name: 'updated_at',
       fromJson: fromJsonDateTime,
       toJson: toJsonDateTime,
     )
-        DateTime? updatedAt,
+    DateTime? updatedAt,
   }) = _AuthenticatedUser;
 
   factory AuthenticatedUser.fromJson(Object? json) =>
@@ -111,7 +114,7 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
   bool get isAuthenticated => !isNotAuthenticated;
 
   @override
-  bool get isNotAuthenticated => true;
+  bool get isNotAuthenticated => false;
 
   @override
   T when<T extends Object?>({
@@ -120,6 +123,9 @@ class AuthenticatedUser with _$AuthenticatedUser implements UserEntity {
   }) {
     throw UnimplementedError();
   }
+
+  @override
+  bool get isDemo => login == 'demo';
 
   static const AuthenticatedUser empty = AuthenticatedUser(
     id: -1,

@@ -1,25 +1,39 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-List<AutoRoute> authRoutes = [
-  CustomRoute(
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-    page: AuthRoute.page,
-    path: AuthRoutePath.initial,
-    children: [
-      AutoRoute(
-        page: LoginRoute.page,
-        initial: true,
-        path: AuthRoutePath.signIn,
+List<AutoRoute> authRoutes({String prefix = '/'}) => [
+      CustomRoute<void>(
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        page: AuthRoute.page,
+        path: '$prefix${AuthRoutePath.initial}',
+        guards: [UpdateGuard(SettingsInjection.sl())],
+        children: [
+          ...verifyRoutes(),
+        ],
       ),
-      AutoRoute(
+    ];
+
+List<AutoRoute> verifyRoutes({
+  bool useLogin = true,
+  bool loginIsInitial = true,
+  String prefix = '/',
+}) =>
+    [
+      if (useLogin)
+        CustomRoute<void>(
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          page: LoginRoute.page,
+          initial: loginIsInitial,
+          path: '$prefix${AuthRoutePath.signIn}',
+        ),
+      CustomRoute<void>(
+        transitionsBuilder: TransitionsBuilders.fadeIn,
         page: PinCodeRoute.page,
-        path: AuthRoutePath.pinCode,
+        path: '$prefix${AuthRoutePath.pinCode}',
       ),
-      AutoRoute(
+      CustomRoute<void>(
+        transitionsBuilder: TransitionsBuilders.fadeIn,
         page: BlockRoute.page,
-        path: AuthRoutePath.blocked,
+        path: '$prefix${AuthRoutePath.blocked}',
       ),
-    ],
-  ),
-];
+    ];

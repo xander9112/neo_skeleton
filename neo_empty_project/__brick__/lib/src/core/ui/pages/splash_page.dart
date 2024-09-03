@@ -1,38 +1,29 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:skeleton_ui_kit/skeleton_ui_kit.dart';
 
+@RoutePage()
 class SplashPage extends StatefulWidget {
-  const SplashPage({
-    super.key,
-    required this.progress,
-    required this.onFinishSplash,
-    this.showAnimation = true,
-  });
+  const SplashPage({super.key, this.onResult});
 
-  final BehaviorSubject<int> progress;
-
-  final VoidCallback onFinishSplash;
-
-  final bool showAnimation;
+  final void Function(bool isSuccess)? onResult;
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-  BehaviorSubject<int> get progress => widget.progress;
+  BehaviorSubject<int> get progress => AppInitializer.progress;
 
-  VoidCallback get onFinishSplash => widget.onFinishSplash;
-
-  bool get showAnimation => widget.showAnimation;
+  bool isAnimationFinished = false;
 
   Timer? _timer;
 
-  int _start = 1;
+  int _start = 2; // min 2 seconds
 
   StreamSubscription<int>? listener;
 
@@ -42,11 +33,13 @@ class _SplashPageState extends State<SplashPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       startTimer();
+
+      AppInitializer.startMainCheck();
     });
 
     listener =
         progress.debounceTime(const Duration(seconds: 1)).listen((value) {
-      if (value == 100 && !(_timer?.isActive ?? true)) {
+      if (value == 100 && isAnimationFinished) {
         onFinishSplash();
       }
     });
@@ -56,30 +49,8 @@ class _SplashPageState extends State<SplashPage> {
   void dispose() {
     _timer?.cancel();
     listener?.cancel();
+
     super.dispose();
-  }
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-
-    _timer = Timer.periodic(
-      oneSec,
-      (Timer timer) {
-        if (_start == 1) {
-          setState(() {
-            timer.cancel();
-
-            if (progress.value == 100) {
-              onFinishSplash();
-            }
-          });
-        } else {
-          setState(() {
-            _start--;
-          });
-        }
-      },
-    );
   }
 
   @override
@@ -115,5 +86,42 @@ class _SplashPageState extends State<SplashPage> {
         },
       ),
     );
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 1) {
+          setState(() {
+            timer.cancel();
+
+            if (progress.value == 100) {
+              onAnimationFinish();
+            }
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  void onAnimationFinish() {
+    setState(() {
+      isAnimationFinished = true;
+    });
+
+    if (AppInitializer.progress.value == 100) {
+      onFinishSplash();
+    }
+  }
+
+  void onFinishSplash() {
+    widget.onResult?.call(true);
   }
 }

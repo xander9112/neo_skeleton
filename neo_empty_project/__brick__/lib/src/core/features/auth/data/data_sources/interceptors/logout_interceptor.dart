@@ -10,7 +10,7 @@ class LogoutInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
       cancelToken?.cancel();
-      AuthInjection.sl<AuthManager<AuthenticatedUser>>().signOut(remote: false);
+      AuthInjection.sl<AuthManager<UserEntity>>().signOut(remote: false);
     }
 
     return super.onError(err, handler);

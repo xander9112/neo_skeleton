@@ -1,32 +1,31 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 abstract class ICoreInjection {
   static final GetIt sl = GetIt.instance;
 
   Future<void> initRouter() async {}
 
-  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initUseCases({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
+  Future<void> initUseCases(EnvConfig env, {bool useMock = false}) async {}
 
-  Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {}
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {}
 
   @mustCallSuper
-  Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> init(EnvConfig env, {bool useMock = false}) async {
     await initRouter();
-    await initProviders({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
-    await initRepositories({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
-    await initUseCases({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
-    await initState({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+    await initProviders(env, useMock: useMock);
+    await initRepositories(env, useMock: useMock);
+    await initUseCases(env, useMock: useMock);
+    await initState(env, useMock: useMock);
   }
 
   T Function<T>({
@@ -38,7 +37,7 @@ abstract class ICoreInjection {
     required T Function() factoryFunc,
     required T Function() mockFactoryFunc,
   }) {
-    if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
+    if (useMock) {
       return mockFactoryFunc();
     }
 
@@ -47,20 +46,30 @@ abstract class ICoreInjection {
 
   T Function<T>(
     bool useMock,
-    {{#useFlavor}}EnvConfig env,{{/useFlavor}}
-    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) factoryFunc,
-    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
+    EnvConfig env,
+    T Function(
+      EnvConfig env,
+    ) factoryFunc,
+    T Function(
+      EnvConfig env,
+    ) mockFactoryFunc,
   ) buildDependencyWithEnv = <T>(
     useMock,
-    {{#useFlavor}}env,{{/useFlavor}}
-    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) factoryFunc,
-    T Function({{#useFlavor}}EnvConfig env,{{/useFlavor}}) mockFactoryFunc,
+    env,
+    T Function(
+      EnvConfig env,
+    ) factoryFunc,
+    T Function(
+      EnvConfig env,
+    ) mockFactoryFunc,
   ) {
-    if (sl<AuthManager<AuthenticatedUser>>().mocked || useMock) {
-      return mockFactoryFunc({{#useFlavor}}env{{/useFlavor}});
+    /// Не использовать AuthManager
+    // if (sl<AuthManager<UserEntity>>().mocked || useMock) {
+    if (useMock) {
+      return mockFactoryFunc(env);
     }
 
-    return factoryFunc({{#useFlavor}}env{{/useFlavor}});
+    return factoryFunc(env);
   };
 }
 
@@ -69,7 +78,7 @@ class CoreInjection extends ICoreInjection {
 
   @override
   Future<void> initRouter() async {
-    sl.registerLazySingleton<RootStackRouter>(
+    sl.registerLazySingleton<AppRouter>(
       () => AppRouter(
         navigatorKey: DialogService.navigatorKey,
       ),
@@ -77,7 +86,7 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl
       ..registerLazySingleton(
         () => TalkerFlutter.init(settings: TalkerSettings()),
@@ -100,9 +109,11 @@ class CoreInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> init({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
-    await super.init({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+  Future<void> init(EnvConfig env, {bool useMock = false}) async {
+    sl.registerSingleton(AppLogger());
 
-    await SettingsInjection().init({{#useFlavor}}env,{{/useFlavor}} useMock: useMock);
+    await super.init(env, useMock: useMock);
+
+    await SettingsInjection().init(env, useMock: useMock);
   }
 }

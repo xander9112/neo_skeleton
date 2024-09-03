@@ -15,13 +15,12 @@ class HomeRepositoryImpl implements HomeRepository {
 
       return Right(response);
     } on DioException catch (error) {
-       return Left(
+      return Left(
         HomeFailure(
           code: error.response?.statusCode ?? 1,
           message: error.response?.data.toString() ?? error.errorMessage,
         ),
       );
-
     } catch (error) {
       return Left(HomeFailure(code: 1, message: error.toString()));
     }

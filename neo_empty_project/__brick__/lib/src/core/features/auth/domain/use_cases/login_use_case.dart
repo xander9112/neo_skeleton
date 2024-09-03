@@ -7,7 +7,7 @@ class LoginUseCase
     implements UseCase<Either<Failure, bool>, LoginUseCaseParam> {
   LoginUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<Either<Failure, bool>> call(LoginUseCaseParam params) async {

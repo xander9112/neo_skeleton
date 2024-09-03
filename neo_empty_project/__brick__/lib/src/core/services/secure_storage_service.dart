@@ -191,7 +191,7 @@ class SecureStorageService {
     return null;
   }
 
-  Future<void> blocUser(DateTime value) async {
+  Future<void> blockUser(DateTime value) async {
     return _secureStorage.write(
       key: AppStorageKeys.blockUserDuration,
       value: value.toString(),
@@ -199,7 +199,7 @@ class SecureStorageService {
     );
   }
 
-  Future<void> unBlocUser() async {
+  Future<void> unBlockUser() async {
     return _secureStorage.delete(
       key: AppStorageKeys.blockUserDuration,
       aOptions: _getAndroidOptions(),

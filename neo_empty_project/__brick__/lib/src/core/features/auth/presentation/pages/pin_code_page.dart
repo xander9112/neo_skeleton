@@ -1,4 +1,3 @@
-import 'package:app_runner/app_runner.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,9 +5,11 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 @RoutePage()
 class PinCodePage extends StatelessWidget {
-  const PinCodePage({super.key, this.onResult});
+  const PinCodePage({super.key, this.onResult, this.useAppBar = false});
 
   final void Function(bool)? onResult;
+
+  final bool useAppBar;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class PinCodePage extends StatelessWidget {
         return AuthInjection.sl<LocalAuthCubit>()..checkAuth(onResult);
       },
       child: Scaffold(
+        appBar: useAppBar ? AppBar() : null,
         body: SafeArea(
           child: Column(
             children: [
@@ -30,7 +32,7 @@ class PinCodePage extends StatelessWidget {
                       resetPinCode: (value) async {
                         onResult?.call(false);
 
-                        context.reloadWidget();
+                        AppInitializer.updateKey();
                       },
                     );
                   },
@@ -41,7 +43,7 @@ class PinCodePage extends StatelessWidget {
                       resetPinCode: () => GestureDetector(
                         onTap: () {
                           onResult?.call(false);
-                          context.router.pushNamed('/');
+                          context.router.replaceNamed('/');
                         },
                         child: const UiProgressIndicator(),
                       ),

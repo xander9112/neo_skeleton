@@ -1,12 +1,10 @@
 name: {{name.snakeCase()}}
-description: Neoflex {{name.snakeCase()}} template
-
+description: Neoflex {{name.pascalCase()}} template
 publish_to: "none"
-
-version: 2.3.0+150
+version: 0.1.0
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.4.4 <4.0.0'
 
 dependencies:
   app_runner: ^2.2.2
@@ -67,6 +65,3 @@ flutter:
     - assets/
     - assets/l10n/
     - assets/launcher_icon/
-    - .prod.env
-    - .dev.env
-    - .env   

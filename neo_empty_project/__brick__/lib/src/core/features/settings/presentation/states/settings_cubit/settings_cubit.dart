@@ -1,10 +1,9 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/locale.dart' as intl;
+import 'package:skeleton_core/skeleton_core.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
 
 part 'settings_cubit.freezed.dart';
 part 'settings_state.dart';
@@ -19,18 +18,19 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     required this.setBiometrySettingUseCase,
     required this.getAuthUseCase,
     required this.setLocalAuthUseCase,
-    required AuthManager<AuthenticatedUser> manager,    
+    required AuthManager<UserEntity> manager,
+    required DevicePreferencesRepository repository,
   })  : _manager = manager,
-        super(
-          const SettingsState.current(),
-        ) {
-    getVersions();
+        _repository = repository,
+        super(SettingsState(appInfo: appInfo, deviceInfo: deviceInfo)) {
     subscriptAuthEventUseCase(refresh);
 
     init();
   }
 
-  final AuthManager<AuthenticatedUser> _manager;
+  final AuthManager<UserEntity> _manager;
+
+  final DevicePreferencesRepository _repository;
 
   final AppInfoModel appInfo;
 
@@ -53,6 +53,9 @@ class SettingsCubit extends BaseCubit<SettingsState> {
 
     final biometricSupportModel = await getBiometricSupportModel(NoParams());
 
+    await getSettings();
+    await getVersions();
+
     emit(
       state.copyWith(
         useBiometric:
@@ -60,6 +63,9 @@ class SettingsCubit extends BaseCubit<SettingsState> {
                 ? null
                 : settings.useBiometric,
         useLocalAuth: settings.useLocalAuth,
+        locale: await _repository.getLocale(),
+        themeMode: await _repository.getThemeMode(),
+        isLoaded: true,
       ),
     );
   }
@@ -114,7 +120,17 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     await setLocalAuthUseCase(value);
   }
 
-  Future<void> getVersions() async {}
+  Future<void> getSettings() async {}
+
+  Future<void> getVersions() async {
+    await Future<void>.delayed(const Duration(seconds: 2));
+
+    emit(
+      state.copyWith(
+        storeVersion: const AppVersionEntity(major: 1, minor: 0, patch: 0),
+      ),
+    );
+  }
 
   Future<void> signOut() async {
     final result = await DialogService.showDialog<bool>(
@@ -126,5 +142,17 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     if (result ?? false) {
       await _manager.signOut();
     }
+  }
+
+  Future<void> setLocale(Locale? locale) async {
+    emit(state.copyWith(locale: locale));
+
+    await _repository.setLocale(locale);
+  }
+
+  Future<void> setThemeMode(ThemeMode? themeMode) async {
+    emit(state.copyWith(themeMode: themeMode));
+
+    await _repository.setThemeMode(themeMode);
   }
 }

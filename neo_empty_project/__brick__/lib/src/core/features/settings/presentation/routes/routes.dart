@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 List<AutoRoute> settingsRoutes({String prefix = ''}) => [
-      CustomRoute(
+      CustomRoute<void>(
         transitionsBuilder: TransitionsBuilders.fadeIn,
         page: SettingsRootRouter.page,
         path: '$prefix${SettingsRoutePath.initial}',
         meta: const {'showBottomMenu': true},
         children: [
-          CustomRoute(
+          CustomRoute<void>(
             transitionsBuilder: TransitionsBuilders.fadeIn,
             page: SettingsRoute.page,
             meta: const {'showBottomMenu': true},
@@ -20,5 +20,5 @@ List<AutoRoute> settingsRoutes({String prefix = ''}) => [
                 '$prefix${SettingsRoutePath.initial}/${SettingsRoutePath.changePinCode}',
           ),
         ],
-      ),      
+      ),
     ];

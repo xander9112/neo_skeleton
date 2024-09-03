@@ -1,4 +1,4 @@
 class AppConstants {
-  static String title = '{{name.pascalCase()}}';
+  static String title = 'Skeleton';
   static int pinCodeLength = 4;
 }

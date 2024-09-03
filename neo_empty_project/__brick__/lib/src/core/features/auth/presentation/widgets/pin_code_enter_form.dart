@@ -80,6 +80,10 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   }
 
   Future<void> onPressedNumber(String text) async {
+    if (widget.isLoading) {
+      return;
+    }
+
     setState(() {
       code = '$code$text';
     });
@@ -92,7 +96,7 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   }
 
   void onPressedDelete() {
-    if (code.isEmpty) {
+    if (code.isEmpty || widget.isLoading) {
       return;
     }
 
@@ -102,6 +106,10 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   }
 
   void onPressedReset() {
+    if (widget.isLoading) {
+      return;
+    }
+
     if (code.isEmpty) {
       widget.onPressedReset?.call();
 
@@ -114,6 +122,10 @@ class _PinCodeEnterFormState extends State<PinCodeEnterForm> {
   }
 
   void onBiometricPressed() {
+    if (widget.isLoading) {
+      return;
+    }
+
     widget.onBiometricPressed?.call();
   }
 }

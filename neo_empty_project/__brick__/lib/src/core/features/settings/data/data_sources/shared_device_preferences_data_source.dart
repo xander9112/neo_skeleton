@@ -34,7 +34,7 @@ class SharedDevicePreferencesDataSource implements DevicePreferencesDataSource {
         return ThemeMode.system;
     }
 
-    return ThemeMode.light;
+    return ThemeMode.system;
   }
 
   @override

@@ -4,8 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
-class AuthRepositoryImpl
-    implements AuthRepository<AuthModel, AuthenticatedUser> {
+class AuthRepositoryImpl implements AuthRepository<AuthModel, UserEntity> {
   AuthRepositoryImpl(this._restAuthDataSource, this._secureStorageService);
 
   final RestAuthDataSource _restAuthDataSource;
@@ -185,7 +184,7 @@ class AuthRepositoryImpl
   }
 
   @override
-  Future<Either<Failure, void>> setCurrentUser(AuthenticatedUser user) async {
+  Future<Either<Failure, void>> setCurrentUser(UserEntity user) async {
     try {
       await _secureStorageService.saveCurrentUser(jsonEncode(user));
 
@@ -198,13 +197,13 @@ class AuthRepositoryImpl
   }
 
   @override
-  Future<void> blocUser(DateTime value) {
-    return _secureStorageService.blocUser(value);
+  Future<void> blockUser(DateTime value) {
+    return _secureStorageService.blockUser(value);
   }
 
   @override
   Future<void> unBlocUser() {
-    return _secureStorageService.unBlocUser();
+    return _secureStorageService.unBlockUser();
   }
 
   @override

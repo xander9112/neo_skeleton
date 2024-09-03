@@ -4,7 +4,7 @@ class GetGlobalAuthSettingsUseCase
     extends UseCase<AuthManagerSettings, NoParams> {
   GetGlobalAuthSettingsUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<AuthManagerSettings> call(NoParams params) async {

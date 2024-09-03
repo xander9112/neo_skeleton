@@ -2,9 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class LocalAuthGuard extends AutoRouteGuard {
-  LocalAuthGuard(this.authManager);
+  LocalAuthGuard(
+    this.authManager, {
+    this.replace = true,
+    this.useAppBar = false,
+  });
 
-  final AuthManager<AuthenticatedUser> authManager;
+  final AuthManager<UserEntity> authManager;
+
+  final bool replace;
+  final bool useAppBar;
 
   @override
   Future<void> onNavigation(
@@ -12,16 +19,15 @@ class LocalAuthGuard extends AutoRouteGuard {
     StackRouter router,
   ) async {
     if (!authManager.locked) {
-      return resolver.next();
+      resolver.next();
+
+      return;
     }
 
-    await router.replace(
+    await resolver.redirect(
       PinCodeRoute(
-        onResult: (isSuccess) {
-          resolver.nextOrBack(isSuccess);
-
-          router.removeLast();
-        },
+        useAppBar: useAppBar,
+        onResult: resolver.nextOrBack,
       ),
     );
   }

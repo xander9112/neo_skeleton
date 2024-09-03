@@ -8,18 +8,18 @@ part 'rest_auth_data_source.g.dart';
 abstract class RestAuthDataSource {
   factory RestAuthDataSource(Dio dio, {String baseUrl}) = _RestAuthDataSource;
 
-  @POST(ApiMethods.authLogin)
+  @POST(AuthApiMethods.signIn)
   Future<AuthModel> signIn({
     @Body() required Map<String, dynamic> request,
   });
 
-  @POST(ApiMethods.authLogout)
+  @POST(AuthApiMethods.signOut)
   Future<void> signOut();
 
-  @GET(ApiMethods.authVerify)
+  @GET(AuthApiMethods.verify)
   Future<AuthenticatedUser> verify();
 
-  @POST(ApiMethods.authUpdateDeviceVersion)
+  @POST(AuthApiMethods.updateDeviceVersion)
   Future<void> updateDeviceInfo({
     @Body() required Map<String, dynamic> request,
   });

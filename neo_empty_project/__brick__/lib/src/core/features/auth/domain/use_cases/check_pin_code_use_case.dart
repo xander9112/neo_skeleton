@@ -5,7 +5,7 @@ class CheckPinCodeUseCase
     implements UseCase<Either<Failure, bool>, CheckPinCodeUseCaseParams> {
   CheckPinCodeUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<Either<Failure, bool>> call(CheckPinCodeUseCaseParams params) async {

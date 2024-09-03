@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:{{name.snakeCase()}}/src/features/home/_home.dart';
-import 'package:{{name.snakeCase()}}_core/{{name.snakeCase()}}_core.dart';
+import 'package:skeleton_core/skeleton_core.dart';
 
 class HomeInjection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<HomeDataSource>(
       () => buildDependency<HomeDataSource>(
         useMock: useMock,
@@ -18,12 +18,12 @@ class HomeInjection extends ICoreInjection {
   }
 
   @override
-  Future<void> initRepositories({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
+  Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<HomeRepository>(() => HomeRepositoryImpl(sl()));
   }
 
   @override
-  Future<void> initState({{#useFlavor}}EnvConfig env, {{/useFlavor}}{bool useMock = false}) async {
+  Future<void> initState(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory(() => HomeCubit(repository: sl()));
   }
 }

@@ -4,7 +4,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class BlockAuthGuard extends AutoRouteGuard {
   BlockAuthGuard(this.authManager);
 
-  final AuthManager<AuthenticatedUser> authManager;
+  final AuthManager<UserEntity> authManager;
 
   @override
   Future<void> onNavigation(
@@ -15,16 +15,8 @@ class BlockAuthGuard extends AutoRouteGuard {
       return resolver.next();
     }
 
-    await router.replace(
-      BlockRoute(
-        onResult: (bool success) {
-          if (success) {
-            resolver.next(success);
-
-            router.removeLast();
-          }
-        },
-      ),
+    await resolver.redirect(
+      BlockRoute(onResult: resolver.next),
     );
   }
 }

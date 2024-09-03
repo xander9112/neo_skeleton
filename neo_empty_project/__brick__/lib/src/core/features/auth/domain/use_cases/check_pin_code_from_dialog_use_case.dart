@@ -5,7 +5,7 @@ class CheckPinCodeFromDialogUseCase
     implements UseCase<Either<Failure, bool>, String> {
   CheckPinCodeFromDialogUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<Either<Failure, bool>> call(String params) async {

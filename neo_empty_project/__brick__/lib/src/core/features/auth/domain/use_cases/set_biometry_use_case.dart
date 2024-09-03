@@ -3,7 +3,7 @@ import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 class SetBiometryUseCase implements UseCase<bool, NoParams> {
   SetBiometryUseCase(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
 
   @override
   Future<bool> call(NoParams params) async {

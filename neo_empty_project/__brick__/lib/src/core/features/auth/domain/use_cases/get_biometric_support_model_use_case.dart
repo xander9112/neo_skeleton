@@ -4,7 +4,7 @@ class GetBiometricSupportModel
     extends UseCase<BiometricSupportModel, NoParams> {
   GetBiometricSupportModel(this._authManager);
 
-  final AuthManager<AuthenticatedUser> _authManager;
+  final AuthManager<UserEntity> _authManager;
   @override
   Future<BiometricSupportModel> call(NoParams params) {
     return _authManager.getBiometricSupportModel();

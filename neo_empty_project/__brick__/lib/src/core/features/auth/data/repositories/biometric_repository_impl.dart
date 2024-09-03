@@ -1,5 +1,5 @@
-import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 class BiometricRepositoryImpl implements BiometricRepository {
   BiometricRepositoryImpl(this._secureStorageService);

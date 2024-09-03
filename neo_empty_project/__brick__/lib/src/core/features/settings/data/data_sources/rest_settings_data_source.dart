@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:{{name.snakeCase()}}/src/core/features/settings/_settings.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:{{name.snakeCase()}}/src/core/features/settings/_settings.dart';
 
 part 'rest_settings_data_source.g.dart';
 

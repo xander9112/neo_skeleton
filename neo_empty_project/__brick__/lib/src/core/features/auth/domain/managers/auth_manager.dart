@@ -1,8 +1,14 @@
-// ignore: lines_longer_than_80_chars
-// ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_setters_without_getters
+// // ignore: lines_longer_than_80_chars
+// // ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_setters_without_getters
+
+// import 'package:dartz/dartz.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:rxdart/rxdart.dart';
+// import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:{{name.snakeCase()}}/src/core/_core.dart';
 
 abstract class AuthManager<U> extends ChangeNotifier {
@@ -12,21 +18,25 @@ abstract class AuthManager<U> extends ChangeNotifier {
 
   final AuthManagerSettings settings;
 
-  U get user;
+  BehaviorSubject<U> get user;
 
-  Future<bool> get isAuth;
-
-  set authenticated(bool value);
+  bool get isAuth;
 
   bool get locked;
 
   bool get blocked;
 
+  bool get isReady;
+
+  bool get mocked;
+
+  Future<bool> get hasPinCode;
+
   void lock();
 
   void unlock();
 
-  Future<void> block();
+  Future<void> block({Duration value});
 
   Future<void> unblock();
 
@@ -34,15 +44,11 @@ abstract class AuthManager<U> extends ChangeNotifier {
 
   Future<void> init();
 
+  Future<Either<Failure, U>> verify();
+
   Future<Either<Failure, bool>> signIn(String login, String password);
 
   Future<Either<Failure, bool>> signOut({bool remote = true});
-
-  bool get isChecked;
-
-  set isChecked(bool value);
-
-  Future<bool> get hasPinCode;
 
   Future<void> setPinCode(String pinCode);
 
@@ -57,8 +63,4 @@ abstract class AuthManager<U> extends ChangeNotifier {
   Future<void> setUseLocalAuth(bool value);
 
   Future<bool> checkBiometry();
-
-  Future<Either<Failure, U>> verify();
-
-  bool get mocked;
 }
