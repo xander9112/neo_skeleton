@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:jnp_mobile_app_ui_kit/jnp_mobile_app_ui_kit.dart';
 
 extension MediaQueryExt on BuildContext {
   Size get mediaQuerySize => MediaQuery.of(this).size;
@@ -30,9 +30,9 @@ extension BuildContextExt on BuildContext {
 
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
 
-  ThemeColors get color => Theme.of(this).extension<ThemeColors>()!;
+  ThemeColors get colors => Theme.of(this).extension<ThemeColors>()!;
 
-  TextExtension get text => Theme.of(this).extension<TextExtension>()!;
+  TextExtension get texts => Theme.of(this).extension<TextExtension>()!;
 
   TextTheme get defaultText => Theme.of(this).textTheme;
 

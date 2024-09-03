@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
 import 'package:process_run/shell.dart';
 
@@ -25,7 +26,7 @@ void main() async {
 ''');
 
     print('\nGeneration of arb finished\n');
-  } catch (_) {
-    print('Generation of arb finished with Error:\n\n$_');
+  } catch (error) {
+    print('Generation of arb finished with Error:\n\n$error');
   }
 }

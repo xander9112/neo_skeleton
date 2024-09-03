@@ -51,6 +51,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  path: ^1.9.0
   process_run: ^1.1.0
   retrofit_generator: ^8.2.0
   very_good_analysis: ^6.0.0

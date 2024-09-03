@@ -1,46 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
+import 'package:jnp_mobile_app_ui_kit/jnp_mobile_app_ui_kit.dart';
 
 ThemeData createLightTheme() {
-  final themeColors = ThemeColors.light();
+  const themeColors = ThemeColors(
+    primary: LightThemeColors.primary,
+    text: LightThemeColors.colorText,
+  );
 
   return ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: LightThemeColors.light_1,
     colorScheme: ColorScheme.light(
       primary: themeColors.primary,
-      secondary: themeColors.violetAccent2,
-    ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      surfaceTintColor: Colors.transparent,
-    ),
-    snackBarTheme: const SnackBarThemeData(
-      contentTextStyle: TextStyle(color: Colors.black),
     ),
     extensions: <ThemeExtension<dynamic>>[
       themeColors,
       TextExtension(
-        displayLarge:
-            TextStyles.displayLarge.copyWith(color: themeColors.black_1),
+        displayLarge: TextStyles.displayLarge.copyWith(color: themeColors.text),
         displayMedium:
-            TextStyles.displayMedium.copyWith(color: themeColors.black_1),
-        displaySmall:
-            TextStyles.displaySmall.copyWith(color: themeColors.black_1),
+            TextStyles.displayMedium.copyWith(color: themeColors.text),
+        displaySmall: TextStyles.displaySmall.copyWith(color: themeColors.text),
         headlineMedium:
-            TextStyles.headlineMedium.copyWith(color: themeColors.black_1),
+            TextStyles.headlineMedium.copyWith(color: themeColors.text),
         headlineSmall:
-            TextStyles.headlineSmall.copyWith(color: themeColors.black_1),
-        titleLarge: TextStyles.titleLarge.copyWith(color: themeColors.black_1),
-        titleMedium:
-            TextStyles.titleMedium.copyWith(color: themeColors.black_1),
-        titleSmall: TextStyles.titleSmall.copyWith(color: themeColors.black_1),
-        bodyLarge: TextStyles.bodyLarge.copyWith(color: themeColors.black_1),
-        bodyMedium: TextStyles.bodyMedium.copyWith(color: themeColors.black_1),
-        labelLarge: TextStyles.labelLarge.copyWith(color: themeColors.black_1),
-        bodySmall: TextStyles.bodySmall.copyWith(color: themeColors.black_1),
-        labelSmall: TextStyles.labelSmall.copyWith(color: themeColors.black_1),
+            TextStyles.headlineSmall.copyWith(color: themeColors.text),
+        titleLarge: TextStyles.titleLarge.copyWith(color: themeColors.text),
+        titleMedium: TextStyles.titleMedium.copyWith(color: themeColors.text),
+        titleSmall: TextStyles.titleSmall.copyWith(color: themeColors.text),
+        bodyLarge: TextStyles.bodyLarge.copyWith(color: themeColors.text),
+        bodyMedium: TextStyles.bodyMedium.copyWith(color: themeColors.text),
+        labelLarge: TextStyles.labelLarge.copyWith(color: themeColors.text),
+        bodySmall: TextStyles.bodySmall.copyWith(color: themeColors.text),
+        labelSmall: TextStyles.labelSmall.copyWith(color: themeColors.text),
       ),
     ],
   );
