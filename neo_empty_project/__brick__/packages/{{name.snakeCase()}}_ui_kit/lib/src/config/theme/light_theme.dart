@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jnp_mobile_app_ui_kit/jnp_mobile_app_ui_kit.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 ThemeData createLightTheme() {
   const themeColors = ThemeColors(
@@ -7,9 +7,8 @@ ThemeData createLightTheme() {
     text: LightThemeColors.colorText,
   );
 
-  return ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.light(
+  return ThemeData.light(useMaterial3: true).copyWith(
+    colorScheme: const ColorScheme.light(
       primary: themeColors.primary,
     ),
     extensions: <ThemeExtension<dynamic>>[

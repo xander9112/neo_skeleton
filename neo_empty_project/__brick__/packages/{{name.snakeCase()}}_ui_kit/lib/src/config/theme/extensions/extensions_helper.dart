@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jnp_mobile_app_ui_kit/jnp_mobile_app_ui_kit.dart';
+import 'package:{{name.snakeCase()}}_ui_kit/{{name.snakeCase()}}_ui_kit.dart';
 
 extension MediaQueryExt on BuildContext {
   Size get mediaQuerySize => MediaQuery.of(this).size;
