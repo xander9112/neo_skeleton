@@ -35,9 +35,9 @@ dependencies:
   retrofit: ^4.2.0
   rxdart: ^0.28.0
   shared_preferences: ^2.3.2
-  skeleton_core:
+  {{name.snakeCase()}}_core:
     path: ./packages/{{name.snakeCase()}}_core
-  skeleton_ui_kit:
+  {{name.snakeCase()}}_ui_kit:
     path: ./packages/{{name.snakeCase()}}_ui_kit
   super_banners: ^0.0.1
   talker_dio_logger: ^4.4.1
