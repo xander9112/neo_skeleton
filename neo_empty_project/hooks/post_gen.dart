@@ -11,7 +11,7 @@ Future<void> run(HookContext context) async {
 
   await _dartFix(context);
 
-  await _fixFlavor(context);
+  // await _fixFlavor(context);
 }
 
 Future<void> _installPackages(HookContext context) async {
