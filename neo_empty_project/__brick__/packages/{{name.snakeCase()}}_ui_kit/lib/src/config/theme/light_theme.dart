@@ -8,8 +8,12 @@ ThemeData createLightTheme() {
   );
 
   return ThemeData.light(useMaterial3: true).copyWith(
+    scaffoldBackgroundColor: Colors.white,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
     colorScheme: ColorScheme.light(
-      primary: themeColors.primary,
+      primary: themeColors.primary,      
     ),
     extensions: <ThemeExtension<dynamic>>[
       themeColors,
