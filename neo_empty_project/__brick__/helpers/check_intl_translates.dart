@@ -56,7 +56,8 @@ void main() async {
 
   String keysToFiles = '';
 
-  /// Собираем сообщения из intl_messages которых нет в intl_ru и считаем что у них нет переводов
+  /// Собираем сообщения из intl_messages 
+  /// которых нет в intl_ru и считаем что у них нет переводов
   /// После получения переводов
 
   for (final item in values['ru'] ?? []) {
