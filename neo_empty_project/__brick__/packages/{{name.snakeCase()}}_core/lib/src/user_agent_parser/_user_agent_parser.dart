@@ -8,7 +8,6 @@ export 'result.dart';
 class UserAgentParser {
   /// Parse a [Result] from the [userAgent] string.
   ///
-  // TODO(username): Add other types (engine, os, device, cpu) into [Result]
   Result parseResult(String userAgent) {
     return Result(
       browser: parseBrowser(userAgent),

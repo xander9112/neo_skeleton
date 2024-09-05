@@ -1,4 +1,0 @@
-enum BottomMenuEnum {
-  home,
-  settings,  
-}

@@ -1,3 +1,0 @@
-void configureUrlStrategyApp() {
-  // No-op.
-}

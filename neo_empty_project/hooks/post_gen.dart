@@ -10,8 +10,7 @@ Future<void> run(HookContext context) async {
   await _buildLaunchIcons(context);
 
   await _dartFix(context);
-
-  // await _fixFlavor(context);
+s
 }
 
 Future<void> _installPackages(HookContext context) async {
@@ -91,22 +90,4 @@ Future<void> _dartFix(HookContext context) async {
   );
 
   progress.complete();
-}
-
-Future<void> _fixFlavor(HookContext context) async {
-  final useFlavor = context.vars['useFlavor'] == 'true';
-
-  if (!useFlavor) {
-    final progress = context.logger.progress('Dart fix flavor');
-
-    try {
-      await Directory('./android/app/src/dev').delete(recursive: true);
-      await Directory('./android/app/src/prod').delete(recursive: true);
-      await Directory('./.dev.env').delete(recursive: true);
-      await Directory('./.prod.env').delete(recursive: true);
-    } catch (_) {
-    } finally {}
-
-    progress.complete();
-  }
 }

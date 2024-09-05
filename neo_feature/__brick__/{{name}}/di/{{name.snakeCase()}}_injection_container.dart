@@ -7,7 +7,7 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
   static final GetIt sl = ICoreInjection.sl;
 
   @override
-  Future<void> initProviders({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+  Future<void> initProviders(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<{{name.pascalCase()}}DataSource>(
       () => buildDependency<{{name.pascalCase()}}DataSource>(
         useMock: useMock,
@@ -18,12 +18,12 @@ class {{name.pascalCase()}}Injection extends ICoreInjection {
   }
 
   @override
- Future<void> initRepositories({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+ Future<void> initRepositories(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory<{{name.pascalCase()}}Repository>(() => {{name.pascalCase()}}RepositoryImpl(sl()));
   }
 
   @override
- Future<void> initState({{#useFlavor}}EnvConfig env,{{/useFlavor}} {bool useMock = false}) async {
+ Future<void> initState(EnvConfig env, {bool useMock = false}) async {
     sl.registerFactory(() => {{name.pascalCase()}}Cubit(repository: sl()));
   }
 }
