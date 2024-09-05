@@ -10,7 +10,6 @@ Future<void> run(HookContext context) async {
   await _buildLaunchIcons(context);
 
   await _dartFix(context);
-s
 }
 
 Future<void> _installPackages(HookContext context) async {
