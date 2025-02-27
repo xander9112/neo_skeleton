@@ -5,64 +5,40 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Skeleton (Dev)",
+            "name": "{{appName.pascalCase()}} (Dev)",
             "request": "launch",
             "type": "dart",
+            "program": "apps/{{appName.snakeCase()}}/lib/main_development.dart",
             "args": [
-                "--dart-define-from-file",
-                "./env/.dev.json"
+                "--flavor",
+                "development",
+                "--target",
+                "lib/main_development.dart"
             ]
         },
         {
-            "name": "Skeleton",
+            "name": "{{appName.pascalCase()}} (Stage)",
             "request": "launch",
             "type": "dart",
+            "program": "apps/{{appName.snakeCase()}}/lib/main_staging.dart",
             "args": [
-                "--dart-define-from-file",
-                "./env/.prod.json"
+                "--flavor",
+                "staging",
+                "--target",
+                "lib/main_staging.dart"
             ]
         },
         {
-            "name": "Skeleton : Web (Dev)",
+            "name": "{{appName.pascalCase()}}",
             "request": "launch",
             "type": "dart",
+            "program": "apps/{{appName.snakeCase()}}/lib/main_production.dart",
             "args": [
-                "--dart-define-from-file",
-                "./env/.dev.json",
-                "-d",
-                "chrome",
-                "--web-port",
-                "3000"
+                "--flavor",
+                "production",
+                "--target",
+                "lib/main_production.dart"
             ]
-        },
-        {
-            "name": "Skeleton : Web",
-            "request": "launch",
-            "type": "dart",
-            "args": [
-                "--dart-define-from-file",
-                "./env/.prod.json",
-                "-d",
-                "chrome",
-                "--web-port",
-                "3000"
-            ]
-        },
-        {
-            "name": "Skeleton (Dev) Release",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                "--dart-define-from-file",
-                "./env/.dev.json"
-            ]
-        },
-        {
-            "name": "Skeleton (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
         }
     ]
 }

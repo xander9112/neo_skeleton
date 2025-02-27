@@ -1,0 +1,39 @@
+name: auth
+description: Module.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.4"
+
+dependencies:
+  auto_route: 9.3.0+1
+  config:
+    path: ../../shared/config
+  core:
+    path: ../../packages/core
+  dependencies:
+    path: ../../shared/dependencies
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.9.0
+  local_auth: ^2.3.0
+  retrofit: ^4.4.2
+  settings:
+    path: ../settings
+  ui_kit:
+    path: ../../packages/ui_kit
+
+dev_dependencies:
+  auto_route_generator: 9.3.1
+  build_runner: ^2.4.15
+  flutter_test:
+    sdk: flutter
+  freezed: 2.5.8
+  json_serializable: ^6.9.4
+  retrofit_generator: ^9.1.9
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true

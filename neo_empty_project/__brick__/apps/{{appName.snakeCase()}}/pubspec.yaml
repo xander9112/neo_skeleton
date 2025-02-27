@@ -1,0 +1,57 @@
+name: {{appName.snakeCase()}}
+description: Neoflex {{appName.pascalCase()}} template
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  auth:
+    path: ../../modules/auth
+  auto_route: 9.3.0+1
+  config:
+    path: ../../shared/config
+  core:
+    path: ../../packages/core
+  cupertino_icons: ^1.0.8
+  dependencies:
+    path: ../../shared/dependencies
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  flutter_localizations:
+    sdk: flutter
+  freezed: 2.5.8
+  freezed_annotation: 2.4.4
+  json_annotation: ^4.9.0
+  json_serializable: ^6.9.4
+  retrofit: ^4.4.2
+  settings:
+    path: ../../modules/settings
+  super_banners: ^0.0.1
+  ui_kit:
+    path: ../../packages/ui_kit
+  visibility_detector: ^0.4.0+2
+
+dev_dependencies:
+  auto_route_generator: 9.3.1
+  build_runner: ^2.4.15
+  flutter_flavorizr: ^2.2.3
+  flutter_launcher_icons: ^0.14.3
+  flutter_test:
+    sdk: flutter
+  path: 1.9.0
+  process_run: ^1.2.2+1
+  retrofit_generator: ^9.1.9
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/l10n/
+    - assets/launcher_icon/

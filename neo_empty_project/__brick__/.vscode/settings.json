@@ -1,23 +1,30 @@
 {
-  "explorer.fileNesting.patterns": {
-    "mason.yaml": "mason-lock.json",
-    "pubspec.yaml": ".packages, .metadata, pubspec.lock, analysis_options.yaml, {{name.snakeCase()}}.iml",
-    "*.dart": "${capture}.g.dart, ${capture}.freezed.dart"
-  },
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "cSpell.words": [
-    "canonicalized",
-    "dartz",
-    "dotenv",
-    "fullscreen",
-    "phonebook",
-    "Subtags",
-    "unawaited"
-  ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
-  "editor.formatOnSave": true,
-  "java.compile.nullAnalysis.mode": "disabled"
+    "explorer.fileNesting.patterns": {
+        "mason.yaml": "mason-lock.json",
+        "pubspec.yaml": ".packages, .metadata, pubspec.lock, analysis_options.yaml, {{appName.snakeCase()}}.iml",
+        "*.dart": "${capture}.g.dart, ${capture}.freezed.dart",
+        "melos.yaml": "melos_*.iml"
+    },
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cSpell.words": [
+        "appiconset",
+        "canonicalized",
+        "dartz",
+        "dotenv",
+        "Encrypter",
+        "Flavorizr",
+        "fullscreen",
+        "phonebook",
+        "prefs",
+        "regexes",
+        "Subtags",
+        "unawaited",
+        "xcassets"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "java.compile.nullAnalysis.mode": "disabled"
 }
