@@ -1,3 +1,8 @@
+### Initialize mason
+
+```bash
+mason init
+```
 ### Add empty mason project
 
 ```bash
