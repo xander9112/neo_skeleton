@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:dependencies/dependencies.dart';
-import '../../_{{name.snakeCase()}}.dart';
+import 'package:{{projectName.snakeCase()}}/src/features/{{name.snakeCase()}}/_{{name.snakeCase()}}.dart';
 
 @Injectable(as: {{name.pascalCase()}}Repository)
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
