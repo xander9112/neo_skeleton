@@ -3,6 +3,7 @@ import 'package:config/config.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:{{appName.snakeCase()}}/src/core/di/_di.dart';
 import 'package:settings/settings.dart';
 
 Future<void> configureDependencies(FlavorStatus env) async {

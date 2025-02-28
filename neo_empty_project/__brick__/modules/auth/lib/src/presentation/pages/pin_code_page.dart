@@ -1,6 +1,7 @@
 import 'package:auth/src/_src.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:settings/settings.dart';
@@ -18,7 +19,7 @@ class PinCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LocalAuthCubit>(
       create: (context) {
-        return AuthDI.sl<LocalAuthCubit>()..checkAuth(onResult);
+        return sl<LocalAuthCubit>()..checkAuth(onResult);
       },
       child: Scaffold(
         appBar: useAppBar ? AppBar() : null,

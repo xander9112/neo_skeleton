@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
 
 @Injectable(as: HomeRepository)

@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/ui/_ui.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
 import 'package:{{appName.snakeCase()}}/src/features/main/_main.dart';
@@ -19,9 +20,9 @@ class MainRoutes extends RootStackRouter {
           page: MainRoute.page,
           path: MainRoutePath.initial,
           guards: [
-            AuthGuard(AuthDI.sl<AuthManager<UserEntity>>()),
-            BlockAuthGuard(AuthDI.sl<AuthManager<UserEntity>>()),
-            LocalAuthGuard(AuthDI.sl<AuthManager<UserEntity>>()),
+            AuthGuard(sl<AuthManager<UserEntity>>()),
+            BlockAuthGuard(sl<AuthManager<UserEntity>>()),
+            LocalAuthGuard(sl<AuthManager<UserEntity>>()),
           ],
           children: [
             ...homeRoutes,

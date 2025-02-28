@@ -1,6 +1,7 @@
 import 'package:auth/src/_src.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -24,7 +25,7 @@ class BlockPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthDI.sl<LoginCubit>()..checkAuth(),
+      create: (context) => sl<LoginCubit>()..checkAuth(),
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.stateStatus.isReady) {
