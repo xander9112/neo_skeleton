@@ -1,5 +1,10 @@
 import 'package:auth/src/_src.dart';
+import 'package:dependencies/dependencies.dart';
 
+@Named('mock')
+@Injectable(
+  as: RestAuthDataSource,
+)
 class MockAuthDataSource implements RestAuthDataSource {
   @override
   Future<AuthModel> signIn({

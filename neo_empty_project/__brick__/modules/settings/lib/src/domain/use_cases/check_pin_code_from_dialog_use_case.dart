@@ -1,7 +1,8 @@
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/src/_src.dart';
 
+@injectable
 class CheckPinCodeFromDialogUseCase
     implements UseCase<Either<Failure, bool>, String> {
   CheckPinCodeFromDialogUseCase(this._storage);

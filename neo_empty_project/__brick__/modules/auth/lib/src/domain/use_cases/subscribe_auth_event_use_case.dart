@@ -1,7 +1,9 @@
 import 'package:auth/src/_src.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/widgets.dart';
 
+@injectable
 class SubscribeAuthEventUseCase extends UseCase<void, VoidCallback> {
   SubscribeAuthEventUseCase(this._authManager);
 

@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
-import 'package:dio/dio.dart';
 
+@Injectable(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl(this._dataSource);
 

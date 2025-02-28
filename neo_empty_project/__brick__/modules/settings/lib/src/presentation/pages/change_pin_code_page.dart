@@ -1,6 +1,7 @@
 // ignore_for_file: sized_box_shrink_expand
 
 import 'package:auto_route/auto_route.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:settings/src/_src.dart';
@@ -14,7 +15,7 @@ class ChangePinCodePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(elevation: 0),
       body: BlocProvider<ChangePinCodeCubit>(
-        create: (context) => SettingsDI.sl<ChangePinCodeCubit>(),
+        create: (context) => sl<ChangePinCodeCubit>(),
         child: Column(
           children: [
             Expanded(

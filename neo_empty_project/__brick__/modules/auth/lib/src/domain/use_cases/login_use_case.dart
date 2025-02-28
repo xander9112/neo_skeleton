@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:auth/src/_src.dart';
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 
+@injectable
 class LoginUseCase
     implements UseCase<Either<Failure, bool>, LoginUseCaseParam> {
   LoginUseCase(this._authManager);

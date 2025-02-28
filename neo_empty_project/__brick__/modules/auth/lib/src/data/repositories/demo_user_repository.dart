@@ -1,6 +1,7 @@
 import 'package:auth/src/_src.dart';
-import 'package:collection/collection.dart';
+import 'package:dependencies/dependencies.dart';
 
+@Injectable(as: DemoUserRepository)
 class DemoUserRepositoryImpl extends DemoUserRepository {
   final _demoUsers = [
     {

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auth/src/_src.dart';
 import 'package:config/config.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:settings/settings.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -11,6 +12,7 @@ part 'local_auth_cubit.freezed.dart';
 part 'local_auth_cubit.g.dart';
 part 'local_auth_state.dart';
 
+@injectable
 class LocalAuthCubit extends BaseCubit<LocalAuthState> {
   LocalAuthCubit({
     required AuthManager<UserEntity> manager,

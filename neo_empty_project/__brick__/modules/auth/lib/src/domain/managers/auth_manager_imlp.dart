@@ -1,11 +1,11 @@
 import 'package:auth/src/_src.dart';
 import 'package:config/config.dart';
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/foundation.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:settings/settings.dart';
 
+@LazySingleton(as: AuthManager<UserEntity>)
 class AuthManagerImpl extends AuthManager<UserEntity> {
   AuthManagerImpl({
     required this.authRepository,

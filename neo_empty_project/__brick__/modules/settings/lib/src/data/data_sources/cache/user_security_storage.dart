@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 
+@injectable
 class UserSecurityStorage {
   UserSecurityStorage({required SecureStorage storage}) : _storage = storage;
 

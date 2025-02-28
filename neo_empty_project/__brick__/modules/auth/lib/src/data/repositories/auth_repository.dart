@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:auth/src/_src.dart';
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/settings.dart';
 
+@Injectable(as: AuthRepository<AuthModel, UserEntity>)
 class AuthRepositoryImpl implements AuthRepository<AuthModel, UserEntity> {
   AuthRepositoryImpl({
     required RestAuthDataSource restAuthDataSource,
