@@ -1,4 +1,1 @@
-import 'package:dependencies/dependencies.dart';
-
-@InjectableInit.microPackage()
-initMicroPackage() {}
+// TODO: Module

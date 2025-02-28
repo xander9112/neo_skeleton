@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '{{name.snakeCase()}}_model.dart';
+part of '{{name.snakeCase()}}_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

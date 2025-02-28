@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:dependencies/dependencies.dart';
-import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
 @Injectable(as: {{name.pascalCase()}}Repository)
@@ -18,7 +18,7 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
        return Left(
         {{name.pascalCase()}}Failure(
           code: error.response?.statusCode ?? 1,
-          message: error.response?.data.toString() ?? error.errorMessage,
+          message: error.response?.data.toString() ?? error.message ?? '',
         ),
       );
 
