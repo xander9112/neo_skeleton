@@ -7,6 +7,7 @@ part 'rest_settings_data_source.g.dart';
 @Injectable()
 @RestApi()
 abstract class RestSettingsDataSource implements SettingsDataSource {
+  @factoryMethod
   factory RestSettingsDataSource(Dio dio) =
       _RestSettingsDataSource;
 
