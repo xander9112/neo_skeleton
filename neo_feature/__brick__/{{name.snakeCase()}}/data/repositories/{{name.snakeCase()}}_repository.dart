@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{projectName.snakeCase()}}/src/core/_core.dart';
 import '../../_{{name.snakeCase()}}.dart';
 
+@Injectable(as: {{name.pascalCase()}}Repository)
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
   {{name.pascalCase()}}RepositoryImpl(this._dataSource);
 
