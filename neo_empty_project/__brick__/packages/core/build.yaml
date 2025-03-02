@@ -21,11 +21,4 @@ targets:
             - lib/src/presentation/blocs/**/**.dart
             - lib/src/presentation/cubits/**/**.dart
             - lib/src/data/models/**/*.dart
-      injectable_generator|injectable_config_builder:
-        generate_for:
-          include:
-            - lib/src/di/**.dart
-            - lib/src/data/repositories/**.dart
-            - lib/src/domain/use_cases/**.dart
-            - lib/src/storages/**.dart
-            - lib/src/utils/**.dart
+      

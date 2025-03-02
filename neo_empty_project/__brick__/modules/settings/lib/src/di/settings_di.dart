@@ -3,7 +3,7 @@ import 'package:dependencies/dependencies.dart';
 import 'package:settings/src/_src.dart';
 
 @InjectableInit.microPackage()
-initMicroPackage() {}
+dynamic initMicroPackage() {}
 
 @module
 abstract class SettingsDiModule {
