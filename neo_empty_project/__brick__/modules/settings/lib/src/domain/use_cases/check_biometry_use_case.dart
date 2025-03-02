@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/src/_src.dart';
 
+@injectable
 class CheckBiometryUseCase implements UseCase<bool, CheckBiometryUseCaseParam> {
   CheckBiometryUseCase(this._biometricRepository);
 

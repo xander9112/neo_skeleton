@@ -4,6 +4,7 @@ import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:config/config.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -23,7 +24,7 @@ FutureOr<void> main() async {
     };
 
     await AppInitializer(status: Flavor.status).init(() {
-      final AppRouter _router = CoreDI.sl<AppRouter>();
+       final AppRouter _router = sl<AppRouter>();
 
       return StreamBuilder<Key>(
         stream: AppInitializer.key.stream,
@@ -31,10 +32,10 @@ FutureOr<void> main() async {
           return App(
             key: snapshot.data,
             routerConfig: _router.config(
-              reevaluateListenable: CoreDI.sl<AuthManager<UserEntity>>(),
+              reevaluateListenable: sl<AuthManager<UserEntity>>(),
               includePrefixMatches: true,
               navigatorObservers: () => [
-                AppRouteObserver(CoreDI.sl<AppLogger>()),
+                AppRouteObserver(sl<AppLogger>()),
               ],
               deepLinkBuilder: (PlatformDeepLink deepLink) async {
                 if (_router.redirectUrl != null) {

@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:settings/src/_src.dart';
@@ -168,7 +169,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     );
 
     if (result ?? false) {
-      await SettingsDI.sl<AuthManager<UserEntity>>().signOut();
+      await sl<AuthManager<UserEntity>>().signOut();
     }
   }
 

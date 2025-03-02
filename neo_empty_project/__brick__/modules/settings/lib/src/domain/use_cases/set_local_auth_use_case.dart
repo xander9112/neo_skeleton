@@ -1,7 +1,8 @@
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/settings.dart';
 
+@injectable
 class SetLocalAuthUseCase implements UseCase<Either<Failure, bool>, bool> {
   SetLocalAuthUseCase(this._securityStorage);
 

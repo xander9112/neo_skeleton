@@ -1,6 +1,9 @@
+import 'package:dependencies/dependencies.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:settings/src/_src.dart';
 
+
+@Injectable(as: BiometricRepository)
 class BiometricRepositoryImpl implements BiometricRepository {
   BiometricRepositoryImpl({
     required UserSecurityStorage userSecurityStorage,

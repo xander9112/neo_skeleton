@@ -44,6 +44,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.3
   flutter_test:
     sdk: flutter
+  injectable_generator: ^2.7.0
   path: 1.9.0
   process_run: ^1.2.2+1
   retrofit_generator: ^9.1.9

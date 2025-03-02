@@ -77,10 +77,15 @@ scripts:
   build:
     run: melos run build:select --no-select
     description: "Run build runner in all packages that depend on it."
+    orderDependents: true
     packageFilters:
       dependsOn:
         - "build_runner"
-
+  build-app:
+    run: |
+      cd apps/{{appName.snakeCase()}}
+      dart run build_runner build --delete-conflicting-outputs
+    description: Run build_runner an app.
   build:clean:select:
     run: melos exec -- "dart run build_runner clean"
     description: "Run build runner clean in selected package that depends on build_runner."
@@ -119,5 +124,6 @@ scripts:
       melos run build
       melos run generate-core
       melos run generate-icons-and-flavor
+      melos run build-app
       melos run format
     description: Initialize {{appName.pascalCase()}}.

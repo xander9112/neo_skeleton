@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
 import 'package:{{appName.snakeCase()}}/src/features/main/_main.dart';
 
@@ -22,13 +23,13 @@ List<AutoRoute> homeRoutes = [
         page: SecretHomeRoute.page,
         path: HomeRoutePath.secret,
         guards: [
-          AuthGuard(
-            AuthDI.sl<AuthManager<UserEntity>>(),
+         AuthGuard(
+            sl<AuthManager<UserEntity>>(),
             replace: false,
             useAppBar: true,
           ),
           LocalAuthGuard(
-            AuthDI.sl<AuthManager<UserEntity>>(),
+            sl<AuthManager<UserEntity>>(),
             replace: false,
             useAppBar: true,
           ),

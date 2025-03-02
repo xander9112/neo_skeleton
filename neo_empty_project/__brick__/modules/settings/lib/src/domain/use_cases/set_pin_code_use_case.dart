@@ -1,7 +1,8 @@
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/src/_src.dart';
 
+@injectable
 class SetPinCodeUseCase implements UseCase<Either<Failure, bool>, String> {
   SetPinCodeUseCase(this._storage);
 

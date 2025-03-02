@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/l10n/app_localization_delegate.dart';
 import 'package:{{appName.snakeCase()}}/l10n/app_localizations.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';
@@ -21,7 +22,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SettingsCubit>.value(
-      value: SettingsDI.sl()..init(),
+      value: sl()..init(),
       child: BlocBuilder<SettingsCubit, SettingsState>(
         buildWhen: (previous, current) =>
             previous.themeMode != current.themeMode ||

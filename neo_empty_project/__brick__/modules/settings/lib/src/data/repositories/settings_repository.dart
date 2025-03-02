@@ -3,6 +3,7 @@ import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/src/_src.dart';
 
+@Injectable(as: SettingsRepository)
 class SettingsRepositoryImpl implements SettingsRepository {
   SettingsRepositoryImpl({
     required SharedStorage sharedStorage,

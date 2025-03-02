@@ -7,6 +7,7 @@ part 'login_cubit.freezed.dart';
 part 'login_cubit.g.dart';
 part 'login_state.dart';
 
+@injectable
 class LoginCubit extends BaseCubit<LoginState> {
   LoginCubit({
     required this.loginUseCase,

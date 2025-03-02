@@ -1,7 +1,8 @@
 import 'package:auth/src/_src.dart';
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dependencies/dependencies.dart';
 
+@injectable
 class CheckLocalAuthUseCase
     implements UseCaseNoParams<Either<Failure, LocalAuthResult>> {
   CheckLocalAuthUseCase(this._authManager);

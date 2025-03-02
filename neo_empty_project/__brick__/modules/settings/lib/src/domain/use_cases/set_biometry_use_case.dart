@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:settings/src/_src.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+@injectable
 class SetBiometryUseCase implements UseCaseNoParams<bool> {
   SetBiometryUseCase(this._biometricRepository);
 

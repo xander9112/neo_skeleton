@@ -4,8 +4,9 @@ class SharedStorage {
   static late SharedPreferences _prefs;
 
   // Инициализация SharedPreferences
-  static Future<void> init() async {
+  static Future<SharedStorage> init() async {
     _prefs = await SharedPreferences.getInstance();
+    return SharedStorage();
   }
 
   // Сохранение строки

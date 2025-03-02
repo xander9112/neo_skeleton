@@ -1,19 +1,11 @@
-import 'package:config/config.dart';
-import 'package:core/core.dart';
-import 'package:event_bus/event_bus.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
 
-class ExternalDI extends DI {
-  static final GetIt sl = DI.sl;
+@module
+abstract class ExternalDepsModule {
+  @lazySingleton
+  FlutterSecureStorage get flutterSecureStorage => const FlutterSecureStorage();
 
-  @override
-  Future<void> initProviders(
-    FlavorStatus flavor, {
-    bool useMock = false,
-  }) async {
-    sl
-      ..registerLazySingleton(FlutterSecureStorage.new)
-      ..registerLazySingleton(EventBus.new);
-  }
+  @lazySingleton
+  EventBus get eventBus => EventBus();
 }

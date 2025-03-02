@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,6 +8,7 @@ part 'home_cubit.freezed.dart';
 part 'home_cubit.g.dart';
 part 'home_state.dart';
 
+@injectable
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({
     required HomeRepository repository,

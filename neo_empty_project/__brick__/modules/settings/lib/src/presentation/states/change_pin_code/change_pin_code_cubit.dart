@@ -1,5 +1,6 @@
 import 'package:config/config.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:settings/src/_src.dart';
 
@@ -7,6 +8,7 @@ part 'change_pin_code_cubit.freezed.dart';
 part 'change_pin_code_cubit.g.dart';
 part 'change_pin_code_state.dart';
 
+@injectable
 class ChangePinCodeCubit extends BaseCubit<ChangePinCodeState> {
   ChangePinCodeCubit(this._checkPinCodeUseCase, this._setPinCodeUseCase)
       : super(

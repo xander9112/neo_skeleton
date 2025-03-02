@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../_{{name.snakeCase()}}.dart';
@@ -10,7 +11,7 @@ class {{name.pascalCase()}}Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => {{name.pascalCase()}}Injection.sl<{{name.pascalCase()}}Cubit>()..init(),
+      create: (context) => sl<{{name.pascalCase()}}Cubit>()..init(),
       child: Scaffold(
         appBar: AppBar(title: const Text('{{name.pascalCase()}} page')),
         body: BlocBuilder<{{name.pascalCase()}}Cubit, {{name.pascalCase()}}State>(
