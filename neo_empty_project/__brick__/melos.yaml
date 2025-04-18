@@ -95,7 +95,7 @@ scripts:
     run: melos run build:clean:select --no-select
     description: "Run build runner clean in all packages that depend on it."
   format:
-    run: melos exec -- "dart format . --fix && dart fix --apply"
+    run: melos exec -- "dart format . && dart fix --apply"
     description: "Run dart format and dart fix for all packages"
   format-check:
     run: melos exec -- "dart format . --set-exit-if-changed"
