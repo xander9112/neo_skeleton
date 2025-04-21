@@ -1,0 +1,17 @@
+name: app
+description: "A monorepo Flutter project with Melos"
+publish_to: "none"
+
+version: 0.0.1+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  melos: ^6.3.2
+  path: 1.9.0
+  process_run: ^1.2.2+1
