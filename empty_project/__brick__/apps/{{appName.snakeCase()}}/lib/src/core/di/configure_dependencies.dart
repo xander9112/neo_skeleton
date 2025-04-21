@@ -1,4 +1,6 @@
+{{#authentication}}
 import 'package:auth/auth.dart';
+{{/authentication}}  
 import 'package:config/config.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';

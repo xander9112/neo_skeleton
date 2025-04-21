@@ -1,6 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+{{#authentication}}
 import 'package:auth/auth.dart';
+{{/authentication}}
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
