@@ -22,9 +22,11 @@ class MainRoutes extends RootStackRouter {
           page: MainRoute.page,
           path: MainRoutePath.initial,
           guards: [
+            {{#authentication}}
             AuthGuard(sl<AuthManager<UserEntity>>()),
             BlockAuthGuard(sl<AuthManager<UserEntity>>()),
             LocalAuthGuard(sl<AuthManager<UserEntity>>()),
+            {{/authentication}}
           ],
           children: [
             ...homeRoutes,

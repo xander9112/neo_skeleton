@@ -25,7 +25,8 @@ List<AutoRoute> homeRoutes = [
         page: SecretHomeRoute.page,
         path: HomeRoutePath.secret,
         guards: [
-         AuthGuard(
+          {{#authentication}}
+          AuthGuard(
             sl<AuthManager<UserEntity>>(),
             replace: false,
             useAppBar: true,
@@ -35,6 +36,7 @@ List<AutoRoute> homeRoutes = [
             replace: false,
             useAppBar: true,
           ),
+          {{/authentication}}
         ],
       ),
     ],

@@ -117,6 +117,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const SizedBox(height: Insets.l),
+            {{#authentication}}
             Padding(
               padding: const EdgeInsets.only(bottom: Insets.l),
               child: ElevatedButton(
@@ -124,6 +125,7 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Block user'),
               ),
             ),
+            {{/authentication}}
           ],
         ),
       ),

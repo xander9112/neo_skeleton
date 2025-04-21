@@ -23,7 +23,9 @@ Future<void> configureDependencies(FlavorStatus env) async {
 
 @InjectableInit(
   externalPackageModulesAfter: [
+    {{#authentication}}
     ExternalModule(AuthPackageModule),
+    {{/authentication}}    
     ExternalModule(SettingsPackageModule),
   ],
 )

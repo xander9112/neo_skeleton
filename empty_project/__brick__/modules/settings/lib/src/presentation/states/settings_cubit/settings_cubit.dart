@@ -162,7 +162,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
       },
     );
   }
-
+{{#authentication}}
   Future<void> signOut() async {
     final result = await DialogService.showDialog<bool>(
       child: UiConfirmDialog(
@@ -174,6 +174,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
       await sl<AuthManager<UserEntity>>().signOut();
     }
   }
+{{/authentication}}
 
   Future<void> setLocale(Locale? locale) async {
     emit(state.copyWith(locale: locale));

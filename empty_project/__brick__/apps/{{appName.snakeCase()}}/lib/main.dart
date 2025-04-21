@@ -33,7 +33,9 @@ FutureOr<void> main() async {
           return App(
             key: snapshot.data,
             routerConfig: _router.config(
+              {{#authentication}}
               reevaluateListenable: sl<AuthManager<UserEntity>>(),
+              {{/authentication}}
               includePrefixMatches: true,
               navigatorObservers: () => [
                 AppRouteObserver(sl<AppLogger>()),

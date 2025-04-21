@@ -15,7 +15,9 @@ abstract class CoreModule {
   AppRouter get appRouter => AppRouter(
         navigatorKey: DialogService.navigatorKey,
         routes: [
+          {{#authentication}}
           ...AuthRoutes().routes,
+          {{/authentication}}
           ...MainRoutes().routes,
           RedirectRoute(
             path: '*',
