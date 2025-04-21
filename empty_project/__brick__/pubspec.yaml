@@ -13,5 +13,5 @@ dependencies:
 
 dev_dependencies:
   melos: ^6.3.2
-  path: 1.9.0
+  path: 1.9.1
   process_run: ^1.2.2+1
