@@ -15,6 +15,8 @@ Future<void> _createProject(HookContext context) async {
   List platforms = context.vars['platforms'];
   String projectPath = './apps/$projectName';
 
+
+
   final commands = [
     'create',
     '--org',

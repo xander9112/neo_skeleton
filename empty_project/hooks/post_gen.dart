@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 void run(HookContext context) async {
+  print(context.vars);
+
   await _installPackages(context);
   await _installMelos(context);
   await _runMelos(context);
