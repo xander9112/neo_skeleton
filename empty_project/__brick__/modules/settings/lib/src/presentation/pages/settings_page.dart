@@ -18,12 +18,12 @@ class SettingsPage extends StatelessWidget {
             appBar: AppBar(
               title: Text(SettingsI18n.title),
               actions: <Widget>[
-                {{#features.contains("authentication")}}
+                {{#useAuth}}
                 IconButton(
                   onPressed: context.read<SettingsCubit>().signOut,
                   icon: const Icon(Icons.logout),
                 ),
-                {{/features.contains("authentication")}}
+                {{/useAuth}}
               ],
             ),
             body: BlocBuilder<SettingsCubit, SettingsState>(

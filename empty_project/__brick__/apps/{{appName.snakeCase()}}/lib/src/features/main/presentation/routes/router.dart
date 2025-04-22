@@ -1,6 +1,6 @@
-{{#features.contains("authentication")}}
+{{#useAuth}}
 import 'package:auth/auth.dart';
-{{/features.contains("authentication")}}
+{{/useAuth}}
 import 'package:auto_route/auto_route.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/ui/_ui.dart';
@@ -22,11 +22,11 @@ class MainRoutes extends RootStackRouter {
           page: MainRoute.page,
           path: MainRoutePath.initial,
           guards: [
-            {{#features.contains("authentication")}}
+            {{#useAuth}}
             AuthGuard(sl<AuthManager<UserEntity>>()),
             BlockAuthGuard(sl<AuthManager<UserEntity>>()),
             LocalAuthGuard(sl<AuthManager<UserEntity>>()),
-            {{/features.contains("authentication")}}
+            {{/useAuth}}
           ],
           children: [
             ...homeRoutes,

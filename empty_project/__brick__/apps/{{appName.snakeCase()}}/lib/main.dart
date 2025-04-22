@@ -1,7 +1,7 @@
 import 'dart:async';
-{{#features.contains("authentication")}}
+{{#useAuth}}
 import 'package:auth/auth.dart';
-{{/features.contains("authentication")}}
+{{/useAuth}}
 import 'package:auto_route/auto_route.dart';
 import 'package:config/config.dart';
 import 'package:core/core.dart';
@@ -33,9 +33,9 @@ FutureOr<void> main() async {
           return App(
             key: snapshot.data,
             routerConfig: _router.config(
-              {{#features.contains("authentication")}}
+              {{#useAuth}}
               reevaluateListenable: sl<AuthManager<UserEntity>>(),
-              {{/features.contains("authentication")}}
+              {{/useAuth}}
               includePrefixMatches: true,
               navigatorObservers: () => [
                 AppRouteObserver(sl<AppLogger>()),

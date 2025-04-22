@@ -1,6 +1,6 @@
-{{#features.contains("authentication")}}
+{{#useAuth}}
 import 'package:auth/auth.dart';
-{{/features.contains("authentication")}}
+{{/useAuth}}
 import 'package:core/core.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +162,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
       },
     );
   }
-{{#features.contains("authentication")}}
+{{#useAuth}}
   Future<void> signOut() async {
     final result = await DialogService.showDialog<bool>(
       child: UiConfirmDialog(
@@ -174,7 +174,7 @@ class SettingsCubit extends BaseCubit<SettingsState> {
       await sl<AuthManager<UserEntity>>().signOut();
     }
   }
-{{/features.contains("authentication")}}
+{{/useAuth}}
 
   Future<void> setLocale(Locale? locale) async {
     emit(state.copyWith(locale: locale));
