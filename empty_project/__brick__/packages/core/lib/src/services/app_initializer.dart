@@ -47,7 +47,7 @@ class AppInitializer {
     key.sink.add(UniqueKey());
   }
 
-  Future<void> init(AppCallback callback, {bool useAuth = {{authentication}}}) async {
+  Future<void> init(AppCallback callback, {bool useAuth = {{features.contains("authentication")}}) async {
     const increment = 100 ~/ _methodsCount;
 
     if (useAuth) {
