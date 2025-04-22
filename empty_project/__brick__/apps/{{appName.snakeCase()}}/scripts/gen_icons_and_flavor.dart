@@ -17,6 +17,12 @@ void main(List<String> arguments) async {
     return;
   }
 
+  final resultFlutterSplashScreen = await _genSplashScreen();
+
+  if (!resultFlutterSplashScreen) {
+    return;
+  }
+
   await _replaceIcons();
 }
 
@@ -43,11 +49,7 @@ Future<bool> _genIcons() async {
 Future<bool> _genFlavor() async {
   final result = await Process.run(
     'dart',
-    [
-      'run',
-      'flutter_flavorizr',
-      '-f',
-    ], // Команда dart run flutter_flavorizr
+    ['run', 'flutter_flavorizr', '-f'], // Команда dart run flutter_flavorizr
   );
 
   if (result.exitCode != 0) {
@@ -59,51 +61,64 @@ Future<bool> _genFlavor() async {
   return true;
 }
 
+Future<bool> _genSplashScreen() async {
+  final result = await Process.run(
+    'dart',
+    [
+      'run',
+      'flutter_native_splash:create',
+      '--all-flavors',
+    ], // Команда dart run flutter_native_splash
+  );
+
+  if (result.exitCode != 0) {
+    print('Ошибка при выполнении flutter_native_splash: ${result.stderr}');
+
+    return false;
+  }
+
+  return true;
+}
+
 Future<bool> _replaceIcons() async {
   final Directory current = Directory(p.joinAll([Directory.current.path]));
 
-  final appDir = Directory(
-    p.joinAll([current.path]),
-  );
+  final appDir = Directory(p.joinAll([current.path]));
 
-  final flavors = await appDir
-      .list(recursive: true)
-      .where((event) => event.path.contains('flutter_launcher_icons-'))
-      .map((event) => event.path.split('-').last.split('.').first)
-      .toList();
-
-  await Future.forEach(
-    flavors,
-    (flavor) async {
-      final Directory assetsFrom = Directory(
-        p.joinAll([
-          current.path,
-          'ios',
-          'Runner',
-          'Assets.xcassets',
-          'AppIcon-$flavor.appiconset',
-        ]),
-      );
-
-      final images = await assetsFrom
+  final flavors =
+      await appDir
           .list(recursive: true)
-          .where((event) => event.path.contains('AppIcon'))
-          .map((event) => event.path)
+          .where((event) => event.path.contains('flutter_launcher_icons-'))
+          .map((event) => event.path.split('-').last.split('.').first)
           .toList();
 
-      await Future.forEach(
-        images,
-        (element) async {
-          final fileName = element.split('/').last;
+  await Future.forEach(flavors, (flavor) async {
+    final Directory assetsFrom = Directory(
+      p.joinAll([
+        current.path,
+        'ios',
+        'Runner',
+        'Assets.xcassets',
+        'AppIcon-$flavor.appiconset',
+      ]),
+    );
 
-          await _moveFile(
-            element,
-            'ios/Runner/Assets.xcassets/${flavor}AppIcon.appiconset/Icon-App-${fileName.split('-').last}',
-          );
-        },
+    final images =
+        await assetsFrom
+            .list(recursive: true)
+            .where((event) => event.path.contains('AppIcon'))
+            .map((event) => event.path)
+            .toList();
+
+    await Future.forEach(images, (element) async {
+      final fileName = element.split('/').last;
+
+      await _moveFile(
+        element,
+        'ios/Runner/Assets.xcassets/${flavor}AppIcon.appiconset/Icon-App-${fileName.split('-').last}',
       );
-    },
-  );
+    });
+  });
 
   return true;
 }
