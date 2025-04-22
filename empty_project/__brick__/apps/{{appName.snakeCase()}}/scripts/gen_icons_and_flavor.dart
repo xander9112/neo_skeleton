@@ -5,15 +5,15 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 void main(List<String> arguments) async {
-  final resultFlutterLauncherIcons = await _genIcons();
-
-  if (!resultFlutterLauncherIcons) {
-    return;
-  }
-
   final resultFlutterFlavorizr = await _genFlavor();
 
   if (!resultFlutterFlavorizr) {
+    return;
+  }
+
+  final resultFlutterLauncherIcons = await _genIcons();
+
+  if (!resultFlutterLauncherIcons) {
     return;
   }
 
@@ -22,9 +22,8 @@ void main(List<String> arguments) async {
 
 Future<bool> _genIcons() async {
   final resultFlutterLauncherIcons = await Process.run(
-    'flutter',
+    'dart',
     [
-      'pub',
       'run',
       'flutter_launcher_icons',
     ], // Команда flutter pub run flutter_launcher_icons
@@ -47,6 +46,7 @@ Future<bool> _genFlavor() async {
     [
       'run',
       'flutter_flavorizr',
+      '-f',
     ], // Команда dart run flutter_flavorizr
   );
 
