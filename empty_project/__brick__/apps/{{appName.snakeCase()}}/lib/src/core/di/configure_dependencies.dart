@@ -1,6 +1,6 @@
-{{#authentication}}
+{{#features.contains("authentication")}}
 import 'package:auth/auth.dart';
-{{/authentication}}  
+{{/features.contains("authentication")}}  
 import 'package:config/config.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';
@@ -23,9 +23,9 @@ Future<void> configureDependencies(FlavorStatus env) async {
 
 @InjectableInit(
   externalPackageModulesAfter: [
-    {{#authentication}}
+    {{#features.contains("authentication")}}
     ExternalModule(AuthPackageModule),
-    {{/authentication}}    
+    {{/features.contains("authentication")}}    
     ExternalModule(SettingsPackageModule),
   ],
 )

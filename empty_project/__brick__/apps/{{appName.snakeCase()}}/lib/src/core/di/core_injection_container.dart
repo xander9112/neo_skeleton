@@ -1,6 +1,6 @@
-{{#authentication}}
+{{#features.contains("authentication")}}
 import 'package:auth/auth.dart';
-{{/authentication}}
+{{/features.contains("authentication")}}
 import 'package:auto_route/auto_route.dart';
 import 'package:config/config.dart';
 import 'package:core/core.dart';
@@ -15,9 +15,9 @@ abstract class CoreModule {
   AppRouter get appRouter => AppRouter(
         navigatorKey: DialogService.navigatorKey,
         routes: [
-          {{#authentication}}
+          {{#features.contains("authentication")}}
           ...AuthRoutes().routes,
-          {{/authentication}}
+          {{/features.contains("authentication")}}
           ...MainRoutes().routes,
           RedirectRoute(
             path: '*',

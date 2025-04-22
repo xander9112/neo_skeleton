@@ -63,10 +63,6 @@ vars:
   features:
     type: array
     description: Select the features you want to include
-    # defaults:
-    #   - authentication
     values:
-      - authentication
-      # - push notifications
-      # - in-app purchases
+      - authentication      
     prompt: Which features would you like to include in your application?

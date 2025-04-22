@@ -9,10 +9,10 @@ environment:
   sdk: ">=3.6.0 <4.0.0"
 
 dependencies:
-  {{#authentication}}
+  {{#features.contains("authentication")}}
   auth:
     path: ../../modules/auth
-  {{/authentication}}
+  {{/features.contains("authentication")}}
   auto_route: 9.3.0+1
   config:
     path: ../../shared/config

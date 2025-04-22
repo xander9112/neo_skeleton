@@ -1,6 +1,6 @@
-{{#authentication}}
+{{#features.contains("authentication")}}
 import 'package:auth/auth.dart';
-{{/authentication}}
+{{/features.contains("authentication")}}
 import 'package:auto_route/auto_route.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:{{appName.snakeCase()}}/src/features/home/_home.dart';
@@ -25,7 +25,7 @@ List<AutoRoute> homeRoutes = [
         page: SecretHomeRoute.page,
         path: HomeRoutePath.secret,
         guards: [
-          {{#authentication}}
+          {{#features.contains("authentication")}}
           AuthGuard(
             sl<AuthManager<UserEntity>>(),
             replace: false,
@@ -36,7 +36,7 @@ List<AutoRoute> homeRoutes = [
             replace: false,
             useAppBar: true,
           ),
-          {{/authentication}}
+          {{/features.contains("authentication")}}
         ],
       ),
     ],
