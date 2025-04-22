@@ -32,7 +32,7 @@ class AppInitializer {
 
   static const int _methodsCount = 6;
 
-  static bool _authIsFinish = {{^authentication}};
+  static bool _authIsFinish = {{features.contains("authentication")}};
 
   static bool _splashIsFinish = false;
 
