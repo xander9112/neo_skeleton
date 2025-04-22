@@ -32,7 +32,9 @@ class AppInitializer {
 
   static const int _methodsCount = 6;
 
-  static bool _authIsFinish = {{useAuth}};
+  static bool _authIsFinish = {
+    {useAuth},
+  };
 
   static bool _splashIsFinish = false;
 
@@ -47,7 +49,7 @@ class AppInitializer {
     key.sink.add(UniqueKey());
   }
 
-  Future<void> init(AppCallback callback, {bool useAuth = {{useAuth}}) async {
+  Future<void> init(AppCallback callback, {bool useAuth = {{!useAuth}}}) async {
     const increment = 100 ~/ _methodsCount;
 
     if (useAuth) {
@@ -151,10 +153,12 @@ class AppInitializer {
       final list = List.generate(value - progress.value, (index) => index);
 
       await Future.forEach(list, (_) async {
-        await Future<void>.delayed(const Duration(milliseconds: _milliseconds),
-            () {
-          progress.sink.add(progress.value + 1);
-        });
+        await Future<void>.delayed(
+          const Duration(milliseconds: _milliseconds),
+          () {
+            progress.sink.add(progress.value + 1);
+          },
+        );
       });
     }
 
