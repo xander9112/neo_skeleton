@@ -36,9 +36,11 @@ class SettingsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           LocaleSwitcher(),
+                          {{#useAuth}}
                           LocalAuthSwitcher(),
                           BiometrySwitcher(),
                           PinCodeChanger(),
+                          {{/useAuth}}
                           ThemeSwitcher(),
                         ],
                       ),
