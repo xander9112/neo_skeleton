@@ -32,7 +32,7 @@ class AppInitializer {
 
   static const int _methodsCount = 6;
 
-  static bool _authIsFinish = !{{useAuth}};
+  static bool _authIsFinish = {{#useAuth}}false{{/useAuth}}{{^useAuth}}true{{/useAuth}};
 
   static bool _splashIsFinish = false;
 
