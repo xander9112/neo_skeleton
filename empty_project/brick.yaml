@@ -66,3 +66,13 @@ vars:
     values:
       - authentication      
     prompt: Which features would you like to include in your application?
+  
+  defaultLocale:
+    type: enum
+    description: The default language of your app
+    default: device_locale
+    prompt: What is the default language of your application?
+    values: 
+      - device_locale
+      - en
+      - ru

@@ -11,6 +11,7 @@ export 'src/events/_events.dart';
 export 'src/exceptions/http_exception.dart';
 export 'src/extensions/_extensions.dart';
 export 'src/failure/failure.dart';
+export 'src/localization/l10n.dart';
 export 'src/navigation/_navigation.dart';
 export 'src/services/_services.dart';
 export 'src/state/_state.dart';

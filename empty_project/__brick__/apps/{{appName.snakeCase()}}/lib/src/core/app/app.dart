@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:dependencies/dependencies.dart';
-import 'package:{{appName.snakeCase()}}/l10n/app_localization_delegate.dart';
-import 'package:{{appName.snakeCase()}}/l10n/app_localizations.dart';
+import 'package:l10n/l10n/app_localization_delegate.dart';
+import 'package:l10n/l10n/app_localizations.dart';
 import 'package:{{appName.snakeCase()}}/src/core/_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
