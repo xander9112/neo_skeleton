@@ -3,7 +3,11 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 void run(HookContext context) async {
-  print(context.vars);
+  final useAuth = context.vars['useAuth'] as bool;
+
+  if (useAuth) {
+    await _installAuthModule(context);
+  }
 
   await _installPackages(context);
   await _installMelos(context);
@@ -57,6 +61,30 @@ Future<void> _runMelos(HookContext context) async {
       );
     },
   );
+
+  progress.complete();
+}
+
+List<String> _addMasonBrick(String moduleName) => [
+      'add',
+      moduleName.replaceAll('_module', ''),
+      '--git-url',
+      'https://github.com/xander9112/neo_skeleton',
+      '--git-path',
+      moduleName
+    ];
+
+List<String> _installModule(String moduleName) =>
+    ['make', moduleName.replaceAll('_module', ''), '--on-conflict', 'overwrite',
+    '-o',
+    './modules'
+    ];
+
+Future<void> _installAuthModule(HookContext context) async {
+  final progress = context.logger.progress('Install authModule project');
+
+  await Process.run('mason', _addMasonBrick('auth_module'));
+  await Process.run('mason', _installModule('auth_module'));
 
   progress.complete();
 }
