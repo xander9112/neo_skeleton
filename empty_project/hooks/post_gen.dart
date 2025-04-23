@@ -80,7 +80,7 @@ List<String> _installModule(String moduleName) => [
       '--on-conflict',
       'overwrite',
       '-o',
-      './modules'
+      './modules/${moduleName.replaceAll('_module', '')}'
     ];
 
 Future<void> _installAuthModule(HookContext context) async {
