@@ -4,7 +4,7 @@ import 'package:mason/mason.dart';
 
 void run(HookContext context) async {
   final useAuth = context.vars['useAuth'] as bool;
-
+  print('USE AUTH: $useAuth');
   if (useAuth) {
     await _installAuthModule(context);
   }
@@ -74,10 +74,13 @@ List<String> _addMasonBrick(String moduleName) => [
       moduleName
     ];
 
-List<String> _installModule(String moduleName) =>
-    ['make', moduleName.replaceAll('_module', ''), '--on-conflict', 'overwrite',
-    '-o',
-    './modules'
+List<String> _installModule(String moduleName) => [
+      'make',
+      moduleName.replaceAll('_module', ''),
+      '--on-conflict',
+      'overwrite',
+      '-o',
+      './modules'
     ];
 
 Future<void> _installAuthModule(HookContext context) async {
