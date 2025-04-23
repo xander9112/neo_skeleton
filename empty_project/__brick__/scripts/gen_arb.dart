@@ -13,12 +13,10 @@ void main(List<String> arguments) async {
 
   try {
     await shell.run('''
-      dart pub global run intl_generator:extract_to_arb --output-dir=shared/l10n/assets/l10n ${[
-      ...translationsFiles,
-    ].join(' ')}
+      dart pub global run intl_generator:extract_to_arb --output-dir=shared/l10n/assets/l10n ${[...translationsFiles].join(' ')}
 ''');
 
-    print('\nGeneration of arb finished\n');
+    print('\nGeneration of arb at shared/l10n/assets/l10n finished\n');
   } catch (error) {
     print('Generation of arb finished with Error:\n\n$error');
   }

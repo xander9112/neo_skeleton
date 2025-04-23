@@ -86,7 +86,6 @@ List<String> _installModule(String moduleName) => [
 Future<void> _installAuthModule(HookContext context) async {
   final progress = context.logger.progress('Install authModule project');
 
-  print(_addMasonBrick('auth_module'));
   await Process.run('mason', _addMasonBrick('auth_module')).onError(
     (error, stackTrace) {
       print('_addMasonBrick error: ${error.toString()}');
@@ -95,7 +94,6 @@ Future<void> _installAuthModule(HookContext context) async {
     },
   );
 
-  print(_installModule('auth_module'));
   await Process.run('mason', _installModule('auth_module')).onError(
     (error, stackTrace) {
       print('_installModule error: ${error.toString()}');

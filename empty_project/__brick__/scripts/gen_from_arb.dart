@@ -19,20 +19,19 @@ void main(List<String> arguments) async {
   final arbDir = Directory(
     p.joinAll([current.path, 'shared', 'l10n', 'assets', 'l10n']),
   );
-  final arbList = await arbDir
-      .list(recursive: true)
-      .where((event) => event.path.contains('intl_'))
-      .map((event) => event.path)
-      .toList();
+  final arbList =
+      await arbDir
+          .list(recursive: true)
+          .where((event) => event.path.contains('intl_'))
+          .map((event) => event.path)
+          .toList();
 
   try {
     await shell.run('''
-      dart pub global run intl_generator:generate_from_arb ${[
-      ...translationsFiles,
-    ].join(' ')} ${arbList.join(' ')} --output-dir=shared/l10n/lib/generated
+      dart pub global run intl_generator:generate_from_arb ${[...translationsFiles].join(' ')} ${arbList.join(' ')} --output-dir=shared/l10n/lib/generated
 ''');
 
-    print('\nGeneration from arb finished\n');
+    print('\nGeneration from arb at shared/l10n/lib/generated finished\n');
   } catch (error) {
     print('Generation from arb finished with Error:\n\n$error');
   }
