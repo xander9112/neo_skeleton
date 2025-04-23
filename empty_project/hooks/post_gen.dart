@@ -4,7 +4,7 @@ import 'package:mason/mason.dart';
 
 void run(HookContext context) async {
   final useAuth = context.vars['useAuth'] as bool;
-  print('USE AUTH: $useAuth');
+
   if (useAuth) {
     await _installAuthModule(context);
   }
