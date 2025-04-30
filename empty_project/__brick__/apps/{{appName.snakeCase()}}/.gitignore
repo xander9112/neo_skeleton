@@ -56,3 +56,4 @@ doc/api/
 injection.config.dart
 .flutter-plugins
 .flutter-plugins-dependencies
+./android/app/.cxx
